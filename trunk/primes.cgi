@@ -8,8 +8,6 @@ cgitb.enable()
 
 print "Content-type: text/html"
 print
-print '<html><head><link rel="stylesheet" type="text/css" href="primes.css" /></head>'
-print '<body><div id="container">'
 
 print "<br /><br />Here is your Prime Table:<br /><br />"
 
@@ -94,6 +92,3 @@ print '<input type="text" name="series" class="TextInput" />'
 print '<input type="hidden" name="notes" value="%s" />' % row
 print '<input type="submit" value="Submit" class="SubmitButton" />'
 print '</form>'
-
-
-print '</div></body></html>'
