@@ -52,7 +52,8 @@ input.TextInput
     border: 1px solid;
     background: #FFFFCC;
 }
-input.SubmitButton
+
+button.SubmitButton
 {
     border: 1px solid #006;
     background: #AACCEE;

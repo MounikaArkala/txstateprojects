@@ -4,36 +4,20 @@
 <script src="driver.js"></script>
 </head>
 
-<body>
+<body onload="load();">
 
 <div id="container">
 <div id="menu">
-MENU
+<p onClick="loadContent('content','primesmain.html');">PRIMES</p>
+<p onClick="loadContent('content','scalesmain.html');">SCALES</p>
 </div><!-- ~menu -->
-<img src="primes.jpg" onClick="loadPrimesMain();" />
-
-<div id="header">
-<br /><br />Here is your Prime Table:<br /><br />
-</div><!-- ~header -->
-
+<br />
 <div id="content">
-<!--
-<br /><form action="od.cgi" method="POST">
-Search for an order-dependent series<br />
-<input type="text" name="series" class="TextInput" />
-<input type="hidden" name="notes" value="%s" />' % row
-<input type="submit" value="Submit" class="SubmitButton" />
-</form>'
 
-<br /><form action="oid.cgi" method="POST">
-Search for an order-independent series<br />
-<input type="text" name="series" class="TextInput" />
-<input type="hidden" name="notes" value="%s" />' % row
-<input type="submit" value="Submit" class="SubmitButton" />
-</form>
--->
+
 </div><!-- ~content -->
 
+<br /> <br /> <br />
 </div><!-- ~container -->
 </body>
 </html>
