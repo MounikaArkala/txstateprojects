@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asmv1:assemblyIdentity name="School of Music.exe" version="1.0.0.1" publicKeyToken="ce7ac773f0678740" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="piano.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="School of Music" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="School of Music.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet class="System.Security.PermissionSet" version="1" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="School of Music.exe" size="102400">
+      <assemblyIdentity name="School of Music" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>O3lh02AFFxuyH7825sWFzx6NRIA=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="db1.mdb" size="135168" writeableType="applicationData">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>6FHRW6iILfSTDWbfBsObvtYStKE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="piano.ico" size="22486">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>9licIhEMp45xGdApEKRRiOvUagA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="School of Music.exe.config" size="1639">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>QRNgvpFP2aLsCu/f8HEgcqmwm0E=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=SUPERMAC\User" issuerKeyHash="a74d215ed1cc9d56686cda49a807eb1a92e8c2b3" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>eNpuGZ/MUM5uVdBPLiTDnBJXbk0=</DigestValue></Reference></SignedInfo><SignatureValue>GRk7LVavbtrpJNkf6NAMRCTCDaDcq1N+/d1ElB0UwzsnDQWN6ym8GHWObTAySNGzbnLwt9YJ9lU8Lrj1ih/Pzrtp0o9AnYsDXWAFuQUgQNlZPkAv8g/O9Y4gJEVb8X0q1ITSKK/qMG2IiNu+xojiv8F6U5wocf0znlEc1zN2fGY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>sXl6WVA/TRk8tZRbT1PYm3gAQ5BZxBBJkoWrimgpH2Uxdvo+FHozbyhXtqustvwtmiW2f++pvwYXYJtvc9fOYmVb3QJXgG83nMdqxuFo4+FOCBMLayhqPlkiVg03O0p82qlCpCt+6Uh3OE9eb8QOt2HZpj3Xr3iO8DARZ7BDWxk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="4d6e57129cc3242e4fd0556ece50cc9f196eda78" Description="" Url=""><as:assemblyIdentity name="School of Music.exe" version="1.0.0.1" publicKeyToken="ce7ac773f0678740" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=SUPERMAC\User</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>0VYGmKNK/csq708PLBfYLzqtadY=</DigestValue></Reference></SignedInfo><SignatureValue>SWB3gtXKKduUJvVT2+Fx3ZQ7bvuUmAtxsI9XU75SA29V0iY+pe7kP8WZpJy0Xg36eHXSGPMAZhDZJRMrbrd/L0qlHT4Ko4p9CwmkthwGlEhHpx2OWTtDSVaaAof+N1Fve/1ad1Slr3PX0GmkICGMhvJefE1Jiw3evHaWBA5B9BQ=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>sXl6WVA/TRk8tZRbT1PYm3gAQ5BZxBBJkoWrimgpH2Uxdvo+FHozbyhXtqustvwtmiW2f++pvwYXYJtvc9fOYmVb3QJXgG83nMdqxuFo4+FOCBMLayhqPlkiVg03O0p82qlCpCt+6Uh3OE9eb8QOt2HZpj3Xr3iO8DARZ7BDWxk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBxTCCATKgAwIBAgIQMo/drkNUeaZDjUnRCaoOWzAJBgUrDgMCHQUAMCUxIzAhBgNVBAMeGgBTAFUAUABFAFIATQBBAEMAXABVAHMAZQByMB4XDTA3MTIwOTAzMTY1MVoXDTA4MTIwODA5MTY1MVowJTEjMCEGA1UEAx4aAFMAVQBQAEUAUgBNAEEAQwBcAFUAcwBlAHIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALF5ellQP00ZPLWUW09T2Jt4AEOQWcQQSZKFq4poKR9lMXb6PhR6M28oV7arrLb8LZoltn/vqb8GF2Cbb3PXzmJlW90CV4BvN5zHasbhaOPhTggTC2soaj5ZIlYNNztKfNqpQqQrfulIdzhPXm/EDrdh2aY91694jvAwEWewQ1sZAgMBAAEwCQYFKw4DAh0FAAOBgQCPIXdQIkpj0uK4J+y1J8lxLLF/2sCX6K1CDrrqwFKXRa2I26l7YvRQAo4HjI34dVHwviVLth9xakt67rBKwKTk1e+DyOzvLE/AjRv11crx84SXT70kX5Vi7ge+l49mkHpCnygTbYrxI5xjckjdpCfhFod8vx63RgWrMnnwr7FVFA==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
