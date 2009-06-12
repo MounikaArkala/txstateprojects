@@ -1,0 +1,83 @@
+Algerian
+C D Eb F F# G Ab B C
+
+Harmonic Major Scale
+C D E F G Ab B C
+
+Double Harmonic Major Scale (Arabic Scale)
+C Db E F G Ab B C
+
+Double Harmonic Minor Scale
+D D Eb f# G Ab B C
+
+Hungarian Gypsy Scale
+C D Eb F# G Ab B C
+
+Hungarian Minor
+C D Eb F# G Ab B C
+
+Hungarian Folk
+C Db E F G Ab B C
+
+Phrygian Dominant Scale (Jewish Scale)
+C Db E F G Ab Bb C
+
+Egyptian Scale
+C D Eb F# G Ab B C
+
+Eskimo Tetratonic
+C D E G C
+
+Eskimo Hexatonic
+C D E F# G# A C
+
+Scottish Hexatonic
+C D E F G A C
+
+Oriental
+C D F A Bb C
+
+Oriental Pentacluster
+C C# D F Gb C
+
+Chinese
+C E F# G B C
+
+Balinese
+C Db Eb G Ab C
+
+Raga Vutari
+C E F# G A Bb C
+
+Raga Madhuri
+C E F G A A# B C
+
+Raga Viyogavarali
+C Db Eb F G# B C
+
+Shostakovich
+C Db D# E F# G A B C
+
+Blues Octatonic
+C D Eb F F# G A Bb C
+
+Pyramid Hexatonic
+C D Eb F Gb A C
+
+Romanian
+C E F G# B C
+
+Gnossiennes
+C D Eb F G Ab B C
+
+Prometheus
+C D E Gb A Bb C
+
+Adonai Malakh
+C C# D Eb F G A Bb C
+
+Houzam
+C D# E F G A B C
+
+Rock 'n Roll
+C D# E F G A Bb C
