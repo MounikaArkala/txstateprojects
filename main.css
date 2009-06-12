@@ -5,6 +5,7 @@ table.primes
   text-align: center;
   margin: 0 auto;
 }
+
 table.menu
 {
   border: 1px solid;
@@ -15,6 +16,30 @@ table.menu
   margin-left: auto;
   margin-right: auto;
 }
+
+table.scales
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin-top: 60;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td.scales
+{
+  border: 1px solid #006;
+  background: #FFFFFF;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 td.menu
 {
   border: 1px solid #006;

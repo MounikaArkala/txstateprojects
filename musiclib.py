@@ -52,9 +52,26 @@ def retrograde_inversion(notes, degree):
     return retrograde(inversion(notes, degree), 0)
 
 
+def find_in_unique_list(alist, sublist, wraparound=False):
+    """ function that detects if sublist occurs in alist anywhere. wraparound makes alist circular.
+        ONLY for use with sets (I.E. alist has unique elements.)"""
+    try:
+        first_index = alist.index(sublist[0])
+        for item in sublist[1:]:
+                    target = first_index + 1
+                    if wraparound:
+                            target = target % len(alist)
+                    if alist.index(item) == target:
+                            first_index += 1
+                    else:
+                            return -1
+        return alist.index(sublist[0])
+    except:
+        return -1
 
-def find_in_list(alist, sublist, wraparound=False):
+def find_in_list(alist, sublist, wraparound=False, findall=False):
     """ generic function that detects if sublist occurs in alist anywhere. wraparound makes alist circular."""
+    indexes = []
     try:
         for i in range(len(alist)):
             if alist[i] == sublist[0]:
@@ -76,9 +93,19 @@ def find_in_list(alist, sublist, wraparound=False):
                 except IndexError:
                     found = False
                     break
+                
             if found:
-                return i
+                if findall:
+                    indexes.append(i)
+                else:
+                    return i
+            
+        if findall:
+            if len(indexes) > 0:
+                return indexes
+            
         return -1
+    
     except:
         return -1
 

@@ -1,9 +1,20 @@
-- do the wrapping around code
+Everything
 
-- get the clicks 
+- allow submit by Enter on all pages
 - provide checking on input so it doesn't crash w/ valid input - do checking both in Python and in Javascript so that even if they try to eff w/ the code it will still be fine.
 
 
+
+Primes
+CHECK- do the wrapping around code
+
+
 add prettifying code (highlighting the series) to a func
-clean up primes.cgi code
-add documentation
+- clean up primes.cgi code
+- add documentation
+
+Scales 
+
+- force length of input to scales to be between 3 and 12 notes.
+- deal with duplicate notes (what if they put A A A ? interal will be 0.  discard duplicate notes!) (convert to set?)
+- add rating of how common each scale is.
