@@ -1,1 +1,9 @@
-do the wrapping around code
+- do the wrapping around code
+
+- get the clicks 
+- provide checking on input so it doesn't crash w/ valid input - do checking both in Python and in Javascript so that even if they try to eff w/ the code it will still be fine.
+
+
+add prettifying code (highlighting the series) to a func
+clean up primes.cgi code
+add documentation
