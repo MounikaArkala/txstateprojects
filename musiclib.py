@@ -55,21 +55,37 @@ def retrograde_inversion(notes, degree):
 
 def find_in_list(alist, sublist, wraparound=False):
     """ generic function that detects if sublist occurs in alist anywhere. wraparound makes alist circular."""
-    first_index = alist.index(sublist[0])
-    for item in sublist[1:]:
-		target = first_index + 1
-		if wraparound:
-			target = target % len(alist)
-		if alist.index(item) == target:
-			first_index += 1
-		else:
-			return -1
-    return alist.index(sublist[0])
+    try:
+        for i in range(len(alist)):
+            if alist[i] == sublist[0]:
+                first_index = i
+            else:
+                continue #go to next item in alist.
+            found = True
+            for item in range(len(sublist) - 1):
+                target = first_index + 1
+                if wraparound:
+                    target = target % len(alist)
+                try:
+                    if alist[target] == sublist[item + 1]:
+                        first_index += 1
+                    else:
+                        #found item that didn't match, go on to next.
+                        found = False
+                        break
+                except IndexError:
+                    found = False
+                    break
+            if found:
+                return i
+        return -1
+    except:
+        return -1
 
 def detect(notes, search, wrap):
     # search through all possible inversions, retrogrades, primes and retrograde inversions for the series.
     functs = [("Prime", prime), ("Retrograde", retrograde), ("Inversion", inversion),
-	          ("Retrograde Inversion", retrograde_inversion)]
+              ("Retrograde Inversion", retrograde_inversion)]
     matches = []
     for name, func in functs:
         for x in range(12):

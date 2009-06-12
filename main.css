@@ -1,0 +1,107 @@
+table.primes 
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto;
+}
+table.menu
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin-top: 60;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+td.menu
+{
+  border: 1px solid #006;
+  background: #AACCEE;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+tr.primesrow
+{
+  border: 1px solid;
+}
+
+td.primesdata
+{
+  border: 1px solid;
+  background-color: #EEBBEE;
+}
+
+th.primesheader
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  font-style: normal;
+  font-weight: normal;
+  
+}
+
+
+table.primesresult
+{
+  border:solid;
+  border-width: 1px;
+  margin: 0 auto;
+}
+
+td.primesresultn
+{
+  background-color:#FF9999;
+  border:solid;
+  border-width:1px;
+}
+td.primesresulty
+{
+  background-color:#99FF99;
+  border:solid;
+  border-width:1px;
+}
+
+input.TextInput
+{
+    border: 1px solid;
+    background: #FFFFCC;
+}
+
+button.SubmitButton
+{
+    border: 1px solid #006;
+    background: #AACCEE;
+}
+
+body
+{
+  text-align: center;
+  font-size: 15pt;
+}
+
+#container
+{
+  margin: auto auto;
+  width: 800px;
+  min-height: 600px;
+  height: auto;
+  background-color:#DDFFDD;
+  border: solid;
+  border-width: 2px;
+  border-color: orange;
+  text-align: center;
+}
+
+#occurrence
+{
+  margin: 25px 25px;
+  border: 2px solid green;
+  padding: 25px;
+}
