@@ -1,24 +1,28 @@
 <html>
-<head><link rel="stylesheet" type="text/css" href="primes.css" /> <title> Nico Schuler 12-Tone Project </title> </head>
-<body>
+<head>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<script src="driver.js"></script>
+</head>
+
+<body onload="load();">
+
 <div id="container">
-<br /> <br /> <br /> <br /><br /><br />
-<form action="primes.cgi" method="GET">
-<label> Row: </label><input class="TextInput" type="text" name="notes" id="notes" size="60"/>
-<input class="SubmitButton" type="submit" value="Submit" />
-</form>
-<br /> <br /> <br />
+<div id="menu">
+<table class="menu">
+  <tr class="menu">
+    <td class="menu" onClick="loadContent('content','main.html');">HOME</td>
+    <td class="menu" onClick="loadContent('content','primesmain.html');">PRIMES</td>
+    <td class="menu" onClick="loadContent('content','scalesmain.html');">SCALES</td>
+  </tr>
+</table>
+</div><!-- ~menu -->
+<br /><br /><br />
+<div id="content">
 
 
-<br /><br /> <br /> <br />
-How to use this program:<br /><br />
-Enter your Primary Row (12 notes!), separated by spaces, in the text entry field entitled "Row".
+</div><!-- ~content -->
+
 <br />
-Example: <br /><br />
-A F# G Ab E F B Bb D C# C Eb<br />
-When you are finished entering your row, press Enter or click the <input class="SubmitButton" value="Submit" type="submit" /> button.
-<br />
-
-</div>
+</div><!-- ~container -->
 </body>
 </html>

@@ -47,11 +47,14 @@ function genArgs(pageName)
 		{
 			args = args + "notes=" + escape(row);
 			args = args + "&series=" + escape(series);
-			alert(wrap);
 			args = args + "&wrap=" + escape(wrap);
 			args = args + "&page=" + escape(page);
 		}
 		
+	}
+	else if (pageName == "scales.cgi")
+	{
+		args = args + "notes=" + escape(row);
 	}
 	else
 	{
@@ -72,8 +75,7 @@ function loadContent(divName, pageName)
 	} 
 	
 	var url = pageName;
-	url = url + genArgs(pageName);	
-	//alert(url);
+	url = url + genArgs(pageName);
 	xmlhttp.onreadystatechange = contentChanged;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.send(null);
@@ -88,32 +90,30 @@ function load()
 
 function callPrime()
 {
-    //alert("CALLED CALLPRIME!");
 	row = document.getElementById("notes").value;
 	page = "main";
-	//alert(row);
 	loadContent('content','primes.cgi');
+}
+
+function callScale()
+{
+	row = document.getElementById("notes").value;
+	loadContent('content','scales.cgi');
 }
 
 function loadOD()
 {
-    //alert("CALLED CALLPRIME!");
-	alert("Called LoadOD!");
 	series = document.getElementById("odseries").value;
 	wrap = document.getElementById("wraparound").checked;
-	alert("od: " + series);
 	page = "od";
-	//alert(row);
 	loadContent('content','primes.cgi');
 }
 
 function loadOID()
 {
-    //alert("CALLED CALLPRIME!");
 	series = document.getElementById("oidseries").value;
 	wrap = document.getElementById("wraparound").checked;
 	page = "oid";
-	//alert(row);
 	loadContent('content','primes.cgi');
 }
 
