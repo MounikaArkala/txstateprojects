@@ -43,16 +43,12 @@ function genArgs(pageName)
 			args = args + "notes=" + escape(row);
 			args = args + "&page=" + escape(page);
 		}
-		else if (page == "od")
+		else if (page == "od" || page == "oid")
 		{
 			args = args + "notes=" + escape(row);
-			args = args + "&series=" + escape(od);
-			args = args + "&page=" + escape(page);
-		}
-		else if (page == "oid")
-		{
-			args = args + "notes=" + escape(row);
-			args = args + "&series=" + escape(oid);
+			args = args + "&series=" + escape(series);
+			alert(wrap);
+			args = args + "&wrap=" + escape(wrap);
 			args = args + "&page=" + escape(page);
 		}
 		
@@ -103,8 +99,9 @@ function loadOD()
 {
     //alert("CALLED CALLPRIME!");
 	alert("Called LoadOD!");
-	od = document.getElementById("odseries").value;
-	alert("od: " + od);
+	series = document.getElementById("odseries").value;
+	wrap = document.getElementById("wraparound").checked;
+	alert("od: " + series);
 	page = "od";
 	//alert(row);
 	loadContent('content','primes.cgi');
@@ -113,7 +110,8 @@ function loadOD()
 function loadOID()
 {
     //alert("CALLED CALLPRIME!");
-	od = document.getElementById("oidseries").value;
+	series = document.getElementById("oidseries").value;
+	wrap = document.getElementById("wraparound").checked;
 	page = "oid";
 	//alert(row);
 	loadContent('content','primes.cgi');

@@ -1,1 +1,1 @@
-scales = {'%s Major Scale': [2,2,1,2,2,2,1]}
+scales = {'Major Scale': [2,2,1,2,2,2,1]}

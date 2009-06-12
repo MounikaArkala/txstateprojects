@@ -78,23 +78,31 @@ print '<button type="button" onClick="loadOD();" class="SubmitButton">Submit</bu
 print '<br />'
 print 'Search for an order-independent series<br />'
 print '<input type="text" name="oidseries" id="oidseries" class="TextInput" />'
-print '<button type="button" onClick="loadOD();" class="SubmitButton">Submit</button>'
-
+print '<button type="button" onClick="loadOID();" class="SubmitButton">Submit</button>'
+print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
 if page == "main":
 	pass # put something here if you want...?
 	
 elif page == "od":
 	series = form.getvalue('series')
+	wrap = form.getvalue('wrap')
+	if wrap == "true":
+		wrap = True
+	else:
+		wrap = False
 	temp = [all_notes[i] for i in series.split()]
 	print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(temp, encoding) + "</table><br />"
-	result = detect(rownumerals, temp)
+	result = detect(rownumerals, temp, wrap)
 	if len(result) == 0:
 		print "No occurrences were found!<br />"
-	for item in detect(rownumerals, temp):
+	for item in detect(rownumerals, temp, wrap):
 		markupstr = '<table class="primesresult"><tr>%s</tr></table>'
 		datastr = ""
+		wraparound = 0
+		if item[2] + len(series.split()) > 12:
+			wraparound = (item[2] + len(series.split())) % 12
 		for i in range(12):
-			if i >= item[2] and i < (item[2] + len(series.split())):
+			if (i >= item[2] and i < (item[2] + len(series.split()))) or i < wraparound:
 				datastr += '<td class="primesresulty">' + encoding[item[3][i]] + '</td>'
 			else:
 				datastr += '<td class="primesresultn">' + encoding[item[3][i]] + '</td>'
@@ -103,19 +111,27 @@ elif page == "od":
 	print "</div>"
 
 elif page == "oid":
-    series = form.getvalue('series')
+	series = form.getvalue('series')
+	wrap = form.getvalue('wrap')
+	if wrap == "true":
+		wrap = True
+	else:
+		wrap = False
 	notes = [all_notes[i] for i in series.split()]
 	someresult = False
 	for perm in all_perms(notes):
-		result = detect(rownumerals, perm)
+		result = detect(rownumerals, perm, wrap)
 		if len(result) > 0:
 			someresult = True
 			print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(perm, encoding) + "</table><br />"
 			for item in result:
 				markupstr = '<table class="primesresult"><tr>%s</tr></table>'
 				datastr = ""
+				wraparound = 0
+				if item[2] + len(series.split()) > 12:
+					wraparound = (item[2] + len(series.split())) % 12
 				for i in range(12):
-					if i >= item[2] and i < (item[2] + len(series.split())):
+					if (i >= item[2] and i < (item[2] + len(series.split()))) or i < wraparound:
 						datastr += '<td class="primesresulty">' + encoding[item[3][i]] + '</td>'
 					else:
 						datastr += '<td class="primesresultn">' + encoding[item[3][i]] + '</td>'
@@ -123,8 +139,8 @@ elif page == "oid":
 			print "</div>"
 
 	if not someresult:
-		print "That sequence did not occur in any order!<br />"
-	print "<br /><br />"
+		print "<br />That sequence did not occur in any order!<br />"
+		
 		
 else:
 	print "404 - Page %s could not be found!" % page

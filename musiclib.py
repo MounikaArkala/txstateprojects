@@ -1,10 +1,10 @@
 def all_perms(str):
     #~~ PUBLIC DOMAIN FUNCTION FROM MICHAEL DAVIES
-    if len(str) <=1:
+    if len(str) <= 1:
         yield str
     else:
         for perm in all_perms(str[1:]):
-            for i in range(len(perm)+1):
+            for i in range(len(perm) + 1):
                 yield perm[:i] + str[0:1] + perm[i:]
 
                 
@@ -57,13 +57,16 @@ def find_in_list(alist, sublist, wraparound=False):
     """ generic function that detects if sublist occurs in alist anywhere. wraparound makes alist circular."""
     first_index = alist.index(sublist[0])
     for item in sublist[1:]:
-        if alist.index(item) == first_index + 1:
-            first_index += 1
-        else:
-            return -1
+		target = first_index + 1
+		if wraparound:
+			target = target % len(alist)
+		if alist.index(item) == target:
+			first_index += 1
+		else:
+			return -1
     return alist.index(sublist[0])
 
-def detect(notes, search):
+def detect(notes, search, wrap):
     # search through all possible inversions, retrogrades, primes and retrograde inversions for the series.
     functs = [("Prime", prime), ("Retrograde", retrograde), ("Inversion", inversion),
 	          ("Retrograde Inversion", retrograde_inversion)]
@@ -71,7 +74,7 @@ def detect(notes, search):
     for name, func in functs:
         for x in range(12):
             temp = func(notes, x)
-            result = find_in_list(temp, search)
+            result = find_in_list(temp, search, wraparound=wrap)
             if result >= 0:
                 matches.append((name, x, result, temp))
     return matches
