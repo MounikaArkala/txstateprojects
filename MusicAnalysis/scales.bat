@@ -1,0 +1,2 @@
+python scales.cgi
+pause
