@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: sc
+Version: 0.2
+Summary: Control SuperCollider sound server from Python
+Home-page: http://www.ixi-audio.net/backyard
+Author: ixi audio
+Author-email: info@ixi-audio.net
+License: GPL
+Description: UNKNOWN
+Platform: UNKNOWN
