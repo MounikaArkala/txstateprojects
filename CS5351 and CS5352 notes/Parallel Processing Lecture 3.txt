@@ -1,0 +1,76 @@
+
+
+Covering parallel Sieve of Erasothenes again.
+- we try not to repeat anything, but there is still an issue - 10 is a multiple of both 2 and 5.
+
+Maximum speedup of parallel algorithm:
+it's a series of [(n+1) - pi^2] / pi sets.
+
+Problem 1-10 : similar to speedup problem.  
+
+bottleneck of previous alg: single processor striking all multiples of 2.
+Control Parallel - each processor executes different instrucions on same data
+Data parallel approach - every processor executes same instructions on different data.
+
+- we don't assign a single processor to handle multiples of 2 - we set every processor to work on 2, when they finish, we move them all to 3, etc.
+
+we spread the data from 2 to n, and assign each process a section of that area to work on.
+
+There's a leader process.  he goes "okay guys we're doing multiples of 2."  they all agree, and then they start executing.
+It's data parallelism because they're doing the same procedure but on different sections of the data.
+What happens if p1 completes before the others?  seems like p1 just waits until they're done?
+
+What's the speedup for Data Parallel Sieve approach?
+assume Shi is the time required for a process to cross out a multiple.  
+
+you have to calculate the communication cost and the cost of marking out each multiple.
+After a certain point, the speedup will peak out and start reducing if you add more processors.  I assume this is because the communication overhead is so large.
+
+Basically the communication cost is linearly proportional to the number of processors.  So though the ocmputation time goes down with each added processor, eventually the communication cost raises faster than the computation time goes down.
+
+The crossing point of the two curves is the point where communication cost rises above the computation cost.  For this exact setup of this problem, it's around 11 processors.
+
+Communication cost is very often significant.  The switches that interconnect processors are extremely fast, but latency in interconnection communications can be very expensive.
+
+TO get output from our communication - we need to add some IO time.  so you take the total computaion time, and add it to the total IO time (number-of-primes * Beta)
+
+The theoretical maximum speed can be predicted using Amdahl's law, which is a better estimate than a conventional prediction.
+
+Amdahl's law is very famous in Parallel Computing.  It plays an important role in determining the applicability of a solution.
+
+f is the percentage of operations that must be executed in sequence.
+p is the number of parallel processes.
+
+The speedup is limited by 1 / {f + [(1 - f) / p]}
+
+basically it's the relationship between the optimal value, infinite speedup (1 / (0 + 1/p) = 1 / 0 = infinity), and the worst value (f = 1, 1/1 = 1, no speedup, i.e. a completely sequential problem.)
+
+Ahmdal's law just gives you an upper bound to speedup, so obviously don't underestimate your f.
+
+Amdahl effect = as the size of the problem increases, the fraction f of inherently sequential operations decreases.  So parallel solutions are more favored when a larger instance of the problem arises.
+
+=== End of lecture notes 1.
+
+lecture notes 2 takes at least 3 meeting times.  
+
+
+The PRAM model of parallel computers seems very powerful but there are problems that cannot be solved using the PRAM model.
+
+The RAM model of serial computation (a very influential work from the past)...
+ -program is pre-stored in read-only memory.
+ -location counter points to area of program currently executing.
+ -memory and write-only output tape are infinite.  only the read-only input tape is finite.
+ -you can only read from and write to tapes sequentially.
+ 
+The PRAM model for parallel computation:
+example ops: LOAD, STORE, ADD, SUB, MULT, DIV, READ, WRITE, JUMP, JGTZ, JZERO, HALT.
+
+time complexity and space complexity are the two main measurements of the efficiency of an algorithm, regardless of whether it's a sequential or parallel algorithm.
+
+How do you measure time complexity for a PRAM model? how many instructions are executed ... if instructions are equal execution time.  weight them if they're not equal execution time.
+
+there are more things than just an average time complexity.  there's also minimum and maximum time complexity.
+
+space complexity - how much memory you'll consume.  the worst-case time and space complexity of a RAM program  can be measured somehow?
+
+first assignment will be next monday.

@@ -1,0 +1,86 @@
+
+
+Moore's Law (layman) - computers double in speed every 18 months
+Moore's Law (CS) - the density of transistors doubles every 18 months.
+
+why haven't CPUs gotten faster than 3.2 ghz?
+ after Intel manufactured the 3.2 ghz p4's, they reached a problem due to heat and power consumption.
+ As they get hotter, their efficiency drops.
+
+Multicore systems are a good solutions.  it is an architecture revolution that is still underway -
+ Intel is researching 16-core systems.
+
+Instruction Lookahead - Important feature of caching - which order do we execute instructions?
+
+Floating Point subprocessors exist in more expensive systems, this allows the main CPU to have less of a load.
+
+Pipelining - different sets of different instructions overlapping execution.
+
+Hybrid of pipelines with vectors - pipelined vector processors.
+
+Processor array - array of processors.  each element is very simple.
+ same control.  2^10 processors in one array, each processor executes the same process ??
+  
+single program environment - only one program can run in the environment at a time.
+
+Turing machine - Turing was a mathemetican who proposed a model for computation.
+ no one has come up with a better alternative model.
+ 
+Data Flow computers - 
+
+The program the company he knows about is developing seems to do: assign independent parts of the program
+to different cores.  It will not change the logic of the program.
+
+Data flow graph - a graph that describes interdependencies of data / variables.
+we can't find any fast way to do data flow analysis on larger systems.
+
+CPUs used in parallel processors - High Performance Computers - individual CPUs are pretty much the same as microprocessors.
+
+DEC - digital equipment corporation
+ they used to be #2 computer manufacturer in USA behind IBM.
+ DEC didn't survive because they used to manufacture mainframes and then high-end workstations.
+ mainframe is called VAX VMS.  He refused to make any changes in the workstations - he said microcomputers were toys.
+ said they had no future.
+ sales dropped 190%, etc. they went out of business.
+ 
+2 Views of computer's futures - home entertainment - TV and computers integrated, simplified.
+ 2nd group - Microsoft - PCs are forever.
+ the fact that we use our phones / mobile devices for internet / e-mail, etc. means the usefulness of PCs is slightly affected.
+ 
+Parallel Processing - concurrent processing of data elements that belong to one or more processes that solve a single problem. concurrent = same time - simultaneously.
+ 
+Parallel computer - multiprocessor computer capable of parallel processing.
+
+Supercomputers - a computer capable of computation far beyond a regular PC's computation power at that time.
+
+Throughput - the number of results a computer can generate in a certain period of time (day / nanosecond / etc, depending on application.)
+
+Data parallelism- we talked about processor arrays - they provide a mechanism for implementing data parallelism.  You apply the same operation simultaneously to different data.
+
+Speedup - the amount of time you save by moving from a really efficient sequential algorithm to a parallel / pipelined machine.
+
+Pipelining and Parallelism - we usually integrate them, but you can use them invidually as well.
+
+Pipelining: concurrency level - different levels - user level (timesharing) and job / program level (multiprogramming), process level (multiprocessor), instruction level (pipelining).
+All multicore processors are pipelined now.
+
+
+ 
+Segments - single, self-contained, individual operations.  usually not divided further.  may be able to subdivide it but probably don't want to.
+
+If a product takes 3 operations to take, you can pipeline it, so that you get no output for the first 3 units of time, then you will get an output every step after that.  For non-pipelined, you'd get outputs every 3 units of time.
+
+Control parallelism - idk?
+
+Scalability - 2 different scalabilities.  1: algorithmic - how the algorithm can be scaled.  2: architectural - how the algorithm can scale across different architectures.
+
+Sieve of erasothenes with 3 processors:
+each one contains an index where it's currently considering.
+only 1 of the P processes can get a hold on a prime number.  It will prevent repeated useless work.
+So for example P1 grabs 2.  it starts striking out 2s.  the shared memory contains a current prime, which is locked.  when P1 finds
+out that 3 is a prime, it puts 3 into current prime and unlocks it, then continues.  that way P2 can grab 3 and start executing.
+we're assuming we can update the boolean array concurrently, which may not be possible.
+
+Using multiple processors for the sieve of erasothenes creates signficant speedup versus the sequential version.speedup is about 2 for 2 processors, but it's not a speedup of 3 for 3 cpus, because you pass the minimum speed for processing just the 2's, so Processor 1 hangs on that and P2-P3 never get executed.
+
+

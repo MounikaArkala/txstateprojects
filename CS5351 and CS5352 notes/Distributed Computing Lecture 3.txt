@@ -1,0 +1,66 @@
+
+	Review of NETWORKING
+	
+LANs are faster and more reliable than WANs.  
+
+IEEE has different standards for different network types.
+
+802.3 / Ethernet still used in some parts of the US but it's very rare... ???
+
+Ethernet's main advantage is you can add/remove computers anytime you want.
+
+802.4 / Token Bus.
+token is passed around in a ring.  each person can't put anything on the network unless they have it.
+advantages - Resources used in time-sharing manner, no collisions, built-in priority scheme.  based on priority of packets not of computers.
+the data rate is about the same as ethernet, 10mbps.  
+
+802.5: Token Ring.
+token bus has a single physical cable and a logical ring.  this has a physical ring.  it can be used for both LANs and WANs.  ring technologies are well executed and lots of mature hardware exists for them.
+data frames arriving at each dte is placed in a priority queue just like token bus.
+
+lots of detail about how token rings work.
+
+checksums, maximum transmission units, etc.  should know all this from Networks.
+
+
+Propagation delay - a physical delay.
+
+Transmission Delay - ??
+
+going over TCP/IP and such.
+-relationship of TCP/IP to OSI model
+IPv6 has a much larger address space than ipv4, but the addresses are harder to read.
+
+Different classes - eg. universities have a different class of IPs than a small school, etc.
+
+The IP layer allows navigation of packets through a network.  UDP provides a checksum that covers the whole datagram and it also supports ports.  That's the only difference between UDP and IP.  This elevates UDP from network level to transport layer. (udp = User Datagram Protocol)
+
+TCP (Transmission Control Protocol) - connection-oriented, reliable communication protocol.
+
+He then did lots of traceroutes and discussed routing algorithms.
+
+Middleware is a software layer that provides ease of use / convenience / abstraction / productivity to the resources below.
+
+Different middleware:
+RPC (remote procedure calls)
+Java RMI (remote method invocation)
+CORBA (Common Object Request Broker Architecture) - Object-Oriented concepts.
+
+Microsoft thinks DCOM is a replacement of OO approach.
+
+example of middleware - Java's database library that abstracts the actual database issues away from it.
+
+TCP is software.  describes how it's robust and such.
+
+you can port-map a service.  middleware can help a certain degree for abstraction, but the final degree of help for the user depends on many factors.
+
+FDDI - proposed fiber-based LAN protocol  data rate of 100 mbps.  Fast Ethernet based on twisted pair has same data rate, so FDDI is pointless (it's more complicated.)
+
+
+
+		Heterogeneity
+hardware heterogeneity: instruction sets, data representations (endianness)
+
+distributed computing can provide significant challenges... middleware together with the OS can help to reduce the problems / troubles caused in distributed systems.
+
+

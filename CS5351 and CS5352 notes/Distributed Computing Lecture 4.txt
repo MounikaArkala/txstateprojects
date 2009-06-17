@@ -1,0 +1,84 @@
+
+
+Autonomous Systems
+Two types of distributed systems:
+	1: each system controls its own resources / provides resources to other systems (through RPC / RMI/ etc.)
+	2: computers depend on networked services, such as file / authentication (NFS in Unix).
+	
+Advantages of first approach:
+    single machine crashing does not disable system
+	higher security
+	easier to manage
+	
+Problems:
+	redundancy of functions and resources
+	heterogeneity problem (keeping a single synchronized set of data)
+	higher cost of resource maintenance
+	
+Advantage of the 2nd type of DS:
+	higher ratio of resource sharing
+	lower cost of hardware and software maintenance
+
+Problems
+	interdependence
+	a single machine crashing can cause the unavailability of many resources.
+	software complexity
+	harder to manage
+	
+	
+he talks about Distributed System at the DMV.
+
+Which kind of system is better for a particular environment is dependent on the tasks performed.  There's no universal "best" system.
+
+Security issues
+	How can we identify a remote user or other agent?
+	How can we protect contents of sensitive information?
+	
+what about sercurity issues we can't predict?
+	Virus infecting server
+	bugs in server software
+	denial of service
+	
+Computers are exploding on internet
+	from 1999 - 2003: tripling of computers, 7-fold increase in webservers.
+	
+Major scalability challenges:
+	controlling the cost of physical resources
+		growing the Distributed System at reasonable cost as demand for resources grow
+		growing system linearly in response to demand.
+	
+	controlling the loss of performance / simplicity
+		time needed to access resource grows
+		try to design system so access times grow as a log of the resource size (resource: n, access: log(n))
+		
+	preventing running out of software resources
+		eg. ipv4 addresses are going to run out.
+		
+	avoiding performance bottleneck
+		example DNS - distributed, so it won't become a bottleneck.
+		a  commonly-requested resource can cause communication congestion in the DS.
+		
+Failure Handling and Recovery
+
+	failure detection
+		- use checksums to detect corrupted packets
+		- the root cause of some failures can't always be determined (eg. on remote server)
+		- how can we detect failures earlier and more accurately?
+		
+	failure masking
+		- make failures transparent to user
+		- some failures can be fixed easily (eg. retransmit failed msg.)
+	
+	failure tolerance and redundancy
+		- make resources redundant (eg. RAID array)
+		
+Concurrent control: access to shared resources must be controlled to ensure that such resources are always in consistent states.
+	semaphores & other concurrency control techniques aren't adequate in a DS environment.
+	common techniques:
+		-locks and tokens
+		-timestamps
+	
+
+CLASS CANCELLED B/C OF TORNADO!
+
+	

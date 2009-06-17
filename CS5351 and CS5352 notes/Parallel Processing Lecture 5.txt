@@ -1,0 +1,59 @@
+Word, PDF or PostScript file should be final handin format, submit electronically on FTP.
+for homework: use induction to convert recursively-defined function into regular function.
+
+
+Parallel prefix problem -- continued.
+
+more PRAM algorithms.
+
+shows the SUM example again (parallel prefix problem.)
+remember log(n/2) and log(n) are the same time complexity.
+
+figure 2-9
+PREFIX.SUMS(CREW PRAM)
+note every processor besides A0 gets a value from i-(2^j) which is just i-1 for iteration 0, iteration 2 i-2...
+spawn statement runs in log(n) time.
+for j=0 to log(n)- 1 runs at log(n) time.
+so final time complexity is big-theta log(n).
+
+using linked lists in PRAM model:
+
+list ranking - finding out the position of an item in a list.
+each processor starts on a diff element, and they navigate the list in parallel, changing the links.  see figure for example.
+
+because the for loop goes from 1 to log(n) then the complexity is log(n).
+
+complexity of algorithm:
+O(lg n) + C1 + C2lg(n)#for loop#  = O(lg n)
+
+Trees and tree traversal are important things.  there are 3 popular tree traversal - preorder, postorder, and in-order.
+nodecount keeps track of the number of nodes you've traversed.
+
+He shows us a sequential preorder traversal algorithm.
+how can a parallel algorithm perform this?
+some challenges.
+	each root may have a left and right.  if we start by visiting the root of a subtree, we can't go to the right until we finish the left.
+	initial impression - problem is sequential by nature.  
+
+	we want to systematically visit each node of a binary tree once only. 
+	
+each age in binary tree is changed to one for moving up and one for moving down.  you move around circularly.
+
+node gets a 0 for a downward movement, a 1 for an upward movement.  
+
+constructing a big linked list that we need is cumbersome.
+however we can use our parallel system to create the linked list, with each processor creating links.
+
+3 steps
+1) efficient LL construnction
+2) perform ranking algorithm
+3) perform traversal based on rankings.
+
+if node has a right sibling from the same parent, it will store this value.
+otherwise it won't.
+
+in Figure 24, the data structure is not completely right.  if you move F to be a child to the right of C, then you will not be able to traverse to it.  Their data structure will work in this case as long as you assume it doesn't have any right-subtree-only nodes.
+
+he went through the pseudocode for like 30 minutes.
+
+tomorrow : 2 more examples, and how to make optimal algorithms.  tomorrow move to lecture 3. he will be in san marcos.
