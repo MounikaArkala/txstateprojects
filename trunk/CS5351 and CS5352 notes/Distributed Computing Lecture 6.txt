@@ -1,0 +1,115 @@
+Final exam - no class on Thursday before exam.
+
+Last Time
+Distributed Algorithms vs. Distributed Processes
+2 models - Asynchronous and Synchronous DSes.
+Event Ordering in distributed systems.
+Most important - relative ordering of executions.
+
+Now:
+
+failure model - assumptions about possible failures in whole system.
+they come from your environment.
+by knowing failure model, we have guidelines for how to fix / detect / address / prevent failures.
+Omission failures
+	process omission failures
+	- process crashes (eg. segfault)
+		if it can be detected for sure, it's called fail-stop.
+	communication omission failures
+	- send-omission failure (channel doesn't transfer message from sender to send buffer of channel)
+	- receive-omission failure (msg lost between receive channel buffer and receiver)
+	- channel omission failure (msg lost between buffers)
+	arbitrary failures - really bad.
+	- can happen at any time.
+	
+Timing failures
+	- only apply to Synchronous DSes.
+	- clock failure (process' local clock exceeds max drift)
+
+reliability is a strong term - 2 implications
+	- validity (any message is eventually delivered)
+	- integrity (msg received is identical to sent & no duplicate msg received)
+	- not reliable unless validity and integrity are guaranteed under ALL communication failures.
+	
+Security Model
+	access rights - each object has a list of access rights.
+	principal - an authority who issues an access request (from client) or result(from server).
+	principal grants access rights or restricts / suspends access rights to processes. 
+	basically there's a principal (user) and a principal (server.)  the server checks the access rights.
+	
+	timestamps can be used for additional access protection - because intruder computer will not usually be able to get its clock synchronized w/ the rest of the system.
+
+	-secure processes against threats: threats can be difficullt to deal w/, can come from anywhere.
+
+an enemy is an object that can send messages to any process and read/copy any messages between pair of processes.  we assume it can't disupt communication.
+
+threats to processes
+	- process might not be able to determine identity of originator of message.
+	- encryption - need to use a level where it's unlikely they'll go through the trouble to break it.
+	
+threats to channels
+	enemy may inject / copy / alter messages on a comm channel.
+
+defeating security threats
+	cryptography / encryption
+	encryption = process of scrambling a message in a way to hide its contents.
+	- security channel 
+	- firewall
+	after July 1, to connect to any machine on campus you must first login as a valid user.
+-- end of Lecture notes 3.
+
+Lecture notes 4
+
+Time
+Clocks, Events, global states.
+
+
+
+Time travel in spaceships - fucks up conservation of energy / matter.
+the material used to construct the space ship now exists twice - because the material in its original state must still exist so that it can be used in the future to construct the space ship.
+
+there is no absolute physical time - everything is relative.
+how can we sync them all accurately?
+
+Distributed System is a set of processes which
+	- cannot communicae w/ shared memory
+Event Ordering
+	-history of process pi is series of evennts ordered by the total ordering relation i.  history(pi) = hi = <ei^0, ei^1, ei^2, ei^3, ...>
+
+
+disagreement of event intervals in one frame of reference are different between two parties, where one is moving faster than the other.
+successive events cannot have different timestamps unless the resolution of the clock is less than the time interval between successive events.
+
+clock skew - instantaneous difference between readings of any two clocks.
+clock drift - inside a single clock - wear / manufactureship / interferences.   
+clock drift rate - change in offset between clock reading and a "perfect reference clock" per unit of time.
+
+Astronomical time - defined according to rotatino of earth on its axis and its rotation around the sun.
+
+Synchronizing physical clocks
+	do you want to sync w/ a reference to a standard clock source, or
+	do you want to sync the clocks with other computers in your group?
+	first is external synchronization
+	second is internal synchronization
+	
+for synchronization,
+I = {1, 2, 3, 4, ....}
+if these refer to hours, 
+	-you will sync clock w/ reference at hour 0.
+	-hour 1: look at diff between clock & ref, update.  check that diff is < D (your proximity bound)
+	you change your I interval until the difference is less than your proximity threshold - eg. if your clock is highly accurate
+	and you only need accuracy down to a single hour, you can make your I very large.
+	
+remember software clock is based on hardware clock.
+no clocks are 100% accurate..  we want one where the drift rate is within a tolerable limit.  if physical clock's drift rate is within a known bound, your clock is "correct."
+
+Covered some algorithms for checking clock synchronization.
+
+a clock is correct w/ respect to drift rate if
+(1 - r) <= (H(t') - H(t) / t' - t) <= (1 + r)  # r = row, the p-looking symbol
+
+the correctness notion defined forbids bumps in the value of hardware clocks (and therefore software clocks too.)
+i.e. the clock behaves smoothly, not 5 sec. faster then 5 sec. slower, etc.
+
+monotonicity - a software clock C meets monotonicity condition if it always advances.
+Clocks that do not satisfy correctness condition (due to bumpiness) can be adjusted to meet monotonicity condition.

@@ -1,0 +1,120 @@
+
+Distributed Systems
+
+	Computer Networks
+Internet is just a global wide-area network.  
+
+Parallel processor systems typically have shared memory.
+
+	ESSENTIAL features of Distributed Systems:
+1) multiple processing elements
+2) intercommunication facilities
+3) transparency to users - this is main difference between a regular network and a distributed system.
+4) fault tolerance
+	- processing elements fail independently
+	- single failure will not bring down the whole system
+
+	Advantages of distributed systems
+1) convenience - you can have PCs / workstations / mini computers / other resources, and distributed across an area, and it can all work together.
+2) low ratio of cost/performance
+3) 
+4) resource sharing
+5) availablility
+6) reliability - this is stronger than availability.  
+7) scalability - often discussed in reference to hardware, but can also apply to software.
+
+	Difference between distributed systems and distributed computing
+Distributed Systems are a particular, important special case of Distributed Computing.
+Distributed Systems have a central software (distributed operating system) capable of providing an environment of distributed computing.
+Can we have a distributed computing environment inside of a non-distributed system?  eg.  "DCE" - distributed computing environment - has support of a distributed file system, time management, and remote procedure calls.  It's software that creates distributed computing environment, but it's not a full OS, it's only for special functions.
+
+Distributed Control / Coordination - and - Distributed agreement / Fault tolerance have similarities.  
+
+Ensuring the system is not being attacked is an important issue.
+
+	Main Goals of Distributed Systems - achieve highest level of following transparencies. Transparencies are noble goals, but most can't be achieved 100%.  we want to get as close as possible.
+
+Access Transparency - file I/O - actual file could be stored locally or distributed, with identical operations.
+Location transparency - objects can be accessed without knowing their location.
+Concurrent transparency - concurrent control without affecting users or applications.
+Replication Transparency - maintains consistency of multiple backup copies without user noticing.
+Failure Transparency - conceals faults of hardware / software from the user.  transparent to normal users, but system admins should still know about them.
+Migration transparency - move objects in system w/o affecting users / programs.
+Performance transparency - system can be reconfigured as loads vary.
+Scaling transparency - system and apps can expand in scale without change to system structure or application programs.
+
+
+The main goal is to provide better services to users.
+
+process can be in different states: running / blocked / ready / deadlocked.
+
+Concurrent vs. Parallel - the difference is subtle.  parallel means "at the same time physically" whereas concurrent means "logically at the same time" but can also mean "at the same time physically."
+
+Precedence graph - directed acyclic graph where each node is a statement.  it's basically like a tree, where each subsequent process depends on the previous process completing.  But how do you express concurrency?
+	fork & join constructs
+fork creates a second identical process.
+join waits until the previous process completes.
+
+join keeps a counter to determine which programs have finished.  so you basically do
+count = 2
+for L1;
+s1;
+goto L2;
+L1: S2;
+L2: join count;
+
+parbegin and parend - show which sections can be concurrent.  so like parbegin S1; S2; parend S3; S4;  means S3 and S4 must be sequential, but S1 and S2 can be parallel.
+
+fork/join are more powerful than parbegin / parend constructs.
+
+Diagram on p. 7 of the notes:
+
+S1;
+fork L
+S2;
+goto L1
+L: S3
+goto L2
+
+L2: S6
+goto L3
+
+etc.
+
+Process creation: when a process is created...
+Execution - concurrent vs. sequential
+ - parent continue to execute concurrently w/ child (unix systems use this)
+ - parent waits until all its children have terminated.
+Sharing - all vs. partial
+ - parent and children share all variables in common
+ - parent only shares a subset of its variables w/ children.  (unix uses this.)
+ 
+ talked about deadlocks:
+ 4 necessary conditions
+ - mutex
+ - hold and wait
+ - no preemption
+ - circular wait
+ 
+Critical Section - section of code such that a process will access / update / modify certain resources inside that section.
+you make sure you get permission to access critical section - this way you can avoid deadlocks.  Only one process gets permission for the critical section.
+
+readers/writers and dining philosophers problem covered.
+
+
+
+
+START of Lecture 3 (based on Chapter 3, 1, 2)
+
+
+Network OSI layers...
+Communication protocols - low-level: Ethernet, IP.  high-level, TCP.
+IP datagrams are below TCP.  TCP packets are sent using one or more datagrams.  The internet is not connection-oriented communications.
+
+Talks about different layers, goes over the OSI layers.   Network / Transport/ etc.
+
+Session layer - remote login / file transport... terminal -> mainframe connection is a session.  this session is managed by this layer.
+
+Presentation layer - ensures syntax and semantics of information - does encryption, data compression, etc.
+
+

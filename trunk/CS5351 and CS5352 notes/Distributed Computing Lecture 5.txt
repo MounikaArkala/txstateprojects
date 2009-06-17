@@ -1,0 +1,44 @@
+homework will be submitted via FTP
+due 6/22/09.
+the part of the assignment that asks about "write a program" is just pseudocode, using gotos and such.
+
+we can do up to #3 now, but he hopes to finish it all.
+
+System Architectures
+Client-Server
+	trend: reduce OS kernel, move part of kernel to higher levels as system services.
+	
+	we want to ~~ have backup copies
+	extra layers of control = extra failure points.
+	
+Peer-to-peer
+	example: whiteboard application - group of programmers work on an image.
+	concurrent modifications are reflected across all programmer's interfaces.
+	
+Proxy servers and caches
+
+mobile code
+	- code that can be sent to another system to be executed
+	eg. Applet or Javascript.
+	
+different between thin client and client-server: thin client is very stripped down.  most everything lives on the server.
+as hardware has gotten cheaper this model has gotten less common.
+
+interfaces supported by object-oriented model: dynamic - number and type of objects hosted by each process may vary.
+
+Design Requirements of distributed architectures
+ - Performance
+ 
+ Quality of Service - main quality properties - performance, reliability, security, adaptability...
+ 
+ Security - safety, not data security - not the same thing as dependability.
+ 
+ 
+ Distributed algorithm - code.
+ distributed process - a group of these are typically executed to form one distributed algorithm.
+ the distributed algorithm is your "final goal", or what you're trying to accomplish.
+ 
+ global vs. distributed clock - covered next lecture.
+ logical clocks?
+ 
+ tomorrow we will do lecture 4?

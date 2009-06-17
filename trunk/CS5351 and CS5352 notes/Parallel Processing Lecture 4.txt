@@ -1,0 +1,118 @@
+
+
+In CS, space complexity is more important than time complexity.
+We will also discuss uniform / logarithmic cost.
+
+The more complex an operation we try to perform, the more time we will need.  Logarithmic complexity only refers to space, it doesn't make sense to discuss time complexity this way.
+
+Big-O.   the concept of big-o is a ballpark, gives you an upper bound.
+
+Big-Omega - order at least f(n).  Gives you a lower-bound.  Looks like an upside down U (horseshoe).
+
+Big-Theta - looks like an O with a line through the center.  it is a combination of the two.
+
+He drew a diagram of these three things.
+n-sub-0 is the point where after it, the line conforms to the constraint (big-O, big-Omega, big-Theta.)
+
+
+f(n) is execution time of the algorithm.  for big-theta, c1(f(n)) <= T(n) <= c2(f(n))
+I.E. big-theta is still an approximation based on f(n) but you're guaranteed that all points after n-sub-0 fall within the range of big-theta.
+
+We will have to be able to measure time complexity of both serial and parallel algorithms.
+
+Parallel model of computation - PRAM:
+	contains these items:
+ - control unit
+ - global memory
+ - some other things??
+ 
+Virtual memory - allows you to run a program that has a larger size than your actual memory.
+
+
+Difference between PRAM and current HPC - control and assumption of infinite processors.
+
+PRAM models requires # of processes active to constantly increase.  at any state a processor can either process data, compute something, read/write data, or activate another processor.
+
+this # of active processors can double infinitely.
+Also, this model assumes that data is available to all immediately.
+
+This model is good for some real-life examples, such as QuickSort.
+iteration 1 - select Pivot.  then you divide sequence into two parts.  there's only need for one processor to be running during iteration 1.  after pivot is selected, dividing the sequence can be performed by the current processor and another processor.
+
+Cost of PRAM computation - we calculate the total # of operations by all processors, added together.  
+cost of PRAM computation is parallel time complexity * processors_used.
+
+How do we take into account overhead of the synchronization?  You have to look at the structure of the algorithm.
+The overhead for each parallel computation is algorithm-dependent.
+
+
+there are different PRAM models based on how they handle read-write conflicts.
+
+EREW ( exclusive read exclusive write) - disallow conflicts.
+CREW - only one can write at a time, but anyone can read.
+CRCW - 3 kinds
+ - common - all processors concurrently writing into same global address must be writing same value.
+ - arbitrary - one is chosen as "winner", allowed to write its value
+ - priority - PPU's with higher priority (lower index) will win.
+ 
+Priority CRCW PRAM is the strongest.
+
+Lemma 2.1
+A p-processor EREW PRAM can sort a p-element array stored in global memory in Theta(lg(p)) time.
+
+Theorem 2.1 - a p-processor Priority PRAM can be simulated by a p-processor EREW PRAM with the time complexity increased by a factor of Theta(log(p))
+
+
+We're trying to simulate the same operation as priority PRAM in an EREW model.
+
+The idea is that you can simulate all ops on a less complicated model and the only penalty you have is complexity.  we use sorting to implement simulation.  
+
+for all i >= 2
+  s1
+  s2
+  s3
+end
+
+for every processor whose index satisfies condition (in this case, index >= 2) all execute s1, then all execute s2, then ... etc.
+
+Parallel summation - example of a reduction operation.  can be represented by a binary tree.
+A group of n values can be added in log(n) parallel steps.
+
+For 60 integers you  need 8 processors.  which do we use?  log(n) or log(n/2)?  time to activate all these processors is really log(n/2) but in time complexity, O(log(n)) is the same thing as O(log(n/2)) because the difference is just a constant (1/2).
+
+He covers the algorithm for the summation...
+
+# parallel reduction
+initial condition - list of n >= 1 elements stored in A[0:(n-1)]
+final condition : sum of elements in A
+global variables: n, A, j
+
+processors = [P0, P1, P2, P3]
+spawn(processors)
+for all processors: # run this in parallel on each processor
+	for j in range(log(n)):
+		if (i % 2**j) == 0 and (2*i + 2**j) < n:
+			#above condition regulates how we do reduction.
+			#i is the processor it's running on.
+			A[2*i] += A[2*i + 2**j]
+			
+	
+Prefix sum problem - has a lot of applications, eg. how do we pack elements?
+Example:
+AbCDeFghI - we want to preserve original order but move all upercase to the beginning.
+Goal: ACDFIbegh
+
+First you get a binary series of the positions we want to pack
+101101001
+then compute prefix sums
+112334445
+by adding the binary series as we move on.
+the solution is similar to parallel reduction.
+
+he shows us a picture
+4 3 8  2  9  1  0  5  6  3  #This is the original list
+4 7 11 10 11 10 1  5  11 9  #A[1] now has the sum of every item before it, and itself.
+4 7 15 17 22 20 12 15 12 14 #A[2] and A[3] are done now.
+4 7 15 17 26 27 27 32 34 34 #A[4] A[5] A[6] A[7] will be done.
+some more lines....
+

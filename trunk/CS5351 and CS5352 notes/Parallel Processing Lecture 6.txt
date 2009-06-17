@@ -1,0 +1,104 @@
+the Thursday before Finals is cancelled.
+
+in-order traversal of a tree has been covered.
+
+next PRAM algorithm - merging two sorted lists.
+
+nlogn is runtime of an optimal sorting algorithm - merge sort is one of these, so is heap sort.
+worst-case and average-case are both nlogn.
+our PRAM algorithm implements the technique that merge sort uses, so you could run a merge sort in parallel.
+
+if list1 is n1 elements and list2 is n2 elements, the sort time will take n1+n2.
+
+how do we do a parallel merge?  reducing time complexity is our goal.
+
+ - spawn n processes (one for each element in the list.)
+ time complexity is reduced from nlogn to logn.
+ 
+this algorithm is for power-of-two length lists.
+a[0:(n/2)] is first half, a[(n/2)+1:n] is second half.
+
+each processor performs the same operation - it takes its value, performs a binary search on the other list,
+and takes this value and stores the index for the other list.
+
+for a processor pi in the first half, that processor searches the second half.  the value "high" variable is at least equal to n/2.
+for a processor in the second half, the vlaue "high" is at most n/2.
+
+it seems to me that he has 16 processors for merging 2 lists of 8 elements each. yes this is what he means
+the items in each list are disjoint.
+
+
+	final problem in this lecture-note 2: graph coloring.
+the minimum number of colors required is 4 for a map???
+
+given a graph, color its vertices with a predefined color "c" so that no two adjacent vertices have same color.
+
+You can have an adjacency matrix, or an adjacency linked list, to solve this..
+matrix is good when the graph is dense (lots of edges.)  if graph is sparse use linked list.
+
+any two nodes w/ same color, the color is not valid.  go to next one.  the # of possible colors is c^n (exponential) so sequential algorithm doesn't work well.
+
+processors needed based on # of nodes:
+for n = 10, 2^n processors are required, or approx. 10^3.
+n = 20, p = 10^6
+n = 30, p = 10^9
+n = 40, p = 10^12
+
+this is obviously a huge number. we can't assume that the number of parallel processors is always going to be as low as it is today, but this growth of 2^n requirement is unrealistic.
+
+number of possible colorings is c^n.  you can do parallel reduction from PRAM module to reduce our "After Checking" list down to the number of legal colorings.
+
+coloring is a value,, index of the process is the coloring assigned to it.
+
+for each two nodes A[j][k] we want to see if the color assigned to them are the same.
+then the candidate is 0.
+
+can we reduce the time complexity of the verification process?
+each processor is responsible for verifying one coloring assignment.  can we use more processors to reduce sequential verification?
+
+
+
+cost / # of ops performed by alg should be in same class as time complexity of optimal sequential algorithm.  that's the cost-optimal algorithm we want to find.
+
+we started w/ parallel reduction, then pre-order traversal, now ending w/ graph coloring problems.
+none of our algorithms are cost-optimal!
+eg. parallel algorithm Time COmplexity = big-theta(log(n)) but the sequentail is big-theta(n)
+so we're too efficient - we want to try to use fewer processors.
+
+
+for n item parallel reductions:
+step 1 performs n/2 operations.
+step 2 performs n/4
+then n/8, n/16, ... etc.
+
+lg(n)-1
+ _          n
+<_        -----     = big-theta(n)
+<_         2^i
+i=0
+
+note the limit of this is 2.  so the number is always < 2.
+
+how do we go from nlg(n) to n?
+just use
+n / lg(n) processors.  because then n / lg(n) * lg(n) = n.
+however, this will change the number lg(n) because the number of processors has changed.
+that's okay because the value it's  changed to is still in the same class as lg(n).
+
+Theorem 2.2: Brent's theorem
+given A, a parallel algorithm with computation time t, if parallel algorithm A performs m computational operations, then p processors can execute algorithm A in time t + (m - t) / p.
+
+you can apply this to parallel reduction problem.  we know time t = log(n).  if we use n/log(n) processors,
+brent's theorem says the new complexity is ceil(log(n)) + ((n - 1 - ceil(log(n))) / floor(n / log(n)) )
+
+lecture notes are unclear here... each proc given n/ log(n) values.  adding these values will cost (n/log(n)) - 1 as the time.  is that acceptable? sequential time complexity is 
+if you still have a question about this he'll post material in the class forums.
+
+then he does parallel prefix sum.
+
+this example - gives people impression PRAM model is very powerful because of speedup.
+however, the speedup we get may not be very accurate in practice.
+P = all problems solvable with deterministic, polynomial time complexity.  sorting / searching, etc.
+NP = non-deterministic - no deterministic polynomial algorithm yet.  however we can solve it with a non-deterministic algorithm. what does that mean?  travelling salesman is an example of a non-deterministic problem.
+NP-Complete - a giant class w/ all known solutions.  any deterministic solutions to these problems are exponential.  any problem A can be transformed to problem B in polynomial time.  This is significant because if you can find a polynomial solution to ANY problem in the NP-Complete space, you can use a transformation to find EVERY polynomal solution to the whole class.
+
