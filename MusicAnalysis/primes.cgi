@@ -9,12 +9,10 @@ cgitb.enable()
 print "Content-type: text/html"
 print
 
-print "<br />Prime Table<br />"
-
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
 
-page = form.getvalue('page')
+page = form.getvalue('page').strip().lower()
 
 # Get data from fields
 row = form.getvalue('notes')
@@ -50,38 +48,41 @@ def pretty(notes, encoding):
 
     
         
-# primes table
-print "<table class=\"primes\">"
-print "  <tr class=\"primesrow\">"
-#pretty-print columns in correct order.
-print "    <td />"
-print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
-print "  </tr>"
-for y in inversion(rownumerals, 0):
-    print "  <tr class=\"primesrow\">"
-    sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
-    print pretty(allprimes[y], encoding)
-    sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
-    print "  </tr>"
-    
-    
-print "    <td />"
-print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
-print "  </tr>"
-print "</table>"
-
-
-print '<br />'
-print 'Search for an order-dependent series<br />'
-print '<input type="text" name="odseries" id="odseries" class="TextInput" onkeypress="handleEnter(event, loadOD);"/>'
-print '<button type="button" onClick="loadOD();" class="SubmitButton">Submit</button>'
-print '<br />'
-print 'Search for an order-independent series<br />'
-print '<input type="text" name="oidseries" id="oidseries" class="TextInput" onkeypress="handleEnter(event, loadOID);"/>'
-print '<button type="button" onClick="loadOID();" class="SubmitButton">Submit</button>'
-print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
 if page == "main":
-    pass # put something here if you want...?
+
+	print "<br />Prime Table<br />"
+    
+	# primes table
+	print "<table class=\"primes\">"
+	print "  <tr class=\"primesrow\">"
+	#pretty-print columns in correct order.
+	print "    <td />"
+	print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
+	print "  </tr>"
+	for y in inversion(rownumerals, 0):
+		print "  <tr class=\"primesrow\">"
+		sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
+		print pretty(allprimes[y], encoding)
+		sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
+		print "  </tr>"
+		
+		
+	print "    <td />"
+	print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
+	print "  </tr>"
+	print "</table>"
+
+
+	print '<br />'
+	print 'Search for an order-dependent series<br />'
+	print '<input type="text" name="odseries" id="odseries" class="TextInput" onkeypress="handleEnter(event, loadOD);"/>'
+	print '<button type="button" onClick="loadOD();" class="SubmitButton">Submit</button>'
+	print '<br />'
+	print 'Search for an order-independent series<br />'
+	print '<input type="text" name="oidseries" id="oidseries" class="TextInput" onkeypress="handleEnter(event, loadOID);"/>'
+	print '<button type="button" onClick="loadOID();" class="SubmitButton">Submit</button>'
+	print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
+	print '<div id="primesdiv">'
     
 elif page == "od":
     series = form.getvalue('series')
@@ -144,3 +145,6 @@ elif page == "oid":
         
 else:
     print "404 - Page %s could not be found!" % page
+
+if page == "main":
+    print '</div>'

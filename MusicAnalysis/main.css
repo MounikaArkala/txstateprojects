@@ -137,6 +137,11 @@ input.TextInput
     background: #FFFFCC;
 }
 
+input.filters
+{
+	;
+}
+
 button.SubmitButton
 {
     border: 1px solid #006;

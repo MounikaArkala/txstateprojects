@@ -54,7 +54,19 @@ function genArgs(pageName)
 	}
 	else if (pageName == "scales.cgi")
 	{
-		args = args + "notes=" + escape(row);
+		if (page == "main")
+		{
+			args = args + "notes=" + escape(row) + "&page=" + escape(page);
+		}
+		else if (page == "filtered")
+		{
+			args = args + "notes=" + escape(row) + "&page=" + escape(page);
+			for (i = 0; i < groupnum; i++)
+			{
+				args = args + "&check"+i+"="+ escape(groups[i]);
+			}
+		}
+		
 	}
 	else
 	{
@@ -98,15 +110,31 @@ function callPrime()
 function callScale()
 {
 	row = document.getElementById("notes").value;
+	page = "main";
 	loadContent('content','scales.cgi');
 }
+
+function updateScales()
+{
+    groupnum = document.getElementById("grps").value;
+	
+	groups = new Array();
+	
+	for (i = 0; i < groupnum; i++)
+	{
+		groups[i] = document.getElementById("check"+i).checked;
+	}
+	page = 'filtered';
+	loadContent('scalesdiv', 'scales.cgi');
+}
+
 
 function loadOD()
 {
 	series = document.getElementById("odseries").value;
 	wrap = document.getElementById("wraparound").checked;
 	page = "od";
-	loadContent('content','primes.cgi');
+	loadContent('primesdiv','primes.cgi');
 }
 
 function loadOID()
@@ -114,7 +142,7 @@ function loadOID()
 	series = document.getElementById("oidseries").value;
 	wrap = document.getElementById("wraparound").checked;
 	page = "oid";
-	loadContent('content','primes.cgi');
+	loadContent('primesdiv','primes.cgi');
 }
 
 function handleEnter(event, func)

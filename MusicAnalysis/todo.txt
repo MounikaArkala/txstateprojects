@@ -12,9 +12,10 @@ CHECK- do the wrapping around code
 add prettifying code (highlighting the series) to a func
 - clean up primes.cgi code
 - add documentation
+- modify prime so it doesn't reload table.
 
 Scales 
 
 - force length of input to scales to be between 3 and 12 notes.
-- deal with duplicate notes (what if they put A A A ? interal will be 0.  discard duplicate notes!) (convert to set?)
-- add rating of how common each scale is.
+- deal with duplicate notes (what if they put A A A ? discard duplicate notes!) (convert to set?)
+- add rating of how common each scale is. ### he doesn't like this idea.
