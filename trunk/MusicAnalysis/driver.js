@@ -19,19 +19,12 @@ function contentChanged()
 	{
 		target = "content";
 	}
-	if (xmlhttp.readyState==4)
+	if (xmlhttp2.readyState==4)
 	{
-		document.getElementById(target).innerHTML = xmlhttp.responseText;
+		document.getElementById(target).innerHTML = xmlhttp2.responseText;
 	}
 }
 
-function headerChanged()
-{
-	if (xmlhttp2.readyState==4)
-	{
-		document.getElementById("header").innerHTML = xmlhttp2.responseText;
-	}
-}
 
 function genArgs(pageName)
 {
@@ -75,22 +68,41 @@ function genArgs(pageName)
 	return args;
 }
 		
+function loadingLoaded()
+{
+	if (target == null)
+	{
+		target = "content";
+	}
+	if (xmlhttp.readyState==4)
+	{
+        xmlhttp2=GetXmlHttpObject();
+		document.getElementById(target).innerHTML = xmlhttp.responseText;
+        xmlhttp2.onreadystatechange = contentChanged;
+        xmlhttp2.open("GET",newUrl,true);
+        xmlhttp2.send(null);
+	}
+}
 
 function loadContent(divName, pageName)
 {	
 	target = divName;
 	xmlhttp=GetXmlHttpObject();
+	newUrl = pageName;
+	newUrl = newUrl + genArgs(pageName);
 	if (xmlhttp == null)
 	{
 		alert ("Your browser does not support XMLHTTP!");
 		return;
 	} 
-	
-	var url = pageName;
-	url = url + genArgs(pageName);
-	xmlhttp.onreadystatechange = contentChanged;
+	var url = "loading.html";
+	xmlhttp.onreadystatechange = loadingLoaded;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.send(null);
+    /*
+	xmlhttp.onreadystatechange = contentChanged;
+	xmlhttp.open("GET",url,true);
+	xmlhttp.send(null);*/
 	
 }
 

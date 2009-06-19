@@ -50,7 +50,7 @@ def pretty(notes, encoding):
         
 if page == "main":
 
-	print "<br />Prime Table<br />"
+	print "<br />12-Tone Table<br />"
     
 	# primes table
 	print "<table class=\"primes\">"

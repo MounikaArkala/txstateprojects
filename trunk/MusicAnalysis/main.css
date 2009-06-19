@@ -22,6 +22,7 @@ td.menu
   padding-top: 2px;
   padding-bottom: 2px;
   font-weight: bold;
+  font-size: x-large;
   cursor: pointer;
 }
 
@@ -35,6 +36,7 @@ table.primes
   background-color: #FFFFFF;
   text-align: center;
   margin: 0 auto;
+  font-family: monospace;
 }
 
 tr.primesrow
@@ -46,14 +48,15 @@ td.primesdata
 {
   border: 1px solid;
   background-color: #EEBBEE;
+  width:2em;
+  text-align: center;
 }
 
 th.primesheader
 {
   border: 1px solid;
   background-color: #FFFFFF;
-  font-style: normal;
-  font-weight: normal;
+  text-align:center;
   
 }
 
@@ -62,6 +65,8 @@ table.primesresult
   border:solid;
   border-width: 1px;
   margin: 0 auto;
+  font-family: monospace;
+  text-align: center;
 }
 
 td.primesresultn
@@ -69,12 +74,14 @@ td.primesresultn
   background-color:#FF9999;
   border:solid;
   border-width:1px;
+  width:2em;
 }
 td.primesresulty
 {
   background-color:#99FF99;
   border:solid;
   border-width:1px;
+  width:2em;
 }
 
 
@@ -89,8 +96,8 @@ table.scales
   text-align: center;
   margin-top: 60;
   margin-bottom: 0;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: auto;
+  margin-right: auto;
   border-collapse: collapse;
 }
 
@@ -105,6 +112,8 @@ td.scales
   font-weight: bold;
   cursor: pointer;
 }
+
+
 
 table.scale
 {
@@ -122,6 +131,7 @@ td.scalen
   border-width:1px;
   width: 2em;
   padding: 1px;
+  text-align:center;
 }
 td.scaley
 {
@@ -130,6 +140,7 @@ td.scaley
   border-width:1px;
   width: 2em;
   padding: 1px;
+  text-align:center;
 }
 input.TextInput
 {
@@ -154,17 +165,37 @@ body
   font-size: 15pt;
 }
 
-#container
+#outerBorder
+{
+  width: 800px;
+  height: auto;
+  min-height: 700px;
+  margin: auto auto;
+  border: solid;
+  border-width: 2px;
+  border-color: black;
+  text-align: center;
+}
+
+#innerBorder
 {
   margin: auto auto;
-  width: 800px;
-  min-height: 600px;
+  width: auto;
   height: auto;
+  min-height: 696px;
+  min-width: 796px;
   background-color:#DDFFDD;
   border: solid;
   border-width: 2px;
-  border-color: orange;
+  border-color: #AACCEE;
   text-align: center;
+}
+
+#container
+{
+  margin: auto auto;
+  width: auto;
+  height: auto;
 }
 
 #occurrence
