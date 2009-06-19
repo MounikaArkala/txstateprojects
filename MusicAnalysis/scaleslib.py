@@ -4,7 +4,6 @@ scales =    {
             'Minor Pentatonic Scale'               : ([3, 2, 2, 3, 2], "Classical Music"),
             'Blues Scale'                          : ([3, 2, 1, 1, 3, 2], "Blues"),
             'Harmonic Minor Scale'                 : ([2, 1, 2, 2, 1, 3, 1], "Jazz Music"),
-            'Chromatic Scale'                      : ([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], "Classical Music"),
             'Half-Step-Minor-Third Scale'          : ([1, 3, 1, 3, 1, 3], "Classical Music"),
             'Pentatonic Scale'                     : ([2, 2, 3, 2, 3], "Blues"),
             'Octatonic Scale'                      : ([1, 2, 1, 2, 1, 2, 1, 2], "Classical Music"),
