@@ -1,0 +1,62 @@
+1. (15 pts)
+(1) Describe two issues that are common to both distributed systems and
+computer networks.
+
+
+(2) Describe two issues that exist only in distributed system.
+
+
+
+2. (15 pts) For the transaction shown in Figure 1 please write a program
+that uses fork and join constructs to implement the transaction.
+# General method:
+# Take the left-side down the tree,
+# forking any process that branches to the right.
+# create a variable to use to rejoin the right branch back
+# when it's done.
+
+S1;
+count1 := 2; # for when we join the S3 branch back.
+Fork L1;     # this is because S3 occurs to the right.
+S2;          
+S4;
+Fork REJOIN1;
+S5;
+count2 := 2;
+GOTO REJOIN2;
+
+L1: S3;
+
+REJOIN1: Join count1;
+S6;
+
+REJOIN2: Join count2;
+S7;
+
+#This solution assumes that code will continue through if
+#it doesn't meet a GOTO (I.E. the FORK L1 process will execute S3,
+#and then it will continue through the REJOIN1:label and perform a join count1,
+#then execute S6, then continue through the REJOIN2: label and
+#perform a join count2, then execute S7.
+
+
+3. (15 pts. Problem 3.2, p.128) The Internet is far too large for any router to
+hold routing information for all destinations. How does the Internet routing
+scheme deal with this issue?
+4. (10 + 20 = 30 pts)
+(1) What is the most important factor that affects the accuracy of Cris-
+tian's algorithm? Explain your answer.
+(2) Provide two examples that show how Cristian's algorithm works.
+
+
+5. (25 pts. Problem 11.4, p.465) A client attempts to synchronize with a
+time server. It records the round-trip times and timestamps returned by the
+server in the table below.
+Which of these items should it use to set its clock? To what time should
+it set it? Estimate the accuracy of the setting with respect to the server's
+clock. If it is known that the time between sending and receiving a message
+in the system concerned is at least 8 ms, do your answers change?
+Round-trip (ms) Time(hr:min:sec)
+22 10:54:23.674
+25 10:54:25.450
+20 10:54:28.342

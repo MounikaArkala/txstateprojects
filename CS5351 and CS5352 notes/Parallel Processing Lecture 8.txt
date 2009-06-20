@@ -1,0 +1,18 @@
+password changed to 51ToaddOpenMP
+
+CCC network cube-connected cycles network.
+
+Shuffle-exchange network 
+
+Proessor arrays
+ - a vector computer implemented as a sequential computer (Front-end) connected to a set of identical and synchronized processing elements capable of performing the same operation on different data.
+
+almost every HPC today has shared memory.
+no commercial Shared-Memory SIMD processor array systems were built - it's impossible to allow simultaneous access to any p locations.
+physically your read-writes must be sequential.
+
+SMC went bankrupt in early 90's.  Oracle bought it.
+
+PARIS = Parallel Instructino Set of Connection Machine
+- provides a variety of operations similar to a typical machine's instruction set.
+virtual processsors - PARIS supports this, so you can use as many virtual processors as you want.

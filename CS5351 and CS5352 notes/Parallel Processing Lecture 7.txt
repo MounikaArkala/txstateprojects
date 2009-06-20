@@ -1,0 +1,70 @@
+PRAM model is not optimal solution to a lot of problems...
+it's not very powerful when you actually have to implement it.
+
+Theorem 2.4 - we can manufacture more and more powerful parallel processors / HPCs
+but those computers cannot deal with exponential complexity classes. increasing # of processors is not a solution for NP-Complete problem spaces.
+if the problem, by nature, is exponential, then more and more powerful processors allows you to solve a little bit larger 'n's but past a certain point it won't make any difference to increase processor speed.
+
+Definition 2.5
+	a parallel algorithm has polylogarithmic time complexity if its time complexity is a polylogarithmic function of the problem size.
+Definition 2.6
+	NC is the class of problems solvable on a PRAM in polylogarithmic time using a number of processors that are a polynomial function of the problem size.
+Definition 2.7
+	A problem L subset P is P-complete if every other problem in P can be transformed to L in polylogarithmic parallel time using PRAM with a polynomial number of processors.
+	
+basically what they're saying is that in the NP-complete space, A can be transformed to B in polynomial time, and in P-complete space, A can be transformed to B in polylogarithmic time.  The constraint is that A and B can both be solved with PRAM model.
+
+P-complete means it can be solved in polynomial time.  
+
+what have we learned?
+RAM model - foundation of modern computers
+PRAM model
+
+
+---------- End of lecture 2
+
+Notion of Speedup is introduced.
+Performance - to get speedup we need to get time complexity of the two algorithms.
+
+
+Assignment 1 notes:
+in some later lectures 
+
+A problem of size n is divided into a smaller problem.
+T(n) = 2T((n-1)/2) + n-1
+this concurrency describes time complexity of quicksort.
+(n-1)/2 is the subproblem division, and n-1 is the comparisons necessary to do division.
+
+at the next step,
+2^2 T((n-1)/2^2) + (n-1-2) + (n-1)
+....
+2^i T((n-1)/2^i)
+
+eventually i = log(n) and it stops.
+
+we spent 3-4 lectures on lecture 2.
+
+Processor organization - important when designing algorithms.
+Criteria
+Diameter - longest distance between two processors in network.  lower is better.
+Bisection width - # of edges that have to be removed in order to divide noetwork into halves.  Higher BW is better.
+Number of edges per node - better to be constant, independent of network size, but in a lot of cases we cna't do that.
+Maximum edge length - the nodes and edges will have ot be laid out in three-dimensional space.  The MEL is better as a constant.
+
+popular organizations
+-2d mesh
+	-wrap-around connections (last node connected to first node for each column / row)
+	-wrap around between other rows (last node in first column connected to first node in second column, etc. etc.)
+	
+-3d mesh
+when you divide a 3d mesh, the # of crossed links is k^(E-1)
+
+a binary tree network can be destroyed by removing a single link, so it's very weak. (BSW is low)
+
+hypertree networks - 2 parts, the downward part and the upward part.  both parts are of the form of a complete tree.
+looks confusing
+
+some kind of 3d hypertree-looking thing
+
+-butterfly network
+nodes have an index i,j (row/column numbers)
