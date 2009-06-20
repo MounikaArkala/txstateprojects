@@ -58,8 +58,8 @@ def main():
     base_note = 440 #frequency of note referred to as "0", in this case, A.
     max_amp = 0.5
     sine.freq = 440
-    octave_range = 3
-    first_octave = - 1
+    octave_range = 5
+    first_octave = -2
     update = False
     oct_span = WIDTH / octave_range
     print "using scale:", scale
