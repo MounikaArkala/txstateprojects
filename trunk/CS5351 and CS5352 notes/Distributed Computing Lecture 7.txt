@@ -1,0 +1,42 @@
+We started w/ end of lecture 1, then talked about clocks.
+
+Hybrid correctness - a class obeys the monotonicity condition and its drift is bounded between sync points, but it's allowed to have bumpy drift ahead of sync points.
+
+faulty clocks - clocks that are neither correct nor monotonic.
+crash failure - when a clock stops ticking completely.
+arbitrary failure - any other clock failure.
+
+
+how can Javascript program know the accuracy of its clock?
+- it must be using a certain algorithm to sync its clock with external clock and to calculate "accuracy."  the algorithm must take into account the comm. delays during synchronizations.
+
+basic observation and assumption
+basic observation - even though there's no upper bound on message transmission delays in an asynchronous DS, round-trip times betweeen pair of processes are often reasonably short (fraction of a second).
+basic assumption - observed round-trip times between client and time server are sufficiently short compared w/ required latency.
+
+algorithm for clock stuff presented.
+
+the greater accuracy you desire, the less likely it is you will achieve it.
+this is becuse the best accuracy is when both messages are transmitted in a time close to "min" - unlikely in a busy network.
+
+
+Homework Assignment questions
+
+1)  Distributed Systems rely on networks - what issues affect both DSes and networks
+1.b) distributed system - lots of issues which networks are not concerned with.
+just think a little "deep", he doesn't want to name them because that would be too easy.
+
+master-slave clock synchronization
+
+NTP - final algorithm.  now standard protocol in TCP/IP protocol suite.
+
+High reliability and availability
+
+Servers in NTP are connected in a tree.  all servers in logical hierarchy form a sync subnet.
+in a sync subnet,
+	primary servers - directly connected to UTC sources
+	secondary servers - receive timing data from primary servers
+	servers at layer (stratum) 3 are synched with secondary servers, and on and on.
+	leaf servers execute at individual user's workstations.
+	
+clients further from primary servers in the subnet get less accurate.  how do we account for this?

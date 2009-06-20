@@ -1,0 +1,34 @@
+NTP is very flexible
+he covers a message exchanged between NTP peers.
+
+we can't calculate the time complexity of NTP algorithm yet, but we can analyze how it works.
+
+In most cases we won't have 100% correction.  if t and t' are not the same.
+when t and t' are not same we have issues, also when o = -0.3 (i.e. B's clock is -0.3 second faster than A's (i.e. B's clock is .3 seconds slower than A)
+but we assume actual time used to send m is 0.9 seconds and actual time of sending m' is 0.5 seconds.
+
+note that the real offset "o" is bounded below by the estimated offset and calculated offset.
+
+Oi <= O + di/2
+O - di/2 <= Oi <= O + di/2
+
+a phrase lock loop model is used to modify the local clock's update frequencies in terms of observations of its drift rate.
+  - it reduces a clock's freq if clock is found faster and increases otherwise.
+  - model has sync accurasy of 1 ms on LAN and 10-100 ms over internet.
+  
+that was the end of the physical clock syncronization.
+
+Logical time and clocks
+
+Lamport's method
+assumptions:
+	- each process pi is sequential, i.e. the events in a pi are totally ordere according to their physical orders.
+	- the event of sending a message always occurs before the event of receiving that same message.
+	
+happened-before relation - all events in a DS can be ordered with a simple scheme generalized from the above assumptions.
+HB case 1: if for some process pi, if e occurs before e' in the process, then e occurs before e' in the DS.
+HB case 2: for any message m, send(m) happens before receive(m).
+HB case 3: Transitivity: if e, e' and e'' are events and e happens before e' and e' happens before e'', then e happened before e''.
+
+
+relation -> captures flow of data based on sequential ordering of events within a process, but data can flow in other ways besides message passing.
