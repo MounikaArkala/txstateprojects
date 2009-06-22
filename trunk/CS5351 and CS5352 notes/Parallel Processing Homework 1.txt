@@ -1,0 +1,145 @@
+1.
+
+a) T(n) = T(n/2) + 2 lg(n)
+assume T(1) = c; that is, the time complexity of a single element is constant time.
+we can solve this using recurrence relations.
+T(n) = T(n/2) + 2lg(n)
+     = [T(n/4) + 2lg(n/2)] + 2lg(n)
+     = T(n/4) + 2lg(n) + 2lg(n/2)
+     = T(n/4) + 2( lg(n) + lg(n/2) )
+     = T(n/4) + 2( lg(n*n/2) )
+     = [T(n/8) + 2lg(n/4)] + 2( lg(n*n/2) )
+     = T(n/8) + 2( lg(n*n/2) + lg(n/4) )
+     = T(n/8) + 2( lg(n*n/2*n/4) )
+     = [T(n/16) + 2lg(n/8)] + 2( lg(n*n/2*n/4) )
+     = T(n/16) + 2( lg(n*n/2*n/4) + lg(n/8) )
+     = T(n/16) + 2( lg(n * n/2 * n/4 * n/8) )
+     = T(n/16) + 2( lg(n^4 / 2^6) )
+     = T(n/32) + 2( lg( n^5 / 2^10) )
+     = T(n/64) + 2( lg( n^6 / 2^15) )
+     = T(n/(2^6) + 2( lg( n^6 / 2^15) )
+ 
+following this pattern, we get
+T(n) = T(n/(2^k)) + 2 lg( (n^k) / 2^(SUM[1...k-1]) )
+
+We want to get rid of T(n/(2^k)) so we need to set k to a value that will eliminate this term.
+let k = lg(n) = log2(n)
+
+T(n) = T(n/(2^lg(n)) + 2 lg( (n^lg(n)) / 2^(SUM[1...lg(n)-1]) )
+
+we know 2^log2(n) = n, since logs are reverse exponential notation.
+Therefore,
+T(n) = T(n/n) + 2 lg( (n^lg(n)) / 2^(SUM[1...lg(n)-1]) )
+which simplifies to
+T(n) = T(1) + 2 lg( (n^lg(n)) / 2^(SUM[1...lg(n)-1]) )
+T(1) has constant runtime, so it does not influence our time complexity analysis and can be removed.
+
+T(n) = 2 lg( (n^lg(n)) / 2^(SUM[1...lg(n)-1]) )
+The constant 2 can also be dropped.
+we are left with
+T(n) = lg( (n^lg(n)) / 2^(SUM[1...lg(n)-1) )
+we can expand this back out to
+T(n) = lg(n) + lg(n/2) + lg(n/4) + lg(n/8) + ... lg(n/lg(n-1))
+this growth is log-logarithmic, so it is bounded above by
+
+O(n) = lg(n)
+and below by
+Omega(n) = (lg(lg(n)))
+
+
+
+b)
+T(n) = 4T(n/4) + C
+     = 4(4T(n/16)) + C
+     = 16T(n/16) + C
+This simplifies to
+4^k T(n/4^k)
+or
+2^(k+1) T(n / (2^(k+1)))
+
+We assume k+1 = a to simplify solution.
+2^(a) T(n / (2^a))
+
+we can take a to be the same as "k" was in the previous problem,
+because our goal is still to eliminate the term T(n / (2^a)) as before.
+let a = lg(n) = log2(n)
+
+Then
+2^lg(n) T(n/2^lg(n)) = n T(n/n)
+                     = n C
+                     = n
+ Therefore, O(n) = n and Omega(n) = n
+I.E. they are linear time complexity.
+
+
+
+c)
+T(n) = (2/3)T(n/2) + n
+     = (2/3)((2/3)T(n/4) + n/2) + n
+     = (2/3)^2 T(n/4) + n/3 + n
+     = (2/3)^2 ((2/3)T(n/8) + n/4) + n/3 + n
+     = (2/3)^3 T(n/8) + n/9 + n/3 + n
+     
+let C = (2/3)
+     = C^3 T(n/8) + C^2n/3 + Cn/2 + n
+     = C^k T(n/k) + SUM[0...n-1] (C^k * n / k)
+at k=n, we get T(n/n) which = T(1) which is a constant, which can be removed.
+C^n + SUM[0...n-1] (C^n * n / n)
+once again, (n/n) can be eliminated,
+C^n + SUM[0...n-1] (C^n)
+
+we can substitute 2/3 for C...
+(2/3)^n + (2/3)^n + (2/3)^n .... (2/3)^n = n((2/3)^n)
+
+Therefore, the O(n) = n and the Omega(n) = n((2/3)^n)
+
+
+2.
+
+Problems that the textbook notes: 
+
+1) two processors may end up using the same prime value to sieve through the array.
+Supposing there are two processors, p1 and p2.
+p1 can choose 2 as its prime, and before it can mark the "current" prime as 3, p2 can also choose 2 as its prime.
+Then they will both be sieving the same prime (which is inefficient.)
+
+2) a processor may end up sieving multiples of a composite number.
+p1 gets 2, p2 gets 3, and before p1 can strike out 4 (which is not a prime) p3 gets 4,
+so it's sieving on a non-prime.
+
+3) When regarding figure 1-9 in the textbook, there is one main issue that presents itself regarding 
+the Control Parallel approach to the Sieve of Erasothenes.
+The main issue is that of the primes of multiples of 2.
+The idea behind parallelizing algorithms is to allow them to run in a smaller amount of time,
+at the cost of more processing power.
+However, with the control-parallel approach, there is always a significant lower-bound on reducing the time complexity - 
+the time it takes to sieve the number "2".  because a number can only be sieved by a single processor in the
+control-parallel approach, the time it takes the first processor to strike out all multiples of "2" is the minimum possible run-time.
+
+
+
+However, the textbook mentions all three of these issues, and I could not find any others that didn't have their base
+cause rooted in one of these three problems.
+
+For example, take the problem of processor 3 in figure 1-9 item (c).
+There is an issue with it choosing prime 4 accidentally, if prime 2 and 3 have not started sieving yet.
+Therefore it has to wait a bit for processor 1 and procsesor 2 to execute.  How long does it have to wait?  How can it know?
+But this problem is rooted in issue #2 listed above.
+
+Also, since processor 3 has to wait before it can execute, then the more processors you have, the more waiting they have to do in order to not
+choose an incorrect prime to sieve.  But this is still just a side-effect of issue #2.
+
+The side-effect of enforcing the issues #1 and #2 is that your algorithm will be slowed down somewhat.  You have to synchronize the updates
+(so that if a processor is choosing a prime to sieve, no other processors can also choose one until it has finished its decision (this fixes issue #1))
+and you have to make sure primes have been evaluated up to the current position (so in order to choose 4
+you have to be sure that primes 2-3 have already been evaluated past 4, etc.  This addresses issue 2.)
+
+If you want to increase the execution speed that is caused by issue #3, you cannot simply add more processors.
+
+
+
+3.
+
+
+
+
