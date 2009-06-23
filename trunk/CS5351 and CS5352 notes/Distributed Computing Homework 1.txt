@@ -2,9 +2,24 @@
 (1) Describe two issues that are common to both distributed systems and
 computer networks.
 
+One thing that is similar between computer networks and distributed systems is abstraction.  Computer networks have many layers, because it is simply not necessary for most applications for the program that is running on the computer network to know the underlying details (for example, whether its network is ethernet / token ring).  Similarly, programs running on distributed systems should not need to know how the computers are laid out - the underlying communication and propagation of data, etc. needs to be as transparent as possible.
+
+
 
 (2) Describe two issues that exist only in distributed system.
 
+Distributed systems are higher level than networks.  Therefore, they have requirements that are out of the scope of a simple network.
+The DS requires higher abstraction / transparency.  Networks do not provide "functional" services.  They provide functionality such as "send a message" "receive a message" etc.  Distributed systems provide a functional service on top of this.  The structure and interrelation of these functions are not related to the network structure.
+There is a balancing act between Autonomy and Interdependence.
+Autonomy refers to a system where every system has its own resources and provides resource services to other systems.
+The second type depends on networked services for things such as files and authentication.
+
+One problem, when trying to attain Autonomy, is that there is a higher cost of resource maintenance.  For example, if a file is held in the local resources of all systems, and it is modified, then the change must be propagated to all other systems (whereas in an interdependence scheme with a single file server, only a single location would need to be modified.)
+
+
+One problem when trying to attain Interdependence is that the crash of a single machine may cause a lot of resources to become unavailable (for example, if the file server crashes.)
+
+Neither of these problems occur in computer networks.
 
 
 2. (15 pts) For the transaction shown in Figure 1 please write a program
@@ -43,10 +58,40 @@ S7;
 3. (15 pts. Problem 3.2, p.128) The Internet is far too large for any router to
 hold routing information for all destinations. How does the Internet routing
 scheme deal with this issue?
+
+
+
 4. (10 + 20 = 30 pts)
 (1) What is the most important factor that affects the accuracy of Cris-
 tian's algorithm? Explain your answer.
+
+The difference in the delays between the two messages being sent.
+
+
 (2) Provide two examples that show how Cristian's algorithm works.
+
+First an example which assumes the transmission delay is the same in both directions (which is possible on a LAN with little activity).
+The server's time is set to 10:00:00.000 and the client's is 9:59:50.000.
+Let's assume the transmission delay is .015 seconds (15 ms).
+And let's assume the delay of preparing a reply and placing on output buffer is .004 seconds (4 ms). 
+client requests time in message m(r).
+It records the time the message was sent (9:59:50.000) but message is actually transmitted at 9:59:50.004.
+The server gets the message at 10:00:00.019 its time.
+Then it prepares a reply with the value 10:00:00.019 in it, and transmits it at 10:00:00.023 its time (after packaging delay.)
+
+Client receives the reply in message m(t) at time 9:59:50.038 containing the time 10:00:00.019.
+
+The client calculates the RTT to be 9:59:50.038 - 9:59:50.000 = .038 seconds.
+It knows the server sent the message at 10:00:00.019, but because there was transmission time, it needs to account for this.
+However, the RTT is the total time to send BOTH messages.  the transmission time
+for a single message is then calculated as half of that, or .038 / 2 = 0.019 seconds.
+Therefore, the client sets its time to t (the time the server sent the message)
+plus the calculated transmission delay.  SO the client clock gets set to 10:00:00.019 + .019 seconds.
+So the client clock is now 10:00:00.038 seconds.
+The current time the server  
+
+Now an example where the transmission delay deviates significantly, which is a weakness of Christian's algorithm.
+
 
 
 5. (25 pts. Problem 11.4, p.465) A client attempts to synchronize with a

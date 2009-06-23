@@ -1,0 +1,34 @@
+Thursday he will announce the final date.
+
+In lamport's algorithm there are requirements on the equality of timestamps,
+but Vector timestamps modify this.
+
+Vector timestamps: look better.  P1 P2 P3 are always true.
+
+Global States: basic concept is simple, although it tends to get fairly tedious.
+given a set P of N processes,
+a global state is a collection of states s1, s2, ... , sN  (state of all processes at a current time.)
+
+Why are we interested in global states?
+-global knowledge
+-lots of advantages
+- distributed systems / algorithms - one important characteristic is that each process only knows part of the state.
+if a processor knows the global state it's a "centralized" algorithm.  this lets us solve a lot of problems easily.
+
+cuts of histories:
+if produced by consistent cut, it's a consistent history.
+if produced by inconsistent cut we can not use it normally.
+
+Runs & consistent runs
+run - total ordering of all events in global history H that is consistend w/ local history's ordering.
+
+global state predicate, stability, safety and liveness.
+
+Safety - from state So, a deadlock cannot follow.
+Liveness - 
+
+Read definitions - you will realize that it's simple.  if you're confused, just read it more.
+Definitions are based on each other, so you need to build on them.
+
+Tomorrow he will be either here or San Marcos.
+
