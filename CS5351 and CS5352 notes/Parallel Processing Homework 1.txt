@@ -1,4 +1,9 @@
-1.
+Parallel Processing Homework 1
+by Virpobe Paireepinart
+for CS5351, Texas State University
+Summer 2009
+
+Problem 1.
 
 a) T(n) = T(n/2) + 2 lg(n)
 assume T(1) = c; that is, the time complexity of a single element is constant time.
@@ -94,9 +99,9 @@ we can substitute 2/3 for C...
 Therefore, the O(n) = n and the Omega(n) = n((2/3)^n)
 
 
-2.
+Problem 2.
 
-Problems that the textbook notes: 
+Problems that the textbook notes, w/ Control-Parallel Sieve of Erasothenes: 
 
 1) two processors may end up using the same prime value to sieve through the array.
 Supposing there are two processors, p1 and p2.
@@ -135,11 +140,32 @@ and you have to make sure primes have been evaluated up to the current position 
 you have to be sure that primes 2-3 have already been evaluated past 4, etc.  This addresses issue 2.)
 
 If you want to increase the execution speed that is caused by issue #3, you cannot simply add more processors.
+Once you get to a certain point, adding more processors will not speed up execution.
+(because sieving "2" takes approximately 1/3 of the overall time, 3 is the maximum processors that increase performance.)
+
+This means that this algorithm is not scaleable.
+However, this is common for control-parallel solutions.  To get a scaleable algorithm you must move to a Data Parallel approach.
+
+
+Problem 3.
+
+
+In the textbook solution to the Sieve of Eratosthenes problem, using the data- parallel approach,
+the communication cost is a significant portion of the total cost...
+after a certain number of processors are added, the communication cost will surpass the computational gain provided by the extra processors, and you will not gain speedup.
+If processor 1 (the one who is choosing the next prime) can broadcast the next prime to all other processors, then this is a linear time requirement.
+Therefore, the communication cost does not ever surpass the computational gain by adding extra processors, so your speedup is only bounded by the number of primes you are processing - eventually you will have a processor assigned to every element and adding more processors will not add any speedup (unless you increase the search space so that there are more elements to analyze.)
+
+Since the communication cost is now fixed, the total cost is now lowered.
+Originally, communication cost was based on the number of processors
+to transmit to.
+That is, communicating k primes to (p-1) processors, with a transmission
+time of row
 
 
 
-3.
-
+Problem 4.
+KRUSKAL's algorithm - pg 690 in Discrete Math book.
 
 
 

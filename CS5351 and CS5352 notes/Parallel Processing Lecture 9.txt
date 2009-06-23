@@ -1,0 +1,34 @@
+
+
+Hypercube interfaces
+NEWS grid
+
+Multiprocessor systems - shared memory, shared by multiple CPUs, and shared memory is the primary (maybe only) way processors can exchange information.
+
+UMA architecture - unified memory access.  there's a switching mechanism that allows each CPU to access individual memory locations.
+
+Regarding processor organization - there are 8-9 of them, they are independent for arrays.
+some of the processors can be organized 
+some parallel computers can organize their processors into hypercubes....
+so in this case the memory is shared among the processors.  each CPU is fully programmable.
+This is different than processor arrays - in a processor array each processor executes same instructions as each other, but they communicate with each other through shared memory.
+
+gigabit ethernet has an extra layer of control, which adds an extra cost.
+ethernet is analogous to the memory sharing.
+
+OpenMP is a program taht allows you to program w/ CPUs with a backend either of ethernet or some other switching mechanism (eg. BUS)
+
+
+NUMA - non-uniform memory access - favorable because sometimes UMA is not possible.
+
+Flynn's Taxonomy - used often, invented before parallel computers existed.
+Instruction stream, Data stream.
+He classified it very generally...
+SISD - single instruction stream, single data stream.  most sequential computers, even pipelining ones.
+SIMD - processor arrays - in any time unit a single operation is in same state of operation on multiple procssing units, each manipulating different data items.
+
+MISD - no computers fall in this category.
+MIMD - each core programmable independently.  most general and powerful, includes multiprocessor and multicomputer machines.
+
+ahmdal's law - speedup is bounded by linear speedup.
+Superlinear speedup - given a problem of size n, speedup using t computers is more than p.  some people argue it's never possible.
