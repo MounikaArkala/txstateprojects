@@ -14,7 +14,7 @@ print
 
 
 def pretty(notes, encoding):
-    """ notes is int array, encoding is a dict such as {0:"A", 1:"A#" ... 11:"G#"}"""
+    ' notes is int array, encoding is a dict such as {0:"A", 1:"A#" ... 11:"G#"}'
     return " ".join([encoding[i] for i in notes])
 
 
@@ -25,19 +25,6 @@ page = form.getvalue('page').strip().lower()
 
 # Get data from fields
 notes = form.getvalue('notes')
-
-
-all_notes = {}
-current_note = 0
-for note in [("A",2),("B",1),("C",2),("D",2),("E",1),("F",2),("G",2)]:
-    all_notes["%sbb" % note[0]] = (12 + current_note - 2) % 12
-    all_notes["%sb"  % note[0]] = (12 + current_note - 1) % 12
-    all_notes["%s"   % note[0]] = current_note
-    all_notes["%s#"  % note[0]] = (current_note + 1) % 12
-    all_notes["%sx" % note[0]] = (current_note + 2) % 12
-    current_note += note[1]
-
-
 
 notes = [all_notes[i.strip()] for i in notes.split()]
 
@@ -62,22 +49,22 @@ def get_scales(intervals):
 
 default_encoding = {0:"A", 1:"A#", 2:"B", 3:"C", 4:"C#", 5:"D", 6:"D#", 7:"E", 8:"F", 9:"F#", 10:"G", 11:"G#"}
 
+groups = {}
+for scale in scales:
+	for group in scales[scale][1]:
+		groups[group] = 1 #bogus value, just exploiting uniqueness of dict keys.
+groups = groups.keys()
+groups.sort()
 
 if page.strip().lower() == "main":# print out the filter list, don't do any filtering.
-
-
 	print "using notes: %s <br />" % pretty(notes, default_encoding)
 	
 	#filter list.
 	print '<table class="filters">'
 	print '<tr class="filters">'
-	groups = []
-	for scale in scales.keys():
-		groups.append(scales[scale][1])
-	groups = list(set(groups))
-	groups.sort()
-	for i, group in enumerate(groups):
-		print '<td class="filters"><input type="checkbox" class="filters" checked id="check%i" onClick="updateScales();">%s</input></td>' % (i, group)
+	for group in groups:
+		print '<td class="filters"><input type="checkbox" class="filterbox" \
+		checked id="%s" onClick="updateScales();">%s</input></td>' % (group, group)
 	print '</tr></table>'
 	print '<input type="hidden" id="grps" value="%s" />' % len(groups)
 	
@@ -87,20 +74,16 @@ if page.strip().lower() == "main":# print out the filter list, don't do any filt
 	scalenames = scales.keys()
 	
 elif page == "filtered": #just print out the scales table.
-	groups = []
-	for scale in scales.keys():
-		groups.append(scales[scale][1])
-	groups = list(set(groups))
-	groups.sort()
 	valid_groups = []
-	for i in range(len(groups)):
-		temp = form.getvalue("check%i" % i)
+	for group in groups:
+		temp = form.getvalue(group)
 		if temp == "true":
-			valid_groups.append(i)
-	valid_groups = [groups[i] for i in valid_groups]
+			valid_groups.append(group)
+	valid_groups = frozenset(valid_groups)
+			
 	scalenames = []
-	for scale in scales.keys():
-		if scales[scale][1] in valid_groups:
+	for scale in scales:
+		if valid_groups.intersection(scales[scale][1]):
 			scalenames.append(scale)
 
 
@@ -146,3 +129,4 @@ print '</table>'
 
 if page == "main":
 	print "</div>"
+	

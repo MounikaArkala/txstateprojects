@@ -6,16 +6,18 @@ Everything
 
 
 Primes
-CHECK- do the wrapping around code
+do the wrapping around code #done
 
 
 add prettifying code (highlighting the series) to a func
 - clean up primes.cgi code
 - add documentation
-- modify prime so it doesn't reload table.
+- modify prime so it doesn't reload table. #done
 
 Scales 
 
 - force length of input to scales to be between 3 and 12 notes.
 - deal with duplicate notes (what if they put A A A ? discard duplicate notes!) (convert to set?)
 - add rating of how common each scale is. ### he doesn't like this idea.
+- if no matching scales, change to "no matching scales" ? ### might be hard to do w/ the Javascript approach.
+- get encoding to work correctly.
