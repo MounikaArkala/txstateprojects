@@ -1,3 +1,4 @@
+/* Other People's Functions */
 function GetXmlHttpObject()
 {
 	if (window.XMLHttpRequest)
@@ -13,6 +14,18 @@ function GetXmlHttpObject()
 	return null;
 }
 
+function getElementsByClassName(classname, node)  {
+    if(!node) node = document.getElementsByTagName("body")[0];
+    var a = [];
+    var re = new RegExp('\\b' + classname + '\\b');
+    var els = node.getElementsByTagName("*");
+    for(var i=0,j=els.length; i<j; i++)
+        if(re.test(els[i].className))a.push(els[i]);
+    return a;
+}
+
+
+/* generic updating callback */
 function contentChanged()
 {
 	if (target == null)
@@ -128,14 +141,9 @@ function callScale()
 
 function updateScales()
 {
-    groupnum = document.getElementById("grps").value;
-	
-	groups = new Array();
-	
-	for (i = 0; i < groupnum; i++)
-	{
-		groups[i] = document.getElementById("check"+i).checked;
-	}
+	alert("HI!");
+	groups = getElementsByClassName("filterbox", "body");
+	alert(groups);
 	page = 'filtered';
 	loadContent('scalesdiv', 'scales.cgi');
 }

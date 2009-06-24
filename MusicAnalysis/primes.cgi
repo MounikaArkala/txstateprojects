@@ -16,17 +16,8 @@ page = form.getvalue('page').strip().lower()
 
 # Get data from fields
 row = form.getvalue('notes')
-all_notes = {}
-current_note = 0
-for note in [("A",2),("B",1),("C",2),("D",2),("E",1),("F",2),("G",2)]:
-    all_notes["%sbb" % note[0]] = (12 + current_note - 2) % 12
-    all_notes["%sb"  % note[0]] = (12 + current_note - 1) % 12
-    all_notes["%s"   % note[0]] = current_note
-    all_notes["%s#"  % note[0]] = (current_note + 1) % 12
-    all_notes["%sx" % note[0]] = (current_note + 2) % 12
-    current_note += note[1]
 
-#row = "A F# G Ab E F B Bb D C# C Eb"
+
 encoding = {}
 for note in row.split():
     encoding[all_notes[note]] = note

@@ -1,3 +1,11 @@
+all_notes = {'Abb': 10, 'Bbb': 0, 'Gbb': 8, 'Gx': 0, 'A#': 1, 'Bb': 1, 'C#': 4,
+'Db': 4, 'E#': 8, 'Fb': 7, 'F#': 9, 'G#': 11, 'Dx': 7, 'Bx': 4, 'Gb': 9,
+'A': 0, 'C': 3, 'B': 2, 'E': 7, 'D': 5, 'G': 10, 'F': 8, 'Cbb': 1,
+'Ab': 11, 'Ebb': 5, 'B#': 3, 'Cb': 2, 'Dbb': 3, 'D#': 6, 'Eb': 6,
+'Fbb': 6, 'Cx': 5, 'Ex': 9, 'Ax': 2, 'Fx': 10}
+
+
+
 def all_perms(str):
     #~~ PUBLIC DOMAIN FUNCTION FROM MICHAEL DAVIES
     if len(str) <= 1:
