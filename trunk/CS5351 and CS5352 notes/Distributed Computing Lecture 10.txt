@@ -1,0 +1,33 @@
+the next two lectures cover Inter-Process Communication
+IPC is message passing between two processes.
+Messages:
+ - messages can be structured or unstructured
+ - messages consist of data (user info) and control (system info).
+
+synchronous - process sending must wait until process receiving is ready, and vice versa.
+
+Java's implementation of TCP tends to be easier to use.
+talks about socket APIs.  WinSOX and Java has a socket API as well.
+
+remember IP and UDP are nearly the same - they both sit on the trnasport layer
+main differences: IP doesn't support port number concept (main reason UDP is on transport layer)
+also IP only checksums the header, where UDP can checksum the whole byte.
+
+Flow control - TCP attempts to synchronize transmission speeds of client / server.  it slows down whichever one is running too fast.
+
+Java's TCP/IP API can be considered a half/ whole layer higher.  for example, you don't have to know the existence of a substructure.
+
+
+Sample program - client sends a stream, server replies with same stream.
+
+Java UDP API - not often covered in textbooks (really?)
+
+goes over Java exceptions (SocketException = generic, specific exceptions also.)
+
+DatagramPacket class represents a datagram packet.
+
+You can create datagram packets and then write to a stream.  TCP is called "stream protocol"
+In UDP each datagram is physical unit to send / receive.
+In TCP there's no boundary of messages. 
+You open a message stream, and then you pump data into and out of the pipe.
+
