@@ -1,29 +1,53 @@
+Distributed Computing Homework 1
+by Virpobe Paireepinart
+for CS5352, Texas State University
+Summer 2009
+
 1. (15 pts)
 (1) Describe two issues that are common to both distributed systems and
 computer networks.
 
-One thing that is similar between computer networks and distributed systems is abstraction.  Computer networks have many layers, because it is simply not necessary for most applications for the program that is running on the computer network to know the underlying details (for example, whether its network is ethernet / token ring).  Similarly, programs running on distributed systems should not need to know how the computers are laid out - the underlying communication and propagation of data, etc. needs to be as transparent as possible.
+One issue that is similar between computer networks and distributed systems is abstraction - what level is appropriate for the problem. 
+Computer networks have many layers, because it is simply not necessary for most applications for the program
+that is running on the computer network to know the underlying details (for example, whether its network is ethernet / token ring).
+Similarly, programs running on distributed systems should not need to know how the computers are laid out -
+the underlying communication and propagation of data, etc. needs to be as transparent as possible.
+
+Another issue is reliability - in computer networks, and distributed systems, reliability is very importnat.
+A reliable communication is determined by
+validity: any message (in an outgoing buffer) is eventually delivered to the corresponding input buffer and
+integrity: message received is the same as message sent, and no duplicate messages delivered.
+However, there are certain computer networks where reliability is not guaranteed,
+for example when sending messages using the UDP protocol, there is not a guarantee of receipt or of order of packets.
 
 
 
 (2) Describe two issues that exist only in distributed system.
 
 Distributed systems are higher level than networks.  Therefore, they have requirements that are out of the scope of a simple network.
-The DS requires higher abstraction / transparency.  Networks do not provide "functional" services.  They provide functionality such as "send a message" "receive a message" etc.  Distributed systems provide a functional service on top of this.  The structure and interrelation of these functions are not related to the network structure.
+The DS requires higher abstraction / transparency.  Networks do not provide "functional" services. 
+They provide functionality such as "send a message" "receive a message" etc.  Distributed systems provide a functional service on top of this. 
+The structure and interrelation of these functions are not related to the network structure.
 There is a balancing act between Autonomy and Interdependence.
 Autonomy refers to a system where every system has its own resources and provides resource services to other systems.
 The second type depends on networked services for things such as files and authentication.
 
-One problem, when trying to attain Autonomy, is that there is a higher cost of resource maintenance.  For example, if a file is held in the local resources of all systems, and it is modified, then the change must be propagated to all other systems (whereas in an interdependence scheme with a single file server, only a single location would need to be modified.)
+One problem, when trying to attain Autonomy, is that there is a higher cost of resource maintenance.
+ For example, if a file is held in the local resources of all systems, and it is modified,
+ then the change must be propagated to all other systems (whereas in an interdependence scheme with a single file server,
+ only a single location would need to be modified.)
 
 
-One problem when trying to attain Interdependence is that the crash of a single machine may cause a lot of resources to become unavailable (for example, if the file server crashes.)
+One problem when trying to attain Interdependence is that the crash of a single machine may cause a lot of resources to become unavailable 
+(for example, if the file server crashes.)  This is an important issue because a lot of the resource dependencies in a system are heirarchical,
+so a single failure can cause a large amount of unavailability of services.
 
 Neither of these problems occur in computer networks.
 
 
 2. (15 pts) For the transaction shown in Figure 1 please write a program
 that uses fork and join constructs to implement the transaction.
+
 # General method:
 # Take the left-side down the tree,
 # forking any process that branches to the right.
@@ -59,6 +83,24 @@ S7;
 hold routing information for all destinations. How does the Internet routing
 scheme deal with this issue?
 
+The internet routing scheme uses a clever system called "classing."
+It divides the address space into "classes", based on size of location.
+these classes allow the routing table to only store the location of a
+single router for a large range of addresses, which will itself contain
+routing information for the specific address.
+So, for example, an address 123.213.312.123 may belong to a very large subnet
+with all other addresses that start with "123".  then the router
+needs only store a single address in its address table for all
+addresses that start with "123".
+
+In actual practice, CIDR approach is used - classless inter-domain routing.
+Essentially, in the former "class" scheme, a class must be in a specific subclass with 
+a multiple of 8 bits.
+So the address 123.123 could be the prefix of an address in a routing table,
+or 123.423.434 , but you could not say "i want the subclass to start with 123 and then have the next bit set"
+so you couldn't have a subclass such as (on the bit-level) 10000000 100xxxxx xxxxxxxx xxxxxxxx (where x can be any bit.)
+CIDR got rid of this limitation by specifying the exact number of bits that are required.
+For example, the above address would be 128.128.0.0/11 to specify that only the first 11 bits are used.
 
 
 4. (10 + 20 = 30 pts)
@@ -66,7 +108,29 @@ scheme deal with this issue?
 tian's algorithm? Explain your answer.
 
 The difference in the delays between the two messages being sent.
+For example, say a client is synchronizing with a server.
+The server's time is 10:00:00.000
+and the client's time is 9:00:00.000
 
+Now say there is a disparity in transmission delays; that is,
+client -> server takes 10 seconds.
+server -> client takes 100 ms.
+let's assume that the creation of the message itself is instantaneous.
+
+client sends a request at 9:00:00.000
+server receives request at 10:00:10.000 (its time)
+server sends reply with current time (10:00:10.000)
+client receives the message at 9:00:10.100 (its time)
+client calculates RTT to be 10.100 seconds.
+client sets its clock to be 10:00:10.000 + 1/2 RTT = 10:00:15.05
+while in reality the current time at the server is just 10:00:10.100
+so the client's clock is now off by 5.05 seconds.
+
+If there was no difference in the delays, the client's clock would be more accurate.
+
+Another thing that can cause accuracy problems is clock drift - if the client's clock changes between request and receipt.
+However, clock drift on modern systems is so low that unless your timing requires extreme accuracy, the clock drift will not influence the clock synchronization
+(although it may make it necessary to sync the clock fairly often to maintain its accuracy.)
 
 (2) Provide two examples that show how Cristian's algorithm works.
 
@@ -84,24 +148,64 @@ Client receives the reply in message m(t) at time 9:59:50.038 containing the tim
 The client calculates the RTT to be 9:59:50.038 - 9:59:50.000 = .038 seconds.
 It knows the server sent the message at 10:00:00.019, but because there was transmission time, it needs to account for this.
 However, the RTT is the total time to send BOTH messages.  the transmission time
+
 for a single message is then calculated as half of that, or .038 / 2 = 0.019 seconds.
+
 Therefore, the client sets its time to t (the time the server sent the message)
 plus the calculated transmission delay.  SO the client clock gets set to 10:00:00.019 + .019 seconds.
 So the client clock is now 10:00:00.038 seconds.
-The current time the server  
+The current time the server  is at is 10:00:00.023 (the time the message finished sending) + .015 ms
+( time it took message to travel from server to client.)
+Therefore, the server's time is now 10:00:00.038.
+
+Since both the client and the server had the same packaging delay and the same transmission delay, their clocks synchronized perfectly.
 
 Now an example where the transmission delay deviates significantly, which is a weakness of Christian's algorithm.
+we assume the packaging / sending to buffer delay is not large enough to be relevant in this case.
 
+Client's clock: 1:00:00.000
+Server's clock: 2:00:00.000
+client -> server transmission time: 25 seconds
+server -> client transmission time: 1 second
+
+Client sends time request to server (client stores current time at 1:00:00.000)
+Server receives request at 2:00:25.000 (server-time)
+server sends reply at 2:00:25.000 containing value 2:00:25.000
+client receives reply at 1:00:26.000
+client calculates RTT to be 26 seconds
+client sets clock to 2:00:25 + 1/2 RTT = 2:00:38.000
+current server time is 2:00:26.000
+- client is off by 12 seconds (which is 1/2 the difference in transmission delays)
 
 
 5. (25 pts. Problem 11.4, p.465) A client attempts to synchronize with a
 time server. It records the round-trip times and timestamps returned by the
 server in the table below.
-Which of these items should it use to set its clock? To what time should
-it set it? Estimate the accuracy of the setting with respect to the server's
-clock. If it is known that the time between sending and receiving a message
+
+a)Which of these items should it use to set its clock?
+The clock should always be set with the transmission that contains the MINIMUM RTT, not the average RTT!
+that is because the minimum RTT gives you the best likelihood that the RTT is correct.
+Therefore, it should use the item 20 / 10:54:28.342
+
+b) To what time should it set it?
+10:54:28.342 + 20/2 = 10:54:38.342
+
+c) Estimate the accuracy of the setting with respect to the server's
+clock.
+We know the round-trip time is 20 seconds, so the greatest possible deviation
+from the server clock would be exactly half of the RTT.
+The only way that could occur is if the server ->client or client->server transmission were instantaneous,
+and the other transfer took the entire 20 seconds.
+Therefore, the client's clock's accuracy is
+10:54:38.342 +/- 10 seconds.
+
+d) If it is known that the time between sending and receiving a message
 in the system concerned is at least 8 ms, do your answers change?
-Round-trip (ms) Time(hr:min:sec)
-22 10:54:23.674
-25 10:54:25.450
-20 10:54:28.342
+The first answer (which item to use to set clock) does not change.
+The second answer (what should time be set to) should not change.  it can be argued that you should
+use a RTT of 8*2 ms (16ms) but I do not think that the answer should actually be changed.
+The third answer (what is the estimated accuracy) would be changed.
+Since the minimum bound on a transmission delay is 8ms, then for a RTT to be 20 ms (that of the sample we're using)
+then one transmission would have to be 8 ms and the other would be 12 ms (to provide maximum transmission delay.)
+Then the accuracy would be half of the difference in the transmission delays, or (12-8)/2 = 2 seconds.
+Therefore the answer to item c would be changed to 10:54:38.342 +/- 2 seconds.

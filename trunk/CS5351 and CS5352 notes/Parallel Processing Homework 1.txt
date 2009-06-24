@@ -152,20 +152,82 @@ Problem 3.
 
 In the textbook solution to the Sieve of Eratosthenes problem, using the data- parallel approach,
 the communication cost is a significant portion of the total cost...
-after a certain number of processors are added, the communication cost will surpass the computational gain provided by the extra processors, and you will not gain speedup.
+after a certain number of processors are added, the communication cost will surpass the computational gain provided by the extra processors,
+and you will not gain speedup.
 If processor 1 (the one who is choosing the next prime) can broadcast the next prime to all other processors, then this is a linear time requirement.
-Therefore, the communication cost does not ever surpass the computational gain by adding extra processors, so your speedup is only bounded by the number of primes you are processing - eventually you will have a processor assigned to every element and adding more processors will not add any speedup (unless you increase the search space so that there are more elements to analyze.)
+Therefore, the communication cost does not ever surpass the computational gain by adding extra processors,
+so your speedup is only bounded by the number of primes you are processing -
+eventually you will have a processor assigned to every element and adding more
+processors will not add any speedup (unless you increase the search space so that there are more elements to analyze.)
 
 Since the communication cost is now fixed, the total cost is now lowered.
 Originally, communication cost was based on the number of processors
 to transmit to.
 That is, communicating k primes to (p-1) processors, with a transmission
-time of row
+time of lambda per-processor, used to be k * (p-1) * lambda.
+However, now that only a single transmission needs to take place, the new
+time for communication of the next prime is merely k * lambda, which is a fixed cost based solely on the number of
+primes and the transmission time ( that is, for a specific instance of the problem, scaling up the number
+of processors does not scale up the transmission time at all.)
+Therefore, your cost is merely a function of the processor striking-out time, with a fixed communication time.
+Then it doesn't exhibit the same symptoms as the textbook-defined version.
+There was a limit past which processors wouldn't allow any speedup, because the communication time was increasing linearly.
+however, with our broadcast solution, the communication time does not increase linearly with the number of procsesors used.
+Therefore, our total time spent is:
+( ceil(ceil(n/p) / 2) + ceil(ceil(n/p) / 3) + ceil(ceil(n/p) / 5) + ...
++ ceil(ceil(n/p) / pi_k) ) X  + k * lambda.
+where ceil() is the ceiling function (round up to the nearest integer)
+n is the maximum number to check for primality,
+pi_k is the largest prime less than sqrt(n),
+and X is the time units it takes for a processor to mark a multiple of a prime as being a composite number.
 
-
+So the total time will decrease with each added processor, and as the number of processors approaches infinity,
+the runtime approaches k * lambda.
 
 Problem 4.
 KRUSKAL's algorithm - pg 690 in Discrete Math book.
+The MST (minimum-spanning tree) is an important problem.
+We seek to solve this using the CREW PRAM model.  This means a Concurrent-Read, Exclusive-Write, Parallel Random Access Memory model.
+An MST is defined as a "[...] tree in a connected weighted graph [...] that has the smallest possible sum of weights of its edges."
+We want to find an algorithm that conforms to the CREW PRAM model
+and works on a connected unidirectional weighted graph.
+"connected" means that all vectors can be reached from all other vectors (though not always directly.) 
+"unidirectional" means that each connection can be traversed in either direction.
+"weighted" means that each connection in the graph contains a value associated with it, which is the "cost" of traversing that connection.
 
+Connections are referred to as "edges" for simplicity.
 
+There are two common algorithms taught in Discrete Mathematics class relating to MST's: Prim's and Kruskal's.
 
+Both Prim's and Kruskal's algorithms can be applied to this problem.
+We will use Kruskal's algorithm to solve the problem.
+
+Kruskal's algorithm can be described in a few steps:
+tree = empty
+for all edges:
+    get smallest weight edge
+    if it doesn't form a circuit, add it to our tree
+    
+The problem here is how to parallelize this.
+There are two main tasks - get smallest weight edge, and check if it forms a circuit.
+Getting the smallest weight edge can be easily performed by simply sorting the edge values.
+This can be performed by a sort function in the PRAM model.
+The sorting will not be reproduced here but a PRAM merge sort has time complexity O(n) with unlimited processors.
+The second part of the problem, finding whether adding an edge forms a circuit, can be performed in parallel (somewhat).
+
+So the final PRAM algorithm is as such:
+tree = empty
+PRAM_SORT(edges)
+for edge in edges:
+    spawn processor for edge
+    check if edge forms a circuit if added to graph
+    - if it does, immediately eliminate edge.
+    - if it doesn't, wait for all previous processors to complete checking.
+    - if any previous processors added an edge, recalculate circuit.
+
+This is not a perfect solution, because there is still a case where a process must wait for other processes to complete,
+but it is the most efficient way I can think of to solve the problem.
+The worst-case time complexity, every process would have to recalculate if its edge formed a circuit for every previous process,
+so the runtime would be the same as the non-parallel version, or O(n^k) for k edges and n nodes (because it takes n tries to check each edge for circuit.)
+
+Therefore, the overall time complexity would be O(n) + O(n^k) or O(n + n^k) = O(n^k).
