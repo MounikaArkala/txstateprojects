@@ -1,0 +1,40 @@
+Superlinear speedup - some believe it's not possible
+Amdahl effect - the portion of operations that are sequential decreases as the sizes of problems in crease.
+
+problem with amdahl's law - parallel processing is used to reduce time in which a problem of some size can be solved.  this assumption is not always valid in all cases.
+
+scaled speedup - ratio between how long a given optimal sequential program would have taken on a single processor of a parallel computer (same hardware/software that a single program has), and the length of the time that theparallel program requires when being executed at full speed on the same parallel computer.
+
+say given 1024 processors and a large set "n"...
+"n" is the largest set that can be executed in 1 minute on a single parallel computer (in this certain case.)
+
+he goes over the calculations for finding the scaled speedup on some example problems.
+
+End of Lecture 3.
+
+Lecture 4 - mapping and scheduling.
+
+How can you balance the load evenly over all processors?
+
+Dilation of embedding - take all edges, look at the maximum distance oof 5A 5B, the two nodes in E', that whole distanceis the dilation embedding.
+node A and C are neighbors in G.  A and C are also neighbors in G'.  dilation of single edge :
+dilation - for each edge a and b
+
+Binomial tree - a tree of height 0 is a single node.
+
+
+Dilation 1 - any two nodes who are neighbors in a binary tree are still neighbors in a 2d mesh.
+That's because if they're neighbors their distance is 1.
+
+load - how many nodes map to a single node.  we only consider load 1 (1 node in G maps to 1 node in G')
+
+covers H-trees - you can construct them with induction - this always works.
+
+Binomial tree in 2-d mesh - grows exponentially.  binomial tree of  height greater than 4 cannot be embedded in 2d mesh w/o increasing dilation beyond 1.
+you odn't have enough room in 2-d mesh to place the leaf nodes above 4.
+
+Embedding graphs into hypercube
+- define a cubical graph - graph G is cubical if there exista a diilation-1 embedding of G into a hypercube.
+
+Tomorrow he'll be in san marcos and show how to embed a binary tree into a hypercube.
+
