@@ -65,7 +65,28 @@ class c6502(object):
         self.int_disable = 0
         self.decimal     = 0
         self.brk         = 0
+        self.cycles      = 0
+        
+        self.clear_memory()
 
+    def clear_memory(self):
+        self.memory = [0]*8000
+
+    def step(self):
+        opcode = self.memory[self.PC]
+        if opcode == 0x18:
+            self.CLC()
+            
+
+    #OPCODES
+
+ 
+
+    #Status Register Operations - Set or clear a flag in the status register. 
+    def CLC(self):
+        self.carry = 0
+        self.cycles += 2
+        
         
 #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
 #Register Transfer Operations - Copy contents of X or Y register to the accumulator or copy contents of accumulator to X or Y register. 
@@ -75,15 +96,14 @@ class c6502(object):
 #Increments / Decrements - Increment or decrement the X or Y registers or a value stored in memory. 
 # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
  #Jumps / Calls - Break sequential execution sequence, resuming from a specified address. 
- #Branches - Break sequential execution sequence, resuming from a specified address, if a condition is met. The condition involves examining a specific bit in the status register. 
- #Status Register Operations - Set or clear a flag in the status register. 
+ #Branches - Break sequential execution sequence, resuming from a specified address, if a condition is met. The condition involves examining a specific bit in the status register.
  #System Functions - Perform rarely used functions. 
  
+if __name__ == "__Main__":
 
-
-x = c6502()    
-x.carry = 1
-print x.PS
+    x = c6502()    
+    x.carry = 1
+    print x.PS
 """
 Counter=InterruptPeriod;
 PC=InitialPC;
