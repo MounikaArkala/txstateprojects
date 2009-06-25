@@ -1,0 +1,97 @@
+-o	                   -on
+single subject noun  	single object noun
+-oj                 	-ojn
+plural subject noun 	plural object noun
+
+Vocab
+
+Nouns
+amiko (friend)			
+filo (son)				
+frato (brother)						
+instruisto (teacher)	
+knabo (boy)			
+patro (father)	
+kafo (coffee)
+kuko (cake)
+lakto (milk)
+pano (bread)
+sukero (sugar)
+teo (tea)
+
+Verbs (roots)
+far' (do, make)
+forges' (forget)
+hav' (have)
+trink' (drink)	
+vend' (sell)
+vid' (see)
+
+
+present tense	-as	describes it as it happens
+past tense	-is	shows an action completed
+future tense	-os	action still to begin
+
+
+
+Exercise
+
+Father makes a cake.
+Patro faras kukon.
+
+The boy will-have the sugar.
+La knabo havos la sukeron.
+
+The son forgot the milk.
+La filo forgesis la lakton.
+
+The boys drink tea.
+La knaboj trinkas teon.
+
+The friend sold the bread.
+La amiko vendis la panon.
+
+The teacher sees a boy.
+La instruisto vidas knabon.
+
+The son has a friend.
+La filo havas amikon.
+
+The brother made bread.
+La fratro faris panon.
+
+The boys will-have cake.
+La knaboj havos kukon.
+
+Father forgot the sugar.
+Patro forgesis la sukeron.
+
+The boys had friends.
+La knaboj havis amikojn.
+
+The sons saw the bread.
+La filoj vidis la panon.
+
+The brothers sell sugar.
+La fratroj vendas sukeron.
+
+The teacher forgets the boy.
+La instruisto forgesas la knabon.
+
+The friend will-drink milk.
+La amiko trinkos lakton.
+
+The sons are-making cakes.
+La filoj faras kukojn.
+
+Father will-sell the cake.
+Patro vendos la kukon.
+
+The friend had bread.
+La amiko havis panon.
+
+The boys will-see the teachers.
+La knaboj vidos la instruistojn.
+
+The teachers drink coffee.
+Lat instruistoj trinkas kafon.
