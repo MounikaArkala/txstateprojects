@@ -1,4 +1,16 @@
 /* Other People's Functions */
+
+String.prototype.trim = function() {
+	return this.replace(/^\s+|\s+$/g,"");
+}
+String.prototype.ltrim = function() {
+	return this.replace(/^\s+/,"");
+}
+String.prototype.rtrim = function() {
+	return this.replace(/\s+$/,"");
+}
+
+
 function GetXmlHttpObject()
 {
 	if (window.XMLHttpRequest)
@@ -12,16 +24,6 @@ function GetXmlHttpObject()
 		return new ActiveXObject("Microsoft.XMLHTTP");
 	}
 	return null;
-}
-
-function getElementsByClassName(classname, node)  {
-    if(!node) node = document.getElementsByTagName("body")[0];
-    var a = [];
-    var re = new RegExp('\\b' + classname + '\\b');
-    var els = node.getElementsByTagName("*");
-    for(var i=0,j=els.length; i<j; i++)
-        if(re.test(els[i].className))a.push(els[i]);
-    return a;
 }
 
 
@@ -69,7 +71,7 @@ function genArgs(pageName)
 			args = args + "notes=" + escape(row) + "&page=" + escape(page);
 			for (i = 0; i < groupnum; i++)
 			{
-				args = args + "&check"+i+"="+ escape(groups[i]);
+				args = args + "&filter"+i+"="+ escape(groups[i]);
 			}
 		}
 		
@@ -128,6 +130,26 @@ function load()
 function callPrime()
 {
 	row = document.getElementById("notes").value;
+    row = row.trim();
+    if (row.length == 0)
+    {
+		document.getElementById("error").innerHTML = "You entered no notes.  Please enter exactly 12 notes.";
+        return false;
+    }
+    var temp = new Array();
+    temp = row.split(' ');
+    if (temp.length != 12)
+    {
+        if (temp.length == 1)
+        {
+            document.getElementById("error").innerHTML = "You entered 1 note.  Please enter exactly 12 notes.";
+        }
+        else
+        {
+            document.getElementById("error").innerHTML = "You entered " + temp.length + " notes.  Please enter exactly 12 notes.";
+        }
+        return false;
+    }
 	page = "main";
 	loadContent('content','primes.cgi');
 }
@@ -141,9 +163,13 @@ function callScale()
 
 function updateScales()
 {
-	alert("HI!");
-	groups = getElementsByClassName("filterbox", "body");
-	alert(groups);
+	groups = new Array();
+    groupnum = document.getElementById("grps").value;
+    var i = 0;
+    for (i = 0; i < groupnum; i++)
+    {
+        groups[i] = document.getElementById("filter" + i).checked;
+    }
 	page = 'filtered';
 	loadContent('scalesdiv', 'scales.cgi');
 }
