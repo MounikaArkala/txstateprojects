@@ -1,0 +1,9 @@
+exactly once - request is guaranteed to execute once and exactly once.
+
+HTTP - based on TCP.
+
+marshalling - HTTP requires marshalling / unmarshalling.
+
+
+remote interfases - slight variation of remote interface to objects.
+

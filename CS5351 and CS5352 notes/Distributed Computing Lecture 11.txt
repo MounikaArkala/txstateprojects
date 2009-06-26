@@ -1,0 +1,70 @@
+Java implementation vs. C
+major difference - no explicit connection needed for TCP client.
+establishment of input / output stream will trigger the TCP handshaking.
+
+accept function () accepts a connection from the server.
+
+external data representation (EDR):
+issue - how can different data structures be passed between programs?
+eg. how would you pass a Linked List?  you cant just pass the head pointer.
+
+marshalling / unmarshalling - packing and unpacking data for transmission.
+
+Sun RPC - very influential implementation of this
+-first commercial implementation of Remote Procedure calls.
+you don't have to specify marshalling/unmarshalling of primitive data types (ints/ floats / chars /etc).
+Sun XDR - external data representation.
+user can define any structure you want
+	- you must provide a procedure that will tell the recipient how to do marshalling/unmarshalling.
+Serializing / deserializing - anything you call in RPC, you must flatten arguments into a series of bytes (marshal all args) independently.
+
+you can use XML as a Common Interface/Interchange Language.
+
+Sun RPC is too low level - it sucks to have to marshall all data manually.
+So DCE RPC was designed - it's more powerful.
+IDL - interface definition language.
+IDL compiler - allows a RPC interface that is transparent regarding OS - 
+you can call from Unix to a Windows PC and it will work just fine.
+
+CORBA CDR - almost same time as DCE.
+DCE is implemented by consortium of companies to provide a variety of support.  best RPC support.
+However, CORBA was good because it was intended to provide easy development of OO software.
+
+CORBA is software development architecture.
+allows you a Common Data Representation for passing data between processes.
+
+marshalling in CDR - same as like in DCE. you don't have to do it specifically.
+
+CORBA IDL flattens into a sequence (such as {'Smith', 'London', 1934} into a sequence of 4x7 = 28 bytes.)
+
+Java RMI - java implementation of Remote Method Invocation concept.  RMI is language-independent.
+
+marshalling in RMI is based on java's concept of serialization and deserialization.  objects are higher level in Java than other things that are serialized (such as structures) for other languages.
+
+remember in Java everything is objecs.  so you can serialize anything you want.
+Java IDL (interface definition language) - different feature.
+
+now we move to talk about Client-Server Communication. at beginning of semester we looked at different computational models.  Client-Server is one popular one.  we'll look at specific details of C/S - some protocols, conventions, to make app more reliable.
+
+request-reply protocol - client sends request, server replies.  repeat indefinitely.
+
+TCP & UDP - you can use both if you want.
+
+
+Possible errors for each request
+1) message not received by server
+ - lost during comm
+ - server process not running
+ - computer hosting server process not running
+2)
+other things.
+
+An operation is idempotent if the effect of performing the operation repeatedly is same as performing it exactly once.  eg. adding items to set, accessing a web page, reading a file.
+
+4 semantics of request/reply protocol.
+At-least-once, at-most-once, maybe, and exactly-once.
+
+at-least-once - request guaranteed to be served by server at least once. suitable for idempotent operations.
+
+at-most-once - a request will be served at most one time, possibly none.  not very common.
+

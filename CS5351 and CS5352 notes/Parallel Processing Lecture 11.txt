@@ -1,0 +1,58 @@
+Graph G is cubical - problem of determining if it's cubical is NP-Complete.
+if you cannot prove it is / isn't cubical, you can't do anything.
+
+number of nodes in hypercube is always even.
+half of the nodes will be reached by traveling through an even-number of links,
+and the other half by traveling through an odd-number of links.
+
+we need a labeling scheme that can satisfy the requirements of the theorem...
+
+in a height-k binomial tree, the root will have k child nodes.
+eg, in a height-2 binomial tree, it will have 2 height-1 binomial trees, connected.
+we start at root node.  first set of edges is level 1.  each is numbered from there.
+
+you number the child nodes of the root node 1->n.
+for each child, you number their children as their value + 1 (for the left-most,
++2 for the one next to the right, +3 for the next, etc. etc.)
+
+After you label it you can use the Theorem to validate if it's a connected graph.
+
+remember time of parallel computation (speedup performance) is time first processor starts executing to time last processor is done executing.  So you want to do load balancing.
+
+dynamic load balancing may actually increase execution time due to extra overhead.
+
+sender-initiated vs. client initiated?
+
+Dynamic load balancing is best but is harder.
+Static load balancing - how to divide load initially on UMA multiprocessor system.
+
+The OS does this.
+
+static scheduling doesn't cost you much overhead, and it can be used to predict speedup.
+
+Task graph - shows all tasks and how they are linked up to each other.
+how do we assign these tasks to different physical processors?  that is called "scheduling."
+
+
+use Gannt Chart to show processes executing.
+scheduling problem for deterministic model is NP-hard, if there are more than 2 processors.
+NP-Hard is a class of problems at least as hard as NP-Complete.
+If you find a problem and prove it to be NP-Complete, that's negative.
+If you find one that is NP-Hard, the outcome is even more negative.
+
+
+Graham's list scheduling algorithm
+
+using graham's algorithm, you will get a scheduling which is at most twice the time of the optimal solution.  increasing # of processors may not improve performance (in fact it may make it worse.)
+reducing execution time of each process, not always helps.
+neither does reducing dependencies.
+
+
+
+Labels for tasks - unique. one label per task.
+M tasks. after for-loop we construct list of tasks "L"
+first task Un has largest label, they are sorted.
+Then Graham's list scheduling algorithm goes and schedules them.
+This produces better results.
+
+tomorrow we will spend about 20 mins on lecture 4 then move to lecture 5.
