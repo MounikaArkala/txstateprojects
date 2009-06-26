@@ -45,7 +45,7 @@ scales =    {
             'Lydian Scale'                         : ([2, 2, 2, 1, 2, 2, 1],    ["Medieval and Renaissance", "Modern Art"]),
             'Mixolydian Scale'                     : ([2, 2, 1, 2, 2, 1, 2],    ["Jazz","Medieval and Renaissance", "Modern Art"]),
             'Aeolian Scale'                        : ([2, 1, 2, 2, 1, 2, 2],    ["Medieval and Renaissance", "Modern Art"]),
-            'Locrian Scale'                        : ([1, 2, 2, 1, 2, 2, 2],    ["Jazz", "Modern Art Music"]),
+            'Locrian Scale'                        : ([1, 2, 2, 1, 2, 2, 2],    ["Jazz", "Modern Art"]),
             'Super Locrian Scale'                  : ([1, 2, 1, 2, 2, 2, 2],    ["Jazz"]),
             'Melodic Minor Scale'                  : ([2, 1, 2, 2, 2, 2, 1],    ["Jazz"]),
             'Bebop Dominant Scale'                 : ([2, 2, 1, 2, 2, 1, 1, 1], ["Jazz"]),

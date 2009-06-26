@@ -47,7 +47,9 @@ def printPage():
         i = i.strip()
         if len(i) == 2:
             i = i[0].upper() + i[1].lower()
-        elif len(i) > 2:
+        elif len(i) == 3:
+            i = i[0].upper() + i[1].lower() + i[2].lower()
+        elif len(i) > 3:
             print "You entered an invalid note: %s" % i
             return
         try:

@@ -157,6 +157,18 @@ function callPrime()
 function callScale()
 {
 	row = document.getElementById("notes").value;
+    row = row.trim();
+    if (row.length == 0)
+    {
+		document.getElementById("error").innerHTML = "You entered no notes.  Please enter at least 2 notes.";
+        return false;
+    }
+    temp = row.split(' ');
+    if (temp.length == 1)
+    {
+        document.getElementById("error").innerHTML = "You entered 1 note.  Please enter at least 2 notes.";
+        return false;
+    }
 	page = "main";
 	loadContent('content','scales.cgi');
 }
