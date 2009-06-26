@@ -1,0 +1,24 @@
+Partitioned algorithms - a big class of problems.
+partition algorithms can be subdivided into prescheduled and self-scheduled algorithms.
+
+Why do we study differetnt meshes / trees / hypercubes?
+processor organizations.
+20-25 years ago they were very important.
+
+synchronized algorithms make synchronization not a concern.
+communication costs aren't zero though.  it may dominate, actually.
+
+shuffle exchange network requires very few connections.  in terms of hardware costs, in terms of hardware costs.
+however, hardware costs are so cheap people just use switches.
+
+I don't understand shuffle-exchange at all.  look it up!!!
+
+basic idea of shuffle-exchange is simple and clear for parallel reduction - you just shuffle-exchange log-n times.
+
+two phases in parallel reduction algorithm
+
+switches give you flexibility.
+
+he goes over summation pseudocode.
+
+Final is Friday July 10th, 8-10:30 pm
