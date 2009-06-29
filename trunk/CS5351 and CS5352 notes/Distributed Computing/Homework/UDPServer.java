@@ -10,7 +10,6 @@ If the file does not exist, the server replies to the client with an error messa
 describing what went wrong.  
 */
 
-
 import java.net.*;
 import java.io.*;
 import java.util.Scanner;

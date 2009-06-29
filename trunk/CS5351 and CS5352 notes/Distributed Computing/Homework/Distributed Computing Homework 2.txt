@@ -1,0 +1,58 @@
+1.
+(1) "oi is an estimate of o".  o is the actual difference between the two synchronizing computer's clocks.
+Transmission delays of sending and receiving message changes what oi you calculate.
+When two computers are synchronizing, computer 1 will send a message with its local time,
+and then check its timestamp when it receives the 2nd message.
+Computer 2 will create a new message containing the local time of computer 1 sending the message,
+the local timestamp of when the message arrived at computer 2, and the local time when the reply was
+sent back to computer 1.  Then computer 1 can calculate an estimated offset of the clock.
+It does this by figuring out the difference in time between Ti-2 and Ti-3
+(when computer 1 sent the message and when computer 2 received the message)
+and also the difference between Ti and Ti-1
+(when computer 2 sent message 2 and when computer 1 received message 2)
+and then it subtracts one from the other and divides them by two.
+
+Essentially, it gets the time it takes to transmit a message from c1 to c2,
+and the transmission delay of a message from c2 to c1, and then it
+*assumes these transmission delays should be equal* and so the amount they diverge
+from each other (oi) is approximately the amount which the clocks are out of sync.
+Clearly if transmission delay 1 and td2 are not equivalent, then oi will not be a good predictor of o
+(depending on how much they diverge, the accuracy will be affected).
+
+(2) t and t' cannot be measured because there is no guarantee that the clocks between the two
+computers are perfectly synchronous.
+t + t' can be measured because it is the propagation delay of the entire communication.  
+Imagine the communication from c1 to c2 and back to c1 as a series of blocks.
+|__|__|__|
+We have the boundaries of each of these blocks already...
+c1sendtime__c2receivetime__c2sendtime__c1receivetime
+If c1 and c2 times are perfectly synchronous, then t is the transmission delay between c1 and c2,
+or c2receivetime - c1sendtime.
+However, they are not perfectly synchronous, so t cannot be calculated accurately.
+The same goes for t', the transmission delay between c2 and c1.
+There is a key, however - we know how long c2 was just sitting there, not transmitting or receiving.
+c2sendtime - c2receivetime = c2idletime.
+Because this is a *relative* time, not an absolute one, we can use it for calculations on either end of
+the communication.
+Therefore, c1receivetime - c1sendtime = total time T
+idle = c2idletime
+T - idle = RTT of message
+RTT = t + t'
+
+That is why it is possible to calculate t + t', because the idle time is relative.
+Therefore the summation of the two times is the RTT, and the estimated
+t and t' can be calculated as (t + t') / 2
+but again this assumes that t and t' are identical, which they may not be
+(and, over the internet, probably aren't.)
+
+The equation given in the book to calculate this value is really the same calculation,
+although it looks different - they assume that the difference between clocks (o) will affect
+both propagation delays evenly, so they just get the propagation delay between c1sendtime and c2receivetime
+and the propagation delay between c2sendtime and c2receivetime and add them together.
+The idea here is... suppose o was 0.3, and t was 0.8 and t' was 0.6.
+Because of the clock difference, you will get t as being 1.1 and t' as 0.3.
+However, the total between them, (1.1 + 0.3) is the same as the
+total of their actual values (0.8 + 0.6).
+
+Either manner of calculation (the one I presented & the one the book uses) is acceptable / equivalent.
+(3) The propagation delay di plays significant role in accuracy of NTP.
