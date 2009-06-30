@@ -1,0 +1,33 @@
+
+
+
+
+
+
+3.
+Shuffle-exchange network n=8 nodes.
+initially node i holds value i, 0 <= i <= n-1
+steps (shuffle/exchange) needed to reach state where node i 
+holds value n - 1 - i, 0 <= i <= n-1
+Our current state:
+node   value
+0       0
+1       1
+2       2
+3       3
+4       4
+5       5
+6       6
+7       7
+
+Our goal state:
+node   value
+0       7
+1       6
+2       5
+3       4
+4       3
+5       2
+6       1
+7       0
+

@@ -1,0 +1,18 @@
+Lecture 5 should be finished today.
+
+more RMI stuff.
+
+Remote object table records correspondence between local object references and remote object references (system-wide).
+
+
+proxy for B, normally we'd go to another proxy.
+the proxy is represented of remote object B on the client computer.
+proxy provides some convenience.
+
+if idempotent...
+
+Group communication
+how allow members to join/leave group
+- Multicasting
+
+IP multicasting over internet
