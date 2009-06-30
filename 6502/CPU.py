@@ -19,38 +19,6 @@ def getHigh(val, num_bits, size=16):
     return val & ((2**size - 1) - (2**(size-num_bits) - 1))
     # eg. for 16, 8 will yield val & 1111111100000000
 
-def unsignedAdd(val, inc, size=8):
-    """ add a value to the register.  returns a set of flags (negative, zero, overflow)"""
-    negative = val >> 7
-    
-    val += inc
-        
-    zero = 0
-    negative = 0
-    
-    if val >= 2**size:
-        val -= 2**size
-        
-    elif val < 0:
-        val = (2**size) + inc
-        
-        
-    if val == 0:
-        zero = 1
-        
-    if not negative and (val >> 7): #nonnegative overflowed into negative bit.
-        overflow = 1
-    else:
-        overflow = 0
-        
-    if negative and (val >> 7) == 0: #negative overflowed into positive.  #TODO: is this right?
-        overflow = 1
-    else:
-        overflow = 0
-    
-    negative = val >> 7
-        
-    return (val, negative, overflow, zero)
 
 def unSign(val, size=8): #takes in a 2's complement number, returns a non-complemented form.
     if val >> (size-1):# need to take 2's complement
@@ -133,6 +101,15 @@ class c6502(object):
         0xF8 : ("Set Decimal",        "SED", self.SED, None),
         0x78 : ("Set Int. Disable",   "SEI", self.SEI, None),
         
+        
+        #Arithmetic Operations
+        0x69 : ("Add with Carry (Immediate)",     "ADC IMM", self.ADC, self.A_IMM),
+        0x6D : ("Add with Carry (Absolute)",      "ADC ABS", self.ADC, self.A_ABS),
+        0x65 : ("Add with Carry (Zero Page)",     "ADC ZPG", self.ADC, self.A_ZPG),
+        0x7D : ("Add with Carry (Absolute X)",    "ADC ABX", self.ADC, self.A_ABX),
+        0x79 : ("Add with Carry (Absolute Y)",    "ADC ABY", self.ADC, self.A_ABY),
+        
+        
         #Increments / Decrements
         0xE8 : ("Increment X",        "INX", self.INX, None),
         0xC8 : ("Increment Y",        "INX", self.INY, None),
@@ -144,7 +121,47 @@ class c6502(object):
         }
         
         self.reset()
-
+        
+        
+        
+        
+    
+    #All of the different addressing modes
+    def A_IMM(self):
+        self.PC += 1
+        return self.read(self.PC-1)
+        
+    def A_ABS(self):
+        self.cycles += 2
+        self.PC += 2
+        return self.read((self.read(self.PC-1) << 8) + self.read(self.PC-2))
+        
+    def A_ZPG(self):
+        self.cycles += 1
+        self.PC += 1
+        return self.read(self.read(self.PC-1))
+        
+    def A_ABX(self):
+        self.cycles += 2
+        self.PC += 2
+        destaddr = (self.read(self.PC-1) << 8) + self.read(self.PC-2) + self.X
+        if destaddr / 256 != self.PC / 256:
+            # add an extra cycle for crossing page boundary.
+            self.cycles += 1
+        return self.read(destaddr)
+        
+    def A_ABY(self):
+        self.cycles += 2
+        self.PC += 2
+        destaddr = (self.read(self.PC-1) << 8) + self.read(self.PC-2) + self.Y
+        if destaddr / 256 != self.PC / 256:
+            # add an extra cycle for crossing page boundary.
+            self.cycles += 1
+        return self.read(destaddr)
+        
+        
+        
+        
     def clear_memory(self):
         self.memory = [0]*0x10000
 
@@ -155,7 +172,7 @@ class c6502(object):
             op = self.optable[opcode]
             debug("executing a %s" % op[0])
             if (op[3]):
-                op[2](op[3])
+                op[2](op[3]())
             else:
                 op[2]()
                 
@@ -163,6 +180,7 @@ class c6502(object):
             debug("Invalid OPCODE (%s)" % opcode)
             self.UnsupportedOpcode()
             #TODO: raise UnsupportedOpcode exception here
+            
             
     def reset(self):
         self.clear_memory() # init memory
@@ -183,7 +201,12 @@ class c6502(object):
     def read(self, addr):
         return self.memory[addr]
 
-    #OPCODES
+        
+        
+        
+    #|====================|
+    #|===|   OPCODES  |===|
+    #|====================|
     
     
     #Register Transfer Operations - Copy contents of X or Y register to the accumulator or copy contents of accumulator to X or Y register. 
@@ -280,6 +303,44 @@ class c6502(object):
     
     
     #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
+    
+    def ADC(self, inc):
+        self.negative = self.A >> 7
+        
+        self.A += inc + self.carry
+            
+        if self.A >= 2**8:
+            self.A -= 2**8
+            self.carry = 1
+        else:
+            self.carry = 0
+        
+        #this shouldn't ever happen!!
+        if self.A < 0:
+            self.A = (2**8) + inc
+            debug("value went below 0 on an unsigned add!")
+            
+        if self.A == 0:
+            self.zero = 1
+        
+        inc_neg = inc >> 7
+        #if both were negative (1 , 1) and result was positive (0), then overflow = 1
+        #if both were positive (0 , 0) and result was negative (1), then overflow = 1
+        #if one was positive and one was negative, then there can't be overflow!!
+        if (inc_neg ^ self.negative) == 0:
+            if self.negative and (self.A >> 7) == 0:
+                self.overflow = 1
+            elif not self.negative and (self.A >> 7):
+                self.overflow = 1
+            else:
+                #this shouldn't ever happen!
+                debug("Ruh Roh, overflow calculation error.")
+                self.overflow = 0
+        
+        self.negative = self.A >> 7 # set negative to the new negative value.
+    
+        self.cycles += 2
+        
  
  
     #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
@@ -326,19 +387,47 @@ class c6502(object):
  
     #Increments / Decrements - Increment or decrement the X or Y registers or a value stored in memory. 
     def INX(self):
-        self.X, self.negative, trash, self.zero = unsignedAdd(self.X, 1)
+        self.X += 1
+        if self.X >= 256:
+            self.X = 0
+        self.negative = self.X >> 7
+        if self.X == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.cycles += 2
         
     def DEX(self):
-        self.X, self.negative, trash, self.zero = unsignedAdd(self.X, -1)
+        self.X -= 1
+        if self.X < 0:
+            self.X = 255
+        self.negative = self.X >> 7
+        if self.X == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.cycles += 2
         
     def INY(self):
-        self.Y, self.negative, trash, self.zero = unsignedAdd(self.Y, 1)
+        self.Y += 1
+        if self.Y >= 256:
+            self.Y = 0
+        self.negative = self.Y >> 7
+        if self.Y == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.cycles += 2
         
     def DEY(self):
-        self.Y, self.negative, trash, self.zero = unsignedAdd(self.Y, -1)
+        self.Y -= 1
+        if self.Y < 0:
+            self.Y = 255
+        self.negative = self.Y >> 7
+        if self.Y == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.cycles += 2
          
     

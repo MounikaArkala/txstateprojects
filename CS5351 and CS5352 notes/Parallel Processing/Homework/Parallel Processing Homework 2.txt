@@ -1,7 +1,98 @@
+Homework #2 by Virpobe Paireepinart
+for CS5351, Summer 2009
+Texas State University
+
+1.
+
+The n^2 time complexity comes from each processor having to run a doubly-nested for loop.
+So ideally we'd try to cut down the runtime of the loop, but I can't think
+of any way to do this without significantly altering the algorithm.  I may be missing
+something.
+
+The idea behind the book's algorithm is to spawn n processes,
+and each process iterates over the entire adjacency matrix, and if it finds any two
+adjacent nodes with the same color, it sets its candidate value to 0.
+That is, the n'th item is no longer a candidate.
+
+One way I came up with to speed up this algorithm would be to eliminate
+checking symmetric values.
+For example,
+0,0,0 is the same coloring as 1,1,1 (for purposes of validating colorings)
+0,0,1 is the same coloring as 1,0,0.
+this allows you to only check n/2 values.
+
+I believe this forces the graph to be symmetric, however.
+
+
+Also, the code is slightly more complicated when you move past 2 color graphs
+to n-color graphs, you have to be smart about the symmetric ones you check.
+
+pseudocode would look something like this:
+for (p_i processors, i = 0...(n/2))
+{
+    candidate[i_0....i_(n/2)-1] = 1
+    for (j = 0...n/2-1)
+        for (k = 0...(n/2)-1)
+            if A[j][k] and i_j = i_k
+                candidate[i_0....i_(n/2)-1] = 0
+    
+    valid += SUM(candidate)
+}
+if valid > 0 : print "valid coloring exists"
+
+
+2.
+Parallel Reduction
+Best: a mesh.  This process does not need a great deal of communication or very small diameter,
+so a mesh is best because it still allows constant edge lengths, which allows scaling
+the problem better.
+Worst: shuffle-exchange.  Its communication is not capable enough for this problem,
+it just needs simple and quick communication and shuffle-exchange is convoluted.
+
+Prefix Sums
+you're trying to add up a bunch of values, but only certain values need to be added to all other values.
+Best: I think pyramid may be best, it allows the data to be dense, but also doesn't waste nodes
+being adjacent to values that don't need to be added to many other nodes.
+Eg. the final value of a prefix sum is not added to any other values other than itself,
+so it can be at the top of the pyramid.
+Worst: probably a 1d mesh, because it wouldn't speed up the algorithm hardly at all versus just
+using a non-parallel approach.
+
+Preorder Tree Traversal
+- spawns a processor for each edge in the tree.
+this can be very bad performance-wise if your diameter is too large
+or if you have non-constant number of edges.
+Therefore, hypercube would be the worst solution because it would
+not scale well at all.
+A good solution would be to use a mesh, if possible, or
+possibly a de Bruijn network (since its diameter is so small)
+There is a lot of IPC so a lower diameter is best.
+
+
+List Ranking
+This has a huge communication overhead, all the processors
+need to constantly know what the other processors have found so far.
+So it needs to have a low diameter.  The De Bruijn network has the smallest diameter,
+aside from a 1-D mesh.
+however, a 1-d mesh will not be helpful because the nodes must communicate through each
+other, which would be really inefficient.  1-D mesh is probably the worst solution for
+this problem.
 
 
 
+Merging two sorted lists
+The worst would be a mesh, because it prevents O(log^k(n)) algorithms from executing,
+which is the runtime of a merge of sorted lists.
+The best would probably be a hypertree used upside down because it could propagate
+sections of the list to other sections easily.
 
+Graph Coloring
+A hypercube would work well with this algorithm because it communicates with adjacent nodes in order to
+determine which colorings are invalid.  It might actually be good to have it be the same dimension as
+the number of colors of the graph.  A mesh may also be well-suited.
+
+The tree / pyramid structures would not be suited well to this problem because they are not evenly-distributed
+in the data communication capabilities of each processor, which is uniform in this problem.
 
 
 3.
@@ -31,3 +122,71 @@ node   value
 6       1
 7       0
 
+
+Upon examination of the behavior of an 8-node shuffle-exchange network, we see that
+- exchange swaps every element with its neighbor
+  (eg. 0 -> 1 and 1 -> 0, 2 -> 3 and 3 -> 2, etc.)
+- shuffle causes the three items 1, 2, 4 to cycle with each other,
+  and items 6, 5, and 3 to cycle as well.
+
+Therefore, by analyzing the movements of each item,
+we can perform the operations in this order to arrive at the result:
+>>> values
+[0, 1, 2, 3, 4, 5, 6, 7]
+>>> shuffle()
+[0, 4, 1, 5, 2, 6, 3, 7]
+>>> exchange()
+[4, 0, 5, 1, 6, 2, 7, 3]
+>>> shuffle()
+[4, 6, 0, 2, 5, 7, 1, 3]
+>>> exchange()
+[6, 4, 2, 0, 7, 5, 3, 1]
+>>> shuffle()
+[6, 7, 4, 5, 2, 3, 0, 1]
+>>> exchange()
+[7, 6, 5, 4, 3, 2, 1, 0]
+
+That is, shuffle, exchange, shuffle, exchange, shuffle, exchange.
+
+I came to this conclusion in the following way:
+The item in the position 0 needs to end up in position 7.
+This is the greatest distance that needs to be travelled by any item (same as 7 -> 0)
+In order for this to traverse to the other side, it must go through a process of
+exchange - shuffle - exchange - shuffle - exchange.
+there is no other sequence that can result in this traversal.
+However, I figured out that you can solve it either by
+shuffle, exchange, shuffle, exchange, shuffle, exchange
+or by
+exchange, shuffle, exchange, shuffle, exchange, shuffle.
+
+There is no shorter path to move an item from 0 to 7, so this is an optimal solution.
+
+
+
+4.  Prefix sum - generate all summations of first item, first item + second item,
+1st + 2nd + 3rd, ... etc.
+
+Suppose we're given [1,2,3,4,5,6,7,8]
+The strategy used in a hypercube:
+processor 0 keeps its value (1) and passes it on to all adjacent nodes.
+each node accepts a (sender, value) pair.
+if the node sending the value is smaller than it,
+it will add its value and rebroadcast the number to its neighbors,
+and store that node in its "received" list.
+
+So the algorithm is
+
+for (p_i processors 0...n)
+{
+    received = [0....0] * i-1 items
+    p.broadcast((i, p.value))
+    while (received contains 0s)
+    {
+        p.receive(val)
+        if val[0] < i:
+            if p.received[val[0]] == 0:
+                p.value += val[1]
+                received[val] = 1
+        p.broadcast(val)
+    }
+}

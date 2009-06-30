@@ -1,0 +1,52 @@
+# Dimensions of each card first, then the number of cards in each row and then each column.
+#Cards are expected to be separated by a line of a pixel width.  The red sets should be directly
+#to the right of the blue sets.
+
+#Dimensions
+72 72
+
+#number of cards in row, column.
+1 11
+
+
+#stats of each card, going by columns then rows.
+#they're listed from the top and around clockwise.
+#also list the card names if you want them to work correctly.
+#otherwise they'll either be default named or just not used.
+#note the brackets.
+#column 1
+{
+Grat
+7 1 3 1
+
+Buel
+6 2 2 3
+
+Mesmerize
+5 3 3 4
+
+Glacial Eye
+6 1 4 3
+
+Belhelmel
+3 4 5 3
+
+Thrustaevis
+5 3 2 5
+
+Anacondaur
+5 1 3 5
+
+Creeps
+5 2 5 2
+
+Grendel
+4 4 5 2
+
+Jellyeye
+3 2 1 7
+
+Grand Mantis
+5 2 5 3
+}
+#column 2 nonexistant. it's just the red sides.

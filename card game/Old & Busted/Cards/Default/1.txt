@@ -1,0 +1,58 @@
+# Dimensions of each card first, then the number of cards in each row and then each column.
+#Cards are expected to be separated by a line of a pixel width.  The red sets should be directly
+#to the right of the blue sets.
+
+#Dimensions
+72 72
+
+#number of cards in row, column.
+1 11
+
+#stats of each card, going by columns then rows.
+#they're listed from the top and around clockwise.
+#also list the card names if you want them to work correctly.
+#otherwise they'll either be default named or just not used.
+
+#0=rock, 1=lightning, 2=poison, 3=wind
+
+#note the brackets.
+
+
+#column 1
+
+
+{
+Geezard
+1 4 5 1
+
+Funguar
+5 1 1 3
+
+Bite Bug
+1 3 3 5
+
+Red Bat
+6 1 1 2
+
+Blobra
+2 3 1 5
+
+Gayla
+2 1 4 4 1
+
+Gesper
+1 5 4 1
+
+Fastitocalon-F
+3 5 2 1 0
+
+Blood Soul
+2 1 6 1
+
+Caterchipillar
+4 2 4 3
+
+Cockatrice
+2 1 2 6 1
+}
+#column 2 nonexistant. it's just the red sides.
