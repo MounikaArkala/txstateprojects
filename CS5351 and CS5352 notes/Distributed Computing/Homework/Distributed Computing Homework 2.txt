@@ -1,3 +1,7 @@
+Homework #2 by Virpobe Paireepinart
+for CS5352, Summer 2009
+Texas State University
+
 1.
 (1) "oi is an estimate of o".  o is the actual difference between the two synchronizing computer's clocks.
 Transmission delays of sending and receiving message changes what oi you calculate.
@@ -55,4 +59,79 @@ However, the total between them, (1.1 + 0.3) is the same as the
 total of their actual values (0.8 + 0.6).
 
 Either manner of calculation (the one I presented & the one the book uses) is acceptable / equivalent.
-(3) The propagation delay di plays significant role in accuracy of NTP.
+
+(3) di itself doesn't play a significant role in NTP accuracy.
+It is the inability to distinguish the difference between t and t' that is the problem.
+di is an upper limit on the divergence of these two variables.  For example, if di = 1.0s, then the maximum
+difference between t and t' is 1.0 seconds, so your time is guaranteed to be accurate within this granularity
+(eg. in this case your accuracy is guaranteed to be at least accurate +/- 1s,
+but it will probably be more accurate than that because neither t or t' are exactly 0.)
+
+2.
+(1)
+The statement is:
+[if the event e is not the same event as event e',
+then the vector timestamp V(e) is not the same
+as the vector timestamp V(e')] does not always hold.
+that is,
+for some event e distinct from e',
+the vector timestamp V(e) is the same as the vector timestamp V(e').
+
+Two vectors are assumed equal if their coordinates are the same.
+So for this posit to hold, there must be an event e that generates the same timestamp as another event, e'.
+
+I disagree with this conclusion, on the following basis:
+The purpose of timestamps is to be able to distinguish events, so if two events can happen
+in the space of 1 timestamp, then our timestamp granularity is not great enough.
+Therefore, we assume that two events cannot occur in a single process at the same timestamp.
+
+An event e is distinct from e' iff
+- e -> e' or e' -> e,
+OR
+- e and e' occured on different processors.
+
+Suppose condition 1 is true, e happened-before e' or e' happened-before e.
+The vector timestamp is incremented for each event on a single processor,
+so the timestamps of these events will differ at least in that regard.
+Eg. if e is (1,0,0) then e' must be (2+c,x,x), where c >= 0
+and they are therefore not equal (because at least one of their components is not equal.)
+
+Suppose condition 2 is true, e and e' occur on different processors.
+In this case, let us examine event e.
+Event e occurs in process 1, so
+e = (2,x,x)
+Now event e' occurs on process 2, so
+e' = (x,2,x)
+The only way they could be equivalent would be if they both contained
+(2,2,x)
+where x is the same number.
+However, in order for e to contain (2,2,x):
+at t=k
+p2 send p1 the value (...,2,...) when p1 was (1,...,...).
+Then p1 would update itself to (2,2,...) at t=k+1.
+Then it is impossible for p1 to have sent p2 the value (2,...,...)
+because at t=k, p1 had the value (1,...,...) and it doesn't update its value
+until it receives the message that updates it to (2,2,...), so it can't
+send the updated value of p1 as (2,...,...) until t=k+1, which is the
+same time that e occurs.  Since e occurs at time k+1, and there must be a
+transmission from p1 to p2, e' cannot occur at time k+1 also.
+
+The only cases where two events could have the same timestamp are
+- A flaw in the calculation of the vector timestamps (such as sending the timestamp before updating the local value)
+or
+- A malicious process who is changing the other processes' components of the vectors.
+
+
+(2)
+a1 (1,0,0)
+a2 (2,0,0)
+b1 (0,2,0)
+a3 (3,2,0)
+b2 (0,4,0)
+c1 (0,0,10)
+c2 (1,0,20)
+b3 (0,6,10)
+c3 (1,0,30)
+a4 (4,6,30)
+
+3. See README.txt

@@ -1,6 +1,6 @@
 /*
 UDPServer.java by Virpobe Paireepinart
-for CS5352, Spring 2009
+for CS5352, Summer 2009
 Texas State University
 
 A simple server that accepts connections on a hardcoded port.
@@ -15,9 +15,11 @@ import java.io.*;
 import java.util.Scanner;
 public class UDPServer
 {
+	// Lets the client know when to stop reading data.
     static String EOFStr = Character.toString((char) 0x04);
     static byte[] EOF = EOFStr.getBytes();
     
+	// Function to make it easier to simultaneously print error message to screen and send to client.
     public static void errmsg(DatagramSocket socket, DatagramPacket request, String msg) throws IOException
     {
         
@@ -33,8 +35,8 @@ public class UDPServer
     {
         try
         {
-            DatagramSocket aSocket = new DatagramSocket(6789);
-            byte[] buffer;
+            DatagramSocket aSocket = new DatagramSocket(6789);// to receive msgs
+            byte[] buffer;// temporary request storage.
             while(true)
             {
                 buffer = new byte[1000];
@@ -44,14 +46,18 @@ public class UDPServer
                 aSocket.receive(request);
                 String filename = new String(request.getData());
                 filename = filename.trim();
+				// allow client to kill server if they want to.
                 if (filename.toLowerCase().equals("quit") ||
                     filename.toLowerCase().equals("exit"))
                 {
                     break;
                 }
+				// allow client to list current directory, makes it easier
+				// to choose a file to list.
                 else if (filename.toLowerCase().equals("dir") ||
                          filename.toLowerCase().equals("ls"))
                 {
+					System.out.println("Listing directories...");
                     File dir = new File(".");
                     File[] children = dir.listFiles();
                     if (children != null)
@@ -61,18 +67,20 @@ public class UDPServer
                             if (children[i].isFile())
                             {
                                 String child = children[i].getName();
+								// send them the filename for each file.
                                 reply = new DatagramPacket(child.getBytes(), child.length(),
                                                                   request.getAddress(), request.getPort());
                                 aSocket.send(reply);
                             }
                         }
                     }
-                    reply = new DatagramPacket(EOF, EOFStr.length(),
+					String temp = "End of Listing" + EOFStr;
+                    reply = new DatagramPacket(temp.getBytes(), temp.length(),
                                                                   request.getAddress(), request.getPort());
                     aSocket.send(reply);
                     continue;
                 }
-                    
+                
                 System.out.println("Client requested file: " + filename);
                 
                 String line = null;
@@ -97,8 +105,7 @@ public class UDPServer
                                                           request.getAddress(), request.getPort());
                     aSocket.send(reply);
                     
-                    //... Close reader and writer.
-                    reader.close();  // Close to unlock.
+                    reader.close();  // Close to unlock file.
                 }
                 catch (FileNotFoundException e)
                 {
@@ -116,6 +123,7 @@ public class UDPServer
                 System.out.println("");
                 System.out.println("");
             }
+			aSocket.close();
         }
         catch (SocketException e)
         {

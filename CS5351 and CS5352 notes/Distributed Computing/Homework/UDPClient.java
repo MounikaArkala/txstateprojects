@@ -1,6 +1,6 @@
 /*
 UDPClient.java by Virpobe Paireepinart
-for CS5352, Spring 2009
+for CS5352, Summer 2009
 Texas State University
 
 A simple client that connects to a user-specified hostname,
@@ -43,11 +43,13 @@ public class UDPClient
             InetAddress aHost = InetAddress.getByName(c.readLine("Server Hostname: "));
             
             String message = c.readLine("Filename (or \"ls\" or \"quit\"): ");
+			byte[] buffer;
+			
             while (message.indexOf((char) 0x04) < 0) // While no EOF character in the line
             {
+				// setup our request for file listing.
                 DatagramPacket request = new DatagramPacket(message.getBytes(), message.length(), aHost, serverPort);
                 aSocket.send(request);
-                byte[] buffer;
                 
                 if (message.toLowerCase().equals("quit") ||
                     message.toLowerCase().equals("exit"))
@@ -55,8 +57,8 @@ public class UDPClient
                     break;
                 }
                 
+				String result = new String("");
                 // Loop until we get an EOF in the reply
-                String result = new String("");
                 while(result.indexOf((char) 0x04) < 0)
                 {
                     buffer = new byte[1000]; // To store reply temporarily
@@ -74,7 +76,7 @@ public class UDPClient
         {
             System.out.println("Socket:" + e.getMessage());
         }
-        catch (IOException e) // Not sure how this would occur.
+        catch (IOException e) // IO error
         {
             System.out.println("IO:" + e.getMessage());
         }
