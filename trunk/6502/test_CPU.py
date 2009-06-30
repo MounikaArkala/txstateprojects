@@ -531,12 +531,266 @@ class TestOpcodes(unittest.TestCase):
         self.assertEqual(self.CPU.S, 255)
         self.assertEqual(self.CPU.PS, 0xFF)
     
+    
+    
+    
+    
+    
     #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
     def testADC(self):
-        pass
+        #this is the most comprehensive test because it tests all of the
+        #different memory addressing schemes as well.
+        #the other opcode tests mostly just test the opcodes themselves.
+        
+        
+        #first extensively test immediate to make sure ADC works correctly.
+        
+        #test w/o carry, two positives not overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 0
+        self.CPU.A = 0x0A
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x0C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x16)
+        self.assertEqual(self.CPU.carry, 0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.overflow, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test with carry, two positives not overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x0A
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x0C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x17)
+        self.assertEqual(self.CPU.carry, 0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.overflow, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test w/o carry, two negatives not overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 0
+        self.CPU.A = 0xE6 #-26
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0xE6 #-26
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xCC)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test with carry, two negatives not overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0xE6 #-26
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0xE6 #-26
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xCD)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test w/o carry, two positives overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 0
+        self.CPU.A = 0x3A
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x7C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xB6)
+        self.assertEqual(self.CPU.carry, 0)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test with carry, two positives overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x3A
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x7C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xB7) #B7 is negative, but it should be a positive result.
+        self.assertEqual(self.CPU.carry, 0)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test w/o carry, two negatives overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 0
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x9C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x38)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.overflow, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #test with carry, two negatives overflowing.
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x9C
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x39)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.overflow, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        #with carry, almost positive overflow.
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x64 #100
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0x1A #26
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x7F)
+        self.assertEqual(self.CPU.carry, 0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.overflow, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        
+        #with carry, almost negative overflow. 
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x69 #ADC IMM
+        self.CPU.memory[1] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        
+    
+        #now use ADC to make sure addressing modes work.
+        
+        #ABSOLUTE
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x6D #ADC ABS
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x45
+        self.CPU.memory[0x4552] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 4)
+        
+        #ZERO-PAGE
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x65 #ADC ZPG
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[0x52] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 3)
+             
+        
+        #ABSOLUTE, X  (not crossing page boundary)
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.X = 0x03
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x7D #ADC ABX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x00
+        self.CPU.memory[0x0055] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 4)
+        
+        #ABSOLUTE, X (crossing page boundary)
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.X = 0x03
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x7D #ADC ABX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x01
+        self.CPU.memory[0x0155] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 5)
+        
+        #ABSOLUTE, Y (not crossing page boundary)
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.Y = 0x05
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x79 #ADC ABX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x00
+        self.CPU.memory[0x0057] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 4)
+        
+        #ABSOLUTE, Y (crossing page boundary)
+        
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.Y = 0x05
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x79 #ADC ABX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x01
+        self.CPU.memory[0x0157] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 5)
+        
+        """   
+        #(INDIRECT, X)
+        61
+        #(INDIRECT, Y)
+        71
+        #ZERO-PAGE, X
+        75
+        """
     
     def testSBC(self):
         pass
+    
+    
+    
+    
+    
     
     #Increments / Decrements - Increment or decrement the X or Y registers or a value stored in memory. 
     def testINC(self):
