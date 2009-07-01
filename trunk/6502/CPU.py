@@ -1,6 +1,8 @@
-
+DEBUG = 0
 def debug(astr):
-    print "\n%s\n" % astr
+    global DEBUG
+    if DEBUG:
+        print "\n%s\n" % astr
 
 
 class Interrupt(object):
@@ -163,12 +165,10 @@ class c6502(object):
     def A_IDX(self):
         self.cycles += 4
         
-        #TODO: do we wrap around to zero-page or not?
-        #fetch our address from zero-page
+        #Wrap around to keep in ZP
         zpaddr = (self.read(self.PC) + self.X) % 256
-        print zpaddr
         self.PC += 1
-        destaddr = (self.read(zpaddr) << 8) + self.read(zpaddr+1)
+        destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr)
         return self.read(destaddr)
         
         
@@ -318,9 +318,18 @@ class c6502(object):
     
     
     #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
+    def makebin(self,val):
+        table = {0x0: "0000",0x1:"0001",0x2:"0010",0x3:"0011",0x4:"0011",0x5: "0101",0x6:"0110",0x7:"0111",0x8:"1000",0x9:"1001",
+                 0xA: "1010",0xB:"1011",0xC:"1100",0xD:"1101",0xE:"1110",0xF:"1111"}
+                 
+        return table[val >> 4] + table[val & 0xF]
+    
     
     def ADC(self, inc):
-        inc %= 8
+        inc %= 256
+        debug("A is:      " + self.makebin(self.A))
+        debug("inc is:    " + self.makebin(inc))
+        debug("Status is: " + self.makebin(self.PS))
         self.negative = self.A >> 7
         
         self.A += inc + self.carry
@@ -339,28 +348,28 @@ class c6502(object):
         if self.A == 0:
             self.zero = 1
         
+        #TODO: should carry be added to this before checking if it's negative?
         inc_neg = inc >> 7
         #if both were negative (1 , 1) and result was positive (0), then overflow = 1
         #if both were positive (0 , 0) and result was negative (1), then overflow = 1
         #if one was positive and one was negative, then there can't be overflow!!
-        print "inc is: ", inc_neg
         
         if (inc_neg ^ self.negative) == 0:
-            if self.negative and (self.A >> 7) == 0:
+            if self.negative and (self.A >> 7 == 0):
                 self.overflow = 1
-            elif not self.negative and (self.A >> 7):
+            elif (not self.negative) and (self.A >> 7):
                 self.overflow = 1
             else:
-                #this shouldn't ever happen!
-                debug("Ruh Roh, overflow calculation error.")
+                #I don't get how this can happen but it does.
                 self.overflow = 0
         else:
             self.overflow = 0
         
         self.negative = self.A >> 7 # set negative to the new negative value.
-    
+        debug("A is now: " + self.makebin(self.A))
+        debug("Status is now: " + self.makebin(self.PS))
         self.cycles += 2
-        
+    
  
  
     #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
