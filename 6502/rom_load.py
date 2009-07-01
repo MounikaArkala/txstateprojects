@@ -1,16 +1,3 @@
-class ReservedBitsError(Exception):
-    """Exception raised for errors in checking reserved bits in the NES header."""
-    def __init__(self, value="No message specified."):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
-
-class NESHeaderError(Exception):
-    """Exception raised when the ROM doesn't contain NES^Z tag as the first 4 characters."""
-    def __init__(self, value="No message specified."):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
 
 
 class Rom(object):
@@ -57,4 +44,3 @@ class Rom(object):
         self.rom = [temp[i*16384:(i+1)*16384] for i in range(self.rom_banks)]
         temp = data[startaddr+self.rom_banks*16384:]
         self.vrom = [temp[i*8192:(i+1)*8192] for i in range(self.vrom_banks)]
-
