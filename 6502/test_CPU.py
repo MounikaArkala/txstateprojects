@@ -2,7 +2,7 @@
 
 import CPU
 import unittest
-
+#TODO: exhaustive test of ADC & SBC to make sure they work exactly how they're supposed to.
 
 #~~ Helpful class to inherit from w/ common functionality ~~      
 class TestCPUTemplate(unittest.TestCase):
