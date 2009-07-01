@@ -1,0 +1,30 @@
+Friday will be final. 8-10:30 PM, not sure which 
+
+sorting & searching are very important (science / engineering)
+
+grad students who do not know matrix multiplication is a deficiency.
+learn how to do it on your own.
+2d mesh -- we want to distribute values evenly across the mesh.
+
+a centralized algorithm - no need of communication.
+
+0 talking about SIMD-MC^2 model algorithm
+Because of lower boundto achieve lower bound
+parallel algorithm - can't reduce below the # of operations of sequential algo,
+can just do them in parallel.
+
+in the first iteration the first processor's value does not move.  every value but first
+in column / row will be moved left/up.
+
+
+- we have more efficient algorithms for solving on hypercubes, but it's rather unconventional.
+
+
+can we come up with algorithm ?  note n^3 is magic number
+in sequential operation, n^3 is total number of operations - each c,i,j needs n paired multiplications.
+in our algorithm we can use special requirement - # of processors = n^3.
+
+if you can do this right, each process is only doing 1 multiplication.
+total complexity of algo is log(n)
+if it takes you more than log(n) time to send values across the hypercube, you won't be able to make it optimal
+efficiency.
