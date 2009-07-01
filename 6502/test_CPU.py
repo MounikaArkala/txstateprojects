@@ -3,6 +3,25 @@
 import CPU
 import unittest
 
+
+#~~ Helpful class to inherit from w/ common functionality ~~      
+class TestCPUTemplate(unittest.TestCase):
+    def setUp(self):
+        self.CPU = CPU.c6502()
+    
+    def loadMem(self, offset, vals):
+        for i in range(len(vals)):
+            self.CPU.memory[offset + i] = vals[i]
+    
+    #OPCODE TESTS
+    
+    #Logical Operations - Perform logical operations on the accumulator and a value stored in memory.
+    
+    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
+    
+    
+
+#~~ General CPU tests ~~
 class TestArithmeticFunctions(unittest.TestCase):
     
     def setUp(self):
@@ -17,152 +36,19 @@ class TestArithmeticFunctions(unittest.TestCase):
         self.assertEqual(CPU.unSign(0xF0, 8), -0x10)
 
 
-class TestCPUFunctions(unittest.TestCase):
-
-    def setUp(self):
-        self.CPU = CPU.c6502()
-
+class TestCPUFunctions(TestCPUTemplate):
     def testClearMemory(self):
         self.CPU.clear_memory()
         self.assertEqual(0, sum(self.CPU.memory))
-    
-    
-    
         
+    def testPS(self):
+        for i in range(0x100):
+            self.CPU.PS = i #test setting self.CPU.PS
+            self.assertEqual(i | 0x20, self.CPU.PS) #test getting self.CPU.PS as well.
 
-class TestOpcodes(unittest.TestCase):
-    def setUp(self):
-        self.CPU = CPU.c6502()
-    
-    
-    #OPCODE TESTS
-    
-    #Register Transfer Operations - Copy contents of X or Y register to the accumulator or copy contents of accumulator to X or Y register. 
-    def testTAX(self):
-        self.CPU.reset()
-        self.CPU.A = 0xF8
-        self.CPU.memory[0] = 0xAA
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xF8)
-        self.assertEqual(self.CPU.X, 0xF8)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.zero, 0)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        self.CPU.reset()
-        self.CPU.A = 0x0
-        self.CPU.memory[0] = 0xAA
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.X, 0x0)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.zero, 1)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-    def testTAY(self):
-        self.CPU.reset()
-        self.CPU.A = 0xF8
-        self.CPU.memory[0] = 0xA8
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xF8)
-        self.assertEqual(self.CPU.Y, 0xF8)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.zero, 0)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        self.CPU.reset()
-        self.CPU.A = 0x0
-        self.CPU.memory[0] = 0xA8
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.Y, 0x0)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.zero, 1)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-    def testTSX(self):
-        self.CPU.reset()
-        self.CPU.S = 0xF8
-        self.CPU.memory[0] = 0xBA
-        self.CPU.step()
-        self.assertEqual(self.CPU.X, 0xF8)
-        self.assertEqual(self.CPU.S, 0xF8)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.zero, 0)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        self.CPU.reset()
-        self.CPU.S = 0x0
-        self.CPU.memory[0] = 0xBA
-        self.CPU.step()
-        self.assertEqual(self.CPU.X, 0x0)
-        self.assertEqual(self.CPU.S, 0x0)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.zero, 1)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-    def testTXS(self):
-        self.CPU.reset()
-        self.CPU.X = 0xF8
-        self.CPU.memory[0] = 0x9A
-        self.CPU.step()
-        self.assertEqual(self.CPU.X, 0xF8)
-        self.assertEqual(self.CPU.S, 0xF8)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-    def testTXA(self):
-        self.CPU.reset()
-        self.CPU.X = 0xF8
-        self.CPU.memory[0] = 0x8A
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xF8)
-        self.assertEqual(self.CPU.X, 0xF8)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.zero, 0)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        self.CPU.reset()
-        self.CPU.X = 0x0
-        self.CPU.memory[0] = 0x8A
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.X, 0x0)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.zero, 1)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        
-    def testTYA(self):
-        self.CPU.reset()
-        self.CPU.Y = 0xF8
-        self.CPU.memory[0] = 0x98
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xF8)
-        self.assertEqual(self.CPU.Y, 0xF8)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.zero, 0)
-        self.assertEqual(self.CPU.cycles, 2)
-        
-        self.CPU.reset()
-        self.CPU.Y = 0x0
-        self.CPU.memory[0] = 0x98
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.Y, 0x0)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.zero, 1)
-        self.assertEqual(self.CPU.cycles, 2)
-    
-    
-    def loadMem(self, offset, vals):
-        for i in range(len(vals)):
-            self.CPU.memory[offset + i] = vals[i]
-    
-    
-    
-    
-    
-    
+
+#~~ Opcode tests ~~
+class TestBranchOpcodes(TestCPUTemplate):    
     #Branches
     def testBCC(self):
         #test a successful branch (bypass an X increment)
@@ -445,106 +331,10 @@ class TestOpcodes(unittest.TestCase):
         self.assertEqual(self.CPU.X, 1)
         self.assertEqual(self.CPU.Y, 1)
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    #Logical Operations - Perform logical operations on the accumulator and a value stored in memory.
-    
-    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
-    
-    #Stack Operations - Push or pull the stack or manipulate stack pointer using X register. 
-    def testPHA(self):
-        self.CPU.reset()
-        self.CPU.A = 0xAD
-        self.CPU.memory[0] = 0x48
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xAD)
-        self.assertEqual(self.CPU.PS, 0 | 0x20)
-        self.assertEqual(self.CPU.cycles, 3)
-        self.assertEqual(self.CPU.S, 254)
-        self.assertEqual(self.CPU.memory[511], 0xAD)
-        
-    def testPHP(self):
-        self.CPU.reset()
-        self.CPU.PS = 0x0F
-        self.CPU.memory[0] = 0x08
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0)
-        self.assertEqual(self.CPU.PS, 0x0F | 0x20)
-        self.assertEqual(self.CPU.S, 254)
-        self.assertEqual(self.CPU.cycles, 3)
-        self.assertEqual(self.CPU.memory[511], 0x0F | 0x20)
-        
-    def testPLA(self):
-        self.CPU.reset()
-        #push 0xA8 onto stack
-        self.CPU.A = 0xA8
-        self.CPU.memory[0] = 0x48
-        self.CPU.step()
-        
-        self.CPU.A = 0
-        #pop 0x48 into accumulator
-        self.CPU.memory[1] = 0x68
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0xA8)
-        self.assertEqual(self.CPU.cycles, 7)
-        self.assertEqual(self.CPU.negative, 1)
-        self.assertEqual(self.CPU.S, 255)
-        self.assertEqual(self.CPU.zero, 0) # make sure this doesn't get set.
-        
-        #now try zero.
-        #push 0xA8 onto stack
-        self.CPU.A = 0x0
-        self.CPU.memory[2] = 0x48
-        self.CPU.step()
-        
-        self.CPU.A = 0x38
-        #pop 0x0 into accumulator
-        self.CPU.memory[3] = 0x68
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.cycles, 14)
-        self.assertEqual(self.CPU.negative, 0)
-        self.assertEqual(self.CPU.S, 255)
-        self.assertEqual(self.CPU.zero, 1)
-        
-    def testPLP(self):
-        self.CPU.reset()
-        #push 0xFF onto stack
-        self.CPU.A = 0xFF
-        self.CPU.memory[0] = 0x48
-        self.CPU.step()
-        
-        self.CPU.A = 0
-        #pop 0xFF into PS
-        self.CPU.memory[1] = 0x28
-        self.CPU.step()
-        self.assertEqual(self.CPU.A, 0x0)
-        self.assertEqual(self.CPU.cycles, 7)
-        self.assertEqual(self.CPU.S, 255)
-        self.assertEqual(self.CPU.PS, 0xFF)
-    
-    
-    
-    
-    
-    
+           
+class TestArithmeticOpcodes(TestCPUTemplate):    
     #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
-    def testADC(self):
-        #this is the most comprehensive test because it tests all of the
-        #different memory addressing schemes as well.
-        #the other opcode tests mostly just test the opcodes themselves.
-        
-        
-        #first extensively test immediate to make sure ADC works correctly.
-        
+    def testADC(self):        
         #test w/o carry, two positives not overflowing.
         self.CPU.reset()
         self.CPU.carry = 0
@@ -675,10 +465,205 @@ class TestOpcodes(unittest.TestCase):
         self.assertEqual(self.CPU.negative, 1)
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 2)
+
+    def testSBC(self):
+        pass
+class TestRegisterTransferOpcodes(TestCPUTemplate):
+    #Register Transfer Operations - Copy contents of X or Y register to the accumulator or copy contents of accumulator to X or Y register. 
+    def testTAX(self):
+        self.CPU.reset()
+        self.CPU.A = 0xF8
+        self.CPU.memory[0] = 0xAA
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xF8)
+        self.assertEqual(self.CPU.X, 0xF8)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.zero, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        self.CPU.reset()
+        self.CPU.A = 0x0
+        self.CPU.memory[0] = 0xAA
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.X, 0x0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+    def testTAY(self):
+        self.CPU.reset()
+        self.CPU.A = 0xF8
+        self.CPU.memory[0] = 0xA8
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xF8)
+        self.assertEqual(self.CPU.Y, 0xF8)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.zero, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        self.CPU.reset()
+        self.CPU.A = 0x0
+        self.CPU.memory[0] = 0xA8
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.Y, 0x0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+    def testTSX(self):
+        self.CPU.reset()
+        self.CPU.S = 0xF8
+        self.CPU.memory[0] = 0xBA
+        self.CPU.step()
+        self.assertEqual(self.CPU.X, 0xF8)
+        self.assertEqual(self.CPU.S, 0xF8)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.zero, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        self.CPU.reset()
+        self.CPU.S = 0x0
+        self.CPU.memory[0] = 0xBA
+        self.CPU.step()
+        self.assertEqual(self.CPU.X, 0x0)
+        self.assertEqual(self.CPU.S, 0x0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 1)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+    def testTXS(self):
+        self.CPU.reset()
+        self.CPU.X = 0xF8
+        self.CPU.memory[0] = 0x9A
+        self.CPU.step()
+        self.assertEqual(self.CPU.X, 0xF8)
+        self.assertEqual(self.CPU.S, 0xF8)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+    def testTXA(self):
+        self.CPU.reset()
+        self.CPU.X = 0xF8
+        self.CPU.memory[0] = 0x8A
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xF8)
+        self.assertEqual(self.CPU.X, 0xF8)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.zero, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        self.CPU.reset()
+        self.CPU.X = 0x0
+        self.CPU.memory[0] = 0x8A
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.X, 0x0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 1)
+        self.assertEqual(self.CPU.cycles, 2)
         
         
+    def testTYA(self):
+        self.CPU.reset()
+        self.CPU.Y = 0xF8
+        self.CPU.memory[0] = 0x98
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xF8)
+        self.assertEqual(self.CPU.Y, 0xF8)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.zero, 0)
+        self.assertEqual(self.CPU.cycles, 2)
+        
+        self.CPU.reset()
+        self.CPU.Y = 0x0
+        self.CPU.memory[0] = 0x98
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.Y, 0x0)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 1)
+        self.assertEqual(self.CPU.cycles, 2)
     
-        #now use ADC to make sure addressing modes work.
+    
+class TestStackOpcodes(TestCPUTemplate):
+    #Stack Operations - Push or pull the stack or manipulate stack pointer using X register. 
+    def testPHA(self):
+        self.CPU.reset()
+        self.CPU.A = 0xAD
+        self.CPU.memory[0] = 0x48
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xAD)
+        self.assertEqual(self.CPU.PS, 0 | 0x20)
+        self.assertEqual(self.CPU.cycles, 3)
+        self.assertEqual(self.CPU.S, 254)
+        self.assertEqual(self.CPU.memory[511], 0xAD)
+        
+    def testPHP(self):
+        self.CPU.reset()
+        self.CPU.PS = 0x0F
+        self.CPU.memory[0] = 0x08
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0)
+        self.assertEqual(self.CPU.PS, 0x0F | 0x20)
+        self.assertEqual(self.CPU.S, 254)
+        self.assertEqual(self.CPU.cycles, 3)
+        self.assertEqual(self.CPU.memory[511], 0x0F | 0x20)
+        
+    def testPLA(self):
+        self.CPU.reset()
+        #push 0xA8 onto stack
+        self.CPU.A = 0xA8
+        self.CPU.memory[0] = 0x48
+        self.CPU.step()
+        
+        self.CPU.A = 0
+        #pop 0x48 into accumulator
+        self.CPU.memory[1] = 0x68
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0xA8)
+        self.assertEqual(self.CPU.cycles, 7)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.S, 255)
+        self.assertEqual(self.CPU.zero, 0) # make sure this doesn't get set.
+        
+        #now try zero.
+        #push 0xA8 onto stack
+        self.CPU.A = 0x0
+        self.CPU.memory[2] = 0x48
+        self.CPU.step()
+        
+        self.CPU.A = 0x38
+        #pop 0x0 into accumulator
+        self.CPU.memory[3] = 0x68
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.cycles, 14)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.S, 255)
+        self.assertEqual(self.CPU.zero, 1)
+        
+    def testPLP(self):
+        self.CPU.reset()
+        #push 0xFF onto stack
+        self.CPU.A = 0xFF
+        self.CPU.memory[0] = 0x48
+        self.CPU.step()
+        
+        self.CPU.A = 0
+        #pop 0xFF into PS
+        self.CPU.memory[1] = 0x28
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x0)
+        self.assertEqual(self.CPU.cycles, 7)
+        self.assertEqual(self.CPU.S, 255)
+        self.assertEqual(self.CPU.PS, 0xFF)
+    
+    
+class TestAddressingModes(TestCPUTemplate):
+    """Note - uses ADC so all ADC instructions must be implemented!"""
+    def testAllModes(self):    
+        #Use ADC to make sure addressing modes work.
         
         #ABSOLUTE
         self.CPU.reset()
@@ -775,23 +760,61 @@ class TestOpcodes(unittest.TestCase):
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 5)
         
-        """   
+      
         #(INDIRECT, X)
-        61
-        #(INDIRECT, Y)
-        71
-        #ZERO-PAGE, X
-        75
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.X = 0x52
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x61 #ADC IDX
+        self.CPU.memory[1] = 0x05
+        self.CPU.memory[0x0057] = 0x75 #L of 16-bit address
+        self.CPU.memory[0x0058] = 0x01 #H of 16-bit address
+        self.CPU.memory[0x0175] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 6)
+        
         """
-    
-    def testSBC(self):
-        pass
-    
-    
-    
-    
-    
-    
+        #(INDIRECT, Y) not crossing page boundary        
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.Y = 0x05
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x71 #ADC IDY
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x01
+        self.CPU.memory[0x0157] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 5)
+        
+        #(INDIRECT, Y)  crossing page boundary     
+        
+        #ZERO-PAGE, X        
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.Y = 0x05
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x79 #ADC ZPX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[2] = 0x01
+        self.CPU.memory[0x0157] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 4)
+        """
+        
+class TestIncrementDecrementOpcodes(TestCPUTemplate):
     #Increments / Decrements - Increment or decrement the X or Y registers or a value stored in memory. 
     def testINC(self):
         pass
@@ -922,6 +945,8 @@ class TestOpcodes(unittest.TestCase):
         self.assertEqual(self.CPU.zero, 0)
         self.assertEqual(self.CPU.cycles, 2)
         
+        
+class TestStatusRegisterOpcodes(TestCPUTemplate):
     #Status Register Operations
     def testCLC(self):
 
@@ -986,9 +1011,8 @@ class TestOpcodes(unittest.TestCase):
         self.CPU.step()
         self.assertEqual(1, self.CPU.int_disable)
         self.assertEqual(2, self.CPU.cycles)
-        
-        
-        
+
+class TestSpecialOpcodes(TestCPUTemplate):        
     #Special Operations
     def testNOP(self):
         self.CPU.reset()
@@ -1004,22 +1028,8 @@ class TestOpcodes(unittest.TestCase):
         #make sure it actually did advance the cycles and PC.
         self.assertEqual(2, self.CPU.cycles)
         self.assertEqual(1, self.CPU.PC)
-
         
-        
-        
-        
-    #Functionality tests  
-    def testPS(self):
-        for i in range(0x100):
-            self.CPU.PS = i #test setting self.CPU.PS
-            self.assertEqual(i | 0x20, self.CPU.PS) #test getting self.CPU.PS as well.
-        
-    """
-    def testsample(self):
-        self.assertRaises(ValueError, random.sample, self.seq, 20)
-        for element in random.sample(self.seq, 5):
-            self.assert_(element in self.seq)"""
-
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestAddressingModes)
+    unittest.TextTestRunner(verbosity=2).run(suite)

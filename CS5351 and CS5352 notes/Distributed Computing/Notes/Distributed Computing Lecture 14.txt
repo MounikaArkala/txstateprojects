@@ -1,0 +1,44 @@
+Sun RPC
+
+Java was not designed to support distributed application.
+Java is no longer a programming language, it's a paradigm.
+
+Java RMI was designed to manage distributed objects.
+
+
+RMI compiler does serialization / deserialization (marshalling/unmarshalling).
+The object must extend SerializableObject (i think?)
+
+if a remote method invocation has to pass objects, they will be serialized by the compiler.
+
+
+
+Project 3  - 
+in assignment 2, you wrote a single client/server architecture.
+client sends command request to server, server executes command.
+now we ask server to handle multiple clients.
+- that is the main change.
+
+server maintains a file - in our case the # of clients supported is 4/3/2
+if client has 4 clients, server maintains 4 files, 1 for each client.
+Each file is just a file w/ integer files (format is, eg.
+1
+2
+0
+8
+5
+)
+You must have a message # in each message so server knows which message it is.
+server creates artificial lost packets.
+your packet lost file above is only visible to server.
+
+message from client to server contains the client #.
+
+server can pause for a random amount of time... you can then calculate RTT from client to server.
+could just have an output queue and just send 'em out from server after time delays.
+
+server not automatically send reply unless 
+
+clients - if you do create a thread - differentiate requests per client... no need for this.
+we just want 1 semantic of RR protocol.
+we just have to use artificial timeout 

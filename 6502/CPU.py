@@ -103,11 +103,12 @@ class c6502(object):
         
         
         #Arithmetic Operations
-        0x69 : ("Add with Carry (Immediate)",     "ADC IMM", self.ADC, self.A_IMM),
-        0x6D : ("Add with Carry (Absolute)",      "ADC ABS", self.ADC, self.A_ABS),
-        0x65 : ("Add with Carry (Zero Page)",     "ADC ZPG", self.ADC, self.A_ZPG),
-        0x7D : ("Add with Carry (Absolute X)",    "ADC ABX", self.ADC, self.A_ABX),
-        0x79 : ("Add with Carry (Absolute Y)",    "ADC ABY", self.ADC, self.A_ABY),
+        0x69 : ("Add with Carry (Immediate)",  "ADC IMM", self.ADC, self.A_IMM),
+        0x6D : ("Add with Carry (Absolute)",   "ADC ABS", self.ADC, self.A_ABS),
+        0x65 : ("Add with Carry (Zero Page)",  "ADC ZPG", self.ADC, self.A_ZPG),
+        0x7D : ("Add with Carry (Absolute X)", "ADC ABX", self.ADC, self.A_ABX),
+        0x79 : ("Add with Carry (Absolute Y)", "ADC ABY", self.ADC, self.A_ABY),
+        0x61 : ("Add with Carry (Indirect X)", "ADC IDX", self.ADC, self.A_IDX),
         
         
         #Increments / Decrements
@@ -159,7 +160,16 @@ class c6502(object):
             self.cycles += 1
         return self.read(destaddr)
         
+    def A_IDX(self):
+        self.cycles += 4
         
+        #TODO: do we wrap around to zero-page or not?
+        #fetch our address from zero-page
+        zpaddr = (self.read(self.PC) + self.X) % 256
+        print zpaddr
+        self.PC += 1
+        destaddr = (self.read(zpaddr) << 8) + self.read(zpaddr+1)
+        return self.read(destaddr)
         
         
     def clear_memory(self):
@@ -208,9 +218,11 @@ class c6502(object):
     #|===|   OPCODES  |===|
     #|====================|
     
-    
-    #Register Transfer Operations - Copy contents of X or Y register to the accumulator or copy contents of accumulator to X or Y register. 
-    
+    # --------------------------------------
+    # ---- Register Transfer Operations ----
+    # --------------------------------------
+    # Copy contents of X or Y register to Accumulator
+    # or copy contents of Accumulator to X or Y register. 
     def TXS(self):
         self.S = self.X
         self.cycles += 2
@@ -260,8 +272,11 @@ class c6502(object):
             self.zero = 0
         self.cycles += 2
     
-    
-    #Logical Operations - Perform logical operations on the accumulator and a value stored in memory.
+    # ----------------------------
+    # ---- Logical Operations ----
+    # ----------------------------
+    # Perform logical operations on the accumulator
+    # and a value stored in memory.
     
     # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
     
@@ -305,6 +320,7 @@ class c6502(object):
     #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
     
     def ADC(self, inc):
+        inc %= 8
         self.negative = self.A >> 7
         
         self.A += inc + self.carry
@@ -327,6 +343,8 @@ class c6502(object):
         #if both were negative (1 , 1) and result was positive (0), then overflow = 1
         #if both were positive (0 , 0) and result was negative (1), then overflow = 1
         #if one was positive and one was negative, then there can't be overflow!!
+        print "inc is: ", inc_neg
+        
         if (inc_neg ^ self.negative) == 0:
             if self.negative and (self.A >> 7) == 0:
                 self.overflow = 1
@@ -336,6 +354,8 @@ class c6502(object):
                 #this shouldn't ever happen!
                 debug("Ruh Roh, overflow calculation error.")
                 self.overflow = 0
+        else:
+            self.overflow = 0
         
         self.negative = self.A >> 7 # set negative to the new negative value.
     
