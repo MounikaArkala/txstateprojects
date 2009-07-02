@@ -13,12 +13,6 @@ class TestCPUTemplate(unittest.TestCase):
         for i in range(len(vals)):
             self.CPU.memory[offset + i] = vals[i]
     
-    #OPCODE TESTS
-    
-    #Logical Operations - Perform logical operations on the accumulator and a value stored in memory.
-    
-    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
-    
     
 
 #~~ General CPU tests ~~
@@ -48,6 +42,45 @@ class TestCPUFunctions(TestCPUTemplate):
 
 
 #~~ Opcode tests ~~
+class TestLogicalOpcodes(TestCPUTemplate):
+    #Logical Operations - Perform logical operations on the accumulator and a value stored in memory.
+    def testAND(self):
+        self.CPU.reset()
+        self.CPU.A = 0x52
+        self.CPU.memory[0] = 0x29
+        self.CPU.memory[1] = 0x15
+        self.CPU.step() 
+        self.assertEqual(self.CPU.cycles, 2)
+        self.assertEqual(self.CPU.A, 0x10)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 0)
+    
+        
+        
+class TestShiftOpcodes(TestCPUTemplate):
+    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
+    def testASL(self):
+        #Use tests with accumulator version for succinctity,
+        #for other addressing modes, see TestAddressingModes class.
+        #Test shift not into carry
+        self.CPU.reset()
+        self.CPU.A = 0x52
+        self.CPU.memory[0] = 0x29
+        self.CPU.memory[1] = 0x15
+        self.CPU.step() 
+        self.assertEqual(self.CPU.cycles, 2)
+        self.assertEqual(self.CPU.A, 0x10)
+        self.assertEqual(self.CPU.negative, 0)
+        self.assertEqual(self.CPU.zero, 0)
+        
+        #test shift into carry
+        
+        #test shift of 0
+        
+        #test shift of positive to negative
+        pass
+
+
 class TestBranchOpcodes(TestCPUTemplate):    
     #Branches
     def testBCC(self):
@@ -465,6 +498,8 @@ class TestArithmeticOpcodes(TestCPUTemplate):
         self.assertEqual(self.CPU.negative, 1)
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 2)
+        
+                
 
     def testSBC(self):
         pass
@@ -662,9 +697,7 @@ class TestStackOpcodes(TestCPUTemplate):
     
 class TestAddressingModes(TestCPUTemplate):
     """Note - uses ADC so all ADC instructions must be implemented!"""
-    def testAllModes(self):    
-        #Use ADC to make sure addressing modes work.
-        
+    def testAbsolute(self):    
         #ABSOLUTE
         self.CPU.reset()
         self.CPU.carry = 1
@@ -679,7 +712,7 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.negative, 1)
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 4)
-        
+    def testZeroPage(self):
         #ZERO-PAGE
         self.CPU.reset()
         self.CPU.carry = 1
@@ -694,7 +727,7 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 3)
              
-        
+    def testAbsoluteX(self):
         #ABSOLUTE, X  (not crossing page boundary)
         self.CPU.reset()
         self.CPU.carry = 1
@@ -726,7 +759,7 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.negative, 1)
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 5)
-        
+    def testAbsoluteY(self):
         #ABSOLUTE, Y (not crossing page boundary)
         self.CPU.reset()
         self.CPU.carry = 1
@@ -760,7 +793,7 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 5)
         
-      
+    def testIndirectX(self):
         #(INDIRECT, X)
         self.CPU.reset()
         self.CPU.carry = 1
@@ -778,7 +811,7 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 6)
         
-        """
+    def testIndirectY(self):
         #(INDIRECT, Y) not crossing page boundary        
         self.CPU.reset()
         self.CPU.carry = 1
@@ -786,8 +819,9 @@ class TestAddressingModes(TestCPUTemplate):
         self.CPU.A = 0x9C #-100
         self.CPU.memory[0] = 0x71 #ADC IDY
         self.CPU.memory[1] = 0x52
-        self.CPU.memory[2] = 0x01
-        self.CPU.memory[0x0157] = 0xE3 #-29
+        self.CPU.memory[0x0052] = 0x33
+        self.CPU.memory[0x0053] = 0x00
+        self.CPU.memory[0x0038] = 0xE3 #-29
         self.CPU.step()
         self.assertEqual(self.CPU.A, 0x80)
         self.assertEqual(self.CPU.carry, 1)
@@ -795,25 +829,61 @@ class TestAddressingModes(TestCPUTemplate):
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 5)
         
-        #(INDIRECT, Y)  crossing page boundary     
-        
-        #ZERO-PAGE, X        
+        #(INDIRECT, Y)  crossing page boundary
         self.CPU.reset()
         self.CPU.carry = 1
         self.CPU.Y = 0x05
         self.CPU.A = 0x9C #-100
-        self.CPU.memory[0] = 0x79 #ADC ZPX
+        self.CPU.memory[0] = 0x71 #ADC IDY
         self.CPU.memory[1] = 0x52
-        self.CPU.memory[2] = 0x01
-        self.CPU.memory[0x0157] = 0xE3 #-29
+        self.CPU.memory[0x0052] = 0x33
+        self.CPU.memory[0x0053] = 0x02
+        self.CPU.memory[0x0238] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 6)
+        
+    def testZeroPageX(self):
+        #ZERO-PAGE, X        
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.X = 0x05
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x75 #ADC ZPX
+        self.CPU.memory[1] = 0x52
+        self.CPU.memory[0x57] = 0xE3 #-29
         self.CPU.step()
         self.assertEqual(self.CPU.A, 0x80)
         self.assertEqual(self.CPU.carry, 1)
         self.assertEqual(self.CPU.negative, 1)
         self.assertEqual(self.CPU.overflow, 0) 
         self.assertEqual(self.CPU.cycles, 4)
-        """
         
+        #ZERO-PAGE, X, wrap-around
+        self.CPU.reset()
+        self.CPU.carry = 1
+        self.CPU.X = 0xF1
+        self.CPU.A = 0x9C #-100
+        self.CPU.memory[0] = 0x75 #ADC ZPX
+        self.CPU.memory[1] = 0x1F
+        self.CPU.memory[0x10] = 0xE3 #-29
+        self.CPU.step()
+        self.assertEqual(self.CPU.A, 0x80)
+        self.assertEqual(self.CPU.carry, 1)
+        self.assertEqual(self.CPU.negative, 1)
+        self.assertEqual(self.CPU.overflow, 0) 
+        self.assertEqual(self.CPU.cycles, 4)
+    def testZeroPageY(self):
+        pass
+        #TODO: implement this.
+    """This section tests all the writing modes supported,
+       must have ASL implemented correctly to pass these tests."""
+    def testWriteAbsolute(self):
+        pass
+        #TODO: implement this.
 class TestIncrementDecrementOpcodes(TestCPUTemplate):
     #Increments / Decrements - Increment or decrement the X or Y registers or a value stored in memory. 
     def testINC(self):
@@ -1029,7 +1099,68 @@ class TestSpecialOpcodes(TestCPUTemplate):
         self.assertEqual(2, self.CPU.cycles)
         self.assertEqual(1, self.CPU.PC)
         
+
+class ExhaustiveTests(TestCPUTemplate):
+    #these try all valid values.  it's important for certain arithmetic operations
+    #that have weird functionalities to have guaranteed accurate results for all
+    #values (I.E. ADC is the only addition operation on 6502, so we make sure
+    #it works perfectly (note the approach used here is bitwise so it's more likely
+    #to not have mistakes (because it's not efficient) but it's also incredibly slower than the
+    #other approach)).
+    def testADC(self):
+        #do a full exhaustive test.
+        def makebin(val):
+            table = {0x0: "0000",0x1:"0001",0x2:"0010",0x3:"0011",0x4:"0100",0x5: "0101",0x6:"0110",0x7:"0111",0x8:"1000",0x9:"1001",
+                     0xA: "1010",0xB:"1011",0xC:"1100",0xD:"1101",0xE:"1110",0xF:"1111"}
+                     
+            return table[val >> 4] + table[val & 0xF]
+        
+        #make each item into a list of bits
+        f = file("dumpADC.txt", "w")
+        import sys
+        temp = sys.stdout
+        sys.stdout = f
+        for c in range(2):
+            for i in range(256):
+                for j in range(256):
+                    carries = [c,0,0,0,0,0,0,0,0]
+                    accumulator = start = [int(val) for val in makebin(i)]
+                    print
+                    print "accumulator: ", accumulator
+                    accumulator.reverse()
+                    increment = [int(val) for val in makebin(j)]
+                    print "increment:   ", increment
+                    increment.reverse()
+                    #add values
+                    for bit in range(8):
+                        accumulator[bit] += increment[bit] + carries[bit]
+                        carries[bit+1] = accumulator[bit] >> 1
+                        accumulator[bit] %= 2
+                        
+                    carry = carries[8]
+                    overflow = carries[8] ^ carries [7]
+                    negative = accumulator[7]
+                    result = 0
+                    for bit in range(8):
+                        result += (accumulator[bit] << bit)
+                    
+                                
+                    print "result:      ", [int(val) for val in makebin(result)]
+                    print "carry: ", carry,"carrybit7:",carries[7],"overflow:",overflow,"negative:",negative
+                    self.CPU.reset()
+                    self.CPU.carry = c
+                    self.CPU.A = i
+                    self.CPU.memory[0] = 0x69 #ADC IMM
+                    self.CPU.memory[1] = j
+                    self.CPU.step()
+                    self.assertEqual(self.CPU.A, result)
+                    self.assertEqual(self.CPU.carry, carry)
+                    self.assertEqual(self.CPU.negative, negative)
+                    self.assertEqual(self.CPU.overflow, overflow)
+                    self.assertEqual(self.CPU.cycles, 2)
+                  
+        sys.stdout = temp        
 if __name__ == '__main__':
     #unittest.main()
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestAddressingModes)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestLogicalOpcodes)
     unittest.TextTestRunner(verbosity=2).run(suite)

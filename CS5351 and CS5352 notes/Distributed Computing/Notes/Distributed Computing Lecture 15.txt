@@ -1,0 +1,15 @@
+
+Java RMI
+
+goes over some Java examples of RMI
+
+you have to provide remote computer name.
+
+Showed us interfacing with the National Weather Service...
+at national level it was different than at local
+
+Site is down (NWS) so he will show it to us tomorrow.
+
+WeatherService sbut = (WeatherService) registry.lookup("WeatherService");
+this is a remote object, so when you create it the Java program will
+automatically connect to the server to grab the data for you.

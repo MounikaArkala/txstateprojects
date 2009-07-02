@@ -1,0 +1,35 @@
+
+
+2d mesh algorithm - during 80's, a lot of information was exchanged
+on how to make particular algorithms more efficient.
+
+hypercube lgn=q=3 with n=8 hypercube is dimension 9
+each of the 2^9 processors already have values needed to calculate c i j
+in the second phase, we multiply each value & save multiplication value
+then we send values 
+
+this confirms what the formula told us - n^2 over n^3 processors have initial values,
+index of processors range from 0 to that.
+
+2 new functions BIT and BIT_COMPLEMENT.
+BIT returns single bit.
+BIT_COMPLEMENT(m, l) returns integer.  looks at l'th bit, flips l'th bit and returns value of whole number.
+
+why is q going through 3n - 1 ?? iterations
+only those processes holding an initial value of c
+    
+this may not be practical - requirement for n -
+n^3 = 2^3q
+
+end of lecture about hypercubes.
+you'll want to know - 2d mesh, flat.  we screwed up we got Theta(n)
+we get Theta(log-n) but requires a huge amount of processors.
+
+matrix multiplication on multiple processors can be applied to existing processors w/ a slight modification.
+
+
+Common sense is important, if you have algo that's so complex there's no common sense, it might not be a very good algorithm.
+
+We will finish a little more tomorrow.
+He will resume on thursday discussing parallel matrix algo on UMA multiprocessors.
+
