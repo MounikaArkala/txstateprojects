@@ -65,62 +65,81 @@ class c6502(object):
     
 
     def __init__(self):
-        #optable is of form Opcode: (function, function_parameters(usually addressing mode))
+        #optable is of form Opcode: (longname, shortname, implementation, readmem, writemem)
+        #if it doesn't require any read/write ability to memory, just place None's in those locations.
         self.optable = { \
         
+        #Logical
+        0x29 : ("AND (Immediate)",   "AND IMM", self.AND, self.A_IMM, None),
+        0x25 : ("AND (Zero Page)",   "AND ZPG", self.AND, self.A_ZPG, None),
+        0x35 : ("AND (Zero Page X)", "AND ZPX", self.AND, self.A_ZPX, None),
+        0x2D : ("AND (Absolute)",    "AND ABS", self.AND, self.A_ABS, None),
+        0x3D : ("AND (Absolute X)",  "AND ABX", self.AND, self.A_ABX, None),
+        0x39 : ("AND (Absolute Y)",  "AND ABY", self.AND, self.A_ABY, None),
+        0x21 : ("AND (Indirect X)",  "AND IDX", self.AND, self.A_IDX, None),
+        0x31 : ("AND (Indirect Y)",  "AND IDY", self.AND, self.A_IDY, None),
+        
+        0x0A : ("Arithmetic Shift Left (Accumulator)", "ASL IMM", self.ASL, self.A_ACC, self.W_ACC),
+        0x06 : ("Arithmetic Shift Left (Zero Page)",   "ASL ZPG", self.ASL, self.A_ZPG, self.W_ZPG),
+        0x16 : ("Arithmetic Shift Left (Zero Page X)", "ASL ZPX", self.ASL, self.A_ZPX, self.W_ZPX),
+        0x0E : ("Arithmetic Shift Left (Absolute)",    "ASL ABS", self.ASL, self.A_ABS, self.W_ABS),
+        0x1E : ("Arithmetic Shift Left (Absolute X)",  "ASL ABX", self.ASL, self.A_ABX, self.W_ABX),
+        
         #Branches
-        0xB0 : ("Branch Carry Set",      "BCS", self.BCS, None),
-        0x90 : ("Branch Carry Clear",    "BCC", self.BCC, None),
-        0xF0 : ("Branch Zero Set",       "BEQ", self.BEQ, None),
-        0xD0 : ("Branch Zero Clear",     "BNE", self.BNE, None),
-        0x30 : ("Branch Negative Set",   "BMI", self.BMI, None),
-        0x10 : ("Branch Negative Clear", "BPL", self.BPL, None),
-        0x70 : ("Branch Overflow Set",   "BVS", self.BVS, None),
-        0x50 : ("Branch Overflow Clear", "BVC", self.BVC, None),
+        0xB0 : ("Branch Carry Set",      "BCS", self.BCS, None, None),
+        0x90 : ("Branch Carry Clear",    "BCC", self.BCC, None, None),
+        0xF0 : ("Branch Zero Set",       "BEQ", self.BEQ, None, None),
+        0xD0 : ("Branch Zero Clear",     "BNE", self.BNE, None, None),
+        0x30 : ("Branch Negative Set",   "BMI", self.BMI, None, None),
+        0x10 : ("Branch Negative Clear", "BPL", self.BPL, None, None),
+        0x70 : ("Branch Overflow Set",   "BVS", self.BVS, None, None),
+        0x50 : ("Branch Overflow Clear", "BVC", self.BVC, None, None),
         
         
         
         #Register Transfer Ops
-        0x9A : ("Transfer X to S",       "TXS", self.TXS, None),
-        0xBA : ("Transfer S to X",       "TSX", self.TSX, None),
-        0x8A : ("Transfer X to A",       "TXA", self.TXA, None),
-        0xAA : ("Transfer A to X",       "TAX", self.TAX, None),
-        0x98 : ("Transfer Y to A",       "TYA", self.TYA, None),
-        0xA8 : ("Transfer A to Y",       "TAY", self.TAY, None),
+        0x9A : ("Transfer X to S",       "TXS", self.TXS, None, None),
+        0xBA : ("Transfer S to X",       "TSX", self.TSX, None, None),
+        0x8A : ("Transfer X to A",       "TXA", self.TXA, None, None),
+        0xAA : ("Transfer A to X",       "TAX", self.TAX, None, None),
+        0x98 : ("Transfer Y to A",       "TYA", self.TYA, None, None),
+        0xA8 : ("Transfer A to Y",       "TAY", self.TAY, None, None),
         
         #Stack Ops
-        0x48 : ("Push A",                "PHA", self.PHA, None),
-        0x08 : ("Push Processor Status", "PHP", self.PHP, None),
-        0x68 : ("Pull A",                "PLA", self.PLA, None),
-        0x28 : ("Pull Processor Status", "PLP", self.PLP, None),
+        0x48 : ("Push A",                "PHA", self.PHA, None, None),
+        0x08 : ("Push Processor Status", "PHP", self.PHP, None, None),
+        0x68 : ("Pull A",                "PLA", self.PLA, None, None),
+        0x28 : ("Pull Processor Status", "PLP", self.PLP, None, None),
         
         #Status Register Ops
-        0x18 : ("Clear Carry",        "CLC", self.CLC, None),
-        0xD8 : ("Clear Decimal",      "CLD", self.CLD, None),
-        0x58 : ("Clear Int. Disable", "CLI", self.CLI, None),
-        0xB8 : ("Clear Overflow",     "CLV", self.CLV, None),
-        0x38 : ("Set Carry",          "SEC", self.SEC, None),
-        0xF8 : ("Set Decimal",        "SED", self.SED, None),
-        0x78 : ("Set Int. Disable",   "SEI", self.SEI, None),
+        0x18 : ("Clear Carry",        "CLC", self.CLC, None, None),
+        0xD8 : ("Clear Decimal",      "CLD", self.CLD, None, None),
+        0x58 : ("Clear Int. Disable", "CLI", self.CLI, None, None),
+        0xB8 : ("Clear Overflow",     "CLV", self.CLV, None, None),
+        0x38 : ("Set Carry",          "SEC", self.SEC, None, None),
+        0xF8 : ("Set Decimal",        "SED", self.SED, None, None),
+        0x78 : ("Set Int. Disable",   "SEI", self.SEI, None, None),
         
         
         #Arithmetic Operations
-        0x69 : ("Add with Carry (Immediate)",  "ADC IMM", self.ADC, self.A_IMM),
-        0x6D : ("Add with Carry (Absolute)",   "ADC ABS", self.ADC, self.A_ABS),
-        0x65 : ("Add with Carry (Zero Page)",  "ADC ZPG", self.ADC, self.A_ZPG),
-        0x7D : ("Add with Carry (Absolute X)", "ADC ABX", self.ADC, self.A_ABX),
-        0x79 : ("Add with Carry (Absolute Y)", "ADC ABY", self.ADC, self.A_ABY),
-        0x61 : ("Add with Carry (Indirect X)", "ADC IDX", self.ADC, self.A_IDX),
+        0x69 : ("Add with Carry (Immediate)",   "ADC IMM", self.ADC, self.A_IMM, None),
+        0x65 : ("Add with Carry (Zero Page)",   "ADC ZPG", self.ADC, self.A_ZPG, None),
+        0x75 : ("Add with Carry (Zero Page X)", "ADC IDX", self.ADC, self.A_ZPX, None),
+        0x6D : ("Add with Carry (Absolute)",    "ADC ABS", self.ADC, self.A_ABS, None),
+        0x7D : ("Add with Carry (Absolute X)",  "ADC ABX", self.ADC, self.A_ABX, None),
+        0x79 : ("Add with Carry (Absolute Y)",  "ADC ABY", self.ADC, self.A_ABY, None),
+        0x61 : ("Add with Carry (Indirect X)",  "ADC IDX", self.ADC, self.A_IDX, None),
+        0x71 : ("Add with Carry (Indirect Y)",  "ADC IDY", self.ADC, self.A_IDY, None),
         
         
         #Increments / Decrements
-        0xE8 : ("Increment X",        "INX", self.INX, None),
-        0xC8 : ("Increment Y",        "INX", self.INY, None),
-        0xCA : ("Decrement X",        "DEX", self.DEX, None),
-        0x88 : ("Decrement Y",        "DEY", self.DEY, None),
+        0xE8 : ("Increment X",        "INX", self.INX, None, None),
+        0xC8 : ("Increment Y",        "INX", self.INY, None, None),
+        0xCA : ("Decrement X",        "DEX", self.DEX, None, None),
+        0x88 : ("Decrement Y",        "DEY", self.DEY, None, None),
         
         #Special Ops
-        0xEA : ("No Operation",       "NOP", self.NOP, None),
+        0xEA : ("No Operation",       "NOP", self.NOP, None, None),
         }
         
         self.reset()
@@ -144,6 +163,11 @@ class c6502(object):
         self.PC += 1
         return self.read(self.read(self.PC-1))
         
+    def A_ZPX(self):
+        self.cycles += 2
+        self.PC += 1
+        return self.read((self.read(self.PC-1) + self.X) % 256)
+    
     def A_ABX(self):
         self.cycles += 2
         self.PC += 2
@@ -171,6 +195,40 @@ class c6502(object):
         destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr)
         return self.read(destaddr)
         
+    def A_IDY(self):
+        self.cycles += 3
+        
+        #Wrap around to keep in ZP
+        zpaddr = self.read(self.PC)
+        self.PC += 1
+        destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr) + self.Y
+        if destaddr / 256 != self.PC / 256:
+            # add an extra cycle for crossing page boundary.
+            self.cycles += 1
+        return self.read(destaddr)
+        
+    def A_ACC(self):
+        return self.accumulator
+    
+    def W_ACC(self, val):
+        self.accumulator = val
+    
+    def W_ZPG(self, val):
+        self.write(self.read(self.PC - 1), val)
+        self.cycles += 1
+    
+    def W_ZPX(self, val):
+        self.write((self.read(self.PC - 1) + self.X) % 256, val)
+        self.cycles += 2
+    
+    def W_ABS(self, val):
+        self.write((self.read(self.PC - 1) << 8 + self.read(self.PC - 2)), val)
+        self.cycles += 3
+    
+    def W_ABX(self, val):
+        self.write((self.read(self.PC - 1) << 8 + self.read(self.PC - 2) + self.X), val)
+        self.cycles += 4
+        
         
     def clear_memory(self):
         self.memory = [0]*0x10000
@@ -182,7 +240,10 @@ class c6502(object):
             op = self.optable[opcode]
             debug("executing a %s" % op[0])
             if (op[3]):
-                op[2](op[3]())
+                if (op[4]):
+                    op[2](op[3](), op[4])
+                else:
+                    op[2](op[3]())
             else:
                 op[2]()
                 
@@ -205,7 +266,7 @@ class c6502(object):
     def write(self, addr, value):
         """ writes a value to a memory location.
         also handles any interrupts / mirroring that may 
-        need to be taken care of involvind that address."""
+        need to be taken care of involving that address."""
         self.memory[addr] = value
 
     def read(self, addr):
@@ -214,9 +275,60 @@ class c6502(object):
         
         
         
-    #|====================|
-    #|===|   OPCODES  |===|
-    #|====================|
+    #|========================================================|
+    #|=====================|   OPCODES  |=====================|
+    #|========================================================|
+    
+    #Memory Operations
+    
+    # ----------------------------
+    # ---- Logical Operations ----
+    # ----------------------------
+    # Perform logical operations on the accumulator
+    # and a value stored in memory.
+    
+    def AND(self, val):
+        self.A &= val
+        self.cycles += 2
+    
+    def ROL(self, val):
+        #rotate left
+        pass
+    
+    def ROR(self, val):
+        #rotate right
+        pass
+    def BIT(self, val):
+        #Test bit
+        pass
+    def CMP(self, val):
+        #compare val to accumulator
+        pass
+    def CPX(self, val):
+        #compare val to X
+        pass
+    def CPY(self, val):
+        #compare val to Y
+        pass
+    
+    def EOR(self, val):
+        #exclusive or
+        pass
+    #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
+    
+    #Jumps / Calls - Break sequential execution sequence, resuming from a specified address. 
+    def JMP(self, val):
+        pass
+    
+    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
+    def ASL(self, val, writer):
+        self.carry = val >> 7
+        val &= 0x80
+        val = val << 1
+        self.zero = (val == 0)
+        self.negative = val >> 7
+        writer(val)
+        carry += 2
     
     # --------------------------------------
     # ---- Register Transfer Operations ----
@@ -272,14 +384,6 @@ class c6502(object):
             self.zero = 0
         self.cycles += 2
     
-    # ----------------------------
-    # ---- Logical Operations ----
-    # ----------------------------
-    # Perform logical operations on the accumulator
-    # and a value stored in memory.
-    
-    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
-    
     
     #Stack Operations - Push or pull the stack or manipulate stack pointer using X register. 
     def PHA(self):
@@ -317,9 +421,10 @@ class c6502(object):
         self.cycles += 4
     
     
-    #Arithmetic Operations - Perform arithmetic operations on registers and memory. 
+    #Arithmetic Operations - Perform arithmetic operations on registers and memory.
+    #TODO: relocate this function to a more appropriate class.
     def makebin(self,val):
-        table = {0x0: "0000",0x1:"0001",0x2:"0010",0x3:"0011",0x4:"0011",0x5: "0101",0x6:"0110",0x7:"0111",0x8:"1000",0x9:"1001",
+        table = {0x0: "0000",0x1:"0001",0x2:"0010",0x3:"0011",0x4:"0100",0x5: "0101",0x6:"0110",0x7:"0111",0x8:"1000",0x9:"1001",
                  0xA: "1010",0xB:"1011",0xC:"1100",0xD:"1101",0xE:"1110",0xF:"1111"}
                  
         return table[val >> 4] + table[val & 0xF]
@@ -348,7 +453,6 @@ class c6502(object):
         if self.A == 0:
             self.zero = 1
         
-        #TODO: should carry be added to this before checking if it's negative?
         inc_neg = inc >> 7
         #if both were negative (1 , 1) and result was positive (0), then overflow = 1
         #if both were positive (0 , 0) and result was negative (1), then overflow = 1
@@ -372,11 +476,10 @@ class c6502(object):
     
  
  
-    #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
-    #Jumps / Calls - Break sequential execution sequence, resuming from a specified address. 
     
     
-    #Branches - Break sequential execution sequence, resuming from a specified address, if a condition is met. The condition involves examining a specific bit in the status register.
+    #Branches - Break sequential execution sequence, resuming from a specified address,
+    #if a condition is met. The condition involves examining a specific bit in the status register.
     def _BRANCH(self, val, comp):
         """ Compare val with comp, and if they're equal, do a branch."""
         displacement = self.read(self.PC)
@@ -459,6 +562,13 @@ class c6502(object):
             self.zero = 0
         self.cycles += 2
          
+    def INC(self, val):
+        #increment memory
+        pass
+    
+    def DEC(self, val):
+        #decrement memory
+        pass
     
     #Status Register Operations - Set or clear a flag in the status register. 
     def CLC(self):
