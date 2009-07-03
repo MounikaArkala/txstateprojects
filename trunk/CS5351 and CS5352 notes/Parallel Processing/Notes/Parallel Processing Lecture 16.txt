@@ -1,0 +1,26 @@
+At the end of the for i for loop, you need to synchronize the processors.
+
+Lecture 7: sorting.
+
+strategies of two sorts are the same.
+internal sorting - all elements ao-an-1 can be brought into main memory at once and sort inside memory.
+
+Given "n" elements, the subscript for a {0, 1, ... n-1}
+how many possible orderings can we have?
+
+Each leaf node in a decision tree represents one possible ordering.
+n! time.  how do we deal w/ it?
+
+we assume it's a binary decision tree made by n elements.
+Assume the height of tree is k, then # of leaf nodes is 2^K
+2^K >= n! >= (n/2)^(n/2)
+
+In HW 1 - Minimum Spanning Tree algorithm,
+you were supposed to see possibility that the # of nodes, edges = n * n-1 -2,
+create 1 process for each spanning tree, after process has verified it...
+
+Final exam - in San Marcos.  should know by next week.
+
+Final exam - open book. 2 1/2 hours.   format - final exam is curved.  
+
+The IT guys will assign a room for us, most likely 240 / 241 in Derrick.

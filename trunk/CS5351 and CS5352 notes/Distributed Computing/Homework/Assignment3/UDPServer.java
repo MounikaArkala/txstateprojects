@@ -19,16 +19,6 @@ public class UDPServer
     static String EOFStr = Character.toString((char) 0x04);
     static byte[] EOF = EOFStr.getBytes();
     
-	// Function to make it easier to simultaneously print error message to screen and send to client.
-    public static void errmsg(DatagramSocket socket, DatagramPacket request, String msg) throws IOException
-    {
-        
-        System.out.println(msg);
-        String line = msg + EOFStr;
-        DatagramPacket reply = new DatagramPacket(line.getBytes(), line.length(),
-                                              request.getAddress(), request.getPort());
-        socket.send(reply);
-    }
 
 
     public static void main(String args[])
@@ -37,6 +27,42 @@ public class UDPServer
         {
             DatagramSocket aSocket = new DatagramSocket(6789);// to receive msgs
             byte[] buffer;// temporary request storage.
+            
+            System.out.println("Attempting to open file...");
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader(filename));
+                //... Loop as long as there are input lines.
+                while ((line=reader.readLine()) != null)
+                {
+                    System.out.println(line);
+                    reply = new DatagramPacket(line.getBytes(), line.length(),
+                                                          request.getAddress(), request.getPort());
+                    aSocket.send(reply);
+                }
+                // send an EOF so client knows file is over.
+                reply = new DatagramPacket(EOF, EOFStr.length(),
+                                                      request.getAddress(), request.getPort());
+                aSocket.send(reply);
+                
+                reader.close();  // Close to unlock file.
+            }
+            catch (FileNotFoundException e)
+            {
+                errmsg(aSocket, request, "Could not find file on server.");
+            }
+            catch (IOException e)
+            {
+                errmsg(aSocket, request, "Unable to open file due to unknown IO error.");
+            }
+            catch (Exception e)
+            {
+                errmsg(aSocket, request, "Unable to open file due to unknown error.");
+            }
+            
+            
+            
+            /*
             while(true)
             {
                 buffer = new byte[1000];
@@ -133,5 +159,6 @@ public class UDPServer
         {
             System.out.println("IO:" + e.getMessage());
         }
+        */
     }
 }

@@ -78,12 +78,41 @@ class c6502(object):
         0x39 : ("AND (Absolute Y)",  "AND ABY", self.AND, self.A_ABY, None),
         0x21 : ("AND (Indirect X)",  "AND IDX", self.AND, self.A_IDX, None),
         0x31 : ("AND (Indirect Y)",  "AND IDY", self.AND, self.A_IDY, None),
+
+        0x49 : ("Exclusive OR (Immediate)",   "EOR IMM", self.EOR, self.A_IMM, None),
+        0x45 : ("Exclusive OR (Zero Page)",   "EOR ZPG", self.EOR, self.A_ZPG, None),
+        0x55 : ("Exclusive OR (Zero Page X)", "EOR ZPX", self.EOR, self.A_ZPX, None),
+        0x4D : ("Exclusive OR (Absolute)",    "EOR ABS", self.EOR, self.A_ABS, None),
+        0x5D : ("Exclusive OR (Absolute X)",  "EOR ABX", self.EOR, self.A_ABX, None),
+        0x59 : ("Exclusive OR (Absolute Y)",  "EOR ABY", self.EOR, self.A_ABY, None),
+        0x41 : ("Exclusive OR (Indirect X)",  "EOR IDX", self.EOR, self.A_IDX, None),
+        0x51 : ("Exclusive OR (Indirect Y)",  "EOR IDY", self.EOR, self.A_IDY, None),
         
-        0x0A : ("Arithmetic Shift Left (Accumulator)", "ASL IMM", self.ASL, self.A_ACC, self.W_ACC),
-        0x06 : ("Arithmetic Shift Left (Zero Page)",   "ASL ZPG", self.ASL, self.A_ZPG, self.W_ZPG),
-        0x16 : ("Arithmetic Shift Left (Zero Page X)", "ASL ZPX", self.ASL, self.A_ZPX, self.W_ZPX),
-        0x0E : ("Arithmetic Shift Left (Absolute)",    "ASL ABS", self.ASL, self.A_ABS, self.W_ABS),
-        0x1E : ("Arithmetic Shift Left (Absolute X)",  "ASL ABX", self.ASL, self.A_ABX, self.W_ABX),
+        0xC9 : ("Compare to Accumulator (Immediate)",   "CMP IMM", self.CMP, self.A_IMM, None),
+        0xC5 : ("Compare to Accumulator (Zero Page)",   "CMP ZPG", self.CMP, self.A_ZPG, None),
+        0xD5 : ("Compare to Accumulator (Zero Page X)", "CMP ZPX", self.CMP, self.A_ZPX, None),
+        0xCD : ("Compare to Accumulator (Absolute)",    "CMP ABS", self.CMP, self.A_ABS, None),
+        0xDD : ("Compare to Accumulator (Absolute X)",  "CMP ABX", self.CMP, self.A_ABX, None),
+        0xD9 : ("Compare to Accumulator (Absolute Y)",  "CMP ABY", self.CMP, self.A_ABY, None),
+        0xC1 : ("Compare to Accumulator (Indirect X)",  "CMP IDX", self.CMP, self.A_IDX, None),
+        0xD1 : ("Compare to Accumulator (Indirect Y)",  "CMP IDY", self.CMP, self.A_IDY, None),
+        
+        0xE0 : ("Compare to X (Immediate)",   "CPX IMM", self.CPX, self.A_IMM, None),
+        0xE4 : ("Compare to X (Zero Page)",   "CPX ZPG", self.CPX, self.A_ZPG, None),
+        0xEC : ("Compare to X (Absolute)",    "CPX ABS", self.CPX, self.A_ABS, None),
+        
+        0xC0 : ("Compare to Y (Immediate)",   "CPY IMM", self.CPY, self.A_IMM, None),
+        0xC4 : ("Compare to Y (Zero Page)",   "CPY ZPG", self.CPY, self.A_ZPG, None),
+        0xCC : ("Compare to Y (Absolute)",    "CPY ABS", self.CPY, self.A_ABS, None),
+        
+        
+        
+        #Shifts       
+        0x0A : ("Arithmetic Shift Left (Accumulator)", "ASL IMM", self.ASL, self.A_ACC,      self.W_ACC),
+        0x06 : ("Arithmetic Shift Left (Zero Page)",   "ASL ZPG", self.ASL, self.A_ZPG,      self.W_ZPG),
+        0x16 : ("Arithmetic Shift Left (Zero Page X)", "ASL ZPX", self.ASL, self.A_ZPX,      self.W_ZPX),
+        0x0E : ("Arithmetic Shift Left (Absolute)",    "ASL ABS", self.ASL, self.A_ABS,      self.W_ABS),
+        0x1E : ("Arithmetic Shift Left (Absolute X)",  "ASL ABX", self.ASL, self.A_ABX_NOPB, self.W_ABX),
         
         #Branches
         0xB0 : ("Branch Carry Set",      "BCS", self.BCS, None, None),
@@ -138,6 +167,12 @@ class c6502(object):
         0xCA : ("Decrement X",        "DEX", self.DEX, None, None),
         0x88 : ("Decrement Y",        "DEY", self.DEY, None, None),
         
+        
+        
+        #Control
+        #0x4c: ("Jump", "JMP ABS", self.JPA, 
+        
+        
         #Special Ops
         0xEA : ("No Operation",       "NOP", self.NOP, None, None),
         }
@@ -177,6 +212,13 @@ class c6502(object):
             self.cycles += 1
         return self.read(destaddr)
         
+    def A_ABX_NOPB(self):
+        #doesn't check for page boundary, always costs 3
+        self.cycles += 3
+        self.PC += 2
+        destaddr = (self.read(self.PC-1) << 8) + self.read(self.PC-2) + self.X
+        return self.read(destaddr)
+        
     def A_ABY(self):
         self.cycles += 2
         self.PC += 2
@@ -188,7 +230,6 @@ class c6502(object):
         
     def A_IDX(self):
         self.cycles += 4
-        
         #Wrap around to keep in ZP
         zpaddr = (self.read(self.PC) + self.X) % 256
         self.PC += 1
@@ -208,33 +249,38 @@ class c6502(object):
         return self.read(destaddr)
         
     def A_ACC(self):
-        return self.accumulator
+        return self.A
     
     def W_ACC(self, val):
-        self.accumulator = val
+        self.A = val
     
     def W_ZPG(self, val):
         self.write(self.read(self.PC - 1), val)
-        self.cycles += 1
+        self.cycles += 2
     
     def W_ZPX(self, val):
         self.write((self.read(self.PC - 1) + self.X) % 256, val)
         self.cycles += 2
     
     def W_ABS(self, val):
-        self.write((self.read(self.PC - 1) << 8 + self.read(self.PC - 2)), val)
-        self.cycles += 3
+        self.write(((self.read(self.PC - 1) << 8) + self.read(self.PC - 2)), val)
+        self.cycles += 2
     
     def W_ABX(self, val):
-        self.write((self.read(self.PC - 1) << 8 + self.read(self.PC - 2) + self.X), val)
-        self.cycles += 4
+        self.write(((self.read(self.PC - 1) << 8) + self.read(self.PC - 2) + self.X), val)
+        self.cycles += 2
+        
+        
+        
         
         
     def clear_memory(self):
         self.memory = [0]*0x10000
 
     def step(self):
+        print "stepping..."
         opcode = self.read(self.PC)
+        print "opcode: ", hex(opcode)
         self.PC += 1
         try:
             op = self.optable[opcode]
@@ -301,19 +347,66 @@ class c6502(object):
     def BIT(self, val):
         #Test bit
         pass
+    
     def CMP(self, val):
         #compare val to accumulator
-        pass
+        #interpret val as a 2's complement number
+        val = unSign(val)
+        if self.A > val:
+            self.negative = 0
+            self.zero = 0
+            self.carry = 1
+        elif self.A < val:
+            self.negative = 1
+            self.zero = 0
+            self.carry = 0
+        else:
+            self.negative = 0
+            self.zero = 1
+            self.carry = 1
+        self.cycles += 2       
+        
     def CPX(self, val):
-        #compare val to X
-        pass
+        val = unSign(val)
+        if self.X > val:
+            self.negative = 0
+            self.zero = 0
+            self.carry = 1
+        elif self.X < val:
+            self.negative = 1
+            self.zero = 0
+            self.carry = 0
+        else:
+            self.negative = 0
+            self.zero = 1
+            self.carry = 1
+        self.cycles += 2
+        
     def CPY(self, val):
-        #compare val to Y
-        pass
+        val = unSign(val)
+        if self.Y > val:
+            self.negative = 0
+            self.zero = 0
+            self.carry = 1
+        elif self.Y < val:
+            self.negative = 1
+            self.zero = 0
+            self.carry = 0
+        else:
+            self.negative = 0
+            self.zero = 1
+            self.carry = 1
+        self.cycles += 2
     
     def EOR(self, val):
         #exclusive or
-        pass
+        self.A ^= val
+        self.negative = self.A >> 7
+        if (self.A == 0):
+            self.zero = 1
+        else:
+            self.zero = 0
+        self.cycles += 2
     #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
     
     #Jumps / Calls - Break sequential execution sequence, resuming from a specified address. 
@@ -323,12 +416,12 @@ class c6502(object):
     # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
     def ASL(self, val, writer):
         self.carry = val >> 7
-        val &= 0x80
+        val &= 0x7F
         val = val << 1
         self.zero = (val == 0)
         self.negative = val >> 7
         writer(val)
-        carry += 2
+        self.cycles += 2
     
     # --------------------------------------
     # ---- Register Transfer Operations ----
