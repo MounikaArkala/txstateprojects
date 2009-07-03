@@ -1,0 +1,38 @@
+
+talking about Java RMI w/ sercurity codes.  he modified weather forecast example code.
+
+Java RMI security - connecting to outside computers - writing to local file - calling other classes,
+there are potential security problems.
+
+rm 363 8-10pm  thursday.
+how hard is it gonna be?
+final is curved.  he can give any difficulty he deems appropriate.  if it's easy, half the people make a 100...
+difficult, highest 85 lowest 65.  He will scale the exam in any case.
+
+he doesn't do 90 pts = a, 80 pts = b, etc.  he just goes based on performance of the overall class.
+
+open-book exams tend to be harder.
+Java compiler will do marshalling/unmarshalling automatically based on the interface.
+
+how does server differentiate between clients?
+- server -> client message contents.  first substring: client#
+
+if you use port #, it's assigned randomly by computer.  you won't know which port # are which clients.
+so you'll have to have a mapping.
+
+in this simulation we don't care what message the client is sending to the server.
+server has to know which message from which client it is so it's like "this is first message from first client"
+and look up in its table what 
+
+# of files you can support is the number of clients you use.
+
+client 1 -> first message, server has 0 in droplist, replies.  server sets next message to 1.
+client 1 -> next message, server has 1 in droplist, drops.  
+
+question 1 - is message ID in client the message # or the retries?
+question 2 - run multiple programs for client or no?
+
+he goes over the WeatherBean class which implements the Serializable interface.
+values contained in the class can therefore be marshalled / unmarshalled.
+
+on Monday we'll see how it uses array?

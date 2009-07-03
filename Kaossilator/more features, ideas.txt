@@ -1,0 +1,1 @@
+use first analog stick to move in a circle of "classes" and use the second one to choose the actual one you want, then hit right shoulder to select.
