@@ -28,10 +28,13 @@ public class UDPClient
     public static void main(String args[])
     {
         int serverPort = 6789;
+        String hostname = args[1];
+        int client = Integer.parseInt(args[0]);
         
         try 
         {
             DatagramSocket aSocket = new DatagramSocket();
+            aSocket.setSoTimeout(200);
             Console c = System.console();
             if (c == null)
             {
@@ -40,35 +43,45 @@ public class UDPClient
             }
             
             // Prompt user for hostname & resolve it
-            InetAddress aHost = InetAddress.getByName(c.readLine("Server Hostname: "));
+            InetAddress aHost = InetAddress.getByName(hostname);
             
-            String message = c.readLine("Filename (or \"ls\" or \"quit\"): ");
 			byte[] buffer;
-			
-            while (message.indexOf((char) 0x04) < 0) // While no EOF character in the line
+            
+			int messages = 15;
+            for (int currmsg = 0; currmsg < messages; currmsg++)
             {
-				// setup our request for file listing.
-                DatagramPacket request = new DatagramPacket(message.getBytes(), message.length(), aHost, serverPort);
-                aSocket.send(request);
+                String message = client + ":" + currmsg + ":Dummymsg";
                 
-                if (message.toLowerCase().equals("quit") ||
-                    message.toLowerCase().equals("exit"))
-                {
-                    break;
-                }
+                
+                        
+                System.out.println("Sending message " + currmsg + " to server.");
                 
 				String result = new String("");
                 // Loop until we get an EOF in the reply
-                while(result.indexOf((char) 0x04) < 0)
+                while(true)
                 {
-                    buffer = new byte[1000]; // To store reply temporarily
-                    DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
-                    aSocket.receive(reply);
-                    result = new String(reply.getData());
-                    System.out.println(result.trim()); // Output line from file on server
+                    try
+                    {
+                
+                        DatagramPacket request = new DatagramPacket(message.getBytes(), message.length(), aHost, serverPort);
+                        aSocket.send(request);
+                        
+                        buffer = new byte[1000]; // To store reply temporarily
+                        DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
+                        aSocket.receive(reply);
+                        result = new String(reply.getData());
+                        int msgid = Integer.parseInt(result.trim());
+                        System.out.println("successfully received message " + msgid +"!");
+                        System.out.println("");
+                        System.out.println("");
+                        break;
+                    }
+                    catch(IOException e)
+                    {
+                        System.out.println("request timed out.  Retrying...");
+                    }
                 }
                 
-                message = c.readLine("Filename (or \"ls\" or \"quit\"): ");
             }
             aSocket.close(); // Close socket when finished with it.
         }
