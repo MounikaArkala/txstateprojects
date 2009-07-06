@@ -33,7 +33,15 @@ def unSign(val, size=8): #takes in a 2's complement number, returns a non-comple
     else: #just return val as-is
         return val
         
-
+def Sign(val, size=8):#returns 2's complement form.
+    
+    if val >= 0:
+        return val
+    val = abs(val)
+    temp = 2**size - 1
+    val ^= temp #XOR to flip bits
+    val += 1 # add 1
+    return val
         
         
         
@@ -78,6 +86,15 @@ class c6502(object):
         0x39 : ("AND (Absolute Y)",  "AND ABY", self.AND, self.A_ABY, None),
         0x21 : ("AND (Indirect X)",  "AND IDX", self.AND, self.A_IDX, None),
         0x31 : ("AND (Indirect Y)",  "AND IDY", self.AND, self.A_IDY, None),
+        
+        0x09 : ("OR (Immediate)",   "ORA IMM", self.ORA, self.A_IMM, None),
+        0x05 : ("OR (Zero Page)",   "ORA ZPG", self.ORA, self.A_ZPG, None),
+        0x15 : ("OR (Zero Page X)", "ORA ZPX", self.ORA, self.A_ZPX, None),
+        0x0D : ("OR (Absolute)",    "ORA ABS", self.ORA, self.A_ABS, None),
+        0x1D : ("OR (Absolute X)",  "ORA ABX", self.ORA, self.A_ABX, None),
+        0x19 : ("OR (Absolute Y)",  "ORA ABY", self.ORA, self.A_ABY, None),
+        0x01 : ("OR (Indirect X)",  "ORA IDX", self.ORA, self.A_IDX, None),
+        0x11 : ("OR (Indirect Y)",  "ORA IDY", self.ORA, self.A_IDY, None),
 
         0x49 : ("Exclusive OR (Immediate)",   "EOR IMM", self.EOR, self.A_IMM, None),
         0x45 : ("Exclusive OR (Zero Page)",   "EOR ZPG", self.EOR, self.A_ZPG, None),
@@ -105,6 +122,51 @@ class c6502(object):
         0xC4 : ("Compare to Y (Zero Page)",   "CPY ZPG", self.CPY, self.A_ZPG, None),
         0xCC : ("Compare to Y (Absolute)",    "CPY ABS", self.CPY, self.A_ABS, None),
         
+        0x24 : ("Bit Test", "BIT ZPG", self.BIT, self.A_ZPG, None),
+        0x2C : ("Bit Test", "BIT ZBS", self.BIT, self.A_ABS, None),
+        
+        
+        #Memory
+        0xA9 : ("Load Accumulator (Immediate)",   "LDA IMM", self.LDA, self.A_IMM, None),
+        0xA5 : ("Load Accumulator (Zero Page)",   "LDA ZPG", self.LDA, self.A_ZPG, None),
+        0xB5 : ("Load Accumulator (Zero Page X)", "LDA ZPX", self.LDA, self.A_ZPX, None),
+        0xAD : ("Load Accumulator (Absolute)",    "LDA ABS", self.LDA, self.A_ABS, None),
+        0xBD : ("Load Accumulator (Absolute X)",  "LDA ABX", self.LDA, self.A_ABX, None),
+        0xB9 : ("Load Accumulator (Absolute Y)",  "LDA ABY", self.LDA, self.A_ABY, None),
+        0xA1 : ("Load Accumulator (Indirect X)",  "LDA IDX", self.LDA, self.A_IDX, None),
+        0xB1 : ("Load Accumulator (Indirect Y)",  "LDA IDY", self.LDA, self.A_IDY, None),
+        
+        0xA2 : ("Load X (Immediate)",    "LDX IMM", self.LDX, self.A_IMM, None),
+        0xA6 : ("Load X (Zero Page)",    "LDX ZPG", self.LDX, self.A_ZPG, None),
+        0xB6 : ("Load X (Zero Page Y)",  "LDX IDY", self.LDX, self.A_ZPY, None), #NOTE ZPY not ZPX!!!
+        0xAE : ("Load X (Absolute)",     "LDX ABS", self.LDX, self.A_ABS, None),
+        0xBE : ("Load X (Absolute Y)",   "LDX ABY", self.LDX, self.A_ABY, None),
+        
+        0xA0 : ("Load Y (Immediate)",   "LDY IMM", self.LDY, self.A_IMM, None),
+        0xA4 : ("Load Y (Zero Page)",   "LDY ZPG", self.LDY, self.A_ZPG, None),
+        0xB4 : ("Load Y (Zero Page X)", "LDY ZPX", self.LDY, self.A_ZPX, None),
+        0xAC : ("Load Y (Absolute)",    "LDY ABS", self.LDY, self.A_ABS, None),
+        0xBC : ("Load Y (Absolute X)",  "LDY ABX", self.LDY, self.A_ABX, None),
+               
+               
+        0x85 : ("Store Accumulator (Zero Page)",   "STA ZPG", self.STA, lambda: self.F_ADD(1,1), self.W_ZPG),
+        0x95 : ("Store Accumulator (Zero Page X)", "STA ZPX", self.STA, lambda: self.F_ADD(2,1), self.W_ZPX),
+        0x8D : ("Store Accumulator (Absolute)",    "STA ABS", self.STA, lambda: self.F_ADD(2,2), self.W_ABS),
+        0x9D : ("Store Accumulator (Absolute X)",  "STA ABX", self.STA, lambda: self.F_ADD(3,2), self.W_ABX),
+        0x99 : ("Store Accumulator (Absolute Y)",  "STA ABY", self.STA, lambda: self.F_ADD(3,2), self.W_ABY),
+        0x81 : ("Store Accumulator (Indirect X)",  "STA IDX", self.STA, lambda: self.F_ADD(4,1), self.W_IDX),
+        0x91 : ("Store Accumulator (Indirect Y)",  "STA IDY", self.STA, lambda: self.F_ADD(4,1), self.W_IDY),
+        
+        0x86 : ("Store X (Zero Page)",   "STX ZPG", self.STX, lambda: self.F_ADD(1,1), self.W_ZPG),
+        0x96 : ("Store X (Zero Page Y)", "STX ZPY", self.STX, lambda: self.F_ADD(2,1), self.W_ZPY), #NOTE ZPY not ZPX!!!
+        0x8E : ("Store X (Absolute)",    "STX ABS", self.STX, lambda: self.F_ADD(2,2), self.W_ABS),
+        
+        0x84 : ("Store Y (Zero Page)",   "STY ZPG", self.STY, lambda: self.F_ADD(1,1), self.W_ZPG),
+        0x94 : ("Store Y (Zero Page X)", "STY ZPX", self.STY, lambda: self.F_ADD(2,1), self.W_ZPX),
+        0x8C : ("Store Y (Absolute)",    "STY ABS", self.STY, lambda: self.F_ADD(2,2), self.W_ABS),
+        
+        
+        
         
         
         #Shifts       
@@ -113,6 +175,27 @@ class c6502(object):
         0x16 : ("Arithmetic Shift Left (Zero Page X)", "ASL ZPX", self.ASL, self.A_ZPX,      self.W_ZPX),
         0x0E : ("Arithmetic Shift Left (Absolute)",    "ASL ABS", self.ASL, self.A_ABS,      self.W_ABS),
         0x1E : ("Arithmetic Shift Left (Absolute X)",  "ASL ABX", self.ASL, self.A_ABX_NOPB, self.W_ABX),
+        
+        0x4A : ("Logical Shift Right (Accumulator)", "LSR IMM", self.LSR, self.A_ACC,      self.W_ACC),
+        0x46 : ("Logical Shift Right (Zero Page)",   "LSR ZPG", self.LSR, self.A_ZPG,      self.W_ZPG),
+        0x56 : ("Logical Shift Right (Zero Page X)", "LSR ZPX", self.LSR, self.A_ZPX,      self.W_ZPX),
+        0x4E : ("Logical Shift Right (Absolute)",    "LSR ABS", self.LSR, self.A_ABS,      self.W_ABS),
+        0x5E : ("Logical Shift Right (Absolute X)",  "LSR ABX", self.LSR, self.A_ABX_NOPB, self.W_ABX),
+        
+        0x2A : ("Rotate Left (Accumulator)", "ROL IMM", self.ROL, self.A_ACC,      self.W_ACC),
+        0x26 : ("Rotate Left (Zero Page)",   "ROL ZPG", self.ROL, self.A_ZPG,      self.W_ZPG),
+        0x36 : ("Rotate Left (Zero Page X)", "ROL ZPX", self.ROL, self.A_ZPX,      self.W_ZPX),
+        0x2E : ("Rotate Left (Absolute)",    "ROL ABS", self.ROL, self.A_ABS,      self.W_ABS),
+        0x3E : ("Rotate Left (Absolute X)",  "ROL ABX", self.ROL, self.A_ABX_NOPB, self.W_ABX),
+        
+        0x6A : ("Rotate Right (Accumulator)", "ROR IMM", self.ROR, self.A_ACC,      self.W_ACC),
+        0x66 : ("Rotate Right (Zero Page)",   "ROR ZPG", self.ROR, self.A_ZPG,      self.W_ZPG),
+        0x76 : ("Rotate Right (Zero Page X)", "ROR ZPX", self.ROR, self.A_ZPX,      self.W_ZPX),
+        0x6E : ("Rotate Right (Absolute)",    "ROR ABS", self.ROR, self.A_ABS,      self.W_ABS),
+        0x7E : ("Rotate Right (Absolute X)",  "ROR ABX", self.ROR, self.A_ABX_NOPB, self.W_ABX),
+        
+        
+        
         
         #Branches
         0xB0 : ("Branch Carry Set",      "BCS", self.BCS, None, None),
@@ -125,8 +208,7 @@ class c6502(object):
         0x50 : ("Branch Overflow Clear", "BVC", self.BVC, None, None),
         
         
-        
-        #Register Transfer Ops
+        #Register Transfer
         0x9A : ("Transfer X to S",       "TXS", self.TXS, None, None),
         0xBA : ("Transfer S to X",       "TSX", self.TSX, None, None),
         0x8A : ("Transfer X to A",       "TXA", self.TXA, None, None),
@@ -134,13 +216,15 @@ class c6502(object):
         0x98 : ("Transfer Y to A",       "TYA", self.TYA, None, None),
         0xA8 : ("Transfer A to Y",       "TAY", self.TAY, None, None),
         
-        #Stack Ops
+        
+        #Stack
         0x48 : ("Push A",                "PHA", self.PHA, None, None),
         0x08 : ("Push Processor Status", "PHP", self.PHP, None, None),
         0x68 : ("Pull A",                "PLA", self.PLA, None, None),
         0x28 : ("Pull Processor Status", "PLP", self.PLP, None, None),
         
-        #Status Register Ops
+        
+        #Status Register
         0x18 : ("Clear Carry",        "CLC", self.CLC, None, None),
         0xD8 : ("Clear Decimal",      "CLD", self.CLD, None, None),
         0x58 : ("Clear Int. Disable", "CLI", self.CLI, None, None),
@@ -150,7 +234,7 @@ class c6502(object):
         0x78 : ("Set Int. Disable",   "SEI", self.SEI, None, None),
         
         
-        #Arithmetic Operations
+        #Arithmetic
         0x69 : ("Add with Carry (Immediate)",   "ADC IMM", self.ADC, self.A_IMM, None),
         0x65 : ("Add with Carry (Zero Page)",   "ADC ZPG", self.ADC, self.A_ZPG, None),
         0x75 : ("Add with Carry (Zero Page X)", "ADC IDX", self.ADC, self.A_ZPX, None),
@@ -160,6 +244,15 @@ class c6502(object):
         0x61 : ("Add with Carry (Indirect X)",  "ADC IDX", self.ADC, self.A_IDX, None),
         0x71 : ("Add with Carry (Indirect Y)",  "ADC IDY", self.ADC, self.A_IDY, None),
         
+        0xE9 : ("Subtract with Carry (Immediate)",   "SBC IMM", self.SBC, self.A_IMM, None),
+        0xE5 : ("Subtract with Carry (Zero Page)",   "SBC ZPG", self.SBC, self.A_ZPG, None),
+        0xF5 : ("Subtract with Carry (Zero Page X)", "SBC ZPX", self.SBC, self.A_ZPX, None),
+        0xED : ("Subtract with Carry (Absolute)",    "SBC ABS", self.SBC, self.A_ABS, None),
+        0xFD : ("Subtract with Carry (Absolute X)",  "SBC ABX", self.SBC, self.A_ABX, None),
+        0xF9 : ("Subtract with Carry (Absolute Y)",  "SBC ABY", self.SBC, self.A_ABY, None),
+        0xE1 : ("Subtract with Carry (Indirect X)",  "SBC IDX", self.SBC, self.A_IDX, None),
+        0xF1 : ("Subtract with Carry (Indirect Y)",  "SBC IDY", self.SBC, self.A_IDY, None),
+        
         
         #Increments / Decrements
         0xE8 : ("Increment X",        "INX", self.INX, None, None),
@@ -167,22 +260,38 @@ class c6502(object):
         0xCA : ("Decrement X",        "DEX", self.DEX, None, None),
         0x88 : ("Decrement Y",        "DEY", self.DEY, None, None),
         
+        0xC6 : ("Decrement (Zero Page)",   "DEC ZPG", self.DEC, self.A_ZPG,      self.W_ZPG),
+        0xD6 : ("Decrement (Zero Page X)", "DEC ZPX", self.DEC, self.A_ZPX,      self.W_ZPX),
+        0xCE : ("Decrement (Absolute)",    "DEC ABS", self.DEC, self.A_ABS,      self.W_ABS),
+        0xDE : ("Decrement (Absolute X)",  "DEC ABX", self.DEC, self.A_ABX_NOPB, self.W_ABX),
+        
+        0xE6 : ("Increment (Zero Page)",   "INC ZPG", self.INC, self.A_ZPG,      self.W_ZPG),
+        0xF6 : ("Increment (Zero Page X)", "INC ZPX", self.INC, self.A_ZPX,      self.W_ZPX),
+        0xEE : ("Increment (Absolute)",    "INC ABS", self.INC, self.A_ABS,      self.W_ABS),
+        0xFE : ("Increment (Absolute X)",  "INC ABX", self.INC, self.A_ABX_NOPB, self.W_ABX),
         
         
-        #Control
-        #0x4c: ("Jump", "JMP ABS", self.JPA, 
+        #Special
+        0xEA : ("No Operation",           "NOP",     self.NOP, None, None),
+        0x00 : ("Break",                  "BRK",     self.BRK, None, None),
+        0x4C : ("Jump Absolute",          "JMP ABS", self.JPA, None, None),
+        0x6C : ("Jump Indirect",          "JMP IND", self.JPI, None, None),
+        0x2D : ("Jump to Subroutine",     "JSR",     self.JSR, None, None),
+        0x40 : ("Return from Interrupt",  "RTI",     self.RTI, None, None),
+        0x60 : ("Return from Subroutine", "RTS",     self.RTS, None, None)
         
         
-        #Special Ops
-        0xEA : ("No Operation",       "NOP", self.NOP, None, None),
         }
         
         self.reset()
         
         
         
+    #Adds cycles and advances PC, no other side effects.
+    def F_ADD(self, cycles, bytes):
+        self.cycles += cycles
+        self.PC += bytes
         
-    
     #All of the different addressing modes
     def A_IMM(self):
         self.PC += 1
@@ -202,7 +311,11 @@ class c6502(object):
         self.cycles += 2
         self.PC += 1
         return self.read((self.read(self.PC-1) + self.X) % 256)
-    
+        
+    def A_ZPY(self):
+        self.cycles += 2
+        self.PC += 1
+        return self.read((self.read(self.PC-1) + self.Y) % 256)    
     def A_ABX(self):
         self.cycles += 2
         self.PC += 2
@@ -262,6 +375,10 @@ class c6502(object):
         self.write((self.read(self.PC - 1) + self.X) % 256, val)
         self.cycles += 2
     
+    def W_ZPY(self, val):
+        self.write((self.read(self.PC - 1) + self.Y) % 256, val)
+        self.cycles += 2
+    
     def W_ABS(self, val):
         self.write(((self.read(self.PC - 1) << 8) + self.read(self.PC - 2)), val)
         self.cycles += 2
@@ -270,9 +387,23 @@ class c6502(object):
         self.write(((self.read(self.PC - 1) << 8) + self.read(self.PC - 2) + self.X), val)
         self.cycles += 2
         
+    def W_ABY(self, val):
+        self.write(((self.read(self.PC - 1) << 8) + self.read(self.PC - 2) + self.Y), val)
+        self.cycles += 2
+    
+    def W_IDX(self, val):
+        self.cycles += 2
+        #Wrap around to keep in ZP
+        zpaddr = (self.read(self.PC - 1) + self.X) % 256
+        destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr)
+        self.write(destaddr, val)
         
-        
-        
+    def W_IDY(self, val):
+        self.cycles += 2
+        #Wrap around to keep in ZP
+        zpaddr = self.read(self.PC - 1)
+        destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr) + self.Y
+        self.write(destaddr, val)
         
     def clear_memory(self):
         self.memory = [0]*0x10000
@@ -321,11 +452,52 @@ class c6502(object):
         
         
         
+
+
     #|========================================================|
     #|=====================|   OPCODES  |=====================|
     #|========================================================|
     
-    #Memory Operations
+    
+    # ---------------------------
+    # ---- Memory Operations ----
+    # ---------------------------
+    
+    def LDA(self, val):
+        self.A = val
+        self.negative = val >> 7
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        self.cycles += 2
+    
+    def LDX(self, val):
+        self.X = val
+        self.negative = val >> 7
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        self.cycles += 2
+    
+    def LDY(self, val):
+        self.Y = val
+        self.negative = val >> 7
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        self.cycles += 2
+    
+    def STA(self, val, writer):
+        writer(self.A)
+        
+    def STX(self, val, writer):
+        writer(self.X)
+        
+    def STY(self, val, writer):
+        writer(self.Y)
     
     # ----------------------------
     # ---- Logical Operations ----
@@ -335,18 +507,33 @@ class c6502(object):
     
     def AND(self, val):
         self.A &= val
+        self.negative = self.A >> 7
+        if self.A == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.cycles += 2
-    
-    def ROL(self, val):
-        #rotate left
-        pass
-    
-    def ROR(self, val):
-        #rotate right
-        pass
+        
+    def ORA(self, val):
+        self.A |= val
+        self.negative = self.A >> 7
+        if self.A == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        self.cycles += 2
+        
     def BIT(self, val):
         #Test bit
-        pass
+        if self.A ^ val:
+            self.zero = 0
+        else:
+            self.zero = 1
+        self.negative = val >> 7
+        self.overflow = (val & 0x40) >> 6
+        self.cycles += 2
+        
+        
     
     def CMP(self, val):
         #compare val to accumulator
@@ -407,19 +594,60 @@ class c6502(object):
         else:
             self.zero = 0
         self.cycles += 2
+        
     #Load / Store Operations - Load a register from memory or stores the contents of a register to memory. 
     
     #Jumps / Calls - Break sequential execution sequence, resuming from a specified address. 
     def JMP(self, val):
         pass
     
-    # Shifts - Shift the bits of either the accumulator or a memory location one bit to the left or right. 
+    # Shifts - Shift/rotate the bits of either the accumulator or a memory location one bit to the left or right. 
     def ASL(self, val, writer):
         self.carry = val >> 7
         val &= 0x7F
         val = val << 1
-        self.zero = (val == 0)
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         self.negative = val >> 7
+        writer(val)
+        self.cycles += 2
+        
+    def LSR(self, val, writer):
+        self.carry = val & 0x01
+        val = val >> 1
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        writer(val)
+        self.cycles += 2
+    
+    def ROL(self, val, writer):
+        #rotate left
+        val = val << 1
+        val += self.carry
+        self.carry = val >> 8
+        val &= 0xFF
+        self.negative = val >> 7
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+        writer(val)
+        self.cycles += 2
+    
+    def ROR(self, val, writer):
+        #rotate right
+        val += self.carry << 8
+        self.carry = val & 0x01
+        val = val >> 1
+        self.negative = val >> 7
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
         writer(val)
         self.cycles += 2
     
@@ -524,10 +752,11 @@ class c6502(object):
     
     
     def ADC(self, inc):
-        inc %= 256
-        debug("A is:      " + self.makebin(self.A))
-        debug("inc is:    " + self.makebin(inc))
-        debug("Status is: " + self.makebin(self.PS))
+        #TODO: implement ADC with decimal support
+        #inc %= 256
+        #debug("A is:      " + self.makebin(self.A))
+        #debug("inc is:    " + self.makebin(inc))
+        #debug("Status is: " + self.makebin(self.PS))
         self.negative = self.A >> 7
         
         self.A += inc + self.carry
@@ -541,7 +770,7 @@ class c6502(object):
         #this shouldn't ever happen!!
         if self.A < 0:
             self.A = (2**8) + inc
-            debug("value went below 0 on an unsigned add!")
+            #debug("value went below 0 on an unsigned add!")
             
         if self.A == 0:
             self.zero = 1
@@ -563,11 +792,66 @@ class c6502(object):
             self.overflow = 0
         
         self.negative = self.A >> 7 # set negative to the new negative value.
-        debug("A is now: " + self.makebin(self.A))
-        debug("Status is now: " + self.makebin(self.PS))
+        #debug("A is now: " + self.makebin(self.A))
+        #debug("Status is now: " + self.makebin(self.PS))
         self.cycles += 2
     
- 
+    
+    def SBC(self, inc):
+        #TODO: implement SBC with Decimal support.
+        
+        #inc %= 256
+        #debug("A is:      " + self.makebin(self.A))
+        #debug("inc is:    " + self.makebin(inc))
+        #debug("Status is: " + self.makebin(self.PS))
+        
+        #SBC works the same as ADC but add carry and then negate the value of
+        #inc before adding.
+        if inc >> 7:#inc is negative
+            inc = unSign(inc) + self.carry #TODO: HACK: this is probably wrong.
+        else:
+            inc = inc + (1 - self.carry)
+        #flip inc.
+        inc = Sign( -inc)
+        
+        self.negative = self.A >> 7
+        
+        self.A += inc + self.carry
+            
+        if self.A >= 2**8:
+            self.A -= 2**8
+            self.carry = 1
+        else:
+            self.carry = 0
+        
+        #this shouldn't ever happen!!
+        if self.A < 0:
+            self.A = (2**8) + inc
+            #debug("value went below 0 on an unsigned add!")
+            
+        if self.A == 0:
+            self.zero = 1
+        
+        inc_neg = inc >> 7
+        #if both were negative (1 , 1) and result was positive (0), then overflow = 1
+        #if both were positive (0 , 0) and result was negative (1), then overflow = 1
+        #if one was positive and one was negative, then there can't be overflow!!
+        
+        if (inc_neg ^ self.negative) == 0:
+            if self.negative and (self.A >> 7 == 0):
+                self.overflow = 1
+            elif (not self.negative) and (self.A >> 7):
+                self.overflow = 1
+            else:
+                #I don't get how this can happen but it does.
+                self.overflow = 0
+        else:
+            self.overflow = 0
+        
+        self.negative = self.A >> 7 # set negative to the new negative value.
+        #debug("A is now: " + self.makebin(self.A))
+        #debug("Status is now: " + self.makebin(self.PS))
+        self.cycles += 2
  
     
     
@@ -655,14 +939,34 @@ class c6502(object):
             self.zero = 0
         self.cycles += 2
          
-    def INC(self, val):
+    def INC(self, val, writer):
         #increment memory
-        pass
+        val += 1
+        val &= 0xFF
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+            
+        self.negative = val >> 7
+        writer(val)
+        self.cycles += 2
     
-    def DEC(self, val):
+    def DEC(self, val, writer):
         #decrement memory
-        pass
-    
+        val -= 1
+        if val < 0:
+            val = 0xFF
+            
+        if val == 0:
+            self.zero = 1
+        else:
+            self.zero = 0
+            
+        self.negative = val >> 7
+        writer(val)
+        self.cycles += 2
+        
     #Status Register Operations - Set or clear a flag in the status register. 
     def CLC(self):
         self.carry = 0
@@ -695,10 +999,63 @@ class c6502(object):
     #Special Operations
     
     def BRK(self):
-        pass
+        self.brk = 1
+        self.PC += 1 # PC incremented 2, but already +1 from the step().
+        #push PC PS onto stack
+        self.write(self.S + 0x100, getHigh(self.PC, 8))
+        self.S -= 1
+        self.write(self.S + 0x100, getLow(self.PC, 8))
+        self.S -= 1
+        self.write(self.S + 0x100, self.PS)
+        self.S -= 1
+        self.int_disable = 1
+        self.PC = ((self.read(0xFFFF) << 8) + self.read(0xFFFE))
+        self.cycles += 7
+        
+        
+    def RTI(self):
+        self.S += 1        
+        self.PS = self.read(self.S + 0x100)
+        self.S += 1
+        self.PC = self.read(self.S + 0x100)
+        self.S += 1
+        self.PC += self.read(self.S + 0x100) << 8
+        self.cycles += 6
+        
         
     def NOP(self):
         self.cycles += 2
+        
+    def JPA(self):
+        #Absolute Jump
+        self.PC = (self.read(self.PC) + (self.read(self.PC+1) << 8))
+        self.cycles += 3
+        
+    def JPI(self):
+        #Indirect Jump
+        self.PC = (self.read(self.PC) + (self.read(self.PC+1) << 8))
+        self.PC = (self.read(self.PC) + (self.read(self.PC+1) << 8))
+        self.cycles += 5
+        
+    def JSR(self):
+        self.PC += 1# PC incremented 2, but already +1 from the step().
+        self.write(self.S + 0x100, getHigh(self.PC,  8))
+        self.S -= 1
+        self.write(self.S + 0x100, getLow(self.PC, 8))
+        self.S -= 1
+        self.PC = (self.read(self.PC-1) + (self.read(self.PC) << 8))
+        self.cycles += 6
+        
+    def RTS(self):
+        self.S += 1
+        print "firstread: ", self.read(self.S + 0x100)
+        self.PC = self.read(self.S + 0x100) 
+        self.S += 1
+        print "second: ", self.read(self.S + 0x100)
+        self.PC += self.read(self.S + 0x100)<< 8
+        self.PC += 1
+        self.cycles += 6
+    
         
     def UnsupportedOpcode(self):
         pass #TODO: raise UnsupportedOpcode exception here
