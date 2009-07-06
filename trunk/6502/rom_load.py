@@ -44,3 +44,4 @@ class Rom(object):
         self.rom = [temp[i*16384:(i+1)*16384] for i in range(self.rom_banks)]
         temp = data[startaddr+self.rom_banks*16384:]
         self.vrom = [temp[i*8192:(i+1)*8192] for i in range(self.vrom_banks)]
+
