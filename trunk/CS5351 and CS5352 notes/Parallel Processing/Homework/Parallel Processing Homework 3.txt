@@ -1,6 +1,89 @@
+Homework 3
+by Virpobe Luke Paireepinart
+for CS5351, Summer 2009
+Texas State University
+
+1.
+(1)
+Global values[0...n-1]
+SUMMATION(CCC SIMD)
+// first initialize all nodes
+foreach(processes as p[0.... n-1])
+    value = values
+    // sum up all cycles
+    for (i = 0 to k)
+        for (j = 1  to k)
+            p[i*j].value += p[i*j + 1].value
+            // add to other items in cycle
+        
+    // sum up all neighbors (Treat cycles as individual nodes)
+    foreach(every k processes as p[0 ... n-1/k])
+        foreach (i in [0 ... k])
+            current.value += p[i].value
+            
+
+    
+(2) to find n = 24 sums,
+say values = [2,3,1,4,2,5,2,3,5,6,4,2,6,3,4,1,2,6,4,5,7,3,2,2,1]
+and there are 3*2^3 items, so k = 3.
+to start off, each processor gets its value as an index into n.
+then, each processor will sum itself with the other processors in the cycle.
+That is, p_3_1 = p_2_1 = p_1_1 = values[0] + values[1] + values[2] = 6.
+Same goes for all others.
+Then each set of cycles can be thought of as a single node.
+Then these nodes add as in a normal 3-dimensional hypercube
+(along the dimensions)
+so p_1_1 = p_1_2 = sum(values[0:6])
+eventually you end up with the correct sum at node p_1_1 (and also at p_2_1 and p_3_1 and ....)
 
 
+(3) The time complexity.
+My algorithm creates p processors, and therefore the time complexity is
+(n/p^2 + ((n/p)/k)*k) = (n/p)^2 + (n/p)
+It also needs to synchronize the processors so it requires p syncronization time.
+So the final time complexity is
+p((n/p)^2 + (n/p)) = n^2 + n
 
+This algorithm does not have very good time complexity.
+The other algorithms analyzed in this homework are more efficient than this one.
+
+
+2.
+(1)
+The algorithm spawns p processors, and initializes the local variables.
+It must wait for this initialization to complete before moving on to the next step.
+Then, n/p times, it spawns p processors again.
+In the final step, it spawns p processors again, for log(p-1) times.
+
+Therefore the synchronization overhead is
+(p * n/p * log(p)) or (nlog(p))
+
+Then the actual linear execution time on a single parallel processor would be
+n * n = n^2 to sum all items, and 0 time to propagate the result.
+
+Therefore, the scaled speedup is
+n^2 / nlog(p) = n/log(p)
+
+The scaled efficiency is # of scaled speedup / # of processors used, or
+n/log(p) / p = np / log(p)
+
+To improve the scaled speedup, you must decrease the number of times
+the processors need to synchronize, because this is a limiting factor in the maximum speed of the algorithm.
+The other summation algorithm, written for #3, is more efficient.  
+It only requires d + 1 synchronizations, where d is the number of dimensions in the hypercube.
+The dimensions are based on the number of processors, where
+2^d = p
+so that algorithm, given a sufficiently large p, is log(n) more efficient than the current algorithm.
+
+To improve the scaled efficiency, you must reduce the number of processors used.
+However, I do not think this is possible to do on a hypercube.  
+
+(2) The scaled speedup for the shuffle-exchange network:
+The shuffle-exchange algorithm is the same design as the other summation algorithm.
+The scaled speedup is n/log(p) just as in the other algorithm.
+Same with the scaled efficiency.
+The only difference is that the complexity of the algorithm as the size of the network grows does
+not increase as quickly with the hypercube algorithm as it does with shuffle-exchange.
 
 3.
 Suppose you have n=16 integers to sum.  Your n must be 2^k .  In this case, k = 4.
@@ -73,5 +156,23 @@ for dimension 2, groups of 4 are denoted, 0-3, 4-7, 8-11, 12-15.
 for dimension 1, groups of 2 are denoted, 0-1, 2-3, 4-5, 6-7, 8-9, 10-11, 12-13, 14-15.
 for dimension 0, groups of 1 are denoted, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15.
 
+each item is matched with its corresponding item in the group.
+Dimension 2, if d = 2 and k = 4,
+to determine which group it's in, 
+g = i / 2^d
+will give 0, 1, 2, or 3 in this case
+Then, if it's in an odd group, we pair it with the group before it.  if it's in an even group, we pair it with the group after it.
+if (g % 2 == 0)
+    return (i % 2^d) + g*d
+else
+    return (i % 2^d) + (g-1)*d
+    
+This should work for any dimension and any size hypercube.
+The full get_neighbor_by_dimension function:
 
-i -> 2^dimension + i
+p.get_neighbor_by_dimension(d)
+    g = p / 2^d
+    if (g % 2 == 0)
+        return (p % 2^d) + g*d
+    else
+        return (p % 2^d) + (g-1)*d
