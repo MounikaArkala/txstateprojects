@@ -1,0 +1,102 @@
+Wednesday is the final day for this class.  30-40 mins will be reserved for covering the final.
+
+Scaled speedup / scaled efficiency for problem 2
+WIth first definition of speedup, there's no notion of efficiency.  scaled efficiency is introduced w/ scaled speedup.
+in Final, will ask similar questions.
+Look at nature of problem (hypercube summation algorithm).
+Does algorithm require each processsor to perform some comprehensive operation,
+and is that processor capable of sorting values by itself, sequentially?
+if yes, then scaled speedup/efficiency are same.
+if no, they are different.
+
+If you have clear understanding of definition, you should not be confused.  Look at fig. 6.1.
+Look at the algorithm.
+
+- This is not supposed to be algorithm design class.   -- really?
+
+CRCW PRAM model is very artificial because we cannot really manufacture such a model.
+
+Bitonic sequence - seq. of numbers with either items increase monotonically & then decrease monotonically,
+or cyclic shifting will satisfy property A.
+
+eaac comparator has multiple inputs.  each comparator takes 2 inputs, so we need n/2.
+1 layer of comparators consists of n/2 comparators.
+
+A single layer of comparators will be able to split sequence that is bitonic into two subsequences who are also bitonic.
+
+The largest element in one sequence will be less than the smallest value of second sequence.
+each subsequence is same size, n/2, and each is bitonic.
+
+algorithm even tells you how to do split.
+
+it finds the first half & second half by spliting in the middle, so it's 2 equal halves.
+
+compare the first and last, then the second and second-to-last, then...
+the smallest of the two for each set gives you the first bitonic sequence.
+the second sequence is the larger of the two.
+
+
+If at least 1 element in first sequence is larger than at least 1 element in the second , you can prove it's a contradiciton & is impossible that the first element was a bitonic sequence.
+
+This lemma is important because it provides us w/ powerful mechanism to perform sorting.
+
+We can take advantage of the fact that each half is also bitonic, so we can use another layer to divide it in half and perform the same operation again.
+
+
+In example, A-P goes up, O-B goes down.
+It lets you get a sorted sequence in very few steps, if you have a way to produce the bitonic sequences in the first place.
+
+
+Main issue - how do we produce bitonic sequence.
+
+By definition - 
+a single-element sequence is bitonic.
+every 2-element sequence is bitonic.
+every 3-element sequence is bitonic.
+every sorted sequence is bitonic as well.  by definition - the "going down" or "going up" part can be zero elements long.
+four-element sequence is bitonic - not guaranteed.
+
+This algorithm cannot apply for sequences that are not bitonic.
+
+for 4-element sequence, we have to bitonic each half and apply the "trick".
+(trick looks like a 3-layer set of boxes per 2 inputs (so 2 sets of 3 boxes horizontally for a 4-item set)).
+What about 8-element sequence?
+then we can't guarantee sequence is bitonic.
+
+so for the 8-element sequence we divide it in half, and sort the first 4 ascending, second 4 descending, and we get another bitonic sequence.
+
+for 16-element sequence, goes same way.
+
+How to obtain bitonic sequences - apply lamma itself.
++ in a box means low-high compare, - means high-low compare.
+
+normally we say one layer = 1 time unit
+n = 2^k k=lgn
+lgn iterations 1, 2, ... lgn
+inside the ith iteration there are i layers of comparisons.
+number of layers = sum(1 + 2 + ... + lgn) = lgn(lgn + 1) / 2 = k (k+1) / 2
+
+Total # of comparators = n/2 * number of layers = n/2 * (k(k+1))/2
+
+time complexity bigtheta(logn^2)
+
+proof we've constructed - page 115.
+
+because the interconnection pattern is irregular, it will create a problem in actual hardware implementations.
+makes the implementation difficult.
+
+The next theorem can solve both problems.
+
+# of layers needed here, first iteration is in 1 layer, each subsequent iteration needs log-n layers.  except iteration 1.
+therefore total # of layers is more than other theorem, but interconnection patterns are same between all layers.
+just like shuffle-exchange network.
+
+Some layers are blank, and don't do anything except allow you to get the right sequence.
+
+we have a double layer (n comparators) that loop back to themselves, and on each iteration you can apply different control.
+So this approach only requires n comparators.
+
+where are the blank comparators?  
+with n = 8, the 2nd iteration has 1 layer blank.
+with n = 16, the 3rd iteration has a layer blank ???
+then 2nd, 3rd, 4th layers will have blanks???
