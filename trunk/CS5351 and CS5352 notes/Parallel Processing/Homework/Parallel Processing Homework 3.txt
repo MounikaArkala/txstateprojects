@@ -1,0 +1,77 @@
+
+
+
+
+3.
+Suppose you have n=16 integers to sum.  Your n must be 2^k .  In this case, k = 4.
+
+So in this case, you would have to do the following operation:
+propagate all values along dimension 1
+add incoming values to current value
+propagate all values along dimension 2
+add incoming values to current value
+propagate all values along dimension 3
+add incoming values to current value
+propagate all values along dimension 4
+add incoming values to current value
+
+So it can be seen that we need to iterate over the dimensions.
+
+
+foreach(processes as p[0 ... n-1])
+    value = initial_value_of_node
+    foreach (i in [0 ... k - 1])
+        send(p.get_neighbor_by_dimension(i))
+        temp = receive_from_neighbor()
+        value += temp
+
+And now this function get_neighbor_by_dimension must be described.
+It takes in one parameter, the dimension, and returns the processor
+that is adjacent to the current processor along the specified dimension.
+Examples:
+for dimension 0 (k = 4), the following items are near each other.
+0 - 1
+2 - 3
+4 - 5
+6 - 7
+8 - 9
+10 - 11
+12 - 13
+14 - 15
+for dimension 1 (k = 4), the following items are near each other.
+0 - 2
+1 - 3
+4 - 6
+5 - 7
+8 - 10
+9 - 11
+12 - 14
+13 - 15
+for dimension 2 (k = 4), the following items are near each other.
+0 - 4
+1 - 5
+2 - 6
+3 - 7
+8 - 12
+9 - 13
+10 - 14
+11 - 15
+for dimension 3 (k = 4), the following items are near each other.
+0 - 8
+1 - 9
+2 - 10
+3 - 11
+4 - 12
+5 - 13
+6 - 14
+7 - 15
+
+To get from each item to the other,
+divide into groups of 2^dimension size.
+SO for dimension 3, groups of 8 items are denoted, 0-7 and 8-15.
+for dimension 2, groups of 4 are denoted, 0-3, 4-7, 8-11, 12-15.
+for dimension 1, groups of 2 are denoted, 0-1, 2-3, 4-5, 6-7, 8-9, 10-11, 12-13, 14-15.
+for dimension 0, groups of 1 are denoted, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15.
+
+
+i -> 2^dimension + i

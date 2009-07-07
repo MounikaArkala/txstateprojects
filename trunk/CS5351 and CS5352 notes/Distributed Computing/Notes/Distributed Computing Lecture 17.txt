@@ -1,0 +1,47 @@
+sleep of 10 ms, will create RTT of 10 ms.
+
+use a special testing message for RTT.  server will sleep on each message a random amount.
+eg. client sends message with client ID as -1, server will reply no matter what.
+client can then take an average to figure out the RTT.
+client must figure out RTT.
+
+basically make the server sleep a random amt of time.
+
+user needs to input a message for each send.
+
+
+~~~~~~~~~
+This class emphasizes IPC.
+we started w/ legendary / classic RPC ~ Sun RPC.
+generic intro to XDR, marshalling/unmarshalling -
+it was covered to make it easier to understand
+newer / better RPC's (eg. Java RMI.)
+
+
+the two classes, the WeatherListModel, and the WeatherCellRenderer, are called by the client.
+java lists can be rendered / "drawn" into java frames.
+
+
+Opengroup.org/dce
+The only middleware system w/ comprehensive security model.
+License costs $5k.
+DCE RPC - programming interface - there's a book Understanding DCE.
+
+
+for implicit  bending client provides a bit of info
+for explicit bending client must provide almost all info
+NS must expose IP of server & Remote Procedure name.
+full pointer is the most powerful - server storage allocates, then processor on same server can modify.
+client has to send more information, & memory management is more expensive.
+
+~~~~~~ Lecture 07
+Coordination is less strong than agreement.
+what damages might malicious processes have to the whole system?
+real differences are very difficult to see.
+
+If the coordinator is the person creating the problems, not much you can do.
+That's the problem w/ the Dictator approach.  If you have a good dictator, it's very efficient.
+If you have a bad dictator, bad things happen.
+
+tomorrow in round rock.
+use forum for further questions of problem 3.
