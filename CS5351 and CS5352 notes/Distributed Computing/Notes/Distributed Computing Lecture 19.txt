@@ -1,0 +1,69 @@
+receiving process doesn't know if sending process is reliable or not.
+Problem also called "Byzantine Generals Problem"
+a group of generals surround a city.  They have to decide what the next step is - attack time, withdraw time, etc.
+Now messengers between generals are considered reliable - they won't change message.  But there
+can be traitorous general s who can change message contents before passing it on.
+
+if max number of faulty processors is t, any solution will require at least t + 1 stages of message exchanges in order to arrive at a consensus.
+
+
+he goes really in depth into explaining how it works.
+You need to know the # of bad  processes.    For the algorithm to work, you have a precondition that you know the # of bad processes.
+
+you either know exactly how many are bad or at most how many are bad.  
+
+the main reason for algorithm is, regardless of if p0 is good or bad, that the good processes will be able to reach the same conclusion.
+
+T is the maximum number of bad processes.
+P1 starts 1 message broadcast... every process gets majority (a, ..... the value)
+then p2 gets p1 value and sends it to everybody.  
+Every process takes value received from process, and sends to all other processes.
+
+summary of other algorithms (pg 193 - 18 of 18 lecture 7) this first algorithm , optmal condition, # of stages is optimal
+the size of message is polynomial (larger than t)
+then they reduced the # of messages from polynomial to 2.
+for moses algo, the # of good processes increased.
+
+Homework review.
+
+HW 1
+problem 1
+  scalability, security, so-on.  One common issue is underlying transport layer protocol - eg. tcp.  These are shared among network applications & distributed systems.   reliability is, but from different perspective.  reliability in distributed system is about transparency - make system reliable to provide transparency.  the network concern is different.
+  
+problem 2
+most people did it right.
+
+problem 3.  network id / host id... the concept is very classic.  
+
+
+problem 4.  some people never provided a direct answer.  The RTT is the main issue. 
+
+
+HW 2.
+problem 1
+The real offset? oi - there is no universal reference.  oi is an estimate...
+
+
+problem 2
+if two events are not same, timestamps not the same, 
+
+
+program 3
+Post on class forum so he will give us 5 points back.
+
+HW 3.
+hand in tonight.
+
+
+Final is tomorrow.
+this lecture may be covered in Final.  He wants you to know the basic ideas behind everything.
+The level of his lecture will be reflected in final - homework assignments will be covered.
+
+T/F questions?  may be.  classified.
+
+will we write Java RMI code?
+we should bring code he discussed in class.
+
+how many questions?  classified.
+
+2:00 probably too early to 
