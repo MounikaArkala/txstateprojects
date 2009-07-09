@@ -1,0 +1,13 @@
+can we use notes / internet resources during final? yes, but you can't be online at the time of the final.
+-- i should print out his Weather code.
+
+Token / request
+when process pi sends request to pj, the timestamp will be used to modify the request variable of pj
+the Ti will be updated w/ new timestamp from pi.
+pj releases token to new process, checks next value.  if newer value in Request than Token...
+Token is the last time j+1 was given token, j+1 in Request is the last time it made a request.
+If it has made a request, and hasn't gotten a token (I.e. token timestamp is older than request timestamp)
+you give it token and update timestamp. 
+
+Chang and Roberts algorithm ??
+

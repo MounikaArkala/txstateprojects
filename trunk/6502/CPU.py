@@ -283,8 +283,68 @@ class c6502(object):
         
         }
         
-        self.reset()
+        self.initialize()
         
+    def interrupt(self, addr):
+        """ Places PC and PS on stack, jumps to addr+1, addr for  interrupt processing,
+        adds 7 cycles Interrupt delay."""
+        self.write(self.S + 0x100, getHigh(self.PC, 8))
+        self.S -= 1
+        self.write(self.S + 0x100, getLow(self.PC, 8))
+        self.S -= 1
+        self.write(self.S + 0x100, self.PS)
+        self.S -= 1
+        self.int_disable = 1
+        self.PC = ((self.read(addr+1) << 8) + self.read(addr))
+        self.cycles += 7    
+    
+    def reset(self):
+        self.interrupt(0xFFFC) # RESET interrupt.
+    
+    def clear_memory(self):
+        self.memory = [0]*0x10000
+
+    def step(self):
+        #print "stepping..."
+        opcode = self.read(self.PC)
+        #print "opcode: ", hex(opcode)
+        self.PC += 1
+        try:
+            op = self.optable[opcode]
+            debug("executing a %s" % op[0])
+            if (op[3]):
+                if (op[4]):
+                    op[2](op[3](), op[4])
+                else:
+                    op[2](op[3]())
+            else:
+                op[2]()
+                
+        except KeyError:
+            debug("Invalid OPCODE (%s)" % opcode)
+            self.UnsupportedOpcode()
+            #TODO: raise UnsupportedOpcode exception here
+   
+            
+    def initialize(self):
+        self.clear_memory() # init memory
+        self.X      = 0     # X index register
+        self.Y      = 0     # Y index register
+        self.A      = 0     # Accumulator
+        self.S      = 0xFF  # Stack Pointer
+        self.PC     = 0     # Program Counter
+        self.PS     = 0     # Processor Status
+        self.cycles = 0     # Cycle Count
+
+    def write(self, addr, value):
+        """ writes a value to a memory location.
+        overload to handle mirroring that may 
+        need to be taken care of involving an address."""
+        self.memory[addr] = value
+
+    def read(self, addr):
+        return self.memory[addr]
+
         
         
     #Adds cycles and advances PC, no other side effects.
@@ -404,51 +464,6 @@ class c6502(object):
         zpaddr = self.read(self.PC - 1)
         destaddr = (self.read(zpaddr+1) << 8) + self.read(zpaddr) + self.Y
         self.write(destaddr, val)
-        
-    def clear_memory(self):
-        self.memory = [0]*0x10000
-
-    def step(self):
-        print "stepping..."
-        opcode = self.read(self.PC)
-        print "opcode: ", hex(opcode)
-        self.PC += 1
-        try:
-            op = self.optable[opcode]
-            debug("executing a %s" % op[0])
-            if (op[3]):
-                if (op[4]):
-                    op[2](op[3](), op[4])
-                else:
-                    op[2](op[3]())
-            else:
-                op[2]()
-                
-        except KeyError:
-            debug("Invalid OPCODE (%s)" % opcode)
-            self.UnsupportedOpcode()
-            #TODO: raise UnsupportedOpcode exception here
-            
-            
-    def reset(self):
-        self.clear_memory() # init memory
-        self.X      = 0     # X index register
-        self.Y      = 0     # Y index register
-        self.A      = 0     # Accumulator
-        self.S      = 0xFF  # Stack Pointer
-        self.PC     = 0     # Program Counter
-        self.PS     = 0     # Processor Status
-        self.cycles = 0     # Cycle Count
-
-    def write(self, addr, value):
-        """ writes a value to a memory location.
-        also handles any interrupts / mirroring that may 
-        need to be taken care of involving that address."""
-        self.memory[addr] = value
-
-    def read(self, addr):
-        return self.memory[addr]
-
         
         
         
@@ -1002,15 +1017,7 @@ class c6502(object):
         self.brk = 1
         self.PC += 1 # PC incremented 2, but already +1 from the step().
         #push PC PS onto stack
-        self.write(self.S + 0x100, getHigh(self.PC, 8))
-        self.S -= 1
-        self.write(self.S + 0x100, getLow(self.PC, 8))
-        self.S -= 1
-        self.write(self.S + 0x100, self.PS)
-        self.S -= 1
-        self.int_disable = 1
-        self.PC = ((self.read(0xFFFF) << 8) + self.read(0xFFFE))
-        self.cycles += 7
+        self.interrupt(0xFFFE)
         
         
     def RTI(self):

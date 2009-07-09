@@ -1,0 +1,11 @@
+Since we're going down to a two layer model, why not just do one layer?
+well there's no advantage to this, apparently.
+
+Bitonic merge sort
+
+speedup of hypercube n / lgn - sequential complexity nlgn, algorithm is lg^2n so one over the other.
+CRCW PRAM algorithm - normal speedup is nlgn/ lgn = n
+but that algorithm is not real.
+
+
+Sequential quick-sort algorithm - if list is very small

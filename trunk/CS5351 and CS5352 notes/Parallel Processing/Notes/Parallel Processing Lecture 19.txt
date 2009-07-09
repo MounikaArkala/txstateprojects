@@ -1,0 +1,98 @@
+example in Lecture 7 of recursively solving a recurrence relation.
+
+UMA Multiprocessors are similar to our current parallel computers.
+Parallel quicksort on UMA is fairly simple.
+
+what if 2-3 fit right in the middle of what came out of 0-1?
+will it fit in the middle?
+somehow 0-1 will ....
+he's not sure how it works.  they work together to quickly produce large sequences which incorporate all
+values from 0-1.
+
+dimension-2 hypercube.
+n = 32 (pg 137 - 29/32 lecture 7)
+
+pg 31 of 32 lecture 7 (pg 139) - O(nd) is correct but O(n(logn + d)) is wrong.  If you always do perfect
+partitioning then each processor has n/2 values.
+
+
+
+
+
+
+Finals  questions:
+open books / notes / printouts /etc. can bring anything you can carry, just no electronics.
+
+Final will contain everything from beginning of class to today.
+What kind of material?
+if he covered content in more detail...
+The exam questions level is proportional to class.
+if he only mentioned topic very lightly he probably won't ask about them.
+it's not fair to us if he briefly covered topic and then asked a deep question.
+Look at lectures, what he emphasized in the class.
+
+Final as easy as homework - some questions similar to homework level, some easier.
+Problem w/ final is time.
+Lots of people get stuck and only get to do 1 question.
+If you are confident w/ problem, do it quickly first, and go back to problems you haven't done.
+Turn off laptop / cellphone / PDA, but you can bring anything you can print.
+you can bring a stack of books if you want.
+
+Exam San Marcos, Derrick 240 or 241.  He will post it to class website if it changes,
+check before going to class.  will be 8-10:30 PM on Friday.
+
+Technically you have to get Chair / Dean if time / room change, but he is avoiding that.
+
+
+# of questions on Final - classified until exam time.
+expect T/F questions.  answer them carefully, make good choices.
+Expect PRAM Algorithm design - will be covered, look at sorting algorithms from this chapter (which hasn't been covered in homework.)
+Chapter 6 also covered.
+
+will not be flexible with time.
+
+Homework review:
+already briefly coverd homework 1.
+problem 2 homework 1:
+textbook has no details - a lot of shared memory does not allow you to do concurrent writes even to different memories.  That's one of the main ones he was looking at.
+problem 3:
+# of processors are involved, even a small speedup (like 10 microseconds) will help as more processors are added.
+broadcast will eventually limit speedup.
+
+problem 4:
+his initial thinking:
+generate 1 process for 1 spanning tree.  print cost.  cost should be at least same as sequential, or beat sequential.
+If your solution is worse than sequential, why?  
+1 processor for 1 potential spanning tree will not get good complexity.
+for minimal spanning tree sequential, nlogn is time.  Using brute force enumeration / graph coloring approach,
+is not a good strategy.  That's what he wanted us to see, but only a few people did.
+Those people who did didn't analyze it.
+
+Assignment 2
+Problem 1: he was thinking - can you spawn more processors to help that single processor to verify the graph coloring?
+simple solution - spawn more processors you can reduce from n^2 to n.  That's what you probably should do.
+validating the processing...?
+
+Problem 2 - most people didn't get any points counted off.
+
+Problem 3 - n/2 steps (4 steps of each (but it's really 3, he's wrong?)) shuffle-exchange-shuffle-exchange-shuffle-exchange
+
+
+Problem 4 - look at hypercube, look at reduction / prefix-sum algorithm of PRAM model.  between neighbors of hypercube...
+
+Homework 3 he will grade tonight & look at.
+Problem 1 - clearly 2 strategies.  1 is to, in k iterations, each circle will do one addition.  after the circles have additions,
+you will move to inter-circle communications.  Their connections are a fixed pattern.
+Problem 2 - scaled speedup / scaled efficiency.
+Look at algorithm - diagram shows the procedure (pg "82", 3 of 19 lecture 6)
+get values from neighbors, keep value, send one out to the other... each processor is less powerful than a fully independent CPU.
+Propose changes to improve scaled speed up and efficiency.  Both yes / no can be answered.  you have to state why.
+"no" case - basically this is a processor array - each processor is synchronized.  the whole algorithm never mentioned each processor having to perform sequential summation.
+The notion of scaled speedup / efficiency will not apply to this processor array architecture.  In this process we never have each processor perform any sequential summation.
+Each processor does not have to have large values to store.  Only single values are being transmitted.  SO each processor does not have to be fully functional.
+
+the communication ability between processors - each only needs to be able to add 1 value.
+
+For shuffle-exchange summation algorithm, same ...?
+
+Will see us Friday in San Marcos.
