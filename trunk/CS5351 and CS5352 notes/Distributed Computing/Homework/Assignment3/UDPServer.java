@@ -13,6 +13,7 @@ describing what went wrong.
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import java.lang.Thread;
 public class UDPServer
 {
 	// Lets the client know when to stop reading data.
@@ -24,6 +25,7 @@ public class UDPServer
     {
         try
         {
+            Random random = new java.util.Random();
             DatagramSocket aSocket = new DatagramSocket(6789);// to receive msgs
             byte[] buffer;// temporary request storage.
             String line = null;
@@ -83,25 +85,43 @@ public class UDPServer
                 int client = Integer.parseInt(items[0]);
                 int msgid = Integer.parseInt(items[1]);
                 
-                if (msgid != current[client])
+                // simulate a RTT by sleeping for a random amount of time.
+                int sleeptime = (int) (random.nextDouble() * 5) + 5; // min 5ms sleep time.
+                try
                 {
-                    current[client] = msgid;
-                    ignored[client] = 0;
+                    Thread.currentThread().sleep(sleeptime);// 15 ms is longest possible sleep.
                 }
-                int drops = packetloss.get(client).get(msgid % LOSSLEN);
-                if (ignored[client] < drops)
+                catch (InterruptedException e)
                 {
-                    ignored[client] += 1;
-                    System.out.println("Ignoring message " + msgid + " from client " + client + ".  Have dropped " + ignored[client] + " of " + drops + " messages.");
+                    
+                }
+                if (msgid >= 0) // Not a RTT request.
+                {
+                    if (msgid != current[client])
+                    {
+                        current[client] = msgid;
+                        ignored[client] = 0;
+                    }
+                    int drops = packetloss.get(client).get(msgid % LOSSLEN);
+                    if (ignored[client] < drops)
+                    {
+                        ignored[client] += 1;
+                        System.out.println("Ignoring message " + msgid + " from client " + client + ".  Have dropped " + ignored[client] + " of " + drops + " messages.");
+                        
+                        continue;
+                    }
+                    System.out.println("Enough packets have been dropped for message " + msgid + ", replying to client " + client + ".");
                 }
                 else
                 {
-                    System.out.println("Enough packets have been dropped for message " + msgid + ", replying to client " + client + ".");
-                    String temp = msgid + EOFStr;
-                    reply = new DatagramPacket(temp.getBytes(), temp.length(),
-                                                              request.getAddress(), request.getPort());
-                    aSocket.send(reply);
+                    System.out.println("Client " + client + " measured RTT.");
                 }
+                
+                String temp = msgid + EOFStr;
+                reply = new DatagramPacket(temp.getBytes(), temp.length(),
+                                                              request.getAddress(), request.getPort());
+                aSocket.send(reply);
+                
                 
             }
 			//aSocket.close();
