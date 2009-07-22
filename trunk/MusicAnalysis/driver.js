@@ -1,3 +1,16 @@
+/* Driver.js
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
+
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+This is 
+*/
+
+
 /* Other People's Functions */
 
 String.prototype.trim = function() {
@@ -154,6 +167,23 @@ function callPrime()
 	loadContent('content','primes.cgi');
 }
 
+function callOD()
+{
+	series = document.getElementById("odseries").value;
+	wrap = document.getElementById("wraparound").checked;
+	page = "od";
+	loadContent('primesdiv','primes.cgi');
+}
+
+function callOID()
+{
+	series = document.getElementById("oidseries").value;
+	wrap = document.getElementById("wraparound").checked;
+	page = "oid";
+	loadContent('primesdiv','primes.cgi');
+}
+
+
 function callScale()
 {
 	row = document.getElementById("notes").value;
@@ -184,23 +214,6 @@ function updateScales()
     }
 	page = 'filtered';
 	loadContent('scalesdiv', 'scales.cgi');
-}
-
-
-function loadOD()
-{
-	series = document.getElementById("odseries").value;
-	wrap = document.getElementById("wraparound").checked;
-	page = "od";
-	loadContent('primesdiv','primes.cgi');
-}
-
-function loadOID()
-{
-	series = document.getElementById("oidseries").value;
-	wrap = document.getElementById("wraparound").checked;
-	page = "oid";
-	loadContent('primesdiv','primes.cgi');
 }
 
 function handleEnter(event, func)

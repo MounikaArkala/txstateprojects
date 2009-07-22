@@ -98,11 +98,11 @@ def printPage():
         print '<br />'
         print 'Search for an order-dependent series<br />'
         print '<input type="text" name="odseries" id="odseries" class="TextInput" onkeypress="handleEnter(event, loadOD);"/>'
-        print '<button type="button" onClick="loadOD();" class="SubmitButton">Submit</button>'
+        print '<button type="button" onClick="callOD();" class="SubmitButton">Submit</button>'
         print '<br />'
         print 'Search for an order-independent series<br />'
         print '<input type="text" name="oidseries" id="oidseries" class="TextInput" onkeypress="handleEnter(event, loadOID);"/>'
-        print '<button type="button" onClick="loadOID();" class="SubmitButton">Submit</button>'
+        print '<button type="button" onClick="callOID();" class="SubmitButton">Submit</button>'
         print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
         print '<div id="primesdiv">'
     
