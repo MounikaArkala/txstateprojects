@@ -1,3 +1,12 @@
+
+table.scales_submission
+{
+  border:solid;
+  border-width: 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 table.scales
 {
   border: 2px solid;
