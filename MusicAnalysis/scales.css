@@ -1,0 +1,86 @@
+table.scales
+{
+  border: 2px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin-top: 60;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+td.scales
+{
+  border: 2px solid #000;
+  background: #FFFFFF;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+table.scale
+{
+  text-align: center;
+  border:solid;
+  border-width: 1px;
+  margin: 4px;
+  font-family: monospace;
+}
+
+td.scalen
+{
+  background-color:#FF9999;
+  border:solid;
+  border-width:1px;
+  width: 2em;
+  padding: 1px;
+  text-align:center;
+}
+td.scaley
+{
+  background-color:#99FF99;
+  border:solid;
+  border-width:1px;
+  width: 2em;
+  padding: 1px;
+  text-align:center;
+}
+input.TextInput
+{
+    border: 1px solid;
+    background: #FFFFCC;
+}
+
+input.filters
+{
+	;
+}
+
+table.filters
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin: auto;
+}
+
+td.filters
+{
+  border: 1px solid #006;
+  background: #EECCEE;
+  padding: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+th.filters
+{
+  border: 1px solid #006;
+  background: #335577;
+  padding: 2px;
+  font-weight: bold;
+  color: white;
+}

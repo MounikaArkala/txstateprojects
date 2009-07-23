@@ -1,0 +1,54 @@
+
+table.primes 
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto;
+  font-family: monospace;
+}
+
+tr.primesrow
+{
+  border: 1px solid;
+}
+
+td.primesdata
+{
+  border: 1px solid;
+  background-color: #EEBBEE;
+  width:2em;
+  text-align: center;
+}
+
+th.primesheader
+{
+  border: 1px solid;
+  background-color: #FFFFFF;
+  text-align:center;
+  
+}
+
+table.primesresult
+{
+  border:solid;
+  border-width: 1px;
+  margin: 0 auto;
+  font-family: monospace;
+  text-align: center;
+}
+
+td.primesresultn
+{
+  background-color:#FF9999;
+  border:solid;
+  border-width:1px;
+  width:2em;
+}
+td.primesresulty
+{
+  background-color:#99FF99;
+  border:solid;
+  border-width:1px;
+  width:2em;
+}

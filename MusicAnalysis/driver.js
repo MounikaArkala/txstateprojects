@@ -11,21 +11,45 @@ This is
 */
 
 
-/* Other People's Functions */
+/*
+===============================
+=    "Borrowed" Functions     =
+===============================
+*/
 
-String.prototype.trim = function() {
+
+String.prototype.trim = function()
+{
+    /*
+    Purpose: remove whitespace from beginning and end of a string.
+    Notes: adds its method to the base String class so you can just use
+    the .trim() method on any string.    */
 	return this.replace(/^\s+|\s+$/g,"");
 }
-String.prototype.ltrim = function() {
+
+String.prototype.ltrim = function()
+{
+    /*
+    Purpose: remove whitespace from beginning of a string.
+    Notes: adds its method to the base String class so you can just use
+    the .trim() method on any string.    */
 	return this.replace(/^\s+/,"");
 }
-String.prototype.rtrim = function() {
+String.prototype.rtrim = function() 
+{
+    /*
+    Purpose: remove whitespace from end of a string.
+    Notes: adds its method to the base String class so you can just use
+    the .trim() method on any string.    */
 	return this.replace(/\s+$/,"");
 }
 
 
 function GetXmlHttpObject()
 {
+    /*
+    Purpose: provide an XmlHttpObject in a generic fashion
+    Notes: necessary for compatibility with older (MSIE) browsers.    */
 	if (window.XMLHttpRequest)
 	{
 		// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -39,6 +63,13 @@ function GetXmlHttpObject()
 	return null;
 }
 
+
+
+/*
+===============================
+=   MusicAnalysis Functions   =
+===============================
+*/
 
 /* generic updating callback */
 function contentChanged()
@@ -95,6 +126,7 @@ function genArgs(pageName)
 	}
 	return args;
 }
+
 		
 function loadingLoaded()
 {
@@ -127,11 +159,6 @@ function loadContent(divName, pageName)
 	xmlhttp.onreadystatechange = loadingLoaded;
 	xmlhttp.open("GET",url,true);
 	xmlhttp.send(null);
-    /*
-	xmlhttp.onreadystatechange = contentChanged;
-	xmlhttp.open("GET",url,true);
-	xmlhttp.send(null);*/
-	
 }
 
 function load()
