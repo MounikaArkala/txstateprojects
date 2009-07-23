@@ -55,13 +55,8 @@ def printPage():
     notes = []
     for i in temp.split():
         i = i.strip()
-        if len(i) == 2:
-            i = i[0].upper() + i[1].lower()
-        elif len(i) == 3:
-            i = i[0].upper() + i[1].lower() + i[2].lower()
-        elif len(i) > 3:
-            print "You entered an invalid note: %s" % i
-            return
+        i = i[0].upper() + i[1:].lower()
+        
         try:
             if not all_notes[i] in notes:
                 notes.append(all_notes[i])

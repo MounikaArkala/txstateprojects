@@ -39,4 +39,8 @@ directory permissions are world-executable.  On a Windows system this won't matt
 system, you must ensure that your 
 
             Advice
-    
+    The scales program takes a few seconds to load when you filter the scales.  That's because it has to recalculate all the scales
+and match just the ones that meet the filters.  I tried doing this with jQuery on the client-side and it seemed possible
+but it was too difficult and time-consuming to get it working right so I abandoned it.
+If you want to speed up the scales, that's a good way to go about it.
+Or just making the matching algorithm more efficient may be a better task.
