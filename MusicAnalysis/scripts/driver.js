@@ -16,8 +16,6 @@ This is
 =    "Borrowed" Functions     =
 ===============================
 */
-
-
 String.prototype.trim = function()
 {
     /*
