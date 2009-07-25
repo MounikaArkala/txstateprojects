@@ -25,22 +25,28 @@ not guaranteed.
 
     This website makes heavy use of AJAX, or Asynchronous Javascript and XML.  All pages and results are loaded
 dynamically into the main index page, so the browser can minimize repacking and redrawing the GUI layout.
-As a result the site is quite quick and responsive.
+As a result the site is quite quick and responsive.  However, this limits search engine indexing.
+Because the content doesn't necessarily need to be loaded as fast as it is, it is probably
+acceptable to convert to a non-ajax site, which would make the site indexable by a search engine.
+
 
             Main Structure
-There is a page called index.html which will be loaded
+There is a page called index.html which will be loaded ~~~~~~
 
-    Some possibly frowned-upon things were used in the making of the site.  The 
+    Some possibly frowned-upon things were used in the making of the site.  The ~~~~
 
 
             Troubleshooting
 If you are unable to get a .cgi page to display, especially with a 500 Server Error, please ensure the
 directory permissions are world-executable.  On a Windows system this won't matter.  On a Linux/Mac
-system, you must ensure that your 
+system, you must ensure that your ~~~~
 
             Advice
-    The scales program takes a few seconds to load when you filter the scales.  That's because it has to recalculate all the scales
-and match just the ones that meet the filters.  I tried doing this with jQuery on the client-side and it seemed possible
+    The scales program takes a few seconds to load each time you filter the scales.  That's because it has to recalculate all the scales
+and match just the ones that meet the filters.  It doesn't use any previous knowledge.
+I tried doing this with jQuery on the client-side and it seemed possible
 but it was too difficult and time-consuming to get it working right so I abandoned it.
-If you want to speed up the scales, that's a good way to go about it.
-Or just making the matching algorithm more efficient may be a better task.
+If you want to speed up the scales, that's a potentially good way to go about it, and also decreases the load on the server
+because only one request needs to be made per search.
+You could also just make the scale-matching algorithm more efficient, which may be a better task in the end.
+One potential speedup is to calculate everything at the beginning.

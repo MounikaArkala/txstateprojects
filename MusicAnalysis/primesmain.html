@@ -1,8 +1,24 @@
+<!-- Primesmain.html
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
 
-<label> Row: </label><input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, callPrime);"/>
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+The HTML page for the initial search and information on how to use the Primes program.
+-->
+
+<!-- search bar code -->
+<label> Row: </label>
+<input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, callPrime);"/>
 <button class="SubmitButton" type="button" onClick="callPrime();">Submit</button>
 
-<br /> <br /> <div class="error" id="error"><br /></div>  <br />
+<br /> <br />
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+<br /> <br />
 
 How to use this program:<br /><br />
 Enter your Primary Row (12 notes!), separated by spaces, in the text entry field entitled "Row".
