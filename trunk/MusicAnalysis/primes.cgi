@@ -1,10 +1,25 @@
 #!/usr/local/bin/python
+#!"C:/python26/python.exe"
 
+""" Primes.cgi
+----------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schuler
+
+Texas State University
+Summer 2009
+----------------------------
+Brief Summary:  This program generates 12-tone matrices, and allows the user
+to search through them for different specific primes/retrogrades or inversions of those.
+Expects a website as output and frontend.
+"""
 import sys
 from musiclib import *
+import cgi
 
-import cgi, cgitb
-cgitb.enable()
+# Debug code, shouldn't be included unless testing.
+#import cgitb
+#cgitb.enable()
 
 print "Content-type: text/html"
 print
@@ -17,6 +32,11 @@ def pretty(notes, encoding):
     
     
 def printPage():
+    #this is a function so it can be "return'd" from.
+    #it's a bit of an exploitation of a function for a control flow advantage but
+    #I feel it greatly simplifies the code in this case.
+    
+    
     # Create instance of FieldStorage 
     form = cgi.FieldStorage() 
     try:
@@ -31,27 +51,24 @@ def printPage():
     #set up encoding.
     encoding = {}
     for note in row.split():
+        i = note.strip()
+        i = i[0].upper() + i[1:].lower()
         try:
-            encoding[all_notes[note]] = note
+            encoding[all_notes[i]] = i
         except KeyError:
-            print "You entered an invalid note: %s" % note
+            print "You entered an invalid note: %s" % i
             return
 
     temp = row.split()
-    if len(temp) != 12:
+    if len(temp) != 12: # tone rows must be exactly 12 notes long.
         print "You must enter exactly 12 notes."
         return
-        
+    
+    
     rownumerals = []
     for i in temp:
         i = i.strip()
-        if len(i) == 2:
-            i = i[0].upper() + i[1].lower()
-        elif len(i) == 3:
-            i = i[0].upper() + i[1].lower() + i[2].lower()
-        elif len(i) > 3:
-            print "You entered an invalid note: %s" % i
-            return
+        i = i[0].upper() + i[1:].lower()
         try:
             rownumerals.append(all_notes[i])
         except KeyError:
@@ -62,14 +79,14 @@ def printPage():
         #TODO: figure out which notes they entered that were duplicates.
         print "You must enter exactly 12 UNIQUE notes."
         return
+        
     # store all primes by starting note
     allprimes = []
     for x in range(12):
         allprimes.append(prime(rownumerals, x))
 
 
-        
-            
+    #load the main tone row table and the search boxes
     if page == "main":
 
         print "<br />12-Tone Table<br />"
@@ -79,10 +96,12 @@ def printPage():
         print "  <tr class=\"primesrow\">"
         #pretty-print columns in correct order.
         print "    <td />"
+        # add headers to row so it looks nice.
         print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
         print "  </tr>"
         for y in inversion(rownumerals, 0):
             print "  <tr class=\"primesrow\">"
+            # add headers to first and last column so it looks nice.
             sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
             print pretty(allprimes[y], encoding)
             sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
@@ -106,20 +125,16 @@ def printPage():
         print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
         print '<div id="primesdiv">'
     
+    #process input parameters
     if page == "od" or page == "oid":
         try:
             # Get data from fields
             series = form.getvalue('series').strip()
-            wrap = form.getvalue('wrap').strip()
+            wrap = (form.getvalue('wrap').strip().lower() == "true")
 
         except:
             print '<div id="occurrence">Unable to process input parameters.</div>'
             return
-            
-        if wrap == "true":
-            wrap = True
-        else:
-            wrap = False
         
         series = series.split()
         notes = []
@@ -135,7 +150,8 @@ def printPage():
             except KeyError:
                 print '<div id="occurrence">You entered an invalid note: %s</div>' % i
                 return
-                
+    
+    #display ordered search results.
     if page == "od":
     
         print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(notes, encoding) + "</table><br />"
@@ -158,6 +174,7 @@ def printPage():
         print "</div>"
         
 
+    #display unordered search results.
     if page == "oid":
     
         someresult = False

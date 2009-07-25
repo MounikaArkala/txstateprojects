@@ -1,4 +1,19 @@
+/* Primes.css
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
 
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+Style sheet for the 12-tone row program.
+*/
+
+
+/******************
+*    Main Page    *
+******************/
 table.primes 
 {
   border: 1px solid;
@@ -29,6 +44,10 @@ th.primesheader
   
 }
 
+
+/******************
+* Search Results  *
+******************/
 table.primesresult
 {
   border:solid;

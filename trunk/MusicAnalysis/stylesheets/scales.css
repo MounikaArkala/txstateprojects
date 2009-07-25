@@ -1,4 +1,19 @@
+/* Scales.css
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
 
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+Style sheet for the scales program.
+*/
+
+
+/******************
+*    Main Page    *
+******************/
 table.scales_submission
 {
   border:solid;
@@ -7,6 +22,22 @@ table.scales_submission
   text-align: center;
 }
 
+td.scales_submission
+{
+  font-weight: bold;
+  text-align: right;
+}
+
+input.TextInput
+{
+    border: 1px solid;
+    background: #FFFFCC;
+}
+
+
+/******************
+* Search Results  *
+******************/
 table.scales
 {
   border: 2px solid;
@@ -30,6 +61,10 @@ td.scales
   font-weight: bold;
 }
 
+
+/******************
+* Search Results  *
+******************/
 table.scale
 {
   text-align: center;
@@ -57,17 +92,11 @@ td.scaley
   padding: 1px;
   text-align:center;
 }
-input.TextInput
-{
-    border: 1px solid;
-    background: #FFFFCC;
-}
 
-input.filters
-{
-	;
-}
 
+/******************
+*    Filter Bar   *
+******************/
 table.filters
 {
   border: 1px solid;

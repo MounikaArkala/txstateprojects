@@ -11,8 +11,6 @@ This is the Javascript file that contains all the similar functionality between 
 different programs on MusicAnalysis.  
 */
 
-
-
 /*
 ===============================
 =    "Borrowed" Functions     =
@@ -26,7 +24,6 @@ String.prototype.trim = function()
     the .trim() method on any string.    */
 	return this.replace(/^\s+|\s+$/g,"");
 }
-
 String.prototype.ltrim = function()
 {
     /*
@@ -43,7 +40,6 @@ String.prototype.rtrim = function()
     the .trim() method on any string.    */
 	return this.replace(/\s+$/,"");
 }
-
 
 function GetXmlHttpObject()
 {
@@ -64,14 +60,11 @@ function GetXmlHttpObject()
 }
 
 
-
-
 /*
 ===============================
 =   MusicAnalysis Functions   =
 ===============================
 */
-
 
 function load()
 {
@@ -84,6 +77,9 @@ function load()
 
 function handleEnter(event, func)
 {
+    /*
+    Purpose: a very simple wrapper that will call a function if
+    event's key is the same as the keyboard "enter" button.  */
 	var key = event.keyCode || event.which;
 	if (key == 13)
 	{
@@ -91,21 +87,24 @@ function handleEnter(event, func)
 	}
 }
 
-
-
-
-
 function loadContent(divName, pageName)
 {	
+    /*
+    Purpose: load content from a specific page (pageName) via AJAX into a specific container (divName).
+    Notes: this is the main function for loading AJAX content.
+    Relies on loadingLoaded as its callback for the AJAX load, and
+    on genArgs to create the argument list.  */
 	target = divName;
-	xmlhttp=GetXmlHttpObject();
+	xmlhttp = GetXmlHttpObject();
 	newUrl = pageName;
 	newUrl = newUrl + genArgs(pageName);
 	if (xmlhttp == null)
 	{
 		alert ("Your browser does not support XMLHTTP!");
 		return;
-	} 
+	}
+    // load the "loading" page, and when that page is done loading,
+    // loadingLoaded will start loading the requested page.
 	var url = "loading.html";
 	xmlhttp.onreadystatechange = loadingLoaded;
 	xmlhttp.open("GET",url,true);
@@ -116,9 +115,11 @@ function loadContent(divName, pageName)
 function loadingLoaded()
 {
     /*
-    Purpose: append the arguments to a page request.
-    Notes: Centralizes all argument passing to one method.
-    This allows all the other functions to be more generic.    */
+    Purpose: start an AJAX call to load content into a container.
+    Notes: relies on contentChanged to load the actual content.
+    The main reason this function exists is just to put up a "loading"
+    animation while we wait for the page to load.  Could really just display a "loading"
+    message somewhere on screen until the loading is done.  */
     
 	if (target == null)
 	{
@@ -184,13 +185,13 @@ function genArgs(pageName)
 	{
 		if (page == "main")
 		{
-			args = args + "notes=" + escape(row) + "&page=" + escape(page);
+			args = args + "notes=" + escape(row) + "&page=" + escape(page) + "&order=" + escape(order) + "&consecutive=" + escape(consecutive);
 		}
 		else if (page == "filtered")
 		{
             // Need to grab the filter statuses and append them to the request
             // so the server knows which values to filter out.
-			args = args + "notes=" + escape(row) + "&page=" + escape(page);
+			args = args + "notes=" + escape(row) + "&page=" + escape(page) + "&order=" + escape(order) + "&consecutive=" + escape(consecutive);
 			for (i = 0; i < groupnum; i++)
 			{
 				args = args + "&filter"+i+"="+ escape(groups[i]);

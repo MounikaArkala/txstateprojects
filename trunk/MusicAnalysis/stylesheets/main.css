@@ -1,5 +1,21 @@
+/* Main.css
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
+
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+Style sheet for the website.
+Contains all of the common style for the overall site.
+program-specific styles are in separate style sheets.
+*/
 
 
+/******************
+*    Navigation   *
+******************/
 table.menu
 {
   border: 1px solid;
@@ -24,7 +40,6 @@ td.menu
   cursor: pointer;
 }
 
-/* ------------------------------ */
 
 /******************
 *     Buttons     *
@@ -35,8 +50,9 @@ button.SubmitButton
     background: #AACCEE;
 }
 
+
 /******************
-*Common Containers*
+*    Containers   *
 ******************/
 body
 {

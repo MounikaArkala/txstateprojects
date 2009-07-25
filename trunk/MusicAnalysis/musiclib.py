@@ -1,3 +1,18 @@
+#!/usr/local/bin/python
+""" Musiclib.py
+----------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schuler
+
+Texas State University
+Summer 2009
+----------------------------
+Brief Summary:  Contains some common functions used by all of the music analysis website.
+"""
+
+# All possible input notes and their mapping to an 'absolute' note value.
+# note that my 'absolute' values are rooted at A.  it doesn't really matter where they're rooted,
+# and A conceptually makes more sense to me than C does, as a 0 value.
 all_notes = {'Abb': 10, 'Bbb': 0, 'Gbb': 8, 'Gx': 0, 'A#': 1, 'Bb': 1, 'C#': 4,
 'Db': 4, 'E#': 8, 'Fb': 7, 'F#': 9, 'G#': 11, 'Dx': 7, 'Bx': 4, 'Gb': 9,
 'A': 0, 'C': 3, 'B': 2, 'E': 7, 'D': 5, 'G': 10, 'F': 8, 'Cbb': 1,
@@ -129,7 +144,4 @@ def detect(notes, search, wrap):
             if result >= 0:
                 matches.append((name, x, result, temp))
     return matches
-
-
-
 

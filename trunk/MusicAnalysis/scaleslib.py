@@ -1,3 +1,16 @@
+#!/usr/local/bin/python
+""" Scaleslib.py
+----------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schuler
+
+Texas State University
+Summer 2009
+----------------------------
+Brief Summary:  This is just a definition of all of the different scales the Scales program supports.
+The scales are just stored in a dictionary with a mapping from scale name to a tuple containing
+a list of the note steps (integers) as the first item and a list of filter keywords for the second.
+"""
 scales =    {
             'Major Scale'                          : ([2, 2, 1, 2, 2, 2, 1],    ["Classical","Jazz","Rock", "Pop"]),
             'Natural Minor Scale'                  : ([2, 1, 2, 2, 1, 2, 2],    ["Classical"]),

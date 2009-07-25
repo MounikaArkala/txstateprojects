@@ -1,0 +1,146 @@
+
+
+
+====================================================================================
+
+Main Site Help
+
+This site contains a set of music analysis tools.  You can use the upper navigation bar
+to explore the site.
+Simply click on each item in the navigation menu to reach that part of the site.
+
+12-Tone is a tool for exploring atonal music.
+
+Scales is a tool for finding scales which contain certain notes.
+
+
+
+====================================================================================
+
+
+
+12-Tone Help
+
+This tool relates to the analysis of atonal music.
+The purpose of this tool is to take a series of 12 notes that don't repeat, and generate
+the 12-tone matrix / table that contains all of the values in it.
+It is important to be aware that a series of notes containing notes that appear different,
+such as A# and Bb, do not contain 12 musically-distinct notes.
+A# relates to the same pitch as Bb does, under the most common (equal-tempered) tuning and notation.
+A message will alert you if some of your notes are not unique.
+
+Once a row of 12 unique notes has been entered, for example,
+A F# G Ab E F B Bb D C# C Eb
+you can either press "enter" or click "Submit".
+If the tone row does not work for one reason or another, an error message may be displayed.
+The only errors will be where the length of notes is not correct, some notes are invalid (such as Qb or Rb),
+or some notes are not unique.
+
+If the tone row passes the error checks, a 12-tone table will be displayed containing all of the
+primes, retrogrades, and prime inversions / retrograde inversions, of the row.
+
+A prime of a row is the row shifted up x semitones.
+For example, the 0th prime of a row is the row shifted up 0 semitones, so it's the same as the original input.
+The 3rd prime of
+A F# G Ab E F B Bb D C# C Eb
+is
+C A Bb B G Ab D C# F E Eb F#
+
+which is just A up 3 semitones (A = 0, A# = 1, B = 2, C = 3).
+
+An inversion is just that prime but with the steps reversed.
+For example, if the first two notes of the row are
+A F#
+then for the 0th inversion, the first two notes are
+A C
+because C is the same distance in semitones from both F# and C.
+
+
+A retrograde is simply a prime in reverse.  So the retrograde of
+A F# G Ab E F B Bb D C# C Eb
+will be
+Eb C C# D Bb B F E Ab G F# A
+
+
+Once the table is presented, it can be inspected visually.  However, if you want to see everywhere a specific
+sequence occurs in the table, search boxes are provided.  The order-independent series search is used
+when searching for a series of notes where you don't care the order.
+For example, if you want to find any of these:
+F E Ab
+F Ab E
+E F Ab
+E Ab F
+Ab E F
+Ab F E
+you would use the order-independent search with any of those as an input.
+If you use the order-dependent search, your search will be restricted exclusively to values that fit exactly
+with that search string.  Eg. F E Ab will *only* find rows or columns that contain exactly that sequence,
+and it will not try any of the other possible permutations.
+
+The "enable wraparound" checkbox is to determine if you'd like your searches to wrap around the column/row end.
+For example, if you have the prime row 
+A F# G Ab E F B Bb D C# C Eb
+and you search for
+C Eb A F#
+
+You will not find it if wraparound is disabled; it's not contained in that row directly.
+However, if wraparound *is* enabled, then it will match the row starting at the 10th note ( C ).
+
+
+====================================================================================
+
+
+Scales Help:
+
+The scales tool knows a lot of scales.  It knows approximately 55 different ones.
+The purpose of the tool is to find out which scales contain a specific set of notes.
+For example, if I would like to find all scales which contain the notes A C E, I can
+type that into the "Notes:" field and hit "enter" (or click "submit").
+My result will be a page containing a very long list of scales
+(A C E is a note, its fifth, and its minor third, which is very common note pattern,
+so it will occur in many scales.)  A more detailed note pattern, such as A C E F G#,
+will be in far fewer scales.
+
+Now that you know what the purpose of the tool is, it's important to know how to use it.
+
+The search page contains two entries and one checkbox.
+The first entry field, "Notes:", is the regular search.  This just searches all of the scales
+for a matching string of notes, in any order it wants.  So a search for A C E and C E A and E A C
+will all return the same result.
+
+The second entry field, "Ordered Notes", is a special search for when you know exactly what order
+you want the notes in already.  So A C E and C E A will have quite different results.
+
+The check box, "require consecutive notes" is for when you are certain your notes do not have any
+other notes between them.
+So if searching for A C E ordered, but without "require consecutive notes", you will get
+about 45 scales as a result.  An example of a result is the Blues Scale in A, which is
+A C D D# E G A
+and as you can see, A C E does occur in that scale, in order, but there are extra notes (D D#) in between.
+
+If you search with "require consecutive notes", you will get
+only a single result , the Oriental Scale, as
+G A C E F G
+because that is the only scale that contains all the notes, A C E,
+in that order (because we did an ordered search) and with no other notes between them.
+
+Once a search has been performed, you will be presented with a list of scales.  This list may be quite large;
+therefore, the facility to filter your results was added.
+Any types of music that you do not wish to include in the result (say, Blues music) you can simply
+deselect its check box, and the page will reload without any of those results included.
+
+The filtering system is relaxed. For example, if you search for A C E, one of the scales
+you will come up with is the Mixolydian Scale.  If you remove Jazz from the filter list,
+the Mixolydian scale will still be present in the list, because it is used in other music types,
+such as Modern Art.  An item will only not show up in the scales list if ALL of its music types
+are turned off by the filter.  Just turning off one has no effect.
+
+---
+One thing to note is that the tool translates all input into a specific encoding.
+So even if you include a Bb, it will display this value as A#.  Also, all
+scales that should be written in flatted form will be written in sharped form.
+In fact, all scales are written in sharped form.  No other notation is supported by the tool as of
+the writing of this document.
+
+
+
