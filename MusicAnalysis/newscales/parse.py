@@ -66,6 +66,6 @@ for line in open('src.txt'):
     if len(repr(tointervals(vals))) > y:
            y = len(repr(tointervals(vals)))
 
-    print "            %s: (%s %s)," % ("'" + name + "'" + " "*(45-len(name)), repr(tointervals(vals))+","+" " * (36-len(repr(tointervals(vals)))), repr(tags))
+    print "            %s : (%s %s)," % ("'" + name + "'" + " "*(45-len(name)), repr(tointervals(vals))+","+" " * (36-len(repr(tointervals(vals)))), repr(tags))
 
 sys.stdout.close()
