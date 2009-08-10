@@ -1,4 +1,4 @@
-/* Primes.css
+/* 12tone.css
 ------------------------------
 Author:    Luke Paireepinart
 Copyright: Nico Schüler
@@ -70,4 +70,45 @@ td.primesresulty
   border:solid;
   border-width:1px;
   width:2em;
+}
+
+
+
+/******************
+*    Containers   *
+******************/
+#searchborder
+{
+  display:table;
+  border: solid;
+  border-width: 2px;
+  border-color: black;
+  width:auto;
+  text-align: center;
+  margin: 2px auto;
+  padding: 5px;
+}
+
+#searchheader
+{
+  border: solid;
+  text-align: center;
+  align: center;
+  border-width: 1px;
+  border-color: black;
+  border-collapse: collapse;
+  width:auto;
+  margin: 5px;
+  padding: 5px;
+}
+#searchcheck
+{
+  border: solid;
+  text-align: right;
+  padding: 5px;
+  border-width: 1px;
+  border-color: black;
+  border-collapse: collapse;
+  width:auto;
+  margin: 5px;
 }

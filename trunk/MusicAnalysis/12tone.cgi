@@ -1,6 +1,6 @@
 #!/usr/local/bin/python
+# -*- coding: cp1252 -*-
 #!"C:/python26/python.exe"
-
 """ Primes.cgi
 ----------------------------
 Author:    Luke Paireepinart
@@ -14,39 +14,24 @@ to search through them for different specific primes/retrogrades or inversions o
 Expects a website as output and frontend.
 """
 import sys
+from libs import structure
 from musiclib import *
 import cgi
 
 # Debug code, shouldn't be included unless testing.
-#import cgitb
-#cgitb.enable()
+import cgitb
+cgitb.enable()
 
-print "Content-type: text/html"
-print
 
 def pretty(notes, encoding):
     #notes is int array, encoding is a dict such as {"A":0, "A#":1 ... "G#":11}
     temp = "    <td class=\"primesdata\">%s</td>\n" * len(notes)
     return temp % tuple([encoding[i] for i in notes])
-
-    
     
 def printPage():
     #this is a function so it can be "return'd" from.
     #it's a bit of an exploitation of a function for a control flow advantage but
     #I feel it greatly simplifies the code in this case.
-    
-    
-    # Create instance of FieldStorage 
-    form = cgi.FieldStorage() 
-    try:
-        # Get data from fields
-        page = form.getvalue('page').strip().lower()
-        row = form.getvalue('notes').strip()
-    
-    except:
-        print "Unable to process input parameters."
-        return
 
     #set up encoding.
     encoding = {}
@@ -86,57 +71,56 @@ def printPage():
         allprimes.append(prime(rownumerals, x))
 
 
-    #load the main tone row table and the search boxes
-    if page == "main":
-
-        print "<br />12-Tone Table<br />"
-        
-        # primes table
-        print "<table class=\"primes\">"
+    #display the primes table and the search fields.
+    print "<br />12-Tone Table<br />"
+    # primes table
+    print "<table class=\"primes\">"
+    print "  <tr class=\"primesrow\">"
+    #pretty-print columns in correct order.
+    print "    <td />"
+    # add headers to row so it looks nice.
+    print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
+    print "  </tr>"
+    for y in inversion(rownumerals, 0):
         print "  <tr class=\"primesrow\">"
-        #pretty-print columns in correct order.
-        print "    <td />"
-        # add headers to row so it looks nice.
-        print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
+        # add headers to first and last column so it looks nice.
+        sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
+        print pretty(allprimes[y], encoding)
+        sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
         print "  </tr>"
-        for y in inversion(rownumerals, 0):
-            print "  <tr class=\"primesrow\">"
-            # add headers to first and last column so it looks nice.
-            sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
-            print pretty(allprimes[y], encoding)
-            sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
-            print "  </tr>"
-            
-            
-        print "    <td />"
-        print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
-        print "  </tr>"
-        print "</table>"
+        
+        
+    print "    <td />"
+    print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
+    print "  </tr>"
+    print "</table>"
 
 
-        print '<br />'
-        print 'Search for an order-dependent series<br />'
-        print '<input type="text" name="odseries" id="odseries" class="TextInput" onkeypress="handleEnter(event, callOD);"/>'
-        print '<button type="button" onClick="callOD();" class="SubmitButton">Submit</button>'
-        print '<br />'
-        print 'Search for an order-independent series<br />'
-        print '<input type="text" name="oidseries" id="oidseries" class="TextInput" onkeypress="handleEnter(event, callOID);"/>'
-        print '<button type="button" onClick="callOID();" class="SubmitButton">Submit</button>'
-        print '<br />Enable wraparound <input type="checkbox" checked id="wraparound"><br />'
-        print '<div id="primesdiv">'
+    print '<br />'
+    print '<div id="searchborder">'
+    print '<div id="searchheader">'
+    print 'Search table for a series of notes'
+    print '<form name="search" id="search" action="12tone.cgi" method="get">'
+    print '<input class="TextInput" type="text" name="series" id="series" size="40" onkeypress="handleEnter(event, document.search.submit);" value="%s" />' % " ".join(series)
+    print '<input class="SubmitButton" type="submit" value="Submit" />'
+    print '</div> <!-- ~searchheader -->'
+    print '<div id="searchcheck">'
+    if order:
+        print 'Match Input Order <input type="checkbox" checked name="order" id="order"><br />'
+    else:
+        print 'Match Input Order <input type="checkbox" name="order" id="order"><br />'
+    if wrap:
+        print 'Allow Wrap-Around <input type="checkbox" checked name="wrap" id="wrap"><br />'
+    else:
+        print 'Allow Wrap-Around <input type="checkbox" name="wrap" id="wrap"><br />'
+    print '</div> <!-- ~searchcheck -->'
+    print '<input type="hidden" name="notes" id="notes" value="%s" />' % row
+    print '</form>'
+    print '</div> <!-- ~searchborder -->'
+    print '<div id="primesdiv">'
     
     #process input parameters
-    if page == "od" or page == "oid":
-        try:
-            # Get data from fields
-            series = form.getvalue('series').strip()
-            wrap = (form.getvalue('wrap').strip().lower() == "true")
-
-        except:
-            print '<div id="occurrence">Unable to process input parameters.</div>'
-            return
-        
-        series = series.split()
+    if page == "od" or page == "oid": 
         notes = []
         for i in series:
             i = i.strip()
@@ -153,7 +137,6 @@ def printPage():
     
     #display ordered search results.
     if page == "od":
-    
         print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(notes, encoding) + "</table><br />"
         result = detect(rownumerals, notes, wrap)
         if len(result) == 0:
@@ -200,9 +183,53 @@ def printPage():
         if not someresult:
             print '<div id="occurrence">That sequence did not occur in any order!<br /></div>'
             
+    print '</div>'
+   
 
-    if page == "main":
-        print '</div>'
+    
+
+form = cgi.FieldStorage() 
+    
+structure.print_header(title="12Tone Title", scripts=["main.js", "12tone.js"], css=["main.css", "12tone.css"])
+
+
+#default values.    
+wrap = False
+order = False
+series = [""]
+try:
+    series = form.getvalue('series').strip()       
+    series = series.split()
+    try:
+        wrap = (form.getvalue('wrap').strip().lower() == "on")
+    except:
+        #it won't submit "wrap"'s value if it's not checked, so default it to False.
+        wrap = False
         
+    try:
+        order = (form.getvalue('order').strip().lower() == "on")
+    except:
+        order = False
+        
+    if order:
+        page = "od"
+    else:
+        page = "oid"
+except:
+    page = "result"
 
-printPage()
+
+
+try:
+    # Grab all input and get it ready for print function.
+    row = form.getvalue('notes').strip().lower()
+    #temp = form.getvalue('notes').strip()
+except:
+    structure.print_body("12tone/main.html")
+    page = "main"
+
+    
+#output all the page data.
+if page != "main":
+    printPage()
+structure.print_footer()   

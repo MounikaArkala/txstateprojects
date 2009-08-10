@@ -43,36 +43,19 @@ function callScale()
 	loadContent('content','scales.cgi');
 }
 
-function callScaleOrdered()
+function toggleOthers()
 {
-    /*
-    Purpose: performing an ordered search (continuity of notes based on "consecutive" checkbox).
-    Notes: also performs simple error-checking before submitting.  */
-    
-    // Set the search to ordered.
-    order = true;
-    
-    // Grab the current value of the search field.
-	row = document.getElementById("ordered_notes").value;
-    row = row.trim();
-    // check whether search is consecutive.
-    consecutive = document.getElementById("consecutive").checked;
-    
-    // Do some error-checking.
-    if (row.length == 0)
+    if (document.noteform.order.checked)
     {
-		document.getElementById("error").innerHTML = "You entered no notes.  Please enter at least 2 notes.";
-        return false;
+        document.noteform.wrap.disabled = false;
+        document.noteform.consec.disabled = false;
     }
-    temp = row.split(' ');
-    if (temp.length == 1)
+    else
     {
-        document.getElementById("error").innerHTML = "You entered 1 note.  Please enter at least 2 notes.";
-        return false;
+        document.noteform.wrap.disabled = true;
+        document.noteform.consec.disabled = true;
     }
-    // passed error checking so load content.
-	page = "main";
-	loadContent('content','scales.cgi');
+    
 }
 
 function updateScales()
