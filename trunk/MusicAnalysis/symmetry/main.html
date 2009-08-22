@@ -1,0 +1,29 @@
+<!-- main.html
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
+
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+The HTML page for the initial search and information on how to use the symmetry program.
+-->
+
+<!-- search bar code -->
+<form name="noteform" id="noteform" action="symmetry.cgi" onSubmit="return testSubmit();" method="get">
+<label> Notes: </label>
+<input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, testSubmit);"/>
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+</form>
+
+<br /> <br />
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+<br /> <br />
+
+How to use this program:<br /><br />
+Enter your notes, separated by spaces, in the text entry field entitled "Notes".
+<br />
+Example: <br /><br />F A C E<br />
+When you are finished entering the notes, press Enter or click the <button class="SubmitButton" type="button">Submit</button> button. <br />

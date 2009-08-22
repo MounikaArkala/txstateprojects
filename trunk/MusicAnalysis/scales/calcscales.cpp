@@ -35,18 +35,20 @@ int find(int target, vector<int>* tosearch)
 
 int main(int argc, char* argv[])
 {
-    if (argc < 6)
+    if (argc < 7)
     {
         cout << "invalid arguments!" << endl; return -1;
     }
 
-    // get search items, wraparound status, "ordered", and requiring consecutive notes, and filter.
+    // get search items, wraparound status, "ordered", and requiring consecutive notes, filter, and starting notes.
     bool ordered = atoi(argv[1]);
     bool wraparound = atoi(argv[2]);
     bool consecutive = atoi(argv[3]);
     int filter = atoi(argv[4]);
+    vector<int> start;
     vector<int> query;
-    StringExplode(argv[5], " ", &query);
+    StringExplode(argv[5], " ", &start);
+    StringExplode(argv[6], " ", &query);
     /*
     query.push_back(0);
     query.push_back(3);
@@ -76,24 +78,31 @@ int main(int argc, char* argv[])
                     scale = vector<int>();
                     getline(fin, line);
                     StringExplode(line, " ", &scale);
-                    locations = vector<int>();
-                    for (int i = 0; i < query.size(); i++)
+                    
+                    // check starting pitches.
+                    if (find(scale.at(0), &start) < 0)
                     {
-                        int location = find(query.at(i), &scale);
-                        if (location < 0)
+                        matched = false; // skip scale if it doesn't start with a target note.
+                    }
+                    if (matched)
+                    {
+                        locations = vector<int>();
+                        for (int i = 0; i < query.size(); i++)
                         {
-                            matched = false;
-                        }
-                        else
-                        {
-                            locations.push_back(location);
+                            int location = find(query.at(i), &scale);
+                            if (location < 0)
+                            {
+                                matched = false;
+                            }
+                            else
+                            {
+                                locations.push_back(location);
+                            }
                         }
                     }
-                    if (ordered)
-                    // this only matters if search is consecutive and ordered, right?
+                    if (matched)
                     {
-                        
-                        if (matched)
+                        if (ordered)
                         {
                             /* first check if they're in the correct order. */
                             if (!wraparound)
@@ -143,21 +152,47 @@ int main(int argc, char* argv[])
                                         }
                                     }
                                 }
-
-
                             }
-
-                            /*if (consecutive)
+                        }
+                        else
+                        {
+                            if (consecutive)
                             {
-                                for (int i = 0; i < query.size(); i++)
+                                int state_transitions = 0, state;
+                                int location = find(scale.at(0), &query);
+                                if (location < 0) // not a queried item.
                                 {
-
-                                    if (find(query.at(i), &scale) < 0)
+                                    state = false;
+                                }
+                                else
+                                {
+                                    state = true;
+                                }
+                                for (int i = 1; i < scale.size(); i++)
+                                {
+                                    location = find(scale.at(i), &query);
+                                    if (location < 0) // not a queried item.
                                     {
-                                        matched = false;
+                                        if (state) // it found a queried item last.
+                                        {
+                                            state = false;
+                                            state_transitions++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (!state)
+                                        {
+                                            state = true;
+                                            state_transitions++;
+                                        }
                                     }
                                 }
-                            }*/
+                                if (state_transitions > 2) // not continuous.
+                                {
+                                    matched = false;
+                                }
+                            }
                         }
                     }
                     

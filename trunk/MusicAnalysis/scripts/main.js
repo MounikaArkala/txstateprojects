@@ -57,7 +57,7 @@ function handleEnter(event, func)
 	var key = event.keyCode || event.which;
 	if (key == 13)
 	{
-		func();
+		return func();
 	}
 }
 
