@@ -190,7 +190,8 @@ def printPage():
 
 form = cgi.FieldStorage() 
     
-structure.print_header(title="12Tone Title", scripts=["main.js", "12tone.js"], css=["main.css", "12tone.css"])
+structure.print_header(title="Twelve-Tone Music Analysis: Web-Based Analytical Tool for 12-Tone Music by Nico Schuler and Luke Paireepinart",
+                       scripts=["main.js", "12tone.js"], css=["main.css", "12tone.css"])
 
 
 #default values.    

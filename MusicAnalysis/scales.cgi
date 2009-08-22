@@ -1,12 +1,12 @@
 #!/usr/local/bin/python
 # -*- coding: cp1252 -*-
 #!"C:/python26/python.exe"
-
 import os, cgi
 from libs import structure
 from musiclib import all_notes
 
 filename = "./calcscales"
+#filename = "calcscales.exe"
 linelen = 10
 
 # Debug code, shouldn't be included unless testing.
@@ -79,8 +79,8 @@ def generate_support_files():
 #it just uses this encoding because it doesn't know how to refer to items in a scale
 #(eg. is an item a Eb or a D#?  It depends on the scale.
 #but this information is not encoded in the scale database, so it uses defaults.
-default_encoding = {0:"&nbsp;&nbsp;A&nbsp;&nbsp;", 1:"A#/Bb", 2:"B&nbsp;/Cb", 3:"B#/&nbsp;C", 4:"C#/Db",
-                    5:"&nbsp;&nbsp;D&nbsp;&nbsp;", 6:"D#/Eb", 7:"E&nbsp;/Fb", 8:"E#/&nbsp;F", 9:"F#/Gb", 10:"&nbsp;&nbsp;G&nbsp;&nbsp;", 11:"G#/Ab"}
+default_encoding = {0:"A", 1:"A#/Bb", 2:"B/Cb", 3:"B#/C", 4:"C#/Db",
+                    5:"D", 6:"D#/Eb", 7:"E/Fb", 8:"E#/F", 9:"F#/Gb", 10:"G", 11:"G#/Ab"}
 
 def pretty(notes, encoding):
     ' notes is int array, encoding is a dict such as {0:"A", 1:"A#" ... 11:"G#"}'
@@ -92,10 +92,41 @@ def pretty(notes, encoding):
 form = cgi.FieldStorage() 
 
 def printPage():
-    global notes, wrap, order, consecutive, linelen
-    #this is a function so it can be "return'd" from.
-    #it's a bit of an exploitation of a function for a control flow advantage but
-    #I feel it greatly simplifies the code in this case.
+    global notes, wrap, order, consecutive, linelen, start
+    from scales.filters import filters
+    
+    print '<form name="noteform" id="noteform" action="scales.cgi" method="get">'
+    # display filter table
+    print '<table class="filters" id="filtertable">'
+    print '<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>'
+    print '<tr class="filters">'
+    for filter in filters:
+        try:
+            filter_checked = (form.getvalue(filter).strip().lower() == "on")
+        except:
+            filter_checked = False
+        if filter_checked:
+            print '<td class="filters"><input type="checkbox" class="filterbox" \
+            checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
+        else:
+            print '<td class="filters"><input type="checkbox" class="filterbox" \
+            name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
+    print '</tr></table>'
+    print '<button class="SubmitButton" type="button" onClick="selectAll();">Select All</button>'
+    print '<button class="SubmitButton" type="button" onClick="selectNone();">Select None</button>'
+    print '<button class="SubmitButton" type="button" onClick="refresh();">Refresh</button>'
+    #store all our inputs in hidden fields so that the "refresh" button can submit the form."
+    print '<input type="hidden" name="notes" id="notes" value="%s" />' % notes
+    print '<input type="hidden" name="start" id="start" value="%s" />' % start
+    if wrap:
+        print '<input type="hidden" name="wrap" id="wrap" value="on" />'
+    if consecutive:
+        print '<input type="hidden" name="consec" id="consec" value="on" />'
+    if order:
+        print '<input type="hidden" name="order" id="order" value="on" />'
+    print '</form>'
+    
+    
     temp = []
     for i in notes.split():
         i = i.strip()
@@ -104,20 +135,34 @@ def printPage():
             if not all_notes[i] in temp:
                 temp.append(all_notes[i])
         except KeyError:
-            print "You entered an invalid note: %s" % i
+            print '<h2 class="scales">You entered an invalid note: %s</h2>' % i
             return
-    
+            
     notes = temp
-    print '<div id="scalesdiv">'
-    print '<table class="scales">'
-    print '<tr class="scales">'
-    print '<th scope="col" class="scales">Scale Name</th>'
-    print '<th scope="col" class="scales">Music</th>'
-    print '<th scope="col" class="scales">Matching Scales</th></tr>'
-    
+    temp = []
+    all = False
+    display = []
+    for i in start.split():
+        i = i.strip()
+        i = i[0].upper() + i[1:].lower()
+        display.append(i)
+        try:
+            if not all_notes[i] in temp:
+                temp.append(all_notes[i])
+        except KeyError:
+            all = True
+            temp = range(12)
+            break
+    if all:
+        print '<p class="scales">Searching all starting pitch classes</p>'
+    else:
+        if len(display) == 1:
+            print '<p class="scales">Only searching scales that start with pitch class %s</p>' % ", ".join(display)
+        else:
+            print '<p class="scales">Only searching scales that start with pitch classes %s</p>' % ", ".join(display)
+    start = temp
     
     from scales.scales import scales
-    from scales.filters import filters
     args = []
     if order:
         args.append("1")
@@ -125,26 +170,31 @@ def printPage():
             args.append("1")
         else:
             args.append("0")
-        if consecutive:
-            args.append("1")
-        else:
-            args.append("0")
     else:
-        args = ["0", "0", "0"]
+        args = ["0", "0"]
+    if consecutive:
+        args.append("1")
+    else:
+        args.append("0")
     filters_combined = 0
     for i in range(len(filters)):
         try:
-            order = (form.getvalue(filters[i]).strip().lower() == "on")
+            filter_active = (form.getvalue(filters[i]).strip().lower() == "on")
         except:
-            order = False
-        if order:
+            filter_active = False
+        if filter_active:
             filters_combined += 2**i
     os.chdir("scales")
-    out = os.popen('%s %s %s "%s"' % (filename, " ".join(args), filters_combined, " ".join([str(i) for i in notes]))).readlines()
+    out = os.popen('%s %s %s "%s" "%s"' % (filename, " ".join(args), filters_combined, " ".join([str(i) for i in start]), " ".join([str(i) for i in notes]))).readlines()
     os.chdir("..")
+    if len(out) == 0:
+        print '<h2 class="scales">No scales matched that search!</h2>'
+        return
+        
+        
     previous = int(out[0]) / 12
     matching = [int(out[0]) % 12]
-        
+    output = [] # buffer our output.
     for result in out[1:]:
         try:
             result_int = int(result)
@@ -153,184 +203,79 @@ def printPage():
             if target == previous:
                 matching.append(shift)
             else:           
-                print '<tr class="scales">'
-                print '<td class="scales">%s</td><td class="scales">%s</td>' % (scales[previous][0], ", ".join(scales[previous][2]))
-                print '<td class="scales">'
+                output.append('<tr class="scales">')
+                output.append('<td class="scales">%s</td><td class="scales">%s</td>' % (scales[previous][0], ", ".join(scales[previous][2])))
+                output.append('<td class="scales">')
                 for starting_note in matching:
                     scale = get_scale(starting_note, scales[previous][1])
-                    print '<table class="scale"><tr class="scale">'
+                    output.append('<table class="scale"><tr class="scale">')
                     length = 0
                     for note in scale:
                         if length >= linelen:
-                            print '</tr><tr class="scale">'
+                            output.append('</tr><tr class="scale">')
                             length = 0
                         length += 1
                         if note in notes:
-                            print '<td class="scaley">%s</td>' % default_encoding[note]
+                            output.append('<td class="scaley">%s</td>' % default_encoding[note])
                         else:
-                            print '<td class="scalen">%s</td>' % default_encoding[note]
-                    print '</tr></table>\n'
-                print '</td></tr>'
+                            output.append('<td class="scalen">%s</td>' % default_encoding[note])
+                    output.append('</tr></table>\n')
+                output.append('</td></tr>')
                 previous = target     
                 matching = [shift]
         except:
             pass#print result
-            
-            #scales result table.
-            
-    print '</table>'
-
-    print '</div> <!-- ~scalesdiv -->'
-            
-    """
     
-    #convert notes from strings to their correct corresponding note (integer).
-    notes = []
-    for i in temp.split():
-        i = i.strip()
-        i = i[0].upper() + i[1:].lower()
-        
-        try:
-            if not all_notes[i] in notes:
-                notes.append(all_notes[i])
-        except KeyError:
-            print "You entered an invalid note: %s" % i
-            return
-
-    groups = []
-    for scale in scales:
-        for group in scales[scale][1]:
-            groups.append(group)
-    groups = list(set(groups))
-    groups.sort()
-
-    if page.strip().lower() == "main":# print out the filter list, but don't do any filtering.
+    try:           
+        output.append('<tr class="scales">')
+        output.append('<td class="scales">%s</td><td class="scales">%s</td>' % (scales[previous][0], ", ".join(scales[previous][2])))
+        output.append('<td class="scales">')
+        for starting_note in matching:
+            scale = get_scale(starting_note, scales[previous][1])
+            output.append('<table class="scale"><tr class="scale">')
+            length = 0
+            for note in scale:
+                if length >= linelen:
+                    output.append('</tr><tr class="scale">')
+                    length = 0
+                length += 1
+                if note in notes:
+                    output.append('<td class="scaley">%s</td>' % default_encoding[note])
+                else:
+                    output.append('<td class="scalen">%s</td>' % default_encoding[note])
+            output.append('</tr></table>\n')
+        output.append('</td></tr>')
+    except:
+        pass
     
-        print "using notes: %s <br /><br />" % pretty(notes, default_encoding)
-        
-        #filter list.
-        print '<table class="filters">'
-        print '<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>'
-        print '<tr class="filters">'
-        for i, group in enumerate(groups):
-            print '<td class="filters"><input type="checkbox" class="filterbox" \
-            checked id="filter%i" onClick="updateScales();">%s</input></td>' % (i, group)
-        print '</tr></table>'
-        print '<input type="hidden" id="grps" value="%s" />' % len(groups)
-        
-        print '<div id="scalesdiv">'
-
-        #scale filter
-        scalenames = scales.keys()
-        
-    elif page == "filtered": #just print out the (filtered) scales table.
-        
-        valid_groups = []
-        for i, group in enumerate(groups):
-            try:
-                temp = form.getvalue("filter%i" % i).strip()
-                if temp == "true":
-                    valid_groups.append(group)
-            except:
-                print "Error processing music filters."
-                return
-                
-        valid_groups = frozenset(valid_groups)
-                
-        scalenames = []
-        for scale in scales:
-            if valid_groups.intersection(set(scales[scale][1])):
-                scalenames.append(scale)
-
-
-    else:
-        #they specified an invalid page name.
-        print "404 - Page %s could not be found!" % page
-        
-    #scales result table.
+    if len(output) == 0:
+        print '<h2 class="scales">No scales matched that search!</h2>'
+        return
+    
+    print '<div id="scalesdiv">'
     print '<table class="scales">'
     print '<tr class="scales">'
     print '<th scope="col" class="scales">Scale Name</th>'
     print '<th scope="col" class="scales">Music</th>'
     print '<th scope="col" class="scales">Matching Scales</th></tr>'
-
-    scalenames.sort()
-    for scale in scalenames:
-        matched = []
-        for s in get_scales(scales[scale][0]):
-            tempscale = []
-            found = []
-                
-            current = 0
-            
-            for note in s:
-                if consecutive and current > 0:
-                    if current < len(notes) and note != notes[current]:
-                        # if we're still looking for notes, and
-                        #the current note doesn't match...
-                        found = []
-                        break
-                        
-                if order:
-                # monitor the current note and only allow the note to be added if the notes are
-                #in the correct order.
-                    if note == notes[min(len(notes) - 1, current)]:
-                        tempscale.append((note, 1))
-                        # tempscale contains a tuple which lets the program know if
-                        #it should highlight that note or not.
-                        found.append(note)
-                        current += 1
-                        
-                    else:
-                        if note in notes:
-                            tempscale.append((note, 1))
-                        else:
-                            tempscale.append((note, 0))
-                            
-                else:
-                    if note in notes:
-                        tempscale.append((note, 1))
-                        found.append(note)
-                        current += 1
-                        
-                    else:
-                        tempscale.append((note, 0))
-                        
-            if len(set(found)) == len(notes): #use a set so it supports scales that repeat notes as well as those that don't.
-                #it was a match, so add the scale to our list.
-                matched.append(tempscale)
-                
-        if len(matched) > 0: # there were valid matches so print them out.
-            print '<tr class="scales">'
-            print '<td class="scales">%s</td><td class="scales">%s</td>' % (scale, ", ".join(scales[scale][1]))
-            print '<td class="scales">'
-            for item in matched:
-                print '<table class="scale"><tr class="scale">'
-                for note, match in item:
-                    if match:
-                        print '<td class="scaley">%s</td>' % default_encoding[note]
-                    else:
-                        print '<td class="scalen">%s</td>' % default_encoding[note]
-                print '</tr></table>\n'
-            print '</td></tr>'
+    
+    print "\n".join(output)
             
     print '</table>'
 
-    if page == "main":
-        print "</div>"
-    
-    """
-
+    print '</div> <!-- ~scalesdiv -->'
     
     
-structure.print_header(title="Scales page", scripts=["scales.js"], css=["main.css", "scales.css"])
+    
+    
+structure.print_header(title="Scales Identification in Music Analysis: Web-Based Analytical Tool for the Matching of Scalar Pitch Collections by Nico Schuler and Luke Paireepinart",
+                       scripts=["scales.js"], css=["main.css", "scales.css"])
 generate_support_files()
-
-  
   
 try:
     # Get data from fields
     notes = form.getvalue('notes').strip().lower()
+    start = form.getvalue('start').strip().lower()
     try:
         wrap = (form.getvalue('wrap').strip().lower() == "on")
     except:
@@ -345,22 +290,23 @@ try:
         consecutive = (form.getvalue('consec').strip().lower() == "on")
     except:
         consecutive = False
-        
+    
     printPage()
     
 except:
     #main page.
     from scales.filters import filters
     structure.print_body("scales/main_1.html")
-    print '<table class="filters">'
+    print '<table class="filters" id="filtertable">'
     print '<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>'
     print '<tr class="filters">'
     for filter in filters:
         print '<td class="filters"><input type="checkbox" class="filterbox" \
         checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
     print '</tr></table>'
+    print '<button class="SubmitButton" type="button" onClick="selectAll();">Select All</button>'
+    print '<button class="SubmitButton" type="button" onClick="selectNone();">Select None</button>'
 
-    print '<div id="scalesdiv">'
 
     structure.print_body("scales/main_2.html")
 

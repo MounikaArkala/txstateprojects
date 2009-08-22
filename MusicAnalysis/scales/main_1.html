@@ -9,12 +9,19 @@ Summer 2009
 Brief Summary:
 The HTML page for the initial search and information on how to use the Scales program.
 -->
-
-<form name="noteform" id="noteform" action="scales.cgi" method="get">
+<div id="inputFields">
+<br /><br />
+<form name="noteform" id="noteform" action="scales.cgi" method="get" onSubmit="return testSubmit();">
 <label> Notes: </label>
-<input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, document.noteform.submit);"/>
-<input class="SubmitButton" type="submit" onClick="return true;" value="Submit" />
+<input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, testSubmit);"/>
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
 <br />
+<br />
+<label> Starting pitch class(es): </label>
+<input class="TextInput" type="text" name="start" id="start" size="15" onkeypress="handleEnter(event, testSubmit);" value="All Pitch Classes" onfocus="if(this.value=='All Pitch Classes')this.value=''" onblur="if(this.value.trim()=='')this.value='All Pitch Classes'"/>
+<br /><br />
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"></div>
 <table class="scales_submission">
 <tr><td class="scales_submission">
 <label>Match Input Order</label><input type="checkbox" name="order" id="order" onClick="toggleOthers();"><br />
@@ -23,9 +30,8 @@ The HTML page for the initial search and information on how to use the Scales pr
 <label>Allow Wrap-Around </label><input type="checkbox" disabled name="wrap" id="wrap"><br />
 </td></tr>
 <tr><td class="scales_submission">
-<label>Only Consecutive Notes </label><input type="checkbox" disabled name="consec" id="consec"><br />
+<label>Only Consecutive Notes </label><input type="checkbox" name="consec" id="consec"><br />
 </td></tr>
 
-</form>
 
 <br />

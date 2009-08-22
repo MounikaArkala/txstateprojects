@@ -27,7 +27,11 @@ td.scales_submission
   font-weight: bold;
   text-align: right;
 }
-
+#inputFields
+{
+    border: 2px solid;
+    padding: 20px;
+}
 
 /******************
 * Search Results  *
@@ -36,7 +40,7 @@ table.scales
 {
   border: 2px solid;
   background-color: #FFFFFF;
-  text-align: center;
+  text-align: left;
   margin-top: 60;
   margin-bottom: 0;
   margin-left: auto;
@@ -54,18 +58,30 @@ td.scales
   padding-bottom: 5px;
   font-weight: bold;
 }
+th.scales
+{
+  border: 2px solid #000;
+  background: #DDDDDD;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  text-align:center;
+}
 
 
 /******************
-* Search Results  *
+*     Scale       *
 ******************/
 table.scale
 {
   text-align: center;
   border:solid;
   border-width: 1px;
-  margin: 4px;
+  margin: 5px;
   font-family: monospace;
+  table-layout: fixed;
 }
 
 td.scalen
@@ -73,18 +89,20 @@ td.scalen
   background-color:#FF9999;
   border:solid;
   border-width:1px;
-  width: 2em;
-  padding: 1px;
+  width: 3em;
+  padding: 2px;
   text-align:center;
+  font-family: monospace;
 }
 td.scaley
 {
   background-color:#99FF99;
   border:solid;
   border-width:1px;
-  width: 2em;
-  padding: 1px;
+  width: 3em;
+  padding: 2px;
   text-align:center;
+  font-family: monospace;
 }
 
 

@@ -5,6 +5,7 @@ Version: 1.0 First Draft
 Location: Texas State University
 Date:     July 2009
 
+OLD - needs to be revised for site redesign.
 Revision History: 1.0 - July 2009 - initial draft
 ----------------------------
 

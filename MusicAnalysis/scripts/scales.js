@@ -12,20 +12,13 @@ back-end Python script.
 */
 
 
-function callScale()
+function testSubmit()
 {
-    /*
-    Purpose: performing a non-ordered search (continuity of notes based on "consecutive" checkbox).
-    Notes: also performs simple error-checking before submitting.  */
-    
-    // Set the search to non-ordered.
-    order = false;
+    // perform simple error-checking before submitting.
     
     // Grab the current value of the search field.
 	row = document.getElementById("notes").value;
     row = row.trim();
-    // check whether search is consecutive.
-    consecutive = document.getElementById("consecutive").checked;
     // Do some error-checking.
     if (row.length == 0)
     {
@@ -38,9 +31,7 @@ function callScale()
         document.getElementById("error").innerHTML = "You entered 1 note.  Please enter at least 2 notes.";
         return false;
     }
-    // passed error checking so load content.
-	page = "main";
-	loadContent('content','scales.cgi');
+    return true;
 }
 
 function toggleOthers()
@@ -48,30 +39,60 @@ function toggleOthers()
     if (document.noteform.order.checked)
     {
         document.noteform.wrap.disabled = false;
-        document.noteform.consec.disabled = false;
     }
     else
-    {
+    { 
+        //document.noteform.wrap.checked = false;
         document.noteform.wrap.disabled = true;
-        document.noteform.consec.disabled = true;
     }
     
 }
-
-function updateScales()
+function getCheckboxList(table)
 {
-    /*
-    Purpose: update scale with new filter settings.
-    Notes: some assumptions made about sorting order of filters but
-    there wasn't an easy way to avoid it.  */
-	groups = new Array();
-    groupnum = document.getElementById("grps").value;
-    var i = 0;
-    for (i = 0; i < groupnum; i++)
+    inputs = table.getElementsByTagName('input');
+    var checkboxes = new Array();
+    for (i = 0; i < inputs.length; i++)
     {
-        groups[i] = document.getElementById("filter" + i).checked;
+      if (!inputs[i].length)
+      {
+        if (inputs[i].type == 'checkbox')
+          checkboxes[checkboxes.length] = inputs[i];
+      } else
+      {
+        for(k = 0; k < inputs[i].length; k++)
+        {
+          if (inputs[i][k].type == 'checkbox')
+            checkboxes[checkboxes.length] = inputs[i];
+        }
+      }
     }
-    // load the page again with the filter set correctly.
-	page = 'filtered';
-	loadContent('scalesdiv', 'scales.cgi');
+    // checkboxes now is an array of all checkboxes
+    // in the table with id "mytablesid".  Now perform some
+    // action on the checkboxes.  In this case, check
+    // them all.
+
+    return checkboxes;
+}
+function selectAll()
+{
+    table = document.getElementById('filtertable');
+    checkboxes = getCheckboxList(table);
+    for (i = 0; i < checkboxes.length; i++)
+    {
+      checkboxes[i].checked = true;
+    }
+}
+
+function selectNone()
+{
+    table = document.getElementById('filtertable');
+    checkboxes = getCheckboxList(table);
+    for (i = 0; i < checkboxes.length; i++)
+    {
+      checkboxes[i].checked = false;
+    }
+}
+function refresh()
+{
+    document.noteform.submit();
 }
