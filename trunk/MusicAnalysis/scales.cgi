@@ -4,7 +4,7 @@
 import os, cgi
 from libs import structure
 from musiclib import all_notes
-
+pitchclass_txt = "All Pitch Classes"
 filename = "./calcscales"
 #filename = "calcscales.exe"
 linelen = 10
@@ -87,45 +87,86 @@ def pretty(notes, encoding):
     return " ".join([encoding[i] for i in notes])
 
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 # Create instance of FieldStorage 
 form = cgi.FieldStorage() 
 
-def printPage():
-    global notes, wrap, order, consecutive, linelen, start
+def printPage(page):
+
+    page = page.lower()
+    global notes, wrap, order, consecutive, linelen, start, pitchclass_txt
     from scales.filters import filters
+
+    searchfields = {"notes": "", "pitchclasses":pitchclass_txt, "wrap": "", "consec": "", "order": "", "pitchclass_class": "default-value"}
     
-    print '<form name="noteform" id="noteform" action="scales.cgi" method="get">'
-    # display filter table
-    print '<table class="filters" id="filtertable">'
-    print '<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>'
-    print '<tr class="filters">'
-    for filter in filters:
-        try:
-            filter_checked = (form.getvalue(filter).strip().lower() == "on")
-        except:
-            filter_checked = False
-        if filter_checked:
-            print '<td class="filters"><input type="checkbox" class="filterbox" \
-            checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
-        else:
-            print '<td class="filters"><input type="checkbox" class="filterbox" \
-            name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
-    print '</tr></table>'
-    print '<button class="SubmitButton" type="button" onClick="selectAll();">Select All</button>'
-    print '<button class="SubmitButton" type="button" onClick="selectNone();">Select None</button>'
-    print '<button class="SubmitButton" type="button" onClick="refresh();">Refresh</button>'
-    #store all our inputs in hidden fields so that the "refresh" button can submit the form."
-    print '<input type="hidden" name="notes" id="notes" value="%s" />' % notes
-    print '<input type="hidden" name="start" id="start" value="%s" />' % start
-    if wrap:
-        print '<input type="hidden" name="wrap" id="wrap" value="on" />'
-    if consecutive:
-        print '<input type="hidden" name="consec" id="consec" value="on" />'
-    if order:
-        print '<input type="hidden" name="order" id="order" value="on" />'
-    print '</form>'
     
+    filtertable = []
+    filtertable.append('<table class="filters" id="filtertable">')
+    filtertable.append('<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>')
+    filtertable.append('<tr class="filters">')
+
+    if page == "main":
+        for filter in filters:
+            filtertable.append('<td class="filters"><input type="checkbox" class="filterbox" \
+            checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter))
+		
+    elif page == "result":
+        
+        for filter in filters:
+            try:
+                filter_checked = (form.getvalue(filter).strip().lower() == "on")
+            except:
+                filter_checked = False
+            if filter_checked:
+                filtertable.append('<td class="filters"><input type="checkbox" class="filterbox" \
+                checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter))
+            else:
+                filtertable.append('<td class="filters"><input type="checkbox" class="filterbox" \
+                name="%s" id="%s">%s</input></td>' % (filter, filter, filter))
+        
+        temp = []
+        for i in notes.split():
+            i = i.strip()
+            i = i[0].upper() + i[1:].lower()
+            temp.append(i)
+        searchfields["notes"] = " ".join(temp)
+        
+        if start:
+            searchfields["pitchclasses"] = start
+            searchfields["pitchclass_class"] = ""
+            
+        if wrap:
+            searchfields["wrap"] = "checked"
+        if consecutive:
+            searchfields["consec"] = "checked"
+        if order:
+            searchfields["order"] = "checked"
+    
+    filtertable.append('</tr></table>')
+    filtertable.append('<button class="SubmitButton" type="button" onClick="selectAll();">Select All</button>')
+    filtertable.append('<button class="SubmitButton" type="button" onClick="selectNone();">Select None</button>')
+    filtertable = "\n".join(filtertable)
+    searchfields["filtertable"] = filtertable
+    
+    
+    structure.print_body("scales/main.html", subdict=searchfields)
+    
+    if page == "main":
+        structure.print_body("scales/directions.html")
+        return
+    
+    
+    
+    #-- start of results generation.
     
     temp = []
     for i in notes.split():
@@ -137,22 +178,29 @@ def printPage():
         except KeyError:
             print '<h2 class="scales">You entered an invalid note: %s</h2>' % i
             return
-            
     notes = temp
-    temp = []
-    all = False
-    display = []
-    for i in start.split():
-        i = i.strip()
-        i = i[0].upper() + i[1:].lower()
-        display.append(i)
-        try:
-            if not all_notes[i] in temp:
-                temp.append(all_notes[i])
-        except KeyError:
-            all = True
-            temp = range(12)
-            break
+    
+    
+    if start:
+        temp = []
+        all = False
+        display = []
+        for i in start.split():
+            i = i.strip()
+            i = i[0].upper() + i[1:].lower()
+            try:
+                if not all_notes[i] in temp:
+                    temp.append(all_notes[i])
+                    display.append(i)
+            except KeyError:
+                all = True
+                temp = range(12)
+                print '<h2 class="scales">Pitch class "%s" not recognized!</h2>' % i
+                break
+    else:
+        all = True
+     
+    """
     if all:
         print '<p class="scales">Searching all starting pitch classes</p>'
     else:
@@ -160,6 +208,7 @@ def printPage():
             print '<p class="scales">Only searching scales that start with pitch class %s</p>' % ", ".join(display)
         else:
             print '<p class="scales">Only searching scales that start with pitch classes %s</p>' % ", ".join(display)
+    """
     start = temp
     
     from scales.scales import scales
@@ -268,18 +317,23 @@ def printPage():
     
     
     
+    
 structure.print_header(title="Scales Identification in Music Analysis: Web-Based Analytical Tool for the Matching of Scalar Pitch Collections by Nico Schuler and Luke Paireepinart",
-                       scripts=["scales.js"], css=["main.css", "scales.css"])
+                       scripts=["main.js", "scales.js"], css=["main.css", "scales.css"])
 generate_support_files()
   
 try:
     # Get data from fields
     notes = form.getvalue('notes').strip().lower()
-    start = form.getvalue('start').strip().lower()
+    try:
+        start = form.getvalue('start').strip()
+        if start.lower() == pitchclass_txt.lower():
+            start = None
+    except:
+        start = None
     try:
         wrap = (form.getvalue('wrap').strip().lower() == "on")
     except:
-        #it won't submit "wrap"'s value if it's not checked, so default it to False.
         wrap = False
         
     try:
@@ -290,26 +344,13 @@ try:
         consecutive = (form.getvalue('consec').strip().lower() == "on")
     except:
         consecutive = False
-    
-    printPage()
+    try:
+        printPage("result")
+    except:
+        pass
     
 except:
-    #main page.
-    from scales.filters import filters
-    structure.print_body("scales/main_1.html")
-    print '<table class="filters" id="filtertable">'
-    print '<tr class="filters"><th class="filters" colspan=50>Music Filter</td></tr>'
-    print '<tr class="filters">'
-    for filter in filters:
-        print '<td class="filters"><input type="checkbox" class="filterbox" \
-        checked name="%s" id="%s">%s</input></td>' % (filter, filter, filter)
-    print '</tr></table>'
-    print '<button class="SubmitButton" type="button" onClick="selectAll();">Select All</button>'
-    print '<button class="SubmitButton" type="button" onClick="selectNone();">Select None</button>'
-
-
-    structure.print_body("scales/main_2.html")
-
+	printPage("main")
        
 
 structure.print_footer()
