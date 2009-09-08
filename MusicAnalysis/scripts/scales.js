@@ -34,7 +34,7 @@ function testSubmit()
     return true;
 }
 
-function toggleOthers()
+function disableWrapCheckbox()
 {
     if (document.noteform.order.checked)
     {
@@ -92,7 +92,53 @@ function selectNone()
       checkboxes[i].checked = false;
     }
 }
-function refresh()
+
+function load()
 {
-    document.noteform.submit();
+    formDefaultValues();
+    disableWrapCheckbox();
+    return true;
+}
+
+
+/**
+* Code below written by Rob Schmitt of The Web Developer's Blog
+* http://webdeveloper.beforeseven.com/
+*/
+
+/**
+* The following variables may be adjusted
+*/
+var active_color = '#000'; // Colour of user provided text
+var inactive_color = '#999'; // Colour of default text
+
+/**
+* No need to modify anything below this line
+*/
+window.onload = formDefaultValues;
+
+function formDefaultValues() {
+  var fields = getElementsByClassName(document, "input", "default-value");
+  if (!fields) {
+    return;
+  }
+  var default_values = new Array();
+  for (var i = 0; i < fields.length; i++) {
+    fields[i].style.color = inactive_color;
+    if (!default_values[fields[i].id]) {
+      default_values[fields[i].id] = fields[i].value;
+    }
+    fields[i].onfocus = function() {
+      if (this.value == default_values[this.id]) {
+        this.value = '';
+        this.style.color = active_color;
+      }
+      this.onblur = function() {
+        if (this.value == '') {
+          this.style.color = inactive_color;
+          this.value = default_values[this.id];
+        }
+      }
+    }
+  }
 }
