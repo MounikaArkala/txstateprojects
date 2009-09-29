@@ -1,6 +1,6 @@
-#!/usr/local/bin/python
-# -*- coding: cp1252 -*-
 #!"C:/python26/python.exe"
+# -*- coding: cp1252 -*-
+#!/usr/local/bin/python
 import os, cgi
 from libs import structure
 from musiclib import all_notes
@@ -27,7 +27,7 @@ def rotations(notes):
     return results
     
 def printPage():
-    global notes
+    global notes, order
     if len(notes) == 0:
         return
     encoding = {0:"A", 1:"A#", 2:"B", 3:"C", 4:"C#", 5:"D", 6:"D#", 7:"E", 8:"F", 9:"F#", 10:"G", 11:"G#"}
@@ -42,46 +42,75 @@ def printPage():
             print '<h2 class="error">You entered an invalid note: %s</h2>' % i
             return
     notes = temp
-    notes.sort()
-    #Debug print pretty(notes, encoding)
-    rots = rotations(notes)
-    #Debug print rots
-    
-    #check symmetry of each.
     if len(notes) < 3:
         print '<h2 class="error">Not enough notes for checking symmetry!  Enter at least 3 notes.</h2>'
         return
-    iterations = len(notes) / 2
-    if len(notes) % 2 == 0:
-        iterations -= 1
     symmetrical = []
-    for rotation in rots:
-        matched = True
-        for i in range(iterations):
-            #Debug print "<br /><hr />"
-            first = rotation[i]
-            next = rotation[i+1]
-            if next < first:
-                next += 12
-            interval = next - first
-            #Debug print "%i interval for " % i, pretty(rotation, encoding), " is", interval
-            first = rotation[-i-2]
-            next = rotation[-i-1]
-            if next < first:
-                next += 12
-            interval2 = next - first
-            #Debug print "%i interval for " % (-i-1), pretty(rotation, encoding), " is", interval2
+    if order:
         
-            if interval != interval2:
-                matched = False
-                break
-        if matched:
-            symmetrical.append(rotation)
+        rots = rotations(notes)
+        for rotation in rots:
+            #print rotation
+            intervals = []
+            prev = rotation[0]
+            for note in rotation[1:]:
+                if note < prev:
+                    prev -= 12
+                intervals.append(note-prev)
+                prev = note
             
-    if len(symmetrical) < 1:
-        print '<h2 class="error">None of the rotations of %s are symmetrical!</h2>' % pretty(notes, encoding)
-        return
+            matched = True
+            for i in range(len(intervals) / 2):
+                #print "comparing %s to %s.<br />" % (intervals[i], intervals[-i-1])
+                if intervals[i] != intervals[-i-1]:
+                    #print "no match!"
+                    matched = False
+                    break
+            if matched:
+                symmetrical.append(rotation)
+        
+        
+
+    else:
+        notes = list(set(notes))
+        notes.sort()
+        #Debug print pretty(notes, encoding)
+        rots = rotations(notes)
+        #Debug print rots
+        
+        #check symmetry of each.
+        if len(notes) < 3:
+            print '<h2 class="error">Not enough notes for checking symmetry!  Enter at least 3 unique notes.</h2>'
+            return
+        iterations = len(notes) / 2
+        if len(notes) % 2 == 0:
+            iterations -= 1
+                
+        for rotation in rots:
+            matched = True
+            for i in range(iterations):
+                #Debug print "<br /><hr />"
+                first = rotation[i]
+                next = rotation[i+1]
+                if next < first:
+                    next += 12
+                interval = next - first
+                #Debug print "%i interval for " % i, pretty(rotation, encoding), " is", interval
+                first = rotation[-i-2]
+                next = rotation[-i-1]
+                if next < first:
+                    next += 12
+                interval2 = next - first
+                #Debug print "%i interval for " % (-i-1), pretty(rotation, encoding), " is", interval2
             
+                if interval != interval2:
+                    matched = False
+                    break
+            if matched:
+                symmetrical.append(rotation)
+                
+
+                
     """debug        
     for s in symmetrical:
         print "<br /><hr />"
@@ -89,10 +118,15 @@ def printPage():
     print "<br /><hr />"
     """
     
-    
+    if len(symmetrical) < 1:
+        print '<h2 class="error">None of the rotations of %s are symmetrical!</h2>' % pretty(notes, encoding)
+        return
     
     print '<div id="symmdiv">'
-    print "Symmetrical rotations of "
+    if order:
+        print "Symmetrical rotations - with preserved input order - of "
+    else:
+        print "Symmetrical rotations of "
     print '<table class="symm">'
     print '<tr class="symm">'
     for note in notes:
@@ -101,9 +135,7 @@ def printPage():
     
     print "<hr /><br />"
     for rotation in symmetrical:
-        if len(rotation) % 2 == 1:
-            axis1 = axis2 = encoding[rotation[len(rotation) / 2]]
-        else:
+        if len(rotation) % 2 == 0:
             first = rotation[len(rotation) / 2 - 1]
             second = rotation[len(rotation) / 2]
             if second < first:
@@ -116,23 +148,23 @@ def printPage():
                 axis2 = axis1 + 1
             else:
                 axis1 = axis2 = axis
+            
+            axis1 %= 12
+            axis2 %= 12
                 
         print '<table class="symm">'
         print '<tr class="symm">'
-        axis1 %= 12
-        axis2 %= 12
         for i in range(len(rotation)):
             #even-length items must be handled differently.
             if len(rotation) % 2 == 0:
                 if i == (len(rotation) / 2 - 1):
                     print '<td class="symm">%s</td>' % encoding[rotation[i]]
-                    print '<td class="axis">%s/%s</td>' % (encoding[axis1] , encoding[axis2])
+                    print '<td class="exaxis">%s/%s</td>' % (encoding[axis1] , encoding[axis2])
                 else:
                     print '<td class="symm">%s</td>' % encoding[rotation[i]]
             else:
                 if i == len(rotation) / 2:
-                    print '<td class="symm">%s</td>' % encoding[rotation[i]]
-                    print '<td class="axis">%s/%s</td>' % (encoding[axis1] , encoding[axis2])
+                    print '<td class="inaxis">%s</td>' % (encoding[rotation[i]])
                 else:
                     print '<td class="symm">%s</td>' % encoding[rotation[i]]
         print '</tr></table>'
@@ -144,9 +176,16 @@ structure.print_header(title="Analysis of Symmetry in Music: Web-Based Analytica
                        scripts=["main.js","symmetry.js"], css=["main.css", "symmetry.css"])
 
                        
+                  
+
+                       
 try:
     # Get data from fields
     notes = form.getvalue('notes').strip().lower().split()
+    try:
+        order = (form.getvalue('order').strip().lower() == "on")
+    except:
+        order = False
 
     
 except:

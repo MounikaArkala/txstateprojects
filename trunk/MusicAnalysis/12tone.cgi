@@ -1,6 +1,6 @@
-#!/usr/local/bin/python
-# -*- coding: cp1252 -*-
 #!"C:/python26/python.exe"
+# -*- coding: cp1252 -*-
+#!/usr/local/bin/python
 """ Primes.cgi
 ----------------------------
 Author:    Luke Paireepinart
@@ -110,9 +110,9 @@ def printPage():
     else:
         print 'Match Input Order <input type="checkbox" name="order" id="order"><br />'
     if wrap:
-        print 'Allow Wrap-Around <input type="checkbox" checked name="wrap" id="wrap"><br />'
+        print 'Allow Rotations (Wrap-Around) <input type="checkbox" checked name="wrap" id="wrap"><br />'
     else:
-        print 'Allow Wrap-Around <input type="checkbox" name="wrap" id="wrap"><br />'
+        print 'Allow Rotations (Wrap-Around) <input type="checkbox" name="wrap" id="wrap"><br />'
     print '</div> <!-- ~searchcheck -->'
     print '<input type="hidden" name="notes" id="notes" value="%s" />' % row
     print '</form>'

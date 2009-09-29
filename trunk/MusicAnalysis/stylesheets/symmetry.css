@@ -30,9 +30,21 @@ td.symm
   text-align:center;
   font-family: monospace;
 }
-td.axis
+
+td.inaxis
 {
   background-color:#99FF99;
+  border:solid;
+  border-width:1px;
+  width: 3em;
+  padding: 2px;
+  text-align:center;
+  font-family: monospace;
+}
+
+td.exaxis
+{
+  background-color:#FF9999;
   border:solid;
   border-width:1px;
   width: 3em;
