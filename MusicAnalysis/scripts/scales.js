@@ -47,51 +47,6 @@ function disableWrapCheckbox()
     }
     
 }
-function getCheckboxList(table)
-{
-    inputs = table.getElementsByTagName('input');
-    var checkboxes = new Array();
-    for (i = 0; i < inputs.length; i++)
-    {
-      if (!inputs[i].length)
-      {
-        if (inputs[i].type == 'checkbox')
-          checkboxes[checkboxes.length] = inputs[i];
-      } else
-      {
-        for(k = 0; k < inputs[i].length; k++)
-        {
-          if (inputs[i][k].type == 'checkbox')
-            checkboxes[checkboxes.length] = inputs[i];
-        }
-      }
-    }
-    // checkboxes now is an array of all checkboxes
-    // in the table with id "mytablesid".  Now perform some
-    // action on the checkboxes.  In this case, check
-    // them all.
-
-    return checkboxes;
-}
-function selectAll()
-{
-    table = document.getElementById('filtertable');
-    checkboxes = getCheckboxList(table);
-    for (i = 0; i < checkboxes.length; i++)
-    {
-      checkboxes[i].checked = true;
-    }
-}
-
-function selectNone()
-{
-    table = document.getElementById('filtertable');
-    checkboxes = getCheckboxList(table);
-    for (i = 0; i < checkboxes.length; i++)
-    {
-      checkboxes[i].checked = false;
-    }
-}
 
 function load()
 {
