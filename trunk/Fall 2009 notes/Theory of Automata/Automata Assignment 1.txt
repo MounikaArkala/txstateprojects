@@ -1,0 +1,168 @@
+Luke Paireepinart
+Theory of Automata - Texas State University Fall 2009
+Assignment 1
+
+1.
+a)
+{{}, {apple}, {pear}, {banana}, {apple, pear}, {apple, banana}, {pear, banana}, {apple, pear, banana}}
+
+b)
+{{}, {a}, {b}, {a, b}} - {{}, {a}, {c}, {a, c}} = {{b}, {a, b}}
+
+c)
+{{}}
+
+d)
+{a, b} x {1, 2, 3} = {{a, 1}, {a, 2}, {a, 3}, {b, 1}, {b, 2}, {b, 3}}
+cartesian product of any set with {} is an empty set.
+{{a, 1}, {a, 2}, {a, 3}, {b, 1}, {b, 2}, {b, 3}} x {} = {}
+
+e)
+x is a natural number that is both less than or equal to 7 and greater than or equal to 7.  it must be 7 then.
+{7}
+
+f)
+x is a natural number where, for natural numbers < 10, x = number+2.
+so the set of natural numbers < 10 is
+{0,1,2,3,4,5,6,7,8,9}
+and the set we're looking for is
+{2,3,4,5,6,7,8,9,10,11}
+
+g) 
+x is a natural number where there are two other natural numbers y and z such that x = y+z, y<5, and z < 4.
+z is one of these values
+{0, 1, 2, 3}
+and y is
+{0, 1, 2, 3, 4}
+therefore our set is all possible sums of these numbers, or
+{0, 1, 2, 3, 4, 5, 6, 7}
+
+2.
+a) Yes, father is one-to-one.  For a function to be one-to-one, all inputs must map to a unique output.  That means there is a constraint where
+no child can be the child of two different fathers.  This is true for the standard definition of fathers.
+b) Yes, father is onto.  In order for a child to exist (children are the range in this case) it must have a father.
+Therefore there is always a father that maps to a given child.
+
+3.
+a) Exists(x) (V(x) ^ S(x, 3) ^ NOT(O(x, "STUPID"))) -> E(x, "A")
+
+b) Exists(x) (B(x, 'R') ^ NOT(B(x, 'K')) ^ S(x, 1))
+
+4.
+a) Yes, any negative integer x and negative integer y can be subtracted to yield another negative integer z that is in the set of negative numbers.
+
+b) No, for example, -1 / -2 yields 0.5, which is both nonnegative and noninteger. 
+The division of two negative integers will always yield a positive number.
+Therefore, the closure would contain all positive rational numbers. 
+(0 is not a part of the set of negative integers, so 0 is not part of the closure.)
+
+c) Yes, any positive integer to a power of a positive integer is just a repeated multiplication of that same positive integer with itself.
+And multiplication of positive integers is already closed.
+
+d) Yes, any two sets that take cartesian products will result in a finite set as well,
+much in the same way that two finite numbers can be multiplied to make another finite number.
+
+e) No.  The list of odd integers is {1, 3, 5, 7, 9, 11, ...}
+The remainder of a value % 3 is going to be in {0, 1, 2}.
+3 % 3 = 0,
+1 % 3 = 1,
+5 % 3 = 2,
+0 and 2 are not in the list of odd integers.
+Therefore, to form a closure, include 0 and 2 in the set.
+
+f) A rational number is defined as a number that can be expressed as the quotient a/b of two integers, where b != 0.
+Therefore, we can say that for addition of any two rational numbers, they can be expressed as
+a/b + c/d .
+There will be some factor q and another factor r such that
+q(b) = r(d)
+Then the operation can be rewritten as 
+(qa + rc)/ (rd)
+if you take the values e = (qa + rc) and f = rd
+you get the relationship
+e/f.
+However, because q and r may not be integers,
+the values e and f are no longer guaranteed to be integers,
+so the resulting fraction may not be a rational number.
+In order to form a closure, you must include all irrational numbers as well.
+So the closure is the real numbers.
+
+5.
+a) Suppose you have two countably infinite sets,
+A = {0, 1, 2, 4, 6, 8, 10, 12, .... 2k}
+B = {0, 1, 3, 5, 7, 9, 11, 13, .... 2k+1}
+It can be seen that these sets are mutually exclusive after the value "1".
+Therefore the intersection can be defined as
+{0, 1}
+which is finite, even though both sets are countably-infinite.
+
+b) Suppose you have two countably infinite sets,
+A = {0, 2, 4, 6, 8, 10, 12, .... 2k}
+B = {1, 2, 4, 6, 8, 10, 12, .... 2k}
+A ^ B is defined as the set
+{2, 4, 6, 8, 10, 12, .... 2k}
+Even though the values 0 and 1 are not included in the intersection,
+the intersection is still countably infinite
+(a finite number of values removed from a countably infinite series is still countably infinite.)
+
+c) The set of real numbers is defined as an uncountable set.
+Imagine a set A of all nonnegative real numbers (including 0)
+and a set B of all negative real numbers plus 0.
+Then A ^ B = {0} which is finite.
+
+d) Suppose that the set A is all nonnegative real numbers.
+The set B contains all negative real numbers as well as all even positive integers.
+Then the intersection A ^ B is all of the even positive integers, which is a countably infinite set.
+
+e) If a set is uncountable, you can remove a few elements and it will still be uncountable.
+So an example with two different sets would be
+A = all reals except for 0
+B = all reals except for 1
+A ^ B will be all reals except for 0 and 1, which will be uncountable.
+
+6.
+a) The statement says "for all x's there is some y that is less than x."  Both x and y are natural numbers.
+This is satisfiable.  It is true for any x other than 0.
+Proof where "x" != 0:
+The set N is a countably infinite set.
+The definition of a countably infinite set is that the set can be ordered in such a way as there
+is a relationship between each element and there is a specific order where this relationship is true.
+The values in N are arranged to be in ascending order, such that N[k] = N[k-1] + 1, and N[k+1] = N[k] + 1.
+So for any nonnegative integer "k", N[k] = x.  There will also be another value N[k-1] that equals N[k] - 1.
+Therefore, there will exist a "y" at N[k-1] that is equal to N[k] - 1 = x - 1.
+Therefore, "y" is less than "x" and exists in the set N.
+
+Proof where "x" = 0 is unsatisfiable:
+Assume that, for x = 0, there is a y in N that is less than x.
+The set {y in N | y < 0} is defined as {}.
+Therefore, there is no value that "y" could attain that is less than x.
+So our assumption was incorrect, and x cannot be 0 and still satisfy the sentence.
+
+If a statement can be either true or false, it is defined as being "satisfiable".
+Therefore, this sentence is satisfiable.
+
+
+b) The statement says "for all x's there is some y that is greater than x."  Both x and y are natural numbers.
+This is valid.
+Proof:
+The set N is a countably infinite set.
+The definition of a countably infinite set is that the set can be ordered in such a way as there
+is a relationship between each element and there is a specific order where this relationship is true.
+The values in N are arranged to be in ascending order, such that N[k] = N[k+1] + 1, and N[k+1] = N[k] + 1.
+So for any nonnegative integer "k", N[k] = x.  There will also be another value N[k+1] that equals N[k] + 1.
+Therefore, there will exist a "y" at N[k+1] that is equal to N[k] + 1 = x + 1.
+Therefore, "y" is greater than "x" and exists in the set N.
+
+
+c) The statement says "for all x's there is some y such that f(x) = y."  Both x and y are natural numbers.
+This is satisfiable.  
+Proof:
+"f" is defined as any function on the integers.  The function could be, for example, "f(x) = x-2",
+which is satisfiable for all values of x besides 0 and 1.
+"f(x)" could also be the function "f(x) = x" in which case the sentence would be valid.
+The function "f(x) = -x" would be unsatisfiable, because the set N does not contain any negative numbers.
+
+If a statement is always false it is unsatisfiable, and if it's always true it is valid.
+This statement can be either depending on the definition of "f",
+and can also be satisfiable.
+Therefore, the statement is satisfiable.
+
