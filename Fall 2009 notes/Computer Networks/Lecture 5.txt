@@ -1,0 +1,47 @@
+Assignment 1 due next week.
+
+bandwidth/delay prouct - # of bits that can sustain in a channel.
+we need to encode /decode - a bit pattern in a signal represent 
+
+memory-cpu communication used to be bit-serial.  now it's changed to bit-parallel.
+piso - from CPU - parallel in, serial out.
+SIPO shift register used on other end.
+
+for every 11 bits, 3 are control, 8 are data.  this is how we achieve character synchronizaiton in async transmission (eg. for keyboard sending).
+
+bit synchronization - worst case is when signal keeps switching polarity.
+
+-- when data rate inreases (sende rsends more bits per second) - duration of each bit decreases.
+
+relation b/w duraiton and bit rate: data rate R bits per second, 
+
+because of control bits, data rate differs from transmission rate.
+
+-- manchester encoding.
+
+-- differential manchester encoding.
+    
+HW is due next time (30th.)
+
+Lecture 4 
+- transparencies not in lecture notes, they're in powerpoints only.
+
+arq - automatic repeat request.
+
+communication channel is precious resource.  we want to maximize usage.  we want to have every section of channel always has data bits traveling.
+
+transmission delay - getting bit from comp through NIC to ethernet.  propagation is time between computers.
+
+utilization delay... 
+
+utilization...?  some formulas.
+
+1kbps and 50,000km , Tp = 167 ms and 250 bits are the most you can use.  a small portion of the link is idle.
+
+data rate of 1mbps, 250000 bits, so a frame of 1000 bits occupies a tiny fraction of line.  a big portion of channel is not used.  .2% utilization.
+
+
+he will post directions for submitting homework online.
+ask questions about homework on forums.
+
+

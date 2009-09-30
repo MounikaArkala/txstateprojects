@@ -1,0 +1,32 @@
+Proof by case enumeration.
+- sometimes bijectionis not as obvious, so you prove by finding a situation where an enumeration doesn't work.
+
+countably infinite union - union of a countably infinite number of countably infinite sets is countably infinite.
+
+
+diagonalization: used to show S is countably infinite, Powerset(S) is not countable.
+eg. the set of integers.
+
+a set that's not in the table: not(1), not(2), not(3), not(4), ....
+
+
+can diagonalization also be used to show the countably infinite union is not countable either...?
+
+
+reasoning about programs
+correctness properties, including:
+loop invariants: predicate I that describes a property that does not change during execution of an iterative process.
+
+coffee can problems - coffee can contains some white benas and some black beans.  until no further beans cna be removed,
+- randomly choose 2 beans
+- if same color, throw both away and add a new black bean
+- if different colors, throw away the black one and return the white one to the can.
+
+the parity of white beans does not change.
+
+a framework for analyzing problems
+- we need a single framework in which we can analyze a very diverse set of problems.
+the framework we will use is "Lanugage Recognition"
+a language is a possibly infinite set of finite length strings over a finite alphabet.
+
+assignment - typed or pen.  write very clearly.

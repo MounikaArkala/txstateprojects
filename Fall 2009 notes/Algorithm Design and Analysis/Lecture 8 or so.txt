@@ -1,0 +1,57 @@
+September 23rd, 2009
+
+for a 2-tree,
+at height 
+
+k leaves,
+h >= log(k) or ceil(log(k))
+
+External path depth:
+E(T) = I + 2q
+for 2-tree,
+E(T) = k * log(k).
+
+Algorithm: any comparison-based, k outcomes.
+what is worst case running time?
+O(ceil(lg(k)))
+avg runtime is O(lg(k)).
+
+"Comparing keys" is just one way we can find something, without using comparisons (which binary search does.)
+we find the key and then extract the entry.  we just have to figure out which key it is located at.
+in this case our search performance is constant.
+
+Interpolation-Search: keys uniformly distributed.
+
+Sorting - about 1/2 of all commercial CPU work is in sorting.
+
+- covers insertion sort.
+initially sorted list = [], unsorted list has all original keys.  one by one put keys into the right position in sorted list.
+
+runtimes
+i/2 + O(1) and i/2...
+Total cost i from 2 -> n:
+
+SUM(2,n) (i/2 + O(1)) = 1/4 n^2 + O(n)
+
+worst case perofmrance of insertion sort: O(n^2)
+- good method to check if sorted list is still sorted
+- good if list is nearly in order.
+main disadvantage: too many moves, even on sorted keys, if just 1 key is out of place.
+data moves just 1 position in one iteration.
+
+selection sort
+3.0n + O(1) FOR ASSIGNMENTS,
+1/2n^2 + O(n) comparisons.
+
+best case for selection sort? same as worst and average case.    assumption  : only counting comparisons of keys.
+assumptions - counting running time of sorting - we only count assignments of entries of list, not of keys.  a temporary variable counts as an assignment.  for comparisons we only count comparisons of keys.
+
+
+selection sort does more comparisons and assignments than insertion on average.
+
+insertion / selection are both in the same class, 0(n^2) runtime.
+
+problem w/ insertion sort - if data needs to move much, it has to go trhough many iteraitons.
+there is another sort.
+
+for midterm/final - put down your assumptions, & if they make sense, then it's okay.

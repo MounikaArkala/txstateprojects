@@ -1,0 +1,44 @@
+
+philosophers try to talk to each other.
+one can only speak english, one French.
+
+7 is the magic # of layers in the OSI model.
+
+Data link layer - break message up into its max size message and then re-assemble on other side.
+also needs to detect loss of messages, retransmit, fix duplicates, control flooding, and piggyback.
+
+Protocol staccks: inernet protocol stack.  All the layers add their own data to each packet.
+
+PCI 3, 4, 5 can possibly be changed through the senders/receivers a message must pass through.
+transport layer data will not be interpreted by any intermediate routers.
+
+circuit-switching and packet-switching networks.  TCP doesn't require physical connections.
+-- TCP is logical connection.
+
+ARPAnet project - current internet is descended from it.
+started w/ a group of IMPs (interface message processors) connected w/ 56k modems.
+
+CSNET - connects all the CS departments in US. not real network like ARPANET.
+National Science Foundation - 3 bill budget, NIH - 40 bill, DoD - 400 bill.
+NSF didn't have enough money to set up CSNET, but they couldn't lay the infrastructure, so
+they had you connect to each other with whatever infrastructure you had (eg. telephone lines).
+e-mail was main service.
+
+NSFNET - people bitching because NSF was helping CSNET.  NSFNET sought to connect all US-based institutions,
+even ones w/o CS dept's.
+
+ANSNET sold to AOL.
+
+he simplifies ATM network too much.
+ATM links - 155 mbps and 622 mbps.
+155mbps chosen to accommodate HDTV & for compatibility w/ SONET.
+future of ATM
+- relatively new tech (25-30 years old), ATM accepted well, integrated into PSTN and Internet.
+all major carriers run ATM networks.
+- due to emergence of all-optical networks & increasing importance of wireless comm & networks, ATM's
+further development is limited.
+
+end of Lecture 1.
+
+brief overview.  Now look at technical details.
+

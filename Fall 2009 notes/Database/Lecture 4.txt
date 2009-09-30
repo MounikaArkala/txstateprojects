@@ -1,0 +1,63 @@
+
+a Table is a relation in a database.
+you need operators when you have relations, so you can have the data combine with each other.
+(operators are operations on relations, not the same as operators in regular databases.
+
+Select, project, join.. these 3 commands are implemented in SQL as "SELECT".
+
+more  SQL review.
+
+vertical selections:
+>>> Select x1, x3, x4 from Table
+selects columns.  This is a "project" command.
+
+horizontal select (some call it  "restricted" select) eg. select x1, x2, x4 from Table where x2=1000.
+
+joins link tables together.  You have to have a column that is the same that has common elements.
+
+we normally call this a natural join.  most DB projects, people use natural joins, & we focus on it.
+there are other joins too.
+
+question for exam - learn rleational algebra?  not at this point, maybe for second exam...
+
+in the exam - he'll give us table and we write SQL - this is just an example.  there won't be a lot of this on the test.
+
+
+subqueries:
+select BranchNo, (Select count(staffNo) as myCount from staff s where s.branchNo = b.branchNo),
+  (select sum(salary) as mySum from staff s where s.branchNo = b.branchNo)
+  from Branch b
+  order by branchNo
+  
+tonight is the end of SQL, then we'll get into normalization / E-R.  3 weeks or so.
+
+use create command to make a table, but to put data  what do you do?
+use 'insert' command.
+
+
+delete specific rows - delete from vieweing where propertyNo = "PG4".
+
+how you define your foreign key / primary keys is important.
+
+next 4 weeks - most important section of the class.
+
+
+
+-----
+next homework:
+next week come up with preliminary tables for database.  probably will be wrong but hopefully it will be okay.
+when you turn in it, write down title.  "Preliminary Table for Databases", don't call it Assignment 4.
+
+Relations / Tables no difference, same thing.
+
+How do we do the tables?  each table like this:
+attributes across the top,
+tuples of data going down.  5-20 tuples of data.  10 would be a good amount.
+
+we'll modify it as we go.
+
+we can normalize it if we want, but it's not required for this first one.
+
+chapter 5 introduction to normalization.
+
+primary key / foreign key - some DBMSs require defining both, some only primary key.  some you have to say which foreign key refers to which item.

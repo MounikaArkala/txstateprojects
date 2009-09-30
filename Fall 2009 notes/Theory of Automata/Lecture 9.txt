@@ -1,0 +1,51 @@
+- we want to cast all problems as language recognition tasks/ decision problem (if they're not already).
+Then we want to encode them.
+
+PDA - push-down automata.
+
+goal of book - make useful claims about problems and the programs that solve them.
+
+decision procedures - algorithm to solve a decision problem
+- must halt on all inputs (no infinites)
+- when it halts, it should return a correct answer (yes/no - if input stream is in language.)
+
+decidable:
+checking for even numbers: is integer x even?
+"Let / perform truncating integer division"
+even(x:integer) = if (x/2) * 2 = x then return True else return False.
+if there exists some decision procedure the problem is decidable.
+
+undecidable but semidecidable:
+haltsOnw: in step 2 if the progrma really never halts, the return "false" is useless.
+if there does not exist a decision procedure that we know of, it's semidecidable.
+if we can prove that it doesn't have any decision procedure then it's undecidable. (for haltsOnw it's actually undecidable).
+
+
+
+undecidable:
+eg. given a program that takes a string as input. does the program, "p", halt on all input strings?
+no way to prove.
+this is not a proof, it's just an example.
+to prove there is no semidecision procedure... we aren't gonna show it but it's provable.
+
+nondeterminism - could be something such as 3+2 = 5 (might not return false) - we assume it returns a "true" if the value is not a false.
+if all values return a successful value, all are successful.
+-allows you to make a correct guess w/o going through all the paths.
+
+we use it to measure teh difficulty of the problem.  eg. yo use this tool you'll solve it w/in 5 hrs.
+
+nondeterministically deciding SAT
+- yu need to assume "choose" works.
+(it always halts.)
+
+read tesxt books and such that talk about nondeterminism because the N in NP-complete stands for that.
+
+deterministic - real, given input & status you can deterministically predict the next step (the "state' of the current problem.)
+nondeterministic - you don't know.
+
+Chapter 5, Finite State Machines.
+he sees why it takes carol a long time b/c he actually has to explain stuff to us. wow, really?
+
+Finite State Machine soda machine example.
+
+

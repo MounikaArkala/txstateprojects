@@ -1,0 +1,74 @@
+Assignment 1 is extended until next Tuesday.
+Answer key will be sent out sometime after.
+
+|s| is # of symbols in s.
+
+concatenation: x = good, y = bye, xy = goodbye
+epsilon (greek E) is identity for concatenation of strings.
+E is the empty set.  xE = Ex = x.
+
+also associative, so (st)w = s(tw)
+
+replication - a replicated 4 times is aaaa
+
+these are all straightforward, but pay attention to the way they define the function.
+
+if |w| = 0 then w(R) = w = {}
+if |w| >= 1 then:
+  (there exists an a that is a subset of Alphabet such that for some u in the Language w = ua.
+  and then w(R) = a u(R)
+  
+it's a recursive definition.
+basically, take the last letter, put at front, then reverse the rest of the string.
+
+showed proof by induction of the concatenation and reverse.
+
+he may give questions such as this in the exams.
+
+subset / proper subset - proper means it can't be a subset of itself.
+
+substring = aaa is substring of aaabbbaaa
+proper substring - aaa is proper substring of aaaa, but is not proper substring of aaa.
+
+prefix
+eg. a is prefix of aa or ab, ab is prefix of ab or abb or whatever.
+s is a proper prefix of t iff s is prefix of t and s != t
+
+{} is a proper prefix of every non-empty string and is a prefix of all strings.
+
+defining a language:
+a language is a (finite or infinite) set of strings over a finite alphabet Sigma (E).
+
+L can be all sorts of things, eg. any combo of {a, b}.
+L can also be L = {}
+is L = {{}} different?  Yes, the size is 1 rather than 0.
+
+A halting problem language - an error = halt.  
+
+Languages are sets.
+
+A language E* (no constraints) is countably infinite.
+
+A language is either finite or countably infinite.
+Either situation, the language is countable.  tehre is no language that is not countable.
+
+Concatenation of languages: if L1 and L2 are languages over E, then 
+L1L2 = {w is a in E*, and there's some s in L1 where, for some t in L2, w = st}
+eg.
+L1 = {cat, dog}
+L2 = {apple, pear}
+L1L2 = {catapple, catpear, dogapple, dogpear}
+
+can you concatenate languages in different alphabets...? possibly, but with the definition given, you must use the same sigmas for both (same alphabet.)
+
+
+Kleene Star
+L*  is set of strings that can be formed by concatenating together zero or more strings in L
+eg.
+L = {dog, cat, fish}
+L* = {{}, doc, cat, fish, dogdog, dogcat, fishcatfish, fishdogdogfishcat, ....}
+Note, {e} is always in L* ({e} is a set with 1 element (empty set), which is an identity for union.)
+given a sigma E E* is largest possible defined on that sigma.
+language L* is the biggest possible language defined on L, with L as alphabet.
+that * is the kleene star 
+

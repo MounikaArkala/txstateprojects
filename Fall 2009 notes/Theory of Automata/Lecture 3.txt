@@ -1,0 +1,98 @@
+Relations
+what are relations? how do we describe them mathematically?
+a subset of cartesian product over the sets.
+binary relation is more important.
+there are also ternary relations.
+a composition of relations: suppose R1 is a relation over A x B ( a subset, the long-C that's underlined)
+R2 subset of B x C, R2 o R1 is the composition.
+composition means that for some set (a, c) there's some B such that (a, b) is in R1 and (b, c) is in R2
+I.E. there is a common element that connects them.
+(Dave, cake) and (cake, 30) connects to (Dave, 30)
+R2 o R1 is a subset of A x C
+you can write R1 o R2, it's the same.  there's only one composition.
+
+you can represent binary relations as graphs.  
+eg.
+Doreen -> Ann -> Catherine -> Allison
+X <-> Y
+(don't draw two directed edges, just do a bidirectional edge.)
+
+R is a subset of A x A is reflexive iff, for all x in A ((x,x) is in R)
+examples:
+<= defined on integers.  for every integer x, x <= x.
+
+eg. mother of can't be reflexive. because you can't be your own mother.
+
+symmetric : = is symmetric.
+<= is not symmetric.  
+
+antisymmetric: mother-of, less-than.  less-than-or-equal is not antisymmetric.
+unless you include the constraint x != y which is included in the definition, in that case less-than-or-equal IS antisymmetric.
+
+transitive: if x < y < z then x < z.
+
+equivalence classes:
+equivalence relation 
+we describe with [x] to mean equivalence class to which x belongs.
+
+partial order
+- a partially ordered set.
+a subset-of is a partial order of a general set (eg. the set of all sets : Z (integers) i sa subset of the set of all sets.)
+
+lattice - graphic representation of partial order.
+
+
+a total order relation (R subset AxA) is a partial order that has additional property that
+for all X, Y in A((x, y) is in R or (y,x) is in R)
+
+eg <=  (because it's reflexive and antisymmetric)
+
+a function f from a set A to set B is binary relation.  subset of AxB is:
+each element in A relates exactly to one element in B (B is its output for a given input.)
+one-one ok, many-one ok, not one to many.
+
+notations of functions
+f: A -> B
+A: domain
+B: codomain / range
+f is function from A to B
+
+can define function in two parts
+first specifies domain and range, second defines hwo elements are related.
+succ: Z -> Z
+succ(n) = n + 1
+succ is a unary function
++ (ZxZ) -> Z is a binary function.
+
+properties of functions:
+injective
+subjective
+etc.
+
+A -> B is one-to-one iff no two elements of A map to the same element of B.
+-injective
+-f is an injection
+
+function f is "onto" iff every element of B is value of some element of A.
+every element in B is covered.
+some element in A maps to each element of B.
+each element in B is associated with an element in A.
+eg mother-> child.  each child must have a mother.
+- surjective
+- f is surjection
+
+A->B is bijective if both injective and surjective.
+
+an element a is an "identity" of the function # iff,
+x # a = x and a # x = x
+
+eg. i * 1= i (for multiplication)
+i + 0 = i (for addition)
+empty-set for union
+
+an element a is a "zero" for function # iff,
+x # a = a and a # x = a
+eg.
+i * 0 = 0
+A AND {} = {}
+P AND False = False 

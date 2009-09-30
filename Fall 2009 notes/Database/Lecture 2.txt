@@ -1,0 +1,83 @@
+
+
+the pages will be sent to library reserve, to put the books in the reserve room.  
+you can check out the book for a couple hours.
+it's not hte most updated edition but probably alright.
+
+we'll do external schema, internal schema, step by step, throughout the semester.
+3-schema architecture - database system design / architecture.
+
+The external schema - many external user views (eg. report, screen display, order form, etc.)
+
+next assignment - more than just user views.  collect all data, including the user views.  not just external schema, collect all the business forms (not actual data.)  all the reports they can see, put them all together.  That's the user requirements.
+just get what you need.  better to get more data than too lttle, you can always ignore.
+Next week - all the forms.
+similar to figure 1.1 in handout.  9th edition of first book, pg. 197 end of ch. 4 (ER model / business rules)
+
+when you design a database, you start with your forms, not with your SQL.
+
+up until the midterm, no SQL!
+
+Assignment 3: form all user requirements - you come out with the external schema.  User Requrements.
+
+read chapter 2 and get an idea, then come up with it yourself.  
+
+he will write comments to everything and return it to us.  Then we make modifications and such, but we don't return it.  we wait until the end, and turn it all in to him during the midterm.
+
+after assignment 3 we will do conceptual schema.
+then assignment 4, 5, 6, 7, 8 are also conceptual schema.
+
+
+business forms - this kind of form may be user view, may not be.  user view depends on what the user wants to see on the reports.
+pg. 197 - so much information, it's a general business form, not a user view.  they may be identical, may not be.
+
+he records what you turn in, and by milestones if you've corrected, that's how he determines your grade.
+
+grading system is means to push us to learn, not an end to punish us.
+
+physical schema - in the database.
+logical schema - database in your mind.  physical schema is actually stored data.  eg. logical schema is "order processing" or "supply chain" etc.
+
+day of final exam - we'll go to computer lab (MCS 590) and show our project running.  we use the project demo as the final exam.  he will ask us a few simple questions.
+
+either october 27 or november 3 for Exam 1/midterm.
+
+Exam 2 we'll decide later.  Final - either December 8th or December 11th (friday).  For final you can choose either day, it's up to you.  
+
+midterm is a written exam.
+
+-------- start of class.
+
+we need to know the history of databases.
+database applications
+1970 - Edgar F. Codd - received Turing award.  introduced Relational Algebra/ Relational calculus / Relational model.
+
+1972 - Boyce-codd normal form for database.  slowly relational came to the front and all old techniques that used to fill the books turned into the appendices and then disappeared.
+
+1976 - Peter Chen introduces entity-relationship model.
+
+1979 - Fagin, Nievergelt, Pippenger, Strong define Extensible Hashing.
+
+1981 - Edgar Codd - turing award for contributions to database theory.
+--- that's the people, now the companies.
+1977 - Relational Software ( eventually turn into Oracle) founded, releases a relational database system based on IBM System R and utilizing SQL.
+1982 - DB2 database system released by IBM.
+1986 - ANSI SQL 1.0 published.
+-------
+break / talks about all our projects
+-------
+
+Sept. 28th, Monday. 5:00.  talk about ACM International College Programming Contest.
+give seminar on contest, what you have to learn, what students can get from it...
+he created the Asian chapter of competition, 200,000 participating students now.
+
+1968 - IBM released IMS (information management system), the first commercial DBMS.
+
+1971 - CODASYL publishes the Database Task Group (DBTG) report on the network model.  They said IBM heirarchical is expensive nad hard to use.  
+
+1974 - UC Berkeley publically distributes the Ingres DBMS using theQUEL query language.
+
+1975 - IBM develops System R - experimental relational DBMS that intrudices many concepts common today, included SQL (SEQUEL, now SQL).
+
+Microsoft called their database SQL and their server SQL Server.  Now it's confusing, because when they're talking about the Microsoft DBMS, they're talking about SQL Server.  It confuses everyone.  Same with "Window" used to be a term for databases, but now you can't use it.
+
