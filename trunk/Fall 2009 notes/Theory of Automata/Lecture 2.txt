@@ -1,0 +1,60 @@
+A model is an interpretation of a sentence that is True.  An interpretation is a set of values you choose to use for it.
+
+we need to be very precise when we do any reasoning, in this class.
+
+x is a variable, a predicate is, eg. Animal(x).  A sentence is a whole collection of predicates where no variables are free.
+
+Turing award - nobel prize for C.S.
+
+Dijkstra's Algorithm - shortest path from a node to all other nodes in a tree.
+- starving philosopher
+- mutexes
+
+in this course we seek to learn how to talk about stuff very specifically.
+
+fir'st order theory
+Axiom - given true
+Theorems - proven true, derived from axioms
+Theory - all possible axioms and theorems that have been proven true using some complete inference rules.
+Inconsistent - there's a contradiction in the theory
+otherwise it's Consistent.
+
+second order logic - variables range over sets of individuals (for All, for SOme, x is contained in P or x Not contained in P)
+higher-order logic - predicate takes one or more other predicates as arguments.
+
+cardinality:
+a natural number (if S is infinite)
+"countably infinite" : S has same number of elements as there are integers.
+"Uncountably infinite": (S has more elements than there are integers.
+
+empty set:
+cardinality of empty set = 0
+cardinality of {empty set} is 1
+
+Relating Sets to Each Other
+(a) - a is contained in b
+(b) - a union b
+(c) and (d) - set difference
+(e) - complement (not-A)
+(f) - a and b are disjoint
+
+power set of A - set of all subsets of A
+Pi is a partition of set A iff
+-no element of Pi is empty
+- all pairs of elements of Pi are disjoint
+- union of all elements in Pi is A
+eg. A={1,2,3}
+Pi = {{1},{2,3}}
+
+a binary relation over two sets A and B is a subset of cartesian product (A x B)
+binary relations are useful.
+
+Eg. Desssert = {(Dave, cake), (Dave, ice cream),
+(Sarah, pie), (Sara, ice cream)}
+Dessert -1 = {(cake, Dave), (ice cream, Dave),
+(pie, Sarah), (ice cream, Sara)}
+
+why do you define a relation as a subset?
+the tuples share the same relationship...  you put all pairs that have the same relationship together.
+
+

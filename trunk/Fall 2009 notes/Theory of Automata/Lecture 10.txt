@@ -1,0 +1,34 @@
+
+
+Assignment 1 was pretty easy, 2 was second-easy.  3-on will be same level.
+
+good book:
+Automata Theory, Languages, and computation.
+
+analysis of algorithms
+- theory of computation started out as mathematics.
+
+John Nash - nash equivalism.  knowing the other side's strategy, come up w/ your own strategy to win the game. They both find strategies for one to win.
+
+some formal languages, context-sensitive (we don't talk much about these)
+recursive languages...
+
+we don't have context-free expressions.. 
+
+chomsky hierarchy - bunch of different levels for languages/grammars.
+
+Chomsky Normal Form - CNF - context-free grammar.  most modern proglan's are CFG.
+
+Kleene uses regular expressions.
+
+regular expression...
+
+FSM = finite state machine.
+D = deterministic.
+
+Regular language : M is FSM so the language L(M) is a regular language.
+if M is DFSM and { } is in L(M), then the start state of M msut be an accepting state.
+
+"configuration of a DFSM M is an element of:"
+K x Sigma* 
+

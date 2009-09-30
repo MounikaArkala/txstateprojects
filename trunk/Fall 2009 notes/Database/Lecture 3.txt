@@ -1,0 +1,128 @@
+Should all be included in Assignment 2 (he should've told it to us last time)
+Data Collection:
+1. Interview Report
+2. Existing Operation or Process (paperwork & screens)
+3. Business Forms and Reports
+4. Input Forms & Screens
+5. Output Forms & Screens
+6. Internal Operation Forms & Screens
+7. Sample Data
+8. Sample algorithm / outline description
+9. Etc.
+
+if we missed something, next time, modify assignment 2 and turn it together in milestone 1.
+-----------------
+
+All database authors have problem - talk about SQL first or data modeling / conceptual stuff first.
+Depends on the author.
+
+our author does conceptual stuff first.
+
+he will give us an overview of data modeling, then do a very quick ( 1 night) SQL review, so then he can go back and go more in-depth
+in data modeling.
+
+Furniture company & hospital are examples in book.  he will vary it but the book can't.
+
+
+when we look at book, looks trivial.  In real life, process from business forms -> table design is difficult.
+the whole semester we learn what's wrong about what we do.
+
+How do we get all of the information: objectives, organizational units, etc...
+"Business Objects for Product Line Marketing Support System (Pine Valley Furniture Company)"
+in book (table 2-4) is what we want to arrive at, it's based on the screens we have found.
+
+a box is an entity.  by midterm our goal is to have the E-R graph of our database.
+
+
+Business Object analysis ends up in our E-R model.
+
+conceptual model vs. logical model - same thing basically.
+
+once you go from E-R to SQL it's pretty simple to make the table creation scripts - table definition / database definition.
+
+the first implementation is SQL-based, the next one is more than that.
+
+chapter 7 in the book - how to learn SQL.
+
+
+we will know what's right/wrong.  we will be able to talk about E-R model.
+
+------------------
+
+user schema - screens / output / report - imagine what kinds of users you have.
+
+each user will want a particular way of looking at your data.
+
+could be a screen / intermediate report.  could be intermediate report.  
+
+user schema is not identical to user interface.  user schema pays attention to data only.  user interface concentrates on design.
+
+he wants user schema.  turn it in next week.
+
+schema - put a bit of UI to make it look a little better.  how much data do you want?  doesn't matter.
+put 5-10 maximum.    not need to be in the UI (can just be in a table.)
+
+user schema is the views of every user in your system.
+
+------------------
+
+October 27th is the exam 1 (midterm.)
+
+December 9th, December 11th, or December 15th.  5pm Friday, 9pm Wednesday (after other class).  
+
+--------------------
+
+going over the SQL...
+used to be called Relations instead of Tables.
+Now we call them Tables. 
+Attributes - now called Fields.
+tuple -> record.
+
+all these terms are interchangeable.
+
+
+select queries:
+SELECT staffNo, fName, lName, salary/12 FROM Staff;
+
+shows the salary divided by 12.
+
+relational operator - can't be called relational operators because we're using relational databases, so we need to call them comparison operators so we don't confuse ourselves.
+
+so we can do =, <> (or !=), <, >
+
+
+range search condition - eg. Select * from Staff where salary between 2000 and 30000.
+
+set membership:
+where position in ('Manager', 'Supervisor');
+
+"is NULL"  is a condition you can use.
+
+order by something; can be used to sort.  ascending by default.
+
+you can do a count:
+select COUNT(*) as myCount from propertyforrent where rent > 350; # calculates the # of places available for more than $350.
+
+
+textbook -goes through details, very boring.  this is just basic.
+
+2 more important things to talk about - putting 2 tables together, and nested queries.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

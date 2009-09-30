@@ -1,0 +1,48 @@
+What is question on pg. 53?  (problem "king who has wine, spy, something") 
+- question about formulation:
+n bottles
+one is poisoned.
+person drinks then dies.
+obviously you can't just have one tester per drink.
+
+(may not be exactly log(n) just needs to be O(log(n)).)
+
+insertion sort. - sorted / unsorted part of list.  start from first element of unsorted part of list.  insert it into sort part of list.
+selection sort. - start w/ a sorted and unsorted list.  find the min value in the unsorted list, append to sorted list.  repeat until unsorted is empty.
+
+insertion and selection sort - selection sort runs faster regarding assignments, but slower regarding comparisons.
+
+Mr. Shell invented shell sort in the 50s.
+use increments, 5, 3, 1, eg.  and sort it based on this.
+how do we select increments?
+last round is increment 1 (regular insertion sort.)
+
+lower bounds for searching - O(logn) is best worst-case of search.
+
+
+height represents highest # of comparisons that will be made.
+
+
+theorem 7.2:
+height of tree log(k).
+each node in comparison tree - log(k) where k = n! so log(n!) is the worst case.
+
+remember lg and log are both binary logarithms.
+if he ever uses different base he'll state it specifically.
+
+----------- done w/ kruse's book.  on to goodrich book.
+
+merge sort - 2-tree.
+
+height h of merge-sort tree is O(logn).
+overall amount of work at depth i is O(n).
+partition & merge 2^i sequences.
+
+
+choose random pivot.  make 3 groups, L, E, G, where L = all items less than pivot, E = items greater than pivot, G = greater.
+insertion / assignments are the same thing.
+then you do it recursively etc.
+
+after that you "join" L E and G back together.
+
+analysis of quick-sort next time.

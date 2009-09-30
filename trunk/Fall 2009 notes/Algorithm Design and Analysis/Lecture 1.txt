@@ -1,0 +1,58 @@
+Intros and talking about desired classes.
+
+Oleg Komogortsev.
+
+Computer Science - study of algorithms.
+Algorithms - step-by-step process that tells you steps you take to acheive a desired result.
+baking recipes ~~ algorithms
+
+This course is the main basis of CS.
+
+information of class is on Syllabus on TRACS.
+
+e-mail subjects: "CS5329:"
+
+textbook - Algorithm Design - foundations, analysis, and internet examples. 
+
+Homework must be typed.
+
+Discussion is okay - just don't do the wrok together.
+
+Attendance - get extra points.  
+
+
+-----------------------------
+
+CS is so widespread, you can be interdisciplinary.
+
+original thinking - big point of algorithms.
+
+don't start by asking "what you want me to code?"
+
+mundane programmers are not going ot continue to be in demand.
+
+original thinking is what we want to do.  in this class we don't just read a list of algorithms and implement them.
+
+90% of programmers failed binary search.
+- no formal methods
+- no understanding of algorithmc design techniques
+- abstract thinking
+
+stuff to learn
+- math (classifying functions, time complexity, time series/logarithms, recurrence relations)
+- graph, search, recursive, hashing, greedy algorithms, dynamic programming.
+
+All lectures are online - read before class!
+
+explaining - explain algorithms to each other to help yourself learn it. talk to yourself out loud.
+
+guesses and counter-examples - try to break your algorithm.  fix it, reiterate.
+refinement is very important.
+
+end of lecture
+-------------------------------
+IDEA!!
+calibrate based on eye distance apart? you can determine distance from screen then.  size of pupil to determine tilt (if they're different sizes).
+
+--
+read first chapter of algorithms textbook.

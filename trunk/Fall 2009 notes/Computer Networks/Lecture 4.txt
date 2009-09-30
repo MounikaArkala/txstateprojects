@@ -1,0 +1,32 @@
+Modulated transmission - amplitude-modulated: a sine wave is sent.  if it's oscillating w/ a low amplitude, it's a 0, high amplitude is a 1.
+
+Homework is due in 2 weeks.
+
+copper flowing through wires converts energy to heat.
+
+- cable : a 75-ohm cable is important for internet, 50-ohm is digital transmission only.
+imagine the amount of bandwidth for cable.  
+
+wavelength is inversely proportional to frequency.
+lambda(f) = u
+
+optical fiber - carries transmitted information in form of a fluctuating beam of light in a class fiber.  
+
+optical fiber transmission modes - monomode is best? why is that?
+
+satellite - for TV it's download only, for communication it's two-way.
+
+terrestrial microwaves - similar to satellites but not as reliable (more interference.)
+
+the more harmonics, the higher bandwidth of channel is needed.
+
+signal is composed of many sine waves of increasing frequency.  the single binary signal is composed of these.
+
+amplification = gain.  gain is positive amplification, attenuationn is negative amplification.
+P1 is transmitted and P2 is received power.  Amplitude is
+10 log10 (P1/P2) dB
+
+white noise - elecrtical movement generates signals.
+
+bandwidth-delay product - product of link bandwidth and propogation delay.
+

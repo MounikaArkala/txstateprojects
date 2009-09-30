@@ -1,0 +1,53 @@
+
+a binary relation R on set A is closed under property P iff R possesses P.
+eg.
+let R = {(1,2), (2,3), (3,4)}
+not transitive closure.  (1, 3) is not in R.  transitive (1, 4), (2, 4), must all be in R also.
+
+not reflexive closure either.  you are missing (1,1) (2,2) (3,3) and (4,4).  it doesn't reflect its input onto its outputs.
+
+a closure must be minimal.
+
+proof techniques:
+proof by counter example - claim: no females in the room.  proof: point at female.
+
+proof by case enumeration
+eg. condition that satisfies for all even numbers, then another for all odd numbers.  you break into classes.
+
+Proof by mathematical induction.
+if P(b) is true, and for all n >= b P(n) ->  P(n+1)
+then for all integers n >= b P(n) is true.
+
+Pigeonhole principle.
+
+countably infinite sets.  a set N is countable iff it's either finite or countably infinite.
+set "N" is countably infinite (natural numbers).  call its cardinality X0.
+set "A" is countably ifinite if it also has cardinality X0 and there is some bijection f: N -> A.
+
+eg.
+the set of even natural numbers is countably infinite.
+Even: N -> E
+Even(x) = 2x.
+this is a bijection.  therefore E is countably infinite.
+
+enumerations - sometimes bijection is not as obvious. then a good way to think about finding bijection from N to "A" is to turn into problem of finding enumeration of "A".
+
+an enumeration of set A is a list of elements of A in some order.  each element of A must occur in enumeration exactly once.
+
+A set "A" is countably infinite iff there exists an infinite enumeration of it.
+
+finite union.
+the union of a finite number of countably infinite sets is countably infinte.  just take the first element of all sets, add to union, then move on to next element of all sets, etc.
+
+if we have a countably infinite number of countably infinite sets we can't generate a union, because you can't even finish the first step.
+
+
+diagonalization
+N is countably infinite.  its cardinality is X0.
+there are sets with more than X0 elements (not countably infinite) eg. se t of real numbers.
+The power set of integers is not countable.
+S is a countably infinite set, P(S) is not countable.
+
+to prove use diagonalization.
+prove by contradicition.
+we say "if A is countably infinite, it should have an enumeration."  then we show that there is an element of A that is in the set, but not in the enumeration of it.

@@ -1,0 +1,30 @@
+Asynchronous - VBR.  Synchronous is constant.
+
+Internet - connectionless Packet network.
+
+to reorder packets on a router, you must have room to store them temporarily.  you also need to certify headers are intact before forwarding.
+
+Application QoS : QoS that uses underlying network's QoS.
+
+if the bit rate is constant, then the mean Bit Error Rate is constant, based on the probability of corrupted bits.
+
+unreliable service - best-try or best-effor service.
+IP drops corrupt headers, forwards corrupt data portions (can't tell if data is right.)
+
+Ethernet layer also does checksum on its layer.
+
+choice of block sizes - smaller block sizes higher overhead, but bigger blocks more likely to be corrupted.
+
+QoS parameters
+
+server has an MTU so say your packet sizes are 16000 bits, you wo n't actually be able to transfer that much.
+
+constant-data-rate streams will often get different priorities with QoS so, for example, you can pass video through.
+
+----
+ on to lecture 2 slides.
+ NIC - network interface card.  typically Etehrnet (used to be token-ring.)
+ 
+ baseband transmission is very simple and easy, but it has a lot of problems.
+ 
+ 

@@ -1,0 +1,97 @@
+Notation:
+P -> Q         (P implies Q)
+-,P            (NOT P)
+P _= Q         (equivalent)
+(A)x           (for all x)
+(E)x           (for some x)
+
+very theoretical.
+he covers more material, a bit harder than Carol's class.  
+
+curved.  your relative performance matters.  harder, more work, but we'll get a benefit.
+
+no project, not a programming course.  5-6 assignments.  paper/pencil.
+
+pretty fair grading.
+
+you could miss lecture without missing anything.  # of lectures attended doesn't matter about your grade, unless you're borderline.
+
+        Mathematical Background
+
+    Boolean Logic Wffs
+Proposition - statement that is true or false
+
+propositional logic, first-order logic, second-order logic, higher-order logic.
+
+wff - well-formed formula.
+a wff is any string that is formed according to following rules:
+P is wff.
+if P is wff, not(P) is wff.
+if P and Q are wff, then
+ - P v Q (or/disjunction)
+ - P ^ Q (and/conjunction)
+ - P -> Q (implication)
+ - P <-> Q (??)
+are wff.
+if P is wff then (P) is wff.
+
+A wff must be either true or false, and we can evaluate it.
+
+valid / tautology - true for all values of variables.
+unsatisfiable - false for all possible values of its variables.
+satisfiable - at least one assignment is true.
+equivalent - all values of one wff are same as another wff.
+
+Properties of boolean operators
+v and ^ are commutative and associative.
+they are idempotent - multiple applications of same operator, values stay the same.
+absorption laws: P ^ ( P V Q) = ??
+
+Entailment
+a set "A" of wffs implies or entails a conclusion Q whenever all of the wffs in A are true, and Q is also true.
+
+in principle, entailment and modus ponens are true.  Difference - entailment is for a set of WFFs, where modus ponens acts on one.
+
+inference rule is sound if...??
+
+first order logic extension of propositional logic.
+we don't have just constants,we have expressions.
+wff exists in firstt-order logic too.
+P is an n-ary predicate (takes n arguments), and each expression x1, x2, ... xn, is a term, an expression P(x1, x2, ...., xn) is a wff.
+if any variable occurs in such a wff, then that variable is free.
+free variable - not bounded.
+if you use (A) or (E), then it is bounded. (for all x, for some y, etc.)
+
+"x" is a free variable.
+any formula that has a free variable, it is not a sentence / statement.
+Bear(Smoky) is a sentence (no variables at all)
+(A)x (Bear(x) -> Animal(x)) is a sentence (all variables are bounded)
+
+PROLOG - not a procedural language.  it's logic-based.  functional programming languages: Haskell, LISP.
+
+deductive database - very popular about 10 years ago.  stores formulas (boolean).
+can return you derived truth statements.  Not practical.
+
+interpretation - sentence w, pair (D,I) where D is a universe of objects, I assigns meaning to symbols of w.  It assigns values, drawn from D, to the constants in w.  eg.  "interpret this as if it exists in the real world.  Animal(x) -> Bear(x) is not true."
+
+model of sentence w is an interpretation that makes w true.
+
+sentence w is valid iff it is true in all interpretations.
+
+we need to have an interpretation of a sentence in order to be able to reason its truth value.
+
+(A)x((P(X) ^ Q(Smoky)) -> P(x))  (always true for whatever interpretation ??)
+
+additional sound inference rules:
+Quantifier exchange
+from -,(E)x(P), conclude (A)x(-,P)  (if there exists no person who can get 100%, then all people cannot get 100%)
+-,(A)x(P), (E)x(-,P)
+
+proofs - we need to do proofs.
+proofs need to be very precise.
+
+Theorems are proved to be true, Axioms are statements that are given to be true.
+
+first-order logic - can't reason a set of variables.
+second order logic allows reasoning over set of individuals.
+higher order logic - predicate can take other predicates as arguments.

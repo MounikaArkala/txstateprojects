@@ -1,0 +1,44 @@
+
+Login:
+cs5310
+d6NWCfall09
+
+Textbooks - both required.
+Computer Networking and the Internet (5th edition)
+UNIX Network Programming - networking APIs: Sockets and XTI (3rd ed.)
+
+August - firewall campus-wide.  login to firewall first, then we can get to computers on network.
+
+both books available form the library.
+
+We will cover:
+- fundamentals of data communications
+- fundamentals of computer networks
+- UNIX network programming
+
+C++ is easier than Java.
+
+centralized systems are much less robust than other architectures.
+Computer Networks
+- LAN (local area network)
+- WAN (wide area network)
+- MAN (??)
+Distributed Systems
+- centralized software (distributed OS) manages resources on many network programs.
+Parallel Computer
+
+TCP/IP - tcp is the transport layer, IP datagram packets pass over it.
+
+using a PSTN - converts a digital signal into analog signal.  the other computer will convert back when it receives.
+
+ISDN - one form of DSL.  tried to incorporate analog devices into future digital network.  Turns out it wasn't very appropriate.
+
+HP bought COMPAQ which bought DEC.
+talking about PSTN etc, V.92 modems.
+If you can pre-compress data before sending, you can artificially have a faster connection.
+
+
+
+
+
+get books from library!!

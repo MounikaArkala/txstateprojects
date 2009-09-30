@@ -1,0 +1,122 @@
+
+1 big project, implemented in 2 major database languages.
+
+class is not just theory, it's theory, formula, concept, principle, big project....
+
+can't do same project between different classes.
+######## TUESDAY ########
+next week Tuesday, pick out a project.
+write down, 1-2 page, description of project to him.
+Don't put data, database language, entity, records.  Just a description of project.
+he doesn't care, just choose a database project you'd like to do.
+he'll get everyone to tell you what their projects are.  no 2 people can select same project.
+
+
+if 50% or more of students turn it in on time, he won't delay.  He will let you turn it in late, but he will not
+have a set amount of penalty for late days.  He'll just make it up at the end.  Don't be late for every small project.
+
+2nd week assignment - all the business forms, functional /data requirements of project.
+we just need some formula of data, not our actual data.  1-2 pages of actual data if you want.
+what kind of business forms?
+eg. - registration system - all that data you enter when you register (100 items) ends up in database somehow.
+But we only want to specify what they will enter.  When you enter data on screen, all those pages of data entry are business forms.
+admission and registration system forms are all checkedd in the background after you submit.
+You turn in all your functional requirements, algorithm, business corrections, etc.
+- no database languages at this point, no records, tables
+until midterm there's no language, just the specification.
+if you do a real-world project, you will have an easier time coming up with your forms.
+
+nothing is on the internet, it's in class.  asking questions in class is best way - he makes it clear for everyone faster.
+
+Textbook is in library (reserve).  
+
+no makeup exams.
+
+if policy is too much, change class / drop. he will help you change, even if it's after the official change date.
+
+any software, SQL-based.  first implementation, any package.  can have front-end or can just make straight queries.
+another one - any language which is beyond SQL (PHP, middleware, etc.)  Database is backend.
+
+just like a real-world project except he'll guide us to get it done.
+
+------------------ begin the lecture now
+
+Too much theory / proof in databases? it's all the same, really.
+
+Database - collecction of data which is shared and  used for multiple purposes (with certain data structures for data)
+Database Management System (DBMS) - different from Database!!  Database is the data!
+software that manages a database.
+Database Management System(DBMS):
+A collection of routines, usually in an integrated package, for efficiently storing, modifying and retrieving data for shared, concurrent use by several users with consideration for data integrity, proteciton and privacy.
+
+
+$150,000 package back in the day is now incredibly cheap.
+we are learning the model and technique of DBMS to learn how to create Database.  In order to create database, you must follow certain technical standards.
+
+
+Project demo - normally uses Finals time to demo projects.  
+
+How do we find business forms?  Every company has business forms!  just go try to gather them from the business forms.
+
+you can work on projects together, but you can't do the same project.
+
+inventory system is an application, registration system too.
+application all talks to DBMS.
+some people use Microsoft SQL Server.
+
+This semester, we're creating application system.  Application talks to DBMS, which talks to OS, which talks to Database.
+(this structure is not 100% correct but these things are all intertwined.)
+We also create the database.  We just use the DBMS and the OS as tools to create our application and database.
+
+different authors design database drawings differently, but it's okay.  He doesn't mind.  Just be able to prove that your
+design matches a book's if he asks you.
+
+
+query processor processes your code (could be SQL... depends on DBMS)
+
+we aren't allowed to use MS Access - too simple.
+
+- data manipulation language precompiler
+- data definition language compiler
+- data modeling / data schema - biggest part.
+Schema, Query, Application is the most important parts.
+
+Database - each table is like a data file.
+A long time ago people had to create their own data dictionaries.  now we don't have to create but it's still there.
+
+when you do application programming, you can combine other languages together (C++/Java together, eg.)
+2nd implementation, 
+
+Page from chapter 2:
+    first step - planning.  
+enterprise modeling
+ - analyze current data processing
+ - analyze general business funcitons and database needs
+ - justify need for new data and databases in suppport of business
+conceptual data modeling
+ - identify scope of database requirements for proposed information system
+ - analyze overall data requirements for business functions supported by database.
+ 
+project 3 is part of Conceptual Data Modeling portion.
+planning connects to analysis, then database design, then implementation (programming), then maintenance.  then it goes back to Planning.  it's a cycle.
+
+read chapter 1, 2.  he already covered most of it, he doesn't follow book page-by-page.
+
+how big should the project be?  A large project could take lots of people for a long period of time.
+he will comment about the project, too-small or too-big.
+don't be too big or too trivial.
+
+bigger project better, it's easier to cut down than to try to expand it.
+
+hwang does an international programming contest w/ 200,000 students.
+
+we will need to have documentation of our project as well.  we need to have documentation to get credit.
+
+we can choose any DBMS we want.  he doesn't have suggestion.  Most people in the past, Oracle, Java, PHP, SQL, etc. etc.
+He doesn't really care.
+
+
+project ideas:
+Half-Price Books
+Hobby Lobby
+something with music?

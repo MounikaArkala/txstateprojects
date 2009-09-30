@@ -1,0 +1,7 @@
+i didn't listen too much because i was finishing up a project for Database.
+
+PDA - FSM with a stack.
+a language is decideable if there exists a turing machine that can say "yes" and "no" properly.
+
+machine accepts language, L, defined by some grammar.
+

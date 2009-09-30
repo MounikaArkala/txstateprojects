@@ -1,0 +1,49 @@
+For some alphabet E (sigma), E* is the exhaustive list of all possible strings made by that alphabet.
+For some language L, L* is the exhaustive list of all possible strings made by the language.
+
+do strings in a language have meaning?
+- some are useful, that we've assigned meaning to.  eg. English, Java, C++, Chinese, etc.
+
+natural languages vs. programming languages:
+  natural languages are ambiguous
+  programming languages are structured
+  
+examining computational problems:
+  is p the same as np? $1 million question, not really proveable.
+  - how difficult is a given computational problem.
+ 
+ 
+np = nondeterministic polynomial.
+solutions are approximate solutions / approximations ( heuristics) ... 90% complete.
+
+how do you prove the "hardness" of a problem? you compare your problem with another problem that is similar.
+SAT problem - very famous NP-Complete problem.
+
+Everything is a string
+
+pattern matching on web
+we want to cast a string matching problem into a language recognition problem.
+
+decision problem, we just encode into a language recognition problem.
+does a program always halt?
+given program p, written in some proglan, is p guaranteed to halt on all inputs?
+language to be described:
+HP(ALL) = {p: p halts on all inputs}
+
+primality testing
+problem: given nonnegative integer n, is it prime?
+eg. is 9 prime?
+to encode problem we must encode each instance: encode each nonnegative integer as binary string, for example.
+language to be decided:
+PRIMES = {w: w is binary encoding of prime number}
+why do we have to do binary encoding?
+- we try to cast original problem into language recognition problem to be able to compare these problems.
+in language recognition problem, we have language L and string "w".
+you can really use any encoding, it's just that binary encoding is doable, that's why we used it.
+
+protein sequence alignment: read example yourself.
+
+casting "multiplication" as decision:
+this problem is non-decision.  eg. given 2 nonnegative integers, compute their product.
+encoding of the problem - transform computing into verification.
+basically we want to encode it as a string of the from "AxB=C".
