@@ -1,0 +1,11 @@
+Link Utilization - inutitively - how to keep channel busy.
+
+slide 1.50 was talked about a lot, a circle w/ 8 sequence numbers.
+modulation methods - high frequency = 1, low-frequency = 0.  FSK - frequency shift key.
+
+ASK - amplitude
+PSK = phase shift
+
+QAM - modulation.
+
+1 more lecture (LAN protocol) & then we'll move to next book.
