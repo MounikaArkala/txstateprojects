@@ -1,0 +1,40 @@
+
+
+quick-sort does comparisons in Partiton funciton.  merge sort partitions then does comparisons on merge.
+
+the best runtime of quicksort is if you choose the median for every pivot.
+
+n - (2^0+2^1+....2^i-1) = n - (2^i - 1)
+n - (2^i - 1) = 1
+n = 2^i + 1 - 1
+n = 2^n
+# of comparisons always add up to 2n.
+
+that was best average case.  best best case is all items are pivot.
+
+
+consider a recursive call... good call: sizes of L and G are each less than 3s/4.  
+he described this but i wasn't paying attention.
+
+50% chance of getting good/bad pivot.
+1/4 chance of selecting a value that is too low, and 1/4 chance it is too high.  we only deal in ranges.  (so really "selecting value in the range that is too low").
+
+O -> O bad call
+     |
+     O good call n/4
+     |
+     O bad call 3/4 n
+     
+ 
+ to find level wher eyou run out of all list numbers, (height of tree)
+ ((3/4) ^ i/2) * n = 1.
+ 
+ bucket sort
+ hav a bunch of buskets with indexes.
+ 
+ elements go in whichever bucket as their key says.
+ So if buckets are keyed to 2, 5, 6, and you get elements (2, Oi) and (2, Oj) you put them in 2.
+ if # of buckets is N, our key space is 0 <= k _= N-1 but the # of elements we're sorting is n.
+ the running time of bucket sort is O(n+N) time. if N = 2n then sorting time is linear. 
+ 
+ 

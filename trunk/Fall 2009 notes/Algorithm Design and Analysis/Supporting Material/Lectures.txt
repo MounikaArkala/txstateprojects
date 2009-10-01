@@ -1,0 +1,8 @@
+lecture 2 - goodrich chapter 1
+lecture 3 - kruse chapter 1 and 2
+lecture 4 - kruse chapter 3
+lecture 6 - kruse chapter 6
+lecture 8 - kruse chapter 7
+lecture 9 - goodrich chapter 4
+lecture 11 - goodrich chapter 2
+lecture 12 - goodrich chapter 3
