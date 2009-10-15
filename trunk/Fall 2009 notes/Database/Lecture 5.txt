@@ -1,0 +1,70 @@
+We are given a crappy table, what can we do?
+
+a function means every value on LHS must determine every other value on the LHS, and each LHS can only have 1 value in the RHS it corresponds to.
+
+a tuple is like a row in a table, whereas an attribute is like a column.
+
+in our demo table (paper P5.1) we need 3 keys to be the primary key.
+
+Relational Table - mapping from primary key to other attributes (this is called a relation (it's like a function)).
+
+The table we were given is in the first normal form.
+If a relation is in 1NF, each value of primary key maps to the value of other attributes uniquely (PK _uniquely determines_ all attributes.)
+Every non-key attributes are _functionally dependent_ on primary key.
+
+1st thing to do: make sure PK is defined correctly.
+2nd: make sure value it maps to is unique.
+Then it's a relation (table) in 1NF.
+
+Table was not originally in first normal form.  It is only first normal form once you define the primary key correctly (so that mapping of primary key to other attributes is a function.)
+
+
+Problems w/ database:
+- what if a patient has no surgeon?  we just want to add him to the database - there's no way to do this.  Every value in PK must be present.
+
+PK has a requirement NOT NULL - that means we can't enter the data because there is no surgeon assigned to the patient.
+
+Insertion Anomaly - This database is not good because it has this anomaly.  You can't insert data in certain cases.
+
+Update Anomaly - when we want to update an attribute we have to update it in multiple places, we'd prefer just one place.
+
+Deletion Anomaly (twice!) - when we delete patient 1111, we have to do 2 deletes, and also Michael Diamond's data is completely lost.
+
+
+Table like this in a DB is no good.
+
+We want to create 2 tables, one Patient and one Surgeon.  What goes in each one?  Patient should contain the Patient #, the Patient Name, and the Patient Address.  Surgeon should contain the Surgeon License Number and Surgeon Name.
+
+
+Table / Relation Decomposition - breaking a table up into smaller tables correctly (according to rules of functional dependencies).
+Decomposition of 1NF:
+AFter making our 2 tables, what's in the 3rd table?  well it's just the original table without the attributes the other tables refer to.  However, you must keep all of the items that were originally primary keys.
+
+Lost data is end-result, the functional dependency being broken is the reason that you must leave primary keys intact.
+
+The problem we had was that we not only had one functional dependency, we had embedded functional dependencies (eg. Patient # determines Patient Name and Patient Address and Surgeon # determines the Surgeon Name.)
+
+Partial Dependency - there are functional dependencies besides the overall PK -> other attributes dependency (based on parts of the PK.)
+
+To solve anomalies, you remove partial dependencies.  How do you do it?  Decompose partial dependencies out into new tables.
+
+Second Normal Form (2NF) - your tables have no partial dependencies.
+All non-key dependencies functionally depend on the WHOLE primary key, not any single parts of it.
+
+
+we covered - functional dependency, 1st/2nd normal form, anomalies, partial dependencies, decomposition, Primary Key.
+Look at pg 226
+normalization - 2nd part of chapter 5 in the blue book (modern database management).
+chapter 14 & 15 for Database Systems.
+
+Make sure to put title (eg. Preliminary Table).
+Next time - first version of normalized table.  write this on the thing you turn in.
+after that will be the final version of normalized table (3nf) and E-R diagram.
+Oct. 27th will be test.  October 20th, Milestone #1.  He'll give us guidelines etc.
+Next week, before class - he needs to review another class.
+about 20% from 2nd book, 40% from blue book, 40% from his notes...
+all the books are the same, you don't need to study both.
+The library should have a copy of the book on hold.  Also don't ask to loan book.
+
+I need to make sample data for next assignment.
+

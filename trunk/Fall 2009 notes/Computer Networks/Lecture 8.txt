@@ -1,0 +1,24 @@
+He'll review coverage of lecture 6, but he needs to cover other lectures so we'll try to cover lecture 7 today.
+
+flowchart for Ethernet, when it gives up...
+
+no one uses classic etherne, we all use fast ethernet now.
+
+FDDI - 100mbps fiber.
+
+token ring / bus are no longer used but the idea is still important.
+token bus, we have logical ring but physical bus (not ring.)
+in token ring it's physically a ring as well.
+
+frame sent by a DTE which then crashes is called an "orphan frame".
+
+lecture notes have comparison of classic ethernet w/ token ring / bus.  
+
+before windows 3.1 there was no communication API....
+before that eveyrone had to write their own.
+
+talking about apollo 13, some server w/ a process he's trying to kill.
+
+ -- provide a library of functions, define / compile, put object code in libray, then you don't hav eto call local socket anymore.  if you do this systematically, you only have to write it once.
+ 
+ 

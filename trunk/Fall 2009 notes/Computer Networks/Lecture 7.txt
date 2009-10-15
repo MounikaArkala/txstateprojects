@@ -1,0 +1,23 @@
+
+There is no midterm in class.
+By the 21st we will be given the project.  We'll have 4/5 weeks to complete it.
+After Chapter 6 we will move to the next book.
+
+
+1974... Time Inc started HBO service.  carried movies feeding to antenna television systems.  Cable industry consolidated many rounds leading to today's cable television systme.
+
+LANs have a small geographic area, no more than a few kilometers in diameter or your transmissions will not be guaranteed not to have collisions.
+
+high-level presentation of ethernet protocol...
+
+performance parameters:
+10 Mbps (manchester encoded).
+512 bit slot time
+9.6 microsecond interframe gap
+16 attempt limit
+10 backoff limit
+32 bit jam size
+1518 octets max frame size
+512 bit minimum frame size
+
+he'll talk about high-speed ethernet and token bus
