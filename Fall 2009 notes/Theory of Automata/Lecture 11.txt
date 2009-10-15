@@ -1,0 +1,27 @@
+
+
+Godel friends w/ Einstein and very smart.
+
+DFSM:
+
+Yields relations: "w" is longer by 1 symbol.
+
+computations: 
+all possible configurations that  it has gone through in a path
+does C0 yeilds C2?  yes does C0 yield Cn?  yes
+
+does any configuration yield itself?
+
+-- parity checking.
+
+
+checking consecutive characters ( no two are the same) he has a state diagram for it.
+
+the FSM about recognizing AEIOU in order, he forgot to put a NO state.
+
+FSM's predate computers.  The Prague Orloj, built in 1410.  a clock.  Guy that built it was killed so he couldn't build another one.
+
+abacus also FSM.
+
+for regular langauges, any nondeterministic FSM, there is a related DFSM, for context-bound languages.  context-free languages don't have this correspondence necessarily (but  may sometimes.)
+

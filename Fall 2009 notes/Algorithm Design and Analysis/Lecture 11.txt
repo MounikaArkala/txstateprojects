@@ -1,0 +1,42 @@
+
+
+Bucket Sort
+(Divide & Conquer)
+Good Call / Bad Call - good call = good call means pivot is within the middle half of the list.  so there are 1/4 portions on each side.
+
+prove height of tree is logn.  how do we start?
+- we say at level "i" what is happening at each level, eg. how many good / bad calls made to reach that level.
+ i/2 are good and i/2 are bad.
+ 
+ if you're going down w/ all the calls, we'll have sizes (1/4)^(i/2) * (3/4)^(i/2)n = ...
+ What will happen if we drop the 1/4 term?
+ nothin', because the 1/4 term makes it smaller.  If we remove those items, we can remove those.
+ We can get to the level where (3/4) ^(i/2)n = 1.
+ 
+ bucket sort - you have a list n of terms and a list N of buckets.  This sorts a list, taking O(n+N) runtime.
+ 
+stable sorting - for any items that are the same, they will be in the same order after sorting.
+applicable to any algorithm, not necessarily bucket sort.
+
+the algorithm presented in class is stable, because the items are added to the bucket in an ordered list.
+
+x,y coordinates are the most common tpe of 2 element tuple.
+
+Sorting with stableSort in lexicographic order - sort the last element, then 2nd to last, then 3rd, etc. until you get to the first element.
+use "stable sort" and it will end up as a stable sort.
+
+radix sort is specialization of lexicographic-sort that uses bucket sort.
+
+radix sort runs in time O(d(n+N)) because it bucket-sorts d times.
+
+the keys must be integers for bucketSort.
+
+
+radix sort is applicable to tuples where the keys in each dimension i are integers in range [0, N-1].
+
+our best performnace used to be nlog(n) for other sorting algorithms.
+
+think of integers as binary format.  Then N = 2.  our range N is n^2 so the resulting is O(n^2) which gives us worse boundary than before, if we sort integers directly.
+Radix sort when sorting dimensions .... say we're sorting integers (it takes 32 bits per integer) as binary format, then N = 2, and d = 32.
+So 32n*2 is our runtime, so it's linear runtime for any integers.
+

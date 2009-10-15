@@ -1,0 +1,18 @@
+in a NDFSM there can be multiple sublanguages defined, and an item is in the language if it passes at least 1 of the sublanguages.
+
+The real meaning of "determinism"
+if you remove epsilon and state 2, you only have 1-> 3 by transition "a" ... same thing as 
+1 -e->2 -a-> 3  is the same thing.
+
+    nondeterminism - for different "a"'s we go to different states.  i.e. there are multiple live paths at a time.
+    
+    
+talks a lot about different programs evaluating.
+
+Search tree - exploring... not all paths are configurations.  the end of the path corresponds to configuration where leftover string is empty means the whole string is consumed.  in that case that path is the "horizontal configuration"
+
+Titles for slides that are not dark are just if you want to read them on your own.
+
+FOr some NDFSM's, the number of states may grow exponentially.  there's also an equivalent translation not as a NDFSM.
+
+real meaning of determinism - epsilon usually means it's not a DFSM for first path but this is not always true.  DFSM'sa re always deterministic, but NDFSM's can be also.

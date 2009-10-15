@@ -1,0 +1,126 @@
+appreciate his effort!
+
+Milestone 1 - up to E-R model.  due next week.
+after exam 1 chance to refine milestone 1??
+
+We can go back to modify E-R model / program, so we can go ahead and start on the project.
+
+exam - october 27th, same location.
+he will be out of country for conference, so someone else will monitor exam.
+
+he'll assign us a seat next week for exam.
+nov. 3rd - speaker talking about middleware - how to connect to frontend and backend, what software you should use.
+
+1 problem in his lecture will be in exam 2.
+
+
+next week milestone 1 due, beginning -> today's lecture.
+everything up to tables, normalization, E/R model.  
+20 queries in english.
+- things the user may want (eg. dept. chair may want to know how many people register in department from foreign countries, from texas, from each state.)
+every app can create hundreds of queries.  depends on user wants.
+eg. "how come i'm overdrafted, how do i find out my balance?"
+Milestone 1 doesn't need to be bound.
+
+
+
+next week E-R in depth, after exam more E-R model.
+
+implementation 1 - at least with SQL / Oracle, (no frontend) - turn in
+- source of program (statements, interpreter, whatever)
+ -> print-screen to get out source if it's interpreted.
+- E-R model
+- output
+- input
+- you can include UI or not.  2nd implementation must have UI.
+
+Deadline for implementation 1 - November 10th.
+
+You must use SQL, you can use other packages but you still must use SQL at some point.
+
+
+Exam - 40 minutes no questions, after 40 minutes you can ask instructor questions.  he'll answer at the end.
+
+Today we do 
+- 1 thru 5 chapters.  based on outline.
+
+kmany people used interface or result of queries as grade, wrong thing but many people touched on it .  If you are A- you need to correct, if you're A you are okay.
+user schema is for customer, 10 queries must not be 10 user interfaces.  User schema is the views.  
+
+
+next week - really normalize tables, get E-R model going.
+
+----------------------
+Starting Lecture
+
+Decomposition
+Anomalies - Insert, Delete, Update
+Functional Dependency
+Partial Dependency
+1st/2nd normal form
+Primary Keys
+
+
+To make sure your table is in normal form
+- be sure to decide Primary Keys
+- make sure every attribute depends on those keys.
+
+One table we have Patient #, Patiend Name, and Patiend Address.
+In another table we ahve Surgeon #, Surgeon Name.  
+In another table we have Patient #, Surgeon #, Date of Surgery, Surgery, Drug.
+
+These 3 tables are in 2nf, but they are not enough.
+
+You still have anomalies here.  the Side-Effect is determined by the Drug, but it is not a partial dependency.
+An attribute depends on an attribute which is not part of the primary key.  It's still a functional dependency, but it's not partial.  It's called "Transitivity" dependency.
+
+Transitive Dependency: In a relation R, if x -> y, y -> z are in R, and x -> z is also in R, then it is called transitive dependence.  The relation x -> z is not needed.  
+
+So we want to create a new table, Drug and Side-Effect.  But Drug stays in the original table, we can only remove Side-Effect from the original table.
+
+No transitive dependency - 3rd normal form.
+
+E-R model goes by the 3rd normal form.  You must have table first before you create model.
+
+E-R
+*P#
+*S#
+*Date
+Surgery
+Drug
+
+You can use *, bold, or underline to denote primary key.
+
+*Patient #
+Patient Name
+Patient Address
+
+*Surgeon number
+Surgeion Name
+
+Don't use Peter Chang's symbols.  (diamonds etc.)
+
+*Drug
+Side-Effect
+
+3rd normal form - the tables are called Entities not Relations.  Entities mean the table has been normalized (to 3rd normal form.)
+
+You draw lines to link different entities' attributes to each other.  If an attribute is a foreign key, 
+
+Remember! - you're creating E-R model according to normalization of tables.  
+Use (F) to denote foreign key.
+relations should be denoted as in 1 -> n for example.
+
+many people call it E-R model.
+
+Basically exactly the way I did it is correct.
+
+( you can use crow feet notation but you don't have to, just use 1.... n .... don't use any other notations.)
+
+from patient to surgery table, would be 1...n
+from drug to surgery table, would be 1...n
+
+Next week - all normalized tables in report, preliminary E-R model, 20 queries, etc.  milestone 1 !
+
+
+
