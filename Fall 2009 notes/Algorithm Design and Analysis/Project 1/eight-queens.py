@@ -1,8 +1,15 @@
-# Virpobe Paireepinart 2009 Texas State University Algorithms
-# this is a solution for the 8-queens problem
-#TODO: Comment this!
+"""
+Name: Virpobe Luke Paireepinart
+Date: 9/30/09
+Project Number: 1
+ALG CS5329
+Instructor: Komogortsev, TSU
+"""
+
 import random, time
+
 def print_board(board):
+    #outputs a board so user can see visual representation of board.
     print  "_" * (len(board) * 2 + 1)
     for i in board:
         if i >= 0:
@@ -15,7 +22,8 @@ def print_board(board):
             out += "|_|"
         print out
         
-        
+
+#Globals definitions
 BOARDSIZE = 16
 DIAGONAL = (2*BOARDSIZE-1)
 DOWNOFFSET = BOARDSIZE-1
@@ -30,6 +38,7 @@ numsol = 0
 numcalls = 0
 
 def AddQueen():
+    #recursively adds/ removes queens until it's done trying board combinations.
     global BOARDSIZE, DIAGONAL, DOWNOFFSET, queencol, colfree, upfree, downfree, queencount, numsol, numcalls, output_boards
     queencount += 1
     numcalls += 1
@@ -41,7 +50,6 @@ def AddQueen():
             upfree[queencount + col] = False
             downfree[queencount - col + DOWNOFFSET] = False
             if (queencount == BOARDSIZE-1): #termination condition
-                #print_board(queencol)
                 numsol += 1
                 if output_boards:
                     print_board(queencol)
@@ -56,7 +64,9 @@ def AddQueen():
     
 
 def main():
+    #main routine to control the eight-queen simulation.
     global BOARDSIZE, DIAGONAL, DOWNOFFSET, queencol, colfree, upfree, downfree, queencount, numsol, numcalls, output_boards
+    # do 4-16 sized boards.
     for boardsize in range(4,17):
         BOARDSIZE = boardsize
         DIAGONAL = (2*BOARDSIZE-1)
@@ -67,7 +77,6 @@ def main():
         upfree = [True] * DIAGONAL
         downfree = [True] * DIAGONAL
         queencount = -1
-        #print "%s, %s, %s, %s" % (boardsize, numcalls, numsol, calculation_time)
         print "==========================================="
         print "Calculating %sx%s board with %s queens" % (boardsize, boardsize, boardsize)
         print "==========================================="
