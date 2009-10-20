@@ -1,0 +1,16 @@
+Name: Qijun Gu
+Position: Assistant Professor
+Education: BS, MS, Peking University, Beijing; PhD, Pennsylvania State 
+University.
+Research interest 1: Network security
+Research interest 2: Wireless security
+Research interest 3: Information assurance
+Email: qg11@txstate.edu
+Webpage: http://www.cs.txstate.edu/~qg11/
+---------------------------------
+Name: Stephen Seidman
+Position: Dean, College of Science & Professor, Computer Science
+Education: Unknown
+Research interest 1: Unknown
+Email: ss76@txstate.edu
+Webpage: Unknown
