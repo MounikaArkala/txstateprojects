@@ -1,0 +1,18 @@
+Regexes:
+
+regular expresisons are useful becase each RE has a meaning.
+
+
+remember - we are doing a union of sublanguages.
+
+
+questions where " use a regular expression for FSM" or something? he says use the cheat.
+
+regular grammer - some are specified as right regular grammar and some as left regular grammar.
+
+RRG generates context-free languages.
+
+instead of T -> Sa we have T -> aS
+in LRG you generate right ot left rather than left to right.
+
+ours is defined as RRG, because our FSMs consume strings left-to-right so RRG works better.

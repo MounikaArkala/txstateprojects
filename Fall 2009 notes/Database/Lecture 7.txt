@@ -1,0 +1,89 @@
+
+
+Someone forgot to e-mail him so we don't have information for how to do system model.
+
+System model is a representation for your database system.  It's how we're using it, not our DBMS.
+
+apparently he wanted something like use cases for the system model.
+
+
+
+
+some of you in other class - don't use inheritance diagrams, use 
+
+
+
+-------------------
+example questions
+- concepts of DBMS
+- design a function to do something
+- a more difficult E/R one
+- idea of exam - force you to study all chapters, not just 3 problems.  They're to test that you actually looked at the book.
+3 problems from book, 2 from lecture, 1 problem either from 2nd book or form his creation.
+50% of problems from first book.
+
+Chapter 1 - database environment
+Chapter 2 - database development process
+Chapter 3 - modeling
+Chapter 4 - 
+Chapter 5 - E-R model and normalization.
+chapter 7 SQL.
+chapter 8 - advanced SQL.
+chapter 1 - 8 in first book except 6.
+
+which chapters in book 2?
+chapter 6 - SQL / data manipulation
+chapter 7 - SQL data definition
+
+chapter 11 analysis
+chapter 12 e/r model
+chapter 13 enhanced e/r model
+chapter 14 normalization
+
+I probably need to just review normalization.
+
+don't worry about syntax completely (semicolon, period etc) but you have to write stuff correctly.
+
+
+Functional Dependency
+First Normal Form
+2nd normal form
+anomalies
+partial dependency
+
+E/R model - your queries in english (from users) - translate to SQL using E/R model.
+
+He doesn't like the notation 
+ 1      m
+<--------
+
+
+m:n is many-many relationship.  they can be decomposed into a new table with 1-> many and 1-> many.
+
+in his class you are not allowed to use 1:1 because your project will probably not be very large.
+
+candidate key - uniquely identifies a tuple. one candidate key must be primary key.
+
+cardinality - # of tuples in the database.
+
+
+
+
+
+
+TODO:
+You may want to put the information for a piece of music in a separate table,
+Composer, Title, Composition Year, Century, Period
+that way when you add one you could see a list of existing composers.
+
+
+Also, in E-R diagram, remove arrow heads.  just use 1 n notation with no arrows (or use crow feet - feet = many) or use filled-in dots (dot means many).
+
+Remove 1:1 relationships.   may be acceptable for special cases.
+
+Also - complete all the tuples in the 4 tables.  
+Patient # / Surgeon # / Date / Surgery / Drug(fk)
+Drug Name / Side Effect
+Surgeon # / Surgeon Name
+Patient # / Patient Name / Patient Address 
+(this is just for fun)

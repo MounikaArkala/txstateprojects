@@ -1,0 +1,38 @@
+For some languages w/ a repeating pattern, REs are most useful.
+FSMs are more useful when elements of L share some simple structural properties.
+
+
+
+
+Final exam - more yes/no questions, less ambiguous.
+
+This tower of hanoi can be decided by a FSM 
+
+
+regular languages are always tractable.  when we ask if a language is regular / tractable, remember input is a number of states.
+ToH: FSM input is different than input (not just '64') the size is exponential.
+
+Example of 'Regular' : you choose what is "long enough"
+
+
+"Pumping Theorem"
+if L is regular, then every long string in L is pumpable.
+
+
+Are non-regular languages solvable?
+
+non-regular languages have different categories.
+  context-free languages are solvable
+  D (decidable) are solvable too
+  SD (semidecidable) are as well
+  (undecidable) - these are not solvable by any turing machine
+  
+  
+Homework:
+Change lambda to epsilon, looks nicer, then you ... ?
+
+idk.  he showed us how to use JFLAP, it's pretty easy.
+
+JFLAP lets you convert FA (FSM) to RE and such.
+
+Name the (GA?) as the way he said it so it's easier to grade.

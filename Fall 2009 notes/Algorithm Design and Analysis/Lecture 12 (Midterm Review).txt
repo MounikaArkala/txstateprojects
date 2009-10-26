@@ -1,0 +1,114 @@
+Midterm Study Guide
+
+Binary Search Tree
+
+- Binary Tree
+- depends on the values
+- You must have a separate condition, all internal nodes have 
+- searching
+- insertion / deletion
+
+Ordered Dictionary
+- one of our operations is "list all items" which is why we have "in-order traversal".
+
+all leaves w/o item still has a leaf allocated, it just doesn't contain data.  It's so insertion is easier.
+
+deleting a node:
+- in order to maintain inorder traversal we can either substitute w/ the node that's encountered right before the deleted node, the second is to substitute with next node in in-order traversal.
+The book suggests second strategy.
+
+
+Consider a dictionary w/ n items implemented by means of a binary search tree of height "h".
+THe space used is O(n)
+methods findElement, insertItema nd removeElemeent take O(h) time.
+
+-------------- Start of Review -----------------
+Structure of Exam
+- 20 multiple-choice questions (covers every little caveat in detail - be very picky & ask very complex questions)
+- several definition questions
+- several short problem-solving questions
+- 1 long problem-solving question
+
+- Intense, barely enough time to finish
+- he grades midterms harshly.
+
+Goodrich book
+Chapter 1
+- running time of algorithms
+- big O notation (remember O definition and specifically what it means -- understand)
+- know and understand definitions
+- be able to give/solve O( ) examples.
+
+Chapter 2
+- hashing (hash code map / compression maps)
+- understand and be able to apply all collision resolution schemes
+- be able to solve problems w/ all collision resolution schemes.
+
+Chapter 4
+- Merge Sort
+- Quick Sort
+- Bucket Sort
+- Radix Sort
+- know/understand definitions, properties of each algorithm, running time of each algorithm. ****
+- if he changed 1 part of algorithm how would it change performance/properties?  eg. height of recursion tree increases, etc. so be able to give and solve exmaples of the algorithms.
+
+Kruse Book
+Chapter 3
+- Recursion
+- how we apply to different problems
+- (some in Goodrich too)
+- 3 principles of recursion
+- be sure to be able to analyze running time / space complexity ***
+
+Chapter 6
+- searching
+- understand how to measure performance
+
+exam is closed book, 1 hr 20 mins.
+
+Homework due Sunday.
+
+Looks like a lot of material but it should be okay, just study hard!
+
+------------------------ new material --------------------
+
+AVL Trees (keeping balanced?)
+height on an AVL storing n keys is O(log n)
+
+n(h) = 1 + n(h-1) + n(h-2)
+if he gets rid of the 1,
+n(h) > n(h-1) + n(h-2)
+then we substitute n(h-2) for n(h-1) because it's less so the > doesn't change.
+n(h) > n(h-2) + n(h-2)
+n(h) > 2n(h-2)
+so by induction, n(h) > 2^i n(h - i)
+
+we are doing all of this to?   we are worried about the height so the basic operations don't take so much time.
+
+we are calculating O
+
+Binary search tree - stores keys in the nodes.  we have "n" keys.
+so it doesn't matter where we have max/min case, the # of nodes is the same.
+
+In terms of the height, maximum case is always less than min case w/ same # of n.
+
+height of tree is larger so if we prove it for min then we know it will hold for h.
+
+minimum case - height is 
+
+Thus the height of AVL tree soring n keys is log(n)
+
+we must have a "restructuring" routine that will restructure the tree so it will be structured correctly.  Think about this at home.
+
+-------------------
+Monday, midterm!!
+he's out so Dr. Hazelwood will be proctor
+on Wednesday, Dr. Qasem will talk about how to analyze parallel algorithms.
+
+
+
+
+Questions for extra credit
+- in order to maintain inorder traversal we can either substitute w/ the node that's encountered right before the deleted node, the second is to substitute with next node in in-order traversal.
+The book suggests second strategy.
+- find a counter-example where it willl not work (one way will make it not a BST anymore) 5 pts.  Not worth trying, no answer.
