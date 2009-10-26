@@ -1,4 +1,4 @@
-
+#TODO: let them type "list" to display a list of professors again.
 #TODO: add sys.argv support so they can run it from cmdline if they want to.
 #Also, e-mail him about how his e-mail is displayed incorrectly in the document.
 

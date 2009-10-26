@@ -1,0 +1,6 @@
+Midterm Study Guide
+
+Funcitonal Dependency : a value is determined by another attribute.
+
+First Normal Form : a primary key uniquely determines the rest of the attributes
+2nd normal form: no attributes are functioanlly dependent on parts of the primary key
