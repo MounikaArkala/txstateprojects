@@ -1,0 +1,21 @@
+GPU Gems 1
+http://http.developer.nvidia.com/GPUGems/gpugems_pref02.html
+
+GPU Gems 2
+http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter33.html
+
+GPU Gems 3
+http://http.developer.nvidia.com/GPUGems3/gpugems3_ch05.html
+
+
+
+
+CG Tutorial
+http://http.developer.nvidia.com/CgTutorial/cg_tutorial_chapter01.html
+
+
+Panda3d Shaders
+http://www.panda3d.org/wiki/index.php/Shaders
+
+Python 3d Software Links
+http://www.vrplumber.com/py3d.py
