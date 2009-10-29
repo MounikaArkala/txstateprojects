@@ -1,0 +1,32 @@
+
+
+Context-free grammar.  Can use for non-regular strings.
+
+backus-naur form for Java...
+HTML also is context-free.
+
+structure in english - the final string is ambiguous, unless you use brackets.  if we use a tree it is clear what the meaning is.  Parse Trees.
+
+need to read textobok to understand arithmetic grammar.
+
+Inherent Ambiguity - some langauges have property that every grammar for themi s ambiguous - you cannot find a grammar for the language that is NOT ambiguous.  It may still be context-free.
+
+we want to get rid of ambiguity, but not at expense of losing useful parse trees.
+
+Sergey Brin's friend : don't say 'something which' 'that which' - no ambiguity.  make sure it's known what you're talking about.
+
+Just recognizing
+- we need a devices similar to FSM but with more power.
+
+before defining our PDA formally...
+- it's defined as nondeterministic.
+DFSM = NDFSM = regular language
+NDPDA = context-free language > DPDA
+PDA in our case by default refers to NDPDA.
+
+NDPDA accepts context-free languages, DPDA is less-powerful.
+
+for each NDFSM we can come up with an equivalent DFSM (so we say they have the same power in terms of accepting languages)
+but for a PDA this is not the case.  NDPDA are more powerful.  some context-free languages cannot be recognized by DPDAs.
+
+When you use JFLAP for PDA, it won't work.  The definition in TFLAB is different from ours.  There is a difference.  Assignment 5 has a quesiton... "for an FSM you can test it in JFLAP but in a context free language you probably can't test in JFLAP.  how to make it work?"  But you can use JFLAP to draw you just probably can't test.
