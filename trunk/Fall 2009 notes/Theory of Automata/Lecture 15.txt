@@ -1,0 +1,89 @@
+if you can show a long string that is pumpable for a language L,
+
+can you prove that the language is regular?
+
+
+Pumping theorem:
+if L is regular, every long string in L is pumpable.  Long string is any w where len(w) >= k and k is an arbitrary value we choose.
+it means for x,y,z )w = xyz, len(xy) <= k, y is not empty set, and for all q >=0, xy^q z is in L.
+you can separate the string into 3 sections such that
+xy is <= x,
+y is not empty string,
+
+he wouldn't ask us to prove a language is not regular (we'd have to prove a long string that is not pumpable).
+
+
+the exam will be on the question (example: regular, L = bab*ab)
+x = ba, y = b, z = bbbab
+
+this is like a 3-pt question.
+how does pumping lemma apply to language "a", "ab"?
+make "k" be greater than 1 so that "a" and "ab" are not considered long strings.
+
+Remember "y" has to be repeatable.
+
+x and y are prefixes and suffixes, y is just a symbol that is repeatable.
+
+Final is different from the Midterm.
+Final - distinguishes us, a's, b's, c's, etc.
+
+Using the Closure Properties
+L = {a,b}* #a(w)
+
+is regular?
+deducing that a*b* intersection L is a^nb^n
+.... idk.
+
+
+summary of FSM and regular languages:
+- theoretically, every machine we build is FSM
+- but not every real problem should be described as a regular language or solved w/ an FSM.
+- FSMs and regular expressions are powerful tools for describing problems that possess certain repetitive patterns.
+- we have more powerful models (eg. PDAs and Turing machines.)
+* in these models we have infinite memory.
+
+** he has already written the final, so he's going to sneak in questions that are in the final.
+
+eg. recognizer/decider.
+
+FSM M'
+NDFSM M
+if we say M and M' are the same,
+that means L(M) = L(M') (i.e. the language accepted by M - so they accept the same language.)
+
+every regular language is also context free.
+
+there are context free languages that are not regular though.
+
+
+A terminal alphabet - contains simbols that make up strings in L(G).
+small letters are usually denoting terminal alphabets
+
+a nonterminal alphabet - elements of which are there temporarily as strings are generated but disappears afterward.
+
+
+When to stop:
+1) ???
+2)there are nonterminal symbols in the working string but none of them appears on the left-hand side of any rule in the grammar.
+in this case, we have a blocked or non-terminated derivation but no generated string.  basically you get to a point where you can't add more values without invalidating the string.
+
+it's possible that neither 1 or 2 are acieved, so the grammar generates the language ro.
+
+For regular languages, can you change Recoginzes/Accepts of PDA -> regular language into a "decides".
+Can a regular language be decided by some FSM?
+
+
+if you say "regular language is decidable" means it's decidable by some turing machine, not necessarily FSM.
+"any input w halts in at most w steps", if it always halts it decides that language (either "yes" or "no".)
+
+also PDA and Turing Machine of course (can use a more powerful machine to decide a less-powerful machine.)
+obviously NDSFM as well.
+
+Homework question
+- required ??? (flat file?)
+question 5
+last 2 questions are pumping lemma proofs, and they're bonus questions.
+
+Are there nonregular languages that are pumpable?  supposedly yes.
+
+

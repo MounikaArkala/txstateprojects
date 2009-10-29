@@ -1,0 +1,34 @@
+
+
+Why study algorithms?
+
+- we want them to run fast?
+- correctness is an issue as well.
+
+What are the 3 main reasons to study algorithms?
+
+- learn about known techniques
+CS people need #s of algorithms in their repertoire
+  * there aren't many known parallel algorithms
+  
+- learn to write efficient algorithms ( but you have to consider their parallelizing ability as well.)
+
+- multi-core makes it more and more important.
+
+parallel computing today - until very recently, it was difficult to come in contact with this.  now it's everybody's machines
+
+
+movie role play - pixar is one of the people, you are able to take your favorite movie and you can transplant yourself into one of the characters of the movie.  Only feasible through exploiting parallelism.
+
+SSE - a vector unit, does arithmetic on streaming data.
+
+instruction pipeline - Nehalem - pipeline depth of 20 stages?  more stages = more opportunities for parallelizing the instructions
+
+TLP - thread-level parallelism - parallelism within the same application.
+ILP = instruction-level parallelism
+
+
+merge sort would be good for parallelizing.
+
+for parallel algorithms it's not enough just to look at complexity, there's costs for communications (if it's not embarrassingly parallel).
+

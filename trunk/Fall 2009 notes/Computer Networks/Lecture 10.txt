@@ -1,0 +1,30 @@
+mainframe in 1982 - 1MB memory, tried to double to 2MB but couldn't due to export restrictions.
+
+UDP is on transport layer, IP is on network layer.
+
+sequence numbers - TCP denotes the byte numbers contained in the packet (eg. this packet contains bytes 0-1023).  
+
+J is the starting sequence # of a connection, and the server will reply w/ an ack of J+1.
+
+3-way handshake means 3 messages, client sends SYN J, server replies with SYN K, J+1, client replies with ack K+1.
+
+MSL - maximum segment left time.  maximum time a TCP segment can survive on internet.  2*MSL is RTT.
+
+A TCP client can terminate and then restart right away by the user.  assuming it's lucky, and it gets same port # as when it started, 
+
+The first sequence # is for the data, the second is for the acknowledgement.
+
+TCP can optionally have an "urgent" pointer that will indicate the end of the urgent area of data.  it doesn't behave any differently, the app itself has to decide how to use it.
+
+Path MTU is the smallest MTU on the path between two hosts.  The ethernet MTU is often today's path MTU.
+basically if there's a router along the line that can't fit your packet it will be fragmented.
+
+The generic "socket address structure" takes care of the difference between ipv4 and ipv6 so you don't have to worry about it.
+
+byte ordering techniques - little-endian and big-endian.  network byte order and host byte order.
+
+he shows us some program to test our endianness.
+
+The project should be released before next Wednesday.
+
+e-mail him w/ class name if you want e-mail.
