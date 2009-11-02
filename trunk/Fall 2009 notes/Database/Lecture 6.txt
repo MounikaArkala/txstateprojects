@@ -14,6 +14,10 @@ nov. 3rd - speaker talking about middleware - how to connect to frontend and bac
 1 problem in his lecture will be in exam 2.
 
 
+
+
+
+
 next week milestone 1 due, beginning -> today's lecture.
 everything up to tables, normalization, E/R model.  
 20 queries in english.
