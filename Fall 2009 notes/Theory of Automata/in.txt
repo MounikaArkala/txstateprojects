@@ -1,0 +1,193 @@
+ 
+ 
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+ 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>Texas State CS - Personnel - Javier Arellano</title> 
+<link rel="stylesheet" type="text/css" href="http://www.cs.txstate.edu/css/general.css" /> 
+<link rel="stylesheet" type="text/css" href="http://www.cs.txstate.edu/css/content.css" /> 
+<link rel="stylesheet" type="text/css" href="http://www.cs.txstate.edu/css/screen.css" /> 
+<link rel="stylesheet" type="text/css" href="http://www.cs.txstate.edu/css/print.css" /> 
+<link rel="stylesheet" type="text/css" href="http://www.cs.txstate.edu/css/header.css" /> 
+ 
+<script> 
+<!--
+function goto(choose){
+var selected=choose.options[choose.selectedIndex].value;
+    if(selected != ""){
+    location.href=selected;
+    }
+}
+ 
+function search()
+{
+	var listId = document.getElementById('txst-banner-toolsearch-searchtype');
+	var selected =	listId.options[listId.selectedIndex].value;
+	self.name = "myWindow";
+	var queryString = document.getElementById('q').value;
+	
+	if(selected == "site")
+	{
+		window.open('http://search.txstate.edu/search?q='+queryString+'&service=site&x=0&y=0&site=txstate_no_users&output=xml_no_dtd&client=txstate&proxystylesheet=txstate&sitesearch=www.cs.txstate.edu', 'myWindow');	
+	}else if(selected == "web")
+	{
+		window.open('http://search.txstate.edu/search?q='+queryString+'&service=web&x=18&y=8&site=txstate_no_users&output=xml_no_dtd&client=txstate&proxystylesheet=txstate&sitesearch=', 'myWindow');
+	}else if(selected == "people")
+	{			
+		window.open('http://peoplesearch.txstate.edu/peoplesearch2.pl?srchmode=search&query=' + queryString,'myWindow');
+	}
+}
+//-->
+</script> 
+</head> 
+<body> 
+ 
+<div class="container"> 
+<table class="layouttable" cellpadding="0px" cellspacing="0px"> 
+	<tr> 
+        <td colspan="2" > 
+        <div class="txst-destroyer"> 
+       	<div class="txst-destroyer-frame">       
+	<div class="txst-banner"> 
+   		<div class="txst-banner-extra1"></div> 
+        <div class="txst-banner-extra2"></div> 
+        <a title="Texas State Home Page" class="txst-banner-homelink" href="http://www.txstate.edu/bounce/www.txstate.edu/"> 
+        	<span class="alternate">Texas State University</span> 
+     	</a> 
+        <div class="txst-banner-links"> 
+        	<a href="http://www.txstate.edu/bounce/www.txstate.edu/about/index.html">About Texas State</a> |
+			<a href="http://www.txstate.edu/bounce/www.library.txstate.edu/">Library</a> 
+			|
+			<a href="http://www.txstate.edu/bounce/www.txstate.edu/maps.html">Maps</a> 
+			|
+			<a href="http://www.txstate.edu/bounce/www.rrhec.txstate.edu/">Round Rock</a> 
+      	</div> 
+        <div class="txst-banner-tools"> 
+        	<form class="txst-banner-toolsonlineservices" action="#"> 
+            	<div style="display: inline;"> 
+                	<div style="display: none;"> 
+                    	<label for="online-services-go-to">Online Services:</label> 
+                   	</div> 
+                    <select id="online-services-go-to" name="service" onChange="goto(this);"> 
+                    	<option>Online Services</option> 
+                      	<option value="http://www.txstate.edu/bounce/synergy.txstate.edu">BobcatMail</option> 
+                     	<option value="http://www.txstate.edu/bounce/catsweb.txstate.edu/catsweb/index.htm">Catsweb</option> 
+                        <option value="http://www.txstate.edu/bounce/catsweb.txstate.edu/app/auth?/app/pay-your-accounts">Pay Tuition</option> 
+                        <option value="http://www.txstate.edu/bounce/catsweb.txstate.edu/app/self-create-pin?REG">Registration</option> 
+                        <option value="http://www.txstate.edu/bounce-s/ibis.sap.txstate.edu:50001/irj">SAP Portal</option> 
+                        <option value="http://www.txstate.edu/bounce-s/tracs.txstate.edu">TRACS</option> 
+                   	</select> 
+             	</div> 
+         	</form> 
+            <form id="txst-banner-toolssearch" class="txst-banner-toolssearch" action="http://search.txstate.edu/search"> 
+            	<div style="display: inline;"> 
+                	<div style="display: none;"> 
+                    	<label for="q">Search for:</label> 
+                   	</div> 
+                    <input value="Search web/people" size="15" id="q" name="q" type="text" onclick="if(this.value == 'Search web/people') this.value='';">&nbsp;
+						<div style="display: none;"> 
+                        	<label for="txst-banner-toolsearch-searchtype">Search Type:</label> 
+                       	</div> 
+                        <select id="txst-banner-toolsearch-searchtype" name="service"> 
+                        	<option value="site" selected="selected">This Site</option> 
+                            <option value="web">TxState</option> 
+                            <option value="people">People Search</option> 
+                      	</select> 
+                        <input value="txstate_no_users" name="site" type="hidden"> 
+                        <input value="xml_no_dtd" name="output" type="hidden"> 
+                        <input value="txstate" name="client" type="hidden"> 
+                        <input value="txstate" name="proxystylesheet" type="hidden"><input id="sitesearch" value="www.cs.txstate.edu" name="sitesearch" type="hidden"> 
+					</div> 
+           	</form> 
+            <div class="txst-banner-toolsextra1"></div> 
+      	</div> 
+        <input alt="Start Search" class="txst-banner-toolssearchbutton" src="http://www.txstate.edu/magnoliaAssets/images/main-2007/banner-searchgo.gif" type="image" onclick="search();"> 
+		<div class="txst-banner-extra3"></div> 
+        <div class="txst-banner-extra4"></div> 
+	</div> 
+    </div> 
+    </div> 
+        </td> 
+    </tr> 
+	<tr class="child_header_image"> 
+    	<td colspan="2"><div class="child_departmentTitle"> 
+    	  <a href="http://www.cs.txstate.edu/">Department of Computer Science</a> 
+    	</div> 
+    	  </td> 
+	</tr> 
+    <tr> 
+    	<td colspan="2"><img src="http://www.cs.txstate.edu/images/left-side-swoop.gif" border="0px" align="left" alt=""/></td> 
+ 
+    </tr> 
+ 
+ 
+<tr> 
+<td class="leftcolumn"> 
+<h1>Categories</h1> 
+<ul> 
+<li><a href="/Personnel/Faculty">Faculty</a></li> 
+<li><a href="/Personnel/Staff">Staff</a></li> 
+<li><a href="/Personnel/Lab_Assistant">Lab Assistant</a></li> 
+<li><a href="/Personnel/Lab_Instructor">Lab Instructor</a></li> 
+<li><a href="/Personnel/Tutor">Tutor</a></li> 
+<li><a href="/Personnel/Student_Worker">Student Worker</a></li> 
+<li><a href="/Personnel/all">All Personnel</a></li> 
+</ul> 
+</td> 
+<td class="rightcolumn"> 
+ 
+<script type="text/javascript" src="http://www.txstate.edu/magnoliaAssets/javascripts/js-concatenator.jsp?path=fontResizer.js"></script> 
+<div align="right" style="margin-right:10px"> 
+	<script type="text/javascript">var fontSizer = new FontSizer(); fontSizer.init();</script> 
+    <div id="txst-fontsize"><img alt="adjust type size" src="http://www.txstate.edu/magnoliaAssets/images/typesizer_adjust.gif" border="0"/> 
+    <a onclick="fontSizer.adjust(-1); return false" href="" title="make font smaller"><img alt="make font smaller" src="http://www.txstate.edu/magnoliaAssets/images/typesizer_minusOff.gif" id="f-s" border="0"/></a> 
+    <a onclick="fontSizer.adjust(1); return false" href="" title="make font larger"><img alt="make font larger" src="http://www.txstate.edu/magnoliaAssets/images/typesizer_plusOff.gif" id="f-xl" border="0"/></a> 
+    <a onclick="fontSizer.reset(); return false" href="" title="reset font size"><img alt="reset font size" src="http://www.txstate.edu/magnoliaAssets/images/typesizer_reset.gif" id="f-rs" border="0"/></a> 
+    </div> 
+</div> 
+ 
+<p class="nav"><a href="http://www.cs.txstate.edu/">Texas State CS</a> 
+ 
+&nbsp;&gt; <a href="/faculty/Personnel.php">Personnel</a>&nbsp;&gt; Javier Arellano</p> 
+<h1 id="top">Javier Arellano</h1> 
+ 
+ 
+<p><em>Adjunct Faculty</em><br> 
+ 
+ 
+ 
+<h2>Fall 2009 Classes</h2> 
+	
+<p>No classes currently scheduled.</p><p></p> 
+<p></p> 
+ 
+<h2>E-Mail</h2> 
+<p> 
+<img src="/common/email-image.php?user=ja32&domain=txstate.edu"> <br/></p> 
+<h2>Webpage</h2> 
+<p><a href="http://www.cs.txstate.edu/~ja32/">http://www.cs.txstate.edu/~ja32/</a></p> 
+ 
+ 
+ 
+</td> 
+</tr> 
+ 
+</table> 
+</div> 
+<div class="footer"> 
+<p> 
+<a href="http://www.texas.gov/">State of Texas</a> |
+<a href="http://www.txstate.edu/">Texas State Home</a> |
+<a href="http://www.science.txstate.edu/">College of Science</a> | 
+<a href="/contact/contactus.php">Contact Us</a> |
+<a href="/disclaimer.php">Disclaimer</a> 
+ 
+<br /><br /> 
+The Department makes every effort to produce pages which are accessible to users with disabilities and use valid XHTML. If this page does not display correctly, please see our <a href="/browser_requirements.php">browser requirements</a>.</p> 
+</div> 
+</body> 
+</html> 
+ 
