@@ -40,20 +40,20 @@ if infile:
         except IOError:
             infile = ""
 
-
-# Show them all the current prof's.
-text = urllib2.urlopen(faculty_link).read()
-text = re.search(faculty_list, text).groups()[0] # get rid of all that extra crap that causes false results.
-print "This is a list of all professors on campus."
-to_exit = False
-names = {}
-for site, name, desc in re.findall(faculty, text):
-    lname, fname = name.split(',')
-    lname = lname.strip()
-    fname = fname.strip()
-    print "%s %s (%s)" % (fname, lname, desc)
-    names[lname] = names[fname] = (fname+" "+lname, site)
-print "-------------------------------"
+else:
+    # Show them all the current prof's.
+    text = urllib2.urlopen(faculty_link).read()
+    text = re.search(faculty_list, text).groups()[0] # get rid of all that extra crap that causes false results.
+    print "This is a list of all professors on campus."
+    to_exit = False
+    names = {}
+    for site, name, desc in re.findall(faculty, text):
+        lname, fname = name.split(',')
+        lname = lname.strip()
+        fname = fname.strip()
+        print "%s %s (%s)" % (fname, lname, desc.replace('<br/>', ","))
+        names[lname] = names[fname] = (fname+" "+lname, site)
+    print "--------------------------------------"
 
 while 1:
     if not infile:
@@ -111,7 +111,7 @@ while 1:
         if os.path.exists(outfile):
             decision = ""
             while not decision:
-                decision = raw_input("File %s already exists on disk.  Do you want to append or overwrite? " % outfile).strip().lower()
+                decision = raw_input("File %s already exists on disk.  Do you want to (append) or (overwrite)? \n" % outfile).strip().lower()
                 if decision == 'append':
                     sys.stdout = open(outfile, 'a')
                     print "---------------------------------"
@@ -140,3 +140,4 @@ while 1:
         break # no point in looping on a non-changing input file.
         
     print "Hint: if you are finished, type 'exit'."
+raw_input("thank you for using the program!")

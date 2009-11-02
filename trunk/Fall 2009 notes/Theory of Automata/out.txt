@@ -1,16 +1,34 @@
-Name: Qijun Gu
+Name: Mina S. Guirguis
 Position: Assistant Professor
-Education: BS, MS, Peking University, Beijing; PhD, Pennsylvania State 
-University.
-Research interest 1: Network security
-Research interest 2: Wireless security
-Research interest 3: Information assurance
-Email: qg11@txstate.edu
-Webpage: http://www.cs.txstate.edu/~qg11/
+Education: BSc Computer Science and Automatic Control, College of Engineering, Alexandria University; MA, Phd, Computer Science, College of Arts and Sciences, Boston University
+Research Interest 1: security aspects in computing systems and networks and digital forensics
+Research Interest 2: internet traffic management and quality of service
+Research Interest 3: tcp over wired/wireless networks
+Research Interest 4: sensor networks
+Research Interest 5: overlay and p2p networks
+Email: mg65@txstate.edu
+Webpage: http://www.cs.txstate.edu/~mg65/
 ---------------------------------
-Name: Stephen Seidman
-Position: Dean, College of Science & Professor, Computer Science
-Education: Unknown
-Research interest 1: Unknown
-Email: ss76@txstate.edu
-Webpage: Unknown
+Name: Roger Priebe
+Position: Senior Lecturer; Faculty Advisor
+Education: PhD, University of Texas, Austin
+Research Interest 1: unknown
+Email: rp44@txstate.edu
+Webpage: http://www.cs.txstate.edu/~rp44
+---------------------------------
+Name: Apan Qasem
+Position: Assistant Professor
+Education: BA, Ohio Wesleyan University; MS, Florida State University; PhD, Rice University
+Research Interest 1: compilers
+Research Interest 2: architecture
+Research Interest 3: automatic tuning
+Email: aq10@txstate.edu
+Webpage: http://www.cs.txstate.edu/~aq10
+---------------------------------
+Name: Thomas McCabe
+Position: Associate Professor
+Education: BA, Southwest Texas State University; MS, PhD, Texas A&M University
+Research Interest 1: computer networks
+Research Interest 2: distributed systems
+Email: tm03@txstate.edu
+Webpage: http://www.cs.txstate.edu/~tm03/mccabe.html
