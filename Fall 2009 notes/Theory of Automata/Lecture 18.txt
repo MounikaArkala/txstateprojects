@@ -1,0 +1,23 @@
+Assignment 5 covers chapters 11 and 12.
+
+in FSM epsilon indicates it's a NDFSM.
+In pda it's not necessarily it.
+
+his A PDA for {a^nb^2n) is probably gonna be on the exam.
+
+can we define a PDA with a 'bottom-of-stack' marker?
+- can you always cancel?  yes, so you need a way to tell when your stack is empty.
+
+to design language !=, we start w/ PDA of a^mb^n where n = m.
+it's hard to find machine that looks for something negative, so we break L into 2 subsections.
+So we make 2 different sections, one that accepts where m > n, and one where n > m.
+
+hopefully we can finish the assignment on time.  has nothing to do w/ assignment 13 and 14.
+
+Due next tuesday.
+
+Once we finish it  we'll have lots of free time
+
+for assignment 5 you can use jflap to draw PDAs but it won't run for some languages.
+
+just run the tests manually in your mind.  think of the 

@@ -1,0 +1,66 @@
+Why do we use AVLs?  
+- BSTs max height is O(n).
+
+
+AVL - for every internal node, the height of the children differ by no more than 1.
+
+insertions in an AVL tree:
+insert as normal, then rebalance.
+when we rebalance we have to retain in-order traversal.
+
+we have nodes z y and x.  they are the 3 items down into the w (the inserted item).
+a b & c refer to which of z y and x are visited in which order in in-order traversal.
+
+you basically arrange it from
+
+    o
+ o    z
+w  o
+  x y   
+
+  to
+    o
+  o   o
+ w x y z
+ 
+ where wxyz are subtrees.
+ 
+also
+    o
+  o
+o
+
+rotates to 
+  o
+o   o
+
+
+The way you rotate depends on which sides they're on.  you just must maintain in-order traversal.
+some may think as rearrangement of nodes, some as rotations.
+
+the problem w/ removal - we don't know the situation on the whole tree (we assume it was balanced before.)
+with insertion we know where it's unbalanced so we can just rebalance that area.
+
+
+insertion takes O(logn)
+deletion takes O(logn) and the # of restructures is limited by the height of the tree (O(logn)).
+
+--------
+Splay Trees
+
+process called "splaying" is implemented with them.
+
+splaying moves a note to the root using operations.
+
+left-right grandchild
+
+o
+  \
+   o
+  /
+ o
+ 
+Which is different than I would think it is, but we're not sure if this is correct yet.
+
+
+class is cancelled this wednesday.

@@ -1,0 +1,61 @@
+Guest Speaker
+
+Computer Science Engineer - working at Emerson.
+- he thought he was gonna be a web developer
+- is actually an internet administrator
+   - all the publication websites up.
+- uses ASP / sharepoint running on .NET.
+
+lots of C++ programmers.
+- he is high-level programmer, database / HLL.
+
+3 layers in .NET architecture
+- application layer/business layer
+- Business layer
+- Data layer
+
+
+Object-Oriented Programming
+- encapsulation
+- inheritance
+- polymorphism
+  an automatic mechanism will be used by each function
+  
+.NET Classes
+- Dataset classes  interface w/ a cache.  you manipulate the cache however you want and then update the DB.  Dataset class is independent of underlying data sources.  
+
+ADO vs. ADO.NET
+old way w/ Connection, Command, Recordset.
+Now you have Connection/Transaction, Command, and DataSet/DataReader/DataAdapter.
+
+remember Transactions let you roll back stuff.
+
+.NET data providers are meant to be lightweight.
+
+Defining a connection:
+- connection string is a property of the connection, whose parameters are separated by semicolons.
+
+Open and CLose connection method.
+- once you close a connection it will be removed.
+
+Command Object Diagram.
+
+Command Object
+- commandobject is reference to a SQL statement or stored procedure.
+- you need enough permissions to be able to see the procedures.
+- lets you have the select statements etc. stored on the main server.
+
+objects have methods and properties.
+
+showed us some VB .NET code.
+
+The ADO.NET classes are organized into nested sets of collections.
+once dataset is populated & on your cache, you can use the DataAdapter,
+such as UpdateCommand, DeleteCommand.
+
+Fill - ? select statement?
+
+The dataset creates a container of tables.    you must call DataBind to get the database to apply the values.
+
+
+
