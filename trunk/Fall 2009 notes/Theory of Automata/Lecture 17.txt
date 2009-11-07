@@ -1,0 +1,40 @@
+Just work hard on Assignment 5 because a6 has a long period where you don't have to work on it.
+
+DFSM or NDFSM can generate regular langauge? yes.
+
+PDA - not every context free language can be recognized, but a NDPDA can recognize everything.
+
+NDPDA is what we start with.
+
+hint for bonus question in A5:
+recall that from FSM to PDA we just want to add a stack w/ infinite memory.
+probalby our intuition is it will work each time by a push / pump of a single symbol.
+in many definitions they do it like that, but in our definition, you can push/pop a string (several symbols) at a time.
+this definition is sometimes referred to as generalized PDA
+but in terms of the power of recognizing languages, these different definitions are exactly the same.
+in our version, M only accepts w if, when done reading w, it is in an accepting state && its stack is empty.
+we use both finite state acceptance and empty stack acceptance (both condnitions need to be met.)
+in JFLAP you can chooose either.
+
+for bonus question, you need to remember - twisiting??? that's a major reason.  he's talking about empty stack acceptance still.
+
+alternative non-equivalent variants:
+- if you use queue instead of stack, then has same power as turing machine.
+- if you use 2 stacks instead of 1, it's also equivalent to a turing machine.
+
+a path accepts a string, (not referring to the machine).  otherwise, if the path ends in a configuration that has nowhere to go, then the path rejects the string.
+
+if there's a path that accepts, the machine immediately halts and accepts.
+
+cheat sheet single page double sided, can write whatever you want.
+
+remember for PDA we need to have an empty stack at the end and we also need to be able to accept epsilon.
+
+transition:
+
+go thru PDA yourself for review, something about chapter 5.  we are in good shape/on schedule.  He wil try to cover turing machine complexity stuff.
+
+how to prove a language is not in "D" not in "SD" NP hard/NP-complete - we use reduction for this.
+
+has anyone proved the reduction of NP-Complete is NP-hard?  !?!?
+

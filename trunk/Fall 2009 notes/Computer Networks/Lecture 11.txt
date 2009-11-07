@@ -1,0 +1,13 @@
+We're still in Lecture 7 material
+one of the 'cracks' in lecture 8 is that we don't cover signals very much.
+basically if there's an error in the "read" function it will return -1,
+but it sets global val errno to the value of the error.
+if errno == EINTR (error_interrupt) then we just try a read again.
+if it's not EINTR then there was some unrecoverable error and we have to abort.
+
+
+pg. 43 of 46 in Lecture7 contains example code.
+
+Lecture 8:
+why Complete queue is so low?
+connections are very short, and do not stay in connection queue very long, so they end up in the Complete queue very fast.
