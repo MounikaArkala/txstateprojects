@@ -1,0 +1,40 @@
+Practice rotations for zig/zag in splaying!!!!
+
+NOTE!!!! 
+o
+  o
+o
+
+This is a left-right grandchild, NOT right-left!  You go from the grandchild and see which subtree of its parent (the main parent's child node) it is a member, then go to the parent and see which subtree its 
+
+zig-zag represents left-right and right-left case, it means rotaion in one way then rotation in another way.
+
+spolaying - we don't have any height restraints on the tree, so splaying may not keep the tree balanced.
+
+AVL tree - binary search tree, all children of each node 
+
+
+height of node - what is this?
+depth is # of ancestors, height is maximum depth of external node.
+
+
+locality - we propagate the most popular search items to the top.
+
+a splay tree is a binary search tree wehre a node is splayed after it is accesssed (for a search or update).
+deepest internal node accessed is splayed.
+splaying costs O(h) where h is the height of the tree which is still O(n) worst-case.
+each of the O(h) rotations takes O(1).
+
+basically the splay tree emphasizes locality.
+
+
+
+amortized analysis - 
+
+
+
+...?
+
+he coevered cost ratings of the various operations on splaying trees.
+
+he's going to use a differnet counting method.
