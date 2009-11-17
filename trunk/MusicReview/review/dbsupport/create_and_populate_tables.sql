@@ -1,4 +1,5 @@
-use musicanalysis;
+#Our database is called 'review' so we must select it.
+use review;
 #If you change the format of the tables you need to drop them
 #so that the create table will succeed.
 #drop table user;
@@ -20,7 +21,8 @@ create table if not exists user(
  email varchar(80) not null,
  credentials varchar(255), 
  foreign key (authorization_id) references authorization(auth_id) on delete cascade
- );
+);
+
 create table if not exists submission(
  user_id int not null,
  performance_id int not null,
@@ -39,8 +41,8 @@ create table if not exists reviewer_assignment(
  foreign key (user_id) references user(user_id) on delete cascade,
  foreign key (performance_id) references performance(performance_id) on delete cascade,
  foreign key (assigner_id) references user(user_id) on delete cascade
- 
 );
+
 create table if not exists review(
  user_id int not null,
  performance_id int not null,
@@ -104,6 +106,7 @@ insert into authorization values (1, 'Administrator', 'Can assign reviewers, all
                                  (2, 'Rater', 'Able to review submitted compositions as well as submitting compositions.'),
                                  (3, 'Submitter', 'Able to submit compositions and search for already-reviewed compositions.');
 
+#just use 'pass' as the passwords for now.
 insert into user values (1, 1, 'vp1021', SHA1('pass'), 'Luke', 'Paireepinart', 'vp1021@txstate.edu', ''),
                         (2, 1, 'nico',   SHA1('pass'), 'Nico', 'Schuler',      'nico.schuler@txstate.edu', '');
 
