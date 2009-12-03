@@ -1,0 +1,1307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Cg Browser Effects Explained</TITLE>
+<META http-equiv=Content-Language content=en-us>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="Microsoft FrontPage 4.0" name=GENERATOR>
+<META content=FrontPage.Editor.Document name=ProgId></HEAD>
+<BODY>
+<P align=center><B><font face="Arial" size="5">Cg Browser Effects 
+Explained</font></B></P>
+<P>&nbsp;</P>
+<P><B><FONT face=Arial color=#008000 size="4">Introduction</FONT></B></P>
+<P class=MsoNormal><FONT face=Arial>This document explains how the various 
+shaders in the Cg Browser work.&nbsp; Some of the samples are designed to 
+demonstrate simple techniques, such as transform, lighting, texture coordinate 
+generation, and texture coordinate transformation.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>Others are intended to show the vast 
+possibilities that vertex and pixel <SPAN class=SpellE>shaders 
+</SPAN>enable.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Some samples have 
+been modified from existing SDK demos to show the advantages of using a 
+programmable vertex shader over the traditional fixed-function T&amp;L.<SPAN 
+style="mso-spacerun: yes">&nbsp; </SPAN>The samples are designed to be 
+educational, and provide inspiration for the uses of Cg along with programmable 
+<SPAN class=SpellE>shaders</SPAN>.</FONT></P>
+<P class=MsoNormal><I><B><FONT face="Times New Roman">Please note that although 
+some demos might run on GeForce2 and MX-class products, the majority of shaders 
+packaged with the Cg Browser require a GeForce3 or better graphics card to 
+run.</FONT></B></I><FONT face=Arial></O:P> </FONT></P>
+<P class=MsoNormal><FONT face=Arial>Following is a list of shaders, in the order 
+that they appear in the Cg Browser.&nbsp; Each link navigates to a description 
+of the shader as well as an accompanying snapshot.</FONT></P>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal><font face="Arial" color="#008000"><b>NV30 Shaders</b></font></P>
+<P class=MsoNormal><i><font face="Times New Roman"><b>Please note that these
+shaders are not included by default in the Cg Browser.&nbsp; Instructions for
+working with them are included in the Readme.txt file that accompanies each
+shader project.</b></font></i></P>
+<TABLE height=196 border=1 cellpadding="4">
+  <TR>
+    <TD align=right height=19><a href="#Improved Skinning"><font face="Arial">Improved
+      Skinning</font></a></TD>
+    <TD height=19><a href="#Improved Skinning"><img border="0" src="Cg%20Bro8.jpg" width="75" height="75"></a></TD>
+    <TD align=right height=15><font face="Arial"><a href="#MultiPaint">MultiPaint</a></font></TD>
+    <TD height=15><a href="#MultiPaint"><img border="0" src="Cg%20Bro1.jpg" width="75" height="75"></a></TD>
+    <TD align=right height=19><a href="#Raytracing"><font face="Arial">Raytraced
+      Refraction</font></a></TD>
+    <TD height=19><a href="#Raytraced Refraction"><img border="0" src="Cg%20Bro17.jpg" width="75" height="75"></a></TD>
+  </TR>
+  <TR>
+    <TD align=right height=19><a href="#Improved Water"><FONT 
+      face=Arial>Improved Water</FONT></a></TD>
+    <TD height=19><a href="#Improved Water"><img border="0" src="Cg%20Bro5.jpg" width="75" height="75"></a></TD>
+    <TD align=right height=19>
+      <P class=MsoNormal><a href="#Melting Paint"><font face="Arial">Melting
+      Paint</font></a></P></TD>
+    <TD height=19><a href="#Melting Paint"><img border="0" src="Cg%20Bro2.jpg" width="75" height="75"></a></TD>
+    <TD align=right height=19><a href="#Skin"><font face="Arial">Skin</font></a></TD>
+    <TD height=19><a href="#Skin"><img border="0" src="Cg%20Bro6.jpg" width="75" height="75"></a></TD></TR>
+</TABLE>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal><font face="Arial" color="#008000"><b>NV2X Shaders</b></font></P>
+<TABLE height=196 border=1 cellpadding="4">
+  <TBODY>
+  <TR>
+    <TD align=right height=15><FONT face=Arial><A 
+      href="#Matrix Palette Skinning">Matrix 
+      Palette Skinning</A></FONT></TD>
+    <TD height=15><A 
+      href="#Matrix Palette Skinning"><IMG 
+      height=75 alt=matrix_palette_skinning 
+      src="Images/matrix_palette_skinning.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19>
+      <P class=MsoNormal><A 
+      href="#Grass Demo"><FONT 
+      face=Arial>Grass Demo</FONT></A></P></TD>
+    <TD height=19><A 
+      href="#Grass Demo"><IMG 
+      height=75 alt=grass_demo 
+      src="Images/grass_demo.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Fresnel Reflection Demo"><FONT 
+      face=Arial>Fresnel Reflection Demo</FONT></A></TD>
+    <TD height=19><A 
+      href="#Fresnel Reflection Demo"><IMG 
+      height=75 alt=fresnel_reflection 
+      src="Images/Fresnel_reflection_dx8.jpg" 
+      width=75 border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Simple Fog"><FONT 
+      face=Arial>Simple Fog</FONT></A></TD>
+    <TD height=19><A 
+      href="#Simple Fog"><IMG 
+      height=75 alt=simple_fog 
+      src="Images/simple_fog.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Sine Wave Perturbation"><FONT 
+      face=Arial>Sine Wave Perturbation</FONT></A></TD>
+    <TD height=19><A 
+      href="#Sine Wave Perturbation"><IMG 
+      height=75 alt=sine_wave_perturbation_ogl 
+      src="Images/sine_wave_perturbation_ogl.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Refract Reflect Demo"><FONT 
+      face=Arial>Refract Reflect Demo</FONT></A></TD>
+    <TD height=19><A 
+      href="#Refract Reflect Demo"><IMG 
+      height=75 alt=refract_reflect_demo 
+      src="Images/refract_reflect_demo.jpg" width=75 
+      border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Simple Lighting"><FONT 
+      face=Arial>Simple Lighting</FONT></A></TD>
+    <TD height=19><A 
+      href="#Simple Lighting"><IMG 
+      height=75 alt=simple_lighting 
+      src="Images/simple_lighting.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Water Demo"><FONT 
+      face=Arial>Water Demo</FONT></A></TD>
+    <TD height=19><A 
+      href="#Water Demo"><IMG 
+      height=75 alt=water_demo 
+      src="Images/water_demo.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Refractive Dispersion Demo"><FONT 
+      face=Arial>Refractive Dispersion Demo</FONT></A></TD>
+    <TD height=19><A 
+      href="#Refractive Dispersion Demo"><IMG 
+      height=75 alt=refractive_dispersion_demo 
+      src="Images/refractive_dispersion_demo.jpg" 
+      width=75 border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Bump Dot3 Diffuse Specular"><FONT 
+      face=Arial>Bump Dot3 Diffuse Specular</FONT></A></TD>
+    <TD height=19><A 
+      href="#Bump Dot3 Diffuse Specular"><IMG 
+      height=75 alt=bump_dot3_diffuse_specular 
+      src="Images/bump_dot3_diffuse_specular.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Depth Sprites"><FONT 
+      face=Arial>Depth Sprites</FONT></A></TD>
+    <TD height=19><a href="#Depth Sprites"><IMG height=75 
+      src="Images/Cg_Eff2.jpg" width=75 border=0></a></TD>
+    <TD align=right height=19><A 
+      href="#Hardware Shadow Maps"><FONT 
+      face=Arial>Hardware Shadow Maps</FONT></A></TD>
+    <TD height=19><A 
+      href="#Hardware Shadow Maps"><IMG 
+      height=75 alt=hardware_shadow_maps 
+      src="Images/hardware_shadow_maps.jpg" width=75 
+      border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Bump Dot3x2 Diffuse Specular"><FONT 
+      face=Arial>Bump Dot3x2 Diffuse Specular</FONT></A></TD>
+    <TD height=19><A 
+      href="#Bump Dot3x2 Diffuse Specular"><IMG 
+      height=75 alt=bump_dot3x2_diffuse_specular 
+      src="Images/bump_dot3x2_diffuse_specular.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Lighting Demo"><FONT 
+      face=Arial>Lighting Demo</FONT></A></TD>
+    <TD height=19><a href="#Lighting Demo"><img border="0" src="Images/lighting_demo_small.jpg" width="75" height="75"></a></TD>
+    <TD align=right height=19><A 
+      href="#Soft Stencil Shadow Volumes"><FONT 
+      face=Arial>Soft Stencil Shadow Volumes</FONT></A></TD>
+    <TD height=19><A 
+      href="#Soft Stencil Shadow Volumes"><IMG 
+      height=75 alt=soft_stencil_shadows 
+      src="Images/soft_stencil_shadows.jpg" width=75 
+      border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Bump Horizon Mapping"><FONT 
+      face=Arial>Bump Horizon Mapping</FONT></A></TD>
+    <TD height=19><A 
+      href="#Bump Horizon Mapping"><IMG 
+      height=75 alt=bump_horizon_mapping 
+      src="Images/bump_horizon_mapping.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Dot3 Diffuse Specular"><FONT 
+      face=Arial>Dot3 Diffuse Specular</FONT></A></TD>
+    <TD height=19><A 
+      href="#Dot3 Diffuse Specular"><IMG 
+      height=75 alt=dot3_diffuse_specular 
+      src="Images/dot3_diffuse_specular.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Stencil Shadow Volumes"><FONT 
+      face=Arial>Stencil Shadow Volumes</FONT></A></TD>
+    <TD height=19><A 
+      href="#Stencil Shadow Volumes"><IMG 
+      height=75 alt=stencil_shadow_volumes 
+      src="Images/stencil_shadow_volumes.jpg" 
+      width=75 border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Bump Reflection Mapping"><FONT 
+      face=Arial>Bump Reflection Mapping</FONT></A></TD>
+    <TD height=19><A 
+      href="#Bump Reflection Mapping"><IMG 
+      height=75 alt=bump_reflection_mapping 
+      src="Images/bump_reflection_mapping.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Flare"><FONT 
+      face=Arial>Flare</FONT></A></TD>
+    <TD height=19><A 
+      href="#Flare"><IMG 
+      height=75 alt=flare src="Images/flare.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Anisotropic Lighting"><FONT 
+      face=Arial>Anisotropic Lighting</FONT></A></TD>
+    <TD height=19><A 
+      href="#Anisotropic Lighting"><IMG 
+      height=75 alt=anisotropic_lighting 
+      src="Images/anisotropic_lighting.jpg" width=75 
+      border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Detail Normal Maps"><FONT 
+      face=Arial>Detail Normal Maps</FONT></A></TD>
+    <TD height=19><A 
+      href="#Detail Normal Maps"><IMG 
+      height=75 alt=detail_normal_maps 
+      src="Images/detail_normal_maps.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=15><A 
+      href="#Procedural Terrain Demo"><FONT 
+      face=Arial>Procedural Terrain Demo</FONT></A></TD>
+    <TD height=15><A 
+      href="#Procedural Terrain Demo"><IMG 
+      height=75 alt=procedural_terrain_demo 
+      src="Images/procedural_terrain_demo.jpg" 
+      width=75 border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Grass Rendering"><FONT 
+      face=Arial>Grass Rendering</FONT></A></TD>
+    <TD height=19><A 
+      href="#Grass Rendering"><IMG 
+      height=75 alt=grass_rendering 
+      src="Images/grass_rendering.jpg" width=75 
+      border=0></A></TD></TR>
+  <TR>
+    <TD align=right height=19><A 
+      href="#Water Interaction"><FONT 
+      face=Arial>Water Interaction</FONT></A></TD>
+    <TD height=19><A 
+      href="#Water Interaction"><IMG 
+      height=75 alt=water_interaction 
+      src="Images/water_interaction.jpg" width=75 
+      border=0></A></TD>
+    <TD align=right height=19><A 
+      href="#Vertex Noise"><FONT 
+      face=Arial>Vertex Noise</FONT></A></TD>
+    <TD height=19><A 
+      href="#Vertex Noise"><IMG 
+      height=75 alt=vertex_noise 
+      src="Images/vertex_noise.jpg" width=75 
+      border=0></A></TD></TR></TBODY></TABLE>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal><font face="Arial" color="#008000" size="4"><b>NV30 Shaders</b></font></P>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="Improved Water">Improved
+      Water</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro12.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <FONT face=Arial>This demo gives the appearance that 
+      the viewer is surrounded by a large grid of vertices (because of the free 
+      rotation, but by switching to wireframe, or by increasing the frustum 
+      angle, it becomes apparent that the vertices are a static mesh, with the 
+      height, normal and texture coordinates being calculated on the fly based of 
+      the direction and height of the viewer. This technique allows for very GPU 
+      friendly water animations since the static mesh can be precomputed.&nbsp;
+      The vertices are displaced using sine waves, and in this example, a loop
+      is used to sum up five sine waves, to achieve realistic effects.</FONT>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</TD></TR></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="Improved Skinning">Improved
+      Skinning</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro13.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <font face="Arial">This shader takes in a set of all the transformation
+      matrices that can affect a particular bone. Each bone also sends in a list
+      of matrices that affects it. There is then a simple loop that for each
+      vertex goes through each bone that affects that given vertex and
+      transforms it. This allows just one Cg program to do the entire skinning
+      for vertices affected by any number of bones, instead of having one
+      program for one bone, another program for two bones, and so
+      on.&nbsp;&nbsp;</font>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</TD></TR></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="MultiPaint">MultiPaint</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro9.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <font face="Arial">MultiPaint presents a single-pass solution to a common
+      production problem -- mixing multiple kinds of materials on a single
+      polygonal surface. MultiPaint provides a simple BRDF that is still complex
+      enough to represent many common metallic and dielectric surfaces, then
+      controls all key factors of the variable BRDF through texturing. This
+      permits you to create multiple materials without switching shaders,
+      splitting your model, or resorting to multiple passes.</font>
+      <p><font face="Arial">Uses for MutliPaint might include complex armor
+      built of inlaid metals, woods, and stones, all modeled on a single simple
+      poly mesh; buildings composed of multiple types of stone, glass, and
+      metal, expressed as simple cubes; cloth with inlaid metallic threads; or as
+      in this demo, metal partially-covered with peeling paint.</font></p>
+      <p><font face="Arial">Using multiple BRDFs is common in the offline world,
+      but rarely optimized -- instead two different shaders may be evaluated and
+      their results blended using a mask texture or chained through
+      &quot;if&quot; statements. For maximum realtime performance, MultiPaint
+      instead integrates all of the key parts of the BRDFs as multiple painted
+      textures, so that only one pass through the shader is required to create
+      the mixed appearance. This permits a single-pass shader containing
+      diffuse, specular, and environmental lighting effects in a compact,
+      fast-executing package.</font></TD></TR></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="Melting Paint">Melting
+      Paint</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro11.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <span class="977561721-16082002"><font face="Arial">This shader uses an
+      environment map with procedurally modified texture lookups to create a
+      melting effect on the surface texture (the NVIDIA logo in this example).
+      The reflection vector is shifted using a noise function, giving the
+      appearance of a bumpy surface.&nbsp; The surface texture's texture
+      coordinates are shifted in a time-dependent manner, also based on a noise
+      texture.</font></span>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</TD></TR></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="Raytraced Refraction">Raytraced
+      Refraction</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro18.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <font face="Arial">This shader</font><font face="Arial"> presents a method
+      for adding high-quality details to small objects using a single-bounce ray
+      traced pass. In this example, the
+      polygonal surface is sampled and a refraction vector is calculated. This
+      vector is then intersected with a plane that is defined as being
+      perpendicular to the object's X axis. The intersection point is calculated
+      and used as texture indices for a painted Iris.</font>
+      <p><font face="Arial">The demo permits varying the index of refraction,
+      the depth and density of the lens. Note that the choice of geometry is <i>arbitrary</i>
+      -- this sample is a sphere, but any polygonal model can be used.</font></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</TD></TR></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TR>
+    <TD><b><font face="Arial" color="#008000"><a name="Skin">Skin</a></font></b></TD>
+    <TD rowSpan=2><img border="0" src="Cg%20Bro10.jpg" width="354" height="354"></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <font face="Arial">This effect demonstrates some techniques for rendering
+      skin ranging from simple Blinn-Phong Bump-Mapping to more-complex
+      Subsurface Scattering lighting models. It also illustrates the use of
+      &quot;Rim&quot; lighting and simple translucency for capturing some of the
+      more subtle properties of skin resulting from complex, non-local lighting
+      interactions. Finally, it shows how the various techniques can be combined
+      to produce compelling stylized skin.</font>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</TD></TR></TABLE>
+<HR>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><b><font color="#008000" face="Arial" size="4">NV2X Shaders</font></b></p>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Matrix Palette Skinning">Matrix Palette Skinning</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=matrix_palette_skinning 
+      src="Images/matrix_palette_skinning(1).jpg" 
+      border=0 width="350" height="350"></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>This shader performs matrix palette 
+      skinning with vertex diffuse lighting. Each vertex has four indices which 
+      reference the four bones (input as uniform parameters) which influence 
+      this particular vertex, along with the weights of influence. We calculate 
+      the vertex position in world space as influenced by each bone (so, four 
+      separate positions are generated per vertex) and then we blend these four 
+      positions according to the weights to generate the final vertex position 
+      in world space. Since, in this particular mesh, the first two bones 
+      influencing each vertex are by far the most significant (have the largest 
+      weights), we only transform the normals by the first two bones and their 
+      respective weights, and then normalize the result. This normal is then 
+      used with the uniform parameter for the light vector in world space to 
+      calculate diffuse intensity.</FONT></P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Simple Fog">Simple 
+      Fog</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=simple_fog 
+      src="Images\simple_fog(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>This example renders a fogged 
+      landscape with two types of fog.<SPAN style="mso-spacerun: yes">&nbsp; 
+      </SPAN>It shows the interaction of fog <SPAN 
+      class=SpellE>calculations</SPAN>  with pixel and vertex shader 
+      programs.</O:P> </FONT></P>
+      <P class=MsoNormal><FONT face=Arial>The first fog factor is a traditional 
+      screen depth based fog, calculated from the Z component of the vertex 
+      after the model-view-project transform.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>This value is written to the 
+      shader <SPAN class=SpellE>oFog.x</SPAN> which is used in a blending stage 
+      after the pixel shader program.</O:P> </FONT></P>
+      <P class=MsoNormal><FONT face=Arial>The second fog term is based on the 
+      model space landscape height and appears as the white fog in the 
+      valleys.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>You can change the 
+      scaling of this second term with the “&lt;” and “&gt;” keys.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The value is passed into the pixel 
+      shader program, where it is added to the base texture color.</O:P> 
+      </FONT></P>
+      <P class=MsoNormal><FONT face=Arial>The landscape height is generated as 
+      the sum of three blurred and scaled random noise fields.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The blurring produces features of 
+      varying roughness, and the more blurred components are added in with a 
+      greater scale factor.</FONT></P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Simple Lighting">Simple 
+      Lighting</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=simple_lighting 
+      src="Images\simple_lighting(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>This example shows basic diffuse and 
+      specular lighting calculations, based on the Phong illumination 
+      model.&nbsp; The diffuse term is calculated using the usual N dot L 
+      formulation, and the specular term uses the Blinn formulation of N dot 
+      H.&nbsp; This is also the example that is used in "A Brief Tutorial", 
+      which can be found in the <A 
+      href="http://download.nvidia.com/developer/cg/Cg_Users_Manual.pdf">Cg 
+      User's Manual</A>.</FONT>
+      <P class=MsoNormal>&nbsp;
+      <P class=MsoNormal>&nbsp;
+      <P class=MsoNormal>&nbsp;
+      <P class=MsoNormal>&nbsp;
+      <P class=MsoNormal>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Bump Dot3 Diffuse Specular">Bump Dot3 Diffuse 
+    Specular</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=bump_dot3_diffuse_specular 
+      src="Images\bump_dot3_diffuse_specular(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial>This effect computes diffuse and specular lighting in two 
+      passes using a normal from a normal map. The first pass lays down the 
+      diffuse component, by transforming the light vector into tangent space in 
+      the vertex program and then using this light vector along with the normal 
+      and a decal texture to compute diffuse lighting. In a second pass, the 
+      half-angle vector is computed per-vertex, transformed into tangent space, 
+      and passed down in a texture coordinate. H dot N is then computed 
+      per-pixel, and the result is squared a number of times to achieve a higher 
+      specular power, then modulated by a self-shadowing term and added into the 
+      framebuffer.</O:P> </FONT></SPAN></P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Bump Dot3x2 Diffuse Specular">Bump Dot3x2 Diffuse 
+      Specular</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=bump_dot3x2_diffuse_specular 
+      src="Images\bump_dot3x2_diffuse_specular(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><FONT face=Arial><SPAN 
+      style="FONT-STYLE: normal">This demonstrates diffuse and <SPAN 
+      class=SpellE>specular</SPAN> illumination on a bump mapped model.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>N </SPAN><SPAN 
+      style="FONT-STYLE: normal; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">·</SPAN><SPAN 
+      style="FONT-STYLE: normal"> L and N </SPAN><SPAN 
+      style="FONT-STYLE: normal; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">·</SPAN><SPAN 
+      style="FONT-STYLE: normal"> H are computed for each rendered pixel.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The values of the dot-products are 
+      then used as (<SPAN class=SpellE>u,v</SPAN>) coordinates to address an 
+      irradiance map.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>This is a 
+      texture which holds a diffuse color ramp in one axis, and a <SPAN 
+      class=SpellE>specular</SPAN> color ramp in the alpha channel of the other 
+      axis.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>In this way, an 
+      arbitrary response to the incident light direction is possible.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>You can achieve any <SPAN 
+      class=SpellE>specular</SPAN> exponent or arbitrary function by editing the 
+      color ramps in a paint program.<O:P> </O:P></O:P></SPAN></FONT></P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial>The demo includes right-button menu options for loading normal 
+      map bump maps, base textures, and irradiance maps, as well as the ability 
+      to <SPAN class=SpellE>visualize</SPAN> the incident light vector or each 
+      texture map on its own.<O:P> </FONT></SPAN></P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></O:P></FONT></SPAN></P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Bump Horizon Mapping">Bump 
+      Horizon Mapping</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=bump_horizon_mapping 
+      src="Images\bump_horizon_mapping(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial>This effect does per-pixel bump mapping and makes every bump 
+      cast a shadow using the horizon mapping technique.&nbsp; Based on the 
+      height map, 8 horizon maps are precomputed corresponding to 8 main light 
+      directions in the tangent plane.&nbsp; Every horizon map texel holds the 
+      cosine of the angle between the normal and the light direction below which 
+      this texel is shadowed by its neighboring texels.&nbsp; At run-time, we 
+      assume that the surface is locally planar enough that the visibility 
+      pre-computation holds true.&nbsp; For every pixel, we compare the actual 
+      cosine of the angle between the normal and the current light direction to 
+      the limit stored in the horizon map and determine if the pixel is in 
+      shadow or not.&nbsp; The current light direction falls in-between two of 
+      the 8 main light directions; the value of the limit is thus computed by 
+      linear interpolation between those 2 main directions.<O:P> 
+      </O:P></FONT></SPAN></P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Bump Reflection Mapping">Bump Reflection Mapping</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=bump_reflection_mapping 
+      src="Images\bump_reflection_mapping(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><FONT face=Arial>This shader demonstrates how to 
+      perform the ubiquitous "bumpy shiny" effect in Cg, where a per-pixel 
+      normal is used to compute a reflection vector to lookup into a cubemap. 
+      The vertex program performs the bumpy-shiny setup, by passing a matrix to 
+      transform a vector from tangent space to "cube map space" (usually world 
+      space) as texture coordinates, along with an eye vector in world space. 
+      The pixel shader then computes the texCUBE_reflect_eye_dp3x3 function, 
+      which transforms the normal fetched from a normal map by the 3x3 
+      interpolated matrix, computes a reflected vector using the eye vector and 
+      transformed normal, and uses this reflected vector to lookup into a 
+      cubemap.</FONT></P>
+      <P> 
+      <P> 
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Detail Normal Maps">Detail 
+      Normal Maps</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=detail_normal_maps 
+      src="Images\detail_normal_maps(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><FONT face=Arial>This demo shows a technique for 
+      combining normal maps at runtime. There is a "detail" normal map, which 
+      shows fine detail and fades in as you get closer to the surface, and a 
+      larger scale primary normal map. The vertex program does standard setup 
+      for tangent-space bump-mapping, and passes a light vector in tangent space 
+      to the pixel shader. At the pixel level, we combine the two normals 
+      together, which results in a non-unit length normal, and then renormalize 
+      the normal using a fast single iteration Newton-Raphson approximation. 
+      This normal is then used to calculate the diffuse intensity, which is then 
+      modulated by the base texture.</FONT></P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Water Interaction">Water 
+      Interaction</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=water_interaction 
+      src="Images\water_interaction(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial>The demo is meant to show two main things:<BR><BR>1) Coupling 
+      two dynamic rendered-texture water simulations together so that a tiled 
+      texture applied across a large area can transition seamlessly to a local 
+      unique detail texture.<BR><BR>2) A method of rendering water reflections 
+      similar to Environment Mapped Bump Mapping (EMBM) but using vertex shaders 
+      and the pixel shader texm3x2tex operation for added control and 
+      realism.</FONT></SPAN></P>
+      <P class=MsoBodyText2><FONT face=Arial>The coupling of two water 
+      simulations allows a large area of procedural water to be created while 
+      still allowing for unique local features.&nbsp; The reflection method used 
+      performs the same basic calculation as DX6-style EMBM, but in this case 
+      the 2x2 rotation matrix and base texture coordinates are calculated in a 
+      vertex shader and can vary per-vertex.&nbsp; The water simulation is 
+      performed entirely on the graphics hardware using pixel shaders. 
+      Nearest-neighbor differencing and sampling at each texel is accomplished 
+      using a combination of vertex and pixel shaders.<SPAN 
+      style="FONT-STYLE: normal"><O:P> &nbsp; </SPAN></FONT>
+      <P class=MsoBodyText2><FONT face=Arial><SPAN 
+      style="FONT-STYLE: normal"></O:P></SPAN></FONT></P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Grass Demo">Grass 
+      Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=grass_demo 
+      src="Images\grass_demo(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><FONT face=Arial><SPAN 
+      style="FONT-STYLE: normal">This demo shows the construction and animation 
+      of leaves of grass being calculated on the GPU. Each leaf is created by a
+      Bezier curve with a few control points that are procedurally moved around 
+      to accommodate the wind. The normals of the leaves is also calculated from 
+      this Bezier curve. The vertices being sent to the shader consist of one 
+      degenerate quad strip for each leaf, with all the vertices collapsed to 
+      the root point of the leaf, but each vertex has a different t parameter 
+      which determines where on the Bezier curve the vertex should be 
+      located.</SPAN></FONT></P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P> 
+      <P> 
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Sine Wave Perturbation">Sine Wave Perturbation</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=sine_wave_perturbation_ogl 
+      src="Images\sine_wave_perturbation_ogl(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>A flat grid of polygons is deformed by 
+      a sine wave, sampled from the constant memory using a<ST1:PLACE> 
+      Taylor</ST1:PLACE> </ST1:CITY>series.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The shader calculates the first 4 
+      values in the series.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>The 
+      distance from the center of the grid is used to generate a height, which 
+      is applied to the vertex coordinate.<SPAN style="mso-spacerun: yes">&nbsp; 
+      </SPAN>A normal is also generated and used to generate a texture 
+      coordinate reflection vector from the eye, which looks into a cubic 
+      environment map.</O:P> </FONT></P>
+      <P class=MsoNormal><FONT face=Arial>The input data for this shader is 
+      simply 2 floating-point values.<SPAN style="mso-spacerun: yes">&nbsp; 
+      </SPAN>The shader generates all normal, texture and color information 
+      itself.&nbsp; The menu-option allows rendering in wire frame, and left 
+      clicking allows rotating the mesh.</FONT></P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P>&nbsp; </FONT></SPAN></P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial></O:P></FONT></SPAN></P>
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Water Demo">Water 
+      Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=water_demo 
+      src="Images\water_demo(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>This demo gives the appearance that 
+      the viewer is surrounded by a large grid of vertices (because of the free 
+      rotation, but by switching to wireframe, or by increasing the frustum 
+      angle, it becomes apparent that the vertices are a static mesh, with the 
+      height, normal and texture coordinates being calculated on he fly based of 
+      the direction and height of the viewer. This technique allows for very GPU 
+      friendly water animations since the static mesh can be 
+      precomputed.</FONT></P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></O:P></FONT></SPAN></P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Depth Sprites">Depth 
+      Sprites</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG height=350 
+      src="Images/Cg_Eff1.jpg" width=350 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><SPAN style="FONT-STYLE: normal"><FONT face=Arial>This 
+      demo illustrates how texture <SPAN class=SpellE>shaders</SPAN> can be used 
+      to create sprites with real depth data.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The depth sprites differ from 
+      normal sprites in that they can realistically intersect in 3D with other 
+      depth sprites or standard 3D objects.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The register combiners are used to 
+      normalize the light vector, calculate its reflection off the normal mapped 
+      surface, as well as calculate both diffuse and <SPAN 
+      class=SpellE>specular</SPAN> lighting equations.<O:P> 
+      </O:P></FONT></SPAN></P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></O:P></FONT></SPAN></P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Lighting Demo">Lighting 
+      Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=lighting_demo 
+      src="Images/lighting_demo.jpg" 
+    border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial><SPAN style="FONT-STYLE: normal">This 
+      demo shows how to implement each of the standard OpenGL lighting types in 
+      the vertex 
+      shader.&nbsp; It includes examples of spotlights, local lights, and
+      infinite
+      lights.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </SPAN><SPAN style="FONT-STYLE: normal"><O:P></O:P></SPAN></FONT></P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoNormal>&nbsp;</P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P>&nbsp; </FONT></SPAN></P>
+      <P class=MsoBodyText2>&nbsp;</P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial></O:P></FONT></SPAN></P>
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Dot3 Diffuse Specular">Dot3 
+      Diffuse Specular</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=dot3_diffuse_specular 
+      src="Images\dot3_diffuse_specular(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoNormal><FONT face=Arial>This shader performs diffuse and 
+      specular lighting in two passes using an interpolated normal, and shows a 
+      couple of different ways to perform per-fragment vector normalization. In 
+      the first pass, diffuse lighting is calculated as follows: in the vertex 
+      program, a light vector and normal are calculated and passed to the pixel 
+      program. At the pixel level, the light vector is normalized using a 
+      Newton-Raphson approximation and the light vector is normalized using a 
+      normalization cubemap. The normal, light vector, and decal texture are 
+      then used to compute the diffuse lighting term. In a second pass, the 
+      vertex program calculates the half-angle vector and normal, and the pixel 
+      program normalizes these two vectors, performs H dot N, and squares the 
+      result a number of times to achieve a higher specular power. This value is 
+      then added into the framebuffer.<SPAN style="FONT-STYLE: normal"><O:P> 
+      </O:P></SPAN></FONT></P>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></O:P></FONT></SPAN></P>
+      <P> 
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+name=Flare>Flare</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=flare 
+      src="Images\flare(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top><FONT face=Arial>This glow effect is produced by applying a 
+      convolution filter to a low resolution texture which contains bright 
+      pixels at sources of glow. First, a "glow source" texture is created by 
+      rendering the object to a texture render target. For this rendering, a 
+      mask channel, here stored in the alpha channel of the object's base 
+      texture, determines which parts of the object contribute bright pixels to 
+      the "glow source" texture. The rendered texture is then set as the input 
+      texture for the convolution operation. The result of the convolution is accumulated
+      in another texture, the "glow" texture, which will contain the 
+      brightness of the blurry glow for everything in the scene as viewed from 
+      the camera's point of view. The scene is rendered normally, and the "glow" 
+      texture is then rendered to the full screen with additive blending.</FONT> 
+
+      <P><FONT face=Arial>To perform the convolution of glow source pixels into 
+      bright blurry glow, several rendering passes may be used. On GeForce3 and 
+      GeForce4, each pass accumulates four samples of the convolution kernel. 
+      Each sample is multiplied by a coefficient to determine the shape of the 
+      glow, and this shape can be any arbitrary function. To save passes, a 
+      separable convolution is used which blurs first horizontally, and then 
+      blurs the horizontal blur vertically. This may or may not be close to a 
+      separable Gaussian convolution. If the desired blur size is NxN texels, 
+      this approach reduces the number of samples which must be accumulated from 
+      N*N to 2*N, a substantial savings. This approach sacrifices some 
+      flexibility in determining the shape of the blur.</FONT></P>
+      <P><FONT face=Arial>The effect runs from about 200 to 650 fps in windowed 
+      mode. Most of the time for rendering in the windowed mode is spent in 
+      blitting from backbuffer to the windowed area. To make this less 
+      significant, reduce the size of the window. This blit() time is not 
+      required for fullscreen mode, so the effect will run faster in a 
+      fullscreen application.</FONT></P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Procedural Terrain Demo">Procedural Terrain Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG 
+      src="Images/Cg_Eff3.jpg" 
+border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></FONT></SPAN><FONT face=Arial>This example uses the 
+      vertex program Perlin noise implementation to generate a two octave ridged 
+      multifractal terrain. The geometry sent to the hardware is a static flat 
+      quadrangle mesh, which is displaced on the fly by the programmable vertex 
+      hardware. A 3D texture is used to color the terrain based on height. The 
+      sliders can be used to modify the frequencies and amplitudes of the 2 
+      noise octaves, producing different styles of terrain.</FONT></P>
+      <P><FONT face=Arial>Reference: "Texturing and Modeling, A Procedural 
+      Approach", Ebert et. al</FONT></P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P>
+      <P> 
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Vertex Noise">Vertex 
+      Noise</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=vertex_noise 
+      src="Images\vertex_noise(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText2><SPAN style="FONT-STYLE: normal"><FONT 
+      face=Arial><O:P></FONT></SPAN><FONT face=Arial>This example demonstrates 
+      an implementation of Perlin noise using vertex programs. An animated 3D 
+      noise function is used to displace the vertices of a sphere along the 
+      vertex normal. The geometry is entirely static, but is displaced on the 
+      fly by the vertex program hardware. Perlin noise is implemented for the 
+      vertex program profile using recursive lookups into a permutation table 
+      stored in constant memory. The size of this table determines the period at 
+      which the noise function repeats. 3D noise costs around 65 instructions, 
+      2D noise around 45, 1D noise around 20.</FONT></P>
+      <P><FONT face=Arial>Reference: <A 
+      href="http://mrl.nyu.edu/~perlin/doc/oscar.html"><U><FONT 
+      color=#0000ff>http://mrl.nyu.edu/~perlin/doc/oscar.html</FONT></U></A></FONT></P>
+      <P>&nbsp;</P>
+      <P>&nbsp;</P>
+      <P> 
+      <P>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Fresnel Reflection Demo">Fresnel Reflection Demo</A></FONT></B></TD>
+    <TD rowSpan=2><IMG alt=Fresnel_reflection_dx8 
+      src="Images\Fresnel_reflection_dx8(1).jpg" 
+      border=0></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><SPAN style="mso-bookmark: Third_Party_Effects"><FONT 
+      face=Arial>When light strikes a boundary between different media, for 
+      example, air and glass, some of the light gets refracted and some gets 
+      reflected.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>The amount of 
+      reflection depends on the ratio of refraction-indices of the two media, 
+      the polarization of the light, the wavelength of the light, and the angle 
+      of incidence of the light.<SPAN style="mso-spacerun: yes">&nbsp; 
+      </SPAN><SPAN class=SpellE>Fresnel’s</SPAN> formula provides an accurate 
+      description of how much light reflects at the boundary:</FONT></SPAN></P>
+      <P class=MsoBodyText><SPAN class=Equation 
+      style="mso-bookmark: Third_Party_Effects">(1)<SPAN 
+      style="mso-tab-count: 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      </SPAN>R(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN>) 
+      = &#8539; (sin<SUP>2</SUP>(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN> 
+      - <SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN><SUB>t</SUB>) 
+      / sin<SUP>2</SUP>(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN> 
+      + <SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN><SUB>t</SUB>)) 
+      (1 + cos<SUP>2</SUP>(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN> 
+      - <SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN><SUB>t</SUB>) 
+      / cos<SUP>2</SUP>(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN> 
+      + <SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN><SUB>t</SUB>))<SPAN 
+      style="mso-spacerun: yes">&nbsp;</SPAN></SPAN></P>
+      <P class=MsoBodyText><FONT face=Arial><SPAN 
+      style="mso-bookmark: Third_Party_Effects">We are using two approaches to 
+      approximate the Fresnel reflection formulae: per-pixel and 
+      per-vertex.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Both compute a 
+      reflection vector per-vertex and use it to look up a reflection value 
+      per-pixel via a cubic environment-map.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>The Fresnel reflection value then 
+      blends this reflection-value with a material-color.</SPAN>&nbsp; 
+      </FONT><SPAN style="mso-bookmark: Third_Party_Effects"><FONT 
+      face=Arial>The per-pixel approximation derives the Fresnel reflection 
+      value from a texture look-up.<SPAN style="mso-spacerun: yes">&nbsp; 
+      </SPAN>It computes</FONT> <SPAN class=SpellE>cos</SPAN>(<SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN>) 
+      <FONT face=Arial>per-vertex --</FONT> <SPAN class=SpellE>cos</SPAN>(<SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN>) 
+      = N<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">·</SPAN>E 
+      <FONT face=Arial>is readily available in the vertex-shader, as it is 
+      required in computing the reflection-vector -- and uses the interpolated 
+      per-pixel</FONT> <SPAN class=SpellE>cos</SPAN>(<SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN>) 
+      <FONT face=Arial>in a 1D texture look-up that encodes</FONT> 
+      R(arcos(x)).<SPAN style="mso-spacerun: yes">&nbsp;</SPAN><FONT 
+      face=Arial>The per-vertex approximation of Fresnel reflection computes the 
+      Fresnel term</FONT> R(<SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'">) </SPAN><SPAN 
+      class=Equation style="FONT-WEIGHT: normal"><FONT face=Arial>per 
+      vertex</FONT></SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'">.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN></SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal"><FONT face=Arial>This per-vertex 
+      term</FONT></SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'"> 
+      </SPAN>R(<SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'">) </SPAN><SPAN 
+      class=Equation style="FONT-WEIGHT: normal"><FONT face=Arial>is then 
+      linearly interpolated and applied per-pixel.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>Encoding equation (1) in a 
+      vertex-shader is straightforward, but also sub-optimal in terms of number 
+      of vertex-shader instructions and thus performance.<SPAN 
+      style="mso-spacerun: yes">&nbsp; </SPAN>Approximating</FONT></SPAN><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'"> 
+      R(</SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Times New Roman; mso-hansi-font-family: Times New Roman">q</SPAN><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'">) </SPAN><SPAN 
+      class=Equation style="FONT-WEIGHT: normal"><FONT 
+      face=Arial>as</FONT></SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal; FONT-FAMILY: 'Times New Roman'"> 
+      <O:P></O:P></SPAN></SPAN></P>
+      <P class=MsoBodyText><SPAN class=Equation 
+      style="mso-bookmark: Third_Party_Effects">(2)<SPAN 
+      style="mso-tab-count: 1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      </SPAN>R(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN>) 
+      <SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">»</SPAN> 
+      R<SUB>a</SUB>(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN>) 
+      = R(0) + (1-R(0)) (1-cos(<SPAN 
+      style="FONT-FAMILY: Symbol; mso-char-type: symbol; mso-symbol-font-family: Symbol; mso-ascii-font-family: Garamond; mso-hansi-font-family: Garamond">q</SPAN>))<SUP>5</SUP></SPAN><SPAN 
+      style="mso-bookmark: Third_Party_Effects"><SPAN 
+      style="FONT-FAMILY: Garamond"><BR></SPAN><FONT face=Arial>instead yields 
+      good results.<BR><SPAN class=Equation style="FONT-WEIGHT: normal">See the 
+      white-paper “Fresnel Reflection” on</SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal"> </SPAN></FONT></SPAN><FONT face=Arial><A 
+      href="http://www.nvidia.com/developer"><SPAN 
+      style="mso-bookmark: Third_Party_Effects"><B>http://www.nvidia.com/developer</B></SPAN></A><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; mso-bookmark: Third_Party_Effects"> for 
+      details</SPAN><SPAN style="mso-bookmark: Third_Party_Effects"><SPAN 
+      class=Equation style="FONT-WEIGHT: normal">.</SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal"><O:P> </O:P></SPAN></SPAN></FONT></P>
+      <P class=MsoBodyText><SPAN style="mso-bookmark: Third_Party_Effects"><FONT 
+      face=Arial>The menu options allow switching between the per-pixel and 
+      per-vertex approximation, as well as switching to wire-frame 
+      rendering.<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Different indices 
+      of refraction are accessible via the menu or the +/- 
+      keys.</FONT></SPAN></P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Refract Reflect Demo">Refract Reflect Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=refract_reflect_demo 
+      src="Images\refract_reflect_demo(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><FONT face=Arial>This demo calculates a reflection 
+      and a refraction vector based on the normal on the surface of the object 
+      and modulates them based on Fresnel properties.&nbsp; </FONT><SPAN 
+      style="mso-bookmark: Third_Party_Effects"><FONT face=Arial><SPAN 
+      class=Equation style="FONT-WEIGHT: normal">See the white-paper “Fresnel 
+      Reflection” on</SPAN><SPAN class=Equation style="FONT-WEIGHT: normal"> 
+      </SPAN></FONT></SPAN><FONT face=Arial><A 
+      href="http://www.nvidia.com/developer"><SPAN 
+      style="mso-bookmark: Third_Party_Effects"><B>http://www.nvidia.com/developer</B></SPAN></A><SPAN 
+      class=Equation 
+      style="FONT-WEIGHT: normal; mso-bookmark: Third_Party_Effects"> for more 
+      information about Fresnel effects</SPAN><SPAN 
+      style="mso-bookmark: Third_Party_Effects"><SPAN class=Equation 
+      style="FONT-WEIGHT: normal">.</SPAN><SPAN class=Equation 
+      style="FONT-WEIGHT: normal"><O:P> &nbsp; </SPAN></SPAN></FONT>
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Refractive Dispersion Demo">Refractive Dispersion 
+    Demo</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=refractive_dispersion_demo 
+      src="Images\refractive_dispersion_demo(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top><FONT face=Arial>This example attempts to simulate the 
+      wavelength dependent nature of light refraction. In lens design this 
+      effect is also known as chromatic aberration.</FONT> 
+      <P><FONT face=Arial>The code calculates three different refraction vectors 
+      for the red, green and blue wavelengths of light, each with slightly 
+      different indices of refraction. Each of these vectors is used to index 
+      into a cube map of the environment, and the resulting colors are modulated 
+      by red, green and blue and then summed to produce the rainbow effect. A 
+      reflection vector is also calculated, and used to index into the same cube 
+      map, making a total of four texture lookups. The reflection is modulated 
+      by a Fresnel approximation, which makes surfaces facing perpendicular to 
+      the viewer appear more reflective.</FONT></P>
+      <P><FONT face=Arial>Reference: <A 
+      href="http://www.botzilla.com/house/RayPS.html"><U><FONT 
+      color=#0000ff>http://www.botzilla.com/house/RayPS.html</FONT></U></A></FONT></P>
+      <P>&nbsp;</P>
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Hardware Shadow Maps">Hardware Shadow Maps</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=hardware_shadow_maps 
+      src="Images\hardware_shadow_maps(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><FONT face=Arial>This example shows the usage of 
+      hardware shadow maps. A render-to-texture to a shadow map is done from the 
+      light's point-of-view, updating only depth (no color). This shadow map is 
+      then set as a texture when rendering the scene normally. The vertex shader 
+      computes the necessary texture coordinates to sample the correct texel 
+      from the shadow map given the current position, along with the current 
+      depth at that point to compare with the value in the shadow map. At the 
+      pixel level, a simple fetch from the shadow map will automatically perform 
+      a comparison between the value in the shadow map and the (r / q) texture 
+      coordinate, returning black when in shadow and white when in the light. 
+      This shadow term is then used to modulate the lighting.</FONT>
+      <P class=MsoBodyText><FONT face=Arial>Learn more about shadow mapping at 
+      <A 
+      href="http://developer.nvidia.com/view.asp?IO=shadow_mapping">http://developer.nvidia.com/view.asp?IO=shadow_mapping</A>.</FONT> 
+
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><FONT face=Arial color=#008000><B><A 
+      name="Soft Stencil Shadow Volumes">Soft Stencil Shadow 
+      Volumes</A></B></FONT></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=soft_stencil_shadows 
+      src="Images\soft_stencil_shadows(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><FONT face=Arial>This demo shows a brute force 
+      approach to creating soft shadows in graphics hardware. It applies several 
+      stencil shadow volume passes to the scene from different light positions 
+      to approximate an area light. Each shadow volume pass creates a faint hard 
+      edged shadow, and the accumulation of many faint shadows blends into an 
+      accurate soft shadow. The technique is well suited to creating realistic 
+      soft shadows from area light sources, though the required number of passes 
+      may be prohibitive for real-time interactivity. Still, using hardware 
+      acceleration of the shadow volume creation and rendering greatly improves 
+      the speed at which frames may be rendered. Shadow volumes are created on 
+      the GPU by the same technique demonstrated in our "Stencil Shadow Volumes" 
+      demo.</FONT> 
+      <P class=MsoBodyText><FONT face=Arial>To learn more about shadow volumes, 
+      check out <A 
+      href="http://developer.nvidia.com/view.asp?IO=robust_shadow_volumes">http://developer.nvidia.com/view.asp?IO=robust_shadow_volumes</A>.</FONT> 
+
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Stencil Shadow Volumes">Stencil Shadow Volumes</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=stencil_shadow_volumes 
+      src="Images\stencil_shadow_volumes(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top><FONT face=Arial>This demo presents a technique for the 
+      automatic creation of shadow volume geometry. A vertex shader is used to 
+      extrude closed hull 3D models into shadow volumes. The shadow volumes are 
+      used for stencil buffer shadow rendering, and the volumes themselves can 
+      be viewed by hitting the 'SPACE BAR' in the demo. This technique 
+      accurately renders self-shadowing objects and intersecting objects. 
+      Without the use of a vertex shader, creation of the shadow volume geometry 
+      would require costly CPU processing and additional memory. Using a vertex 
+      shader, shadow volumes can be generated directly from 3D objects without 
+      stalling the graphics pipeline.</FONT> 
+      <P><FONT face=Arial>In order for the vertex shader to extrude objects with 
+      sharp features to the proper shadow volume shape, additional triangles and 
+      vertices must be added along sharp edges. The demo code has a simple class 
+      to add such triangles and vertices to geometry where needed. This extra 
+      geometric data is required only when rendering the extruded shadow 
+      volumes. It can be skipped when rendering the objects normally to the 
+      screen.</FONT></P>
+      <P class=MsoBodyText><FONT face=Arial>To learn more about shadow volumes, 
+      check out <A 
+      href="http://developer.nvidia.com/view.asp?IO=robust_shadow_volumes">http://developer.nvidia.com/view.asp?IO=robust_shadow_volumes</A>.</FONT> 
+      </P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A 
+      name="Anisotropic Lighting">Anisotropic Lighting</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=anisotropic_lighting 
+      src="Images\anisotropic_lighting(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><FONT face=Arial>This effect shows how arbitrary 
+      ad-hoc lighting models can be encoded in textures. Here, we have a texture 
+      with a bright diagonal area that encodes and anisotropic lighting-type 
+      effect. The vertex program calculates H dot N for the texture coordinate 
+      for one axis of a texture and L dot N for the other axis. End result is a 
+      bright stripe in areas where H dot N and L dot N are roughly equal.</FONT>
+      <P class=MsoBodyText>&nbsp;
+      <P class=MsoBodyText>&nbsp;
+      <P class=MsoBodyText>&nbsp;
+      <P class=MsoBodyText>&nbsp;
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<HR>
+
+<TABLE border=0>
+  <TBODY>
+  <TR>
+    <TD><B><FONT face=Arial color=#008000><A name="Grass Rendering">Grass 
+      Rendering</A></FONT></B></TD>
+    <TD rowSpan=2><FONT face=Arial><IMG alt=grass_rendering 
+      src="Images\grass_rendering(1).jpg" 
+      border=0></FONT></TD></TR>
+  <TR>
+    <TD vAlign=top>
+      <P class=MsoBodyText><FONT face=Arial>This example shows a volume 
+      rendering technique similar to the shell rendering technique from 
+      "Real-Time Fur Over Arbitrary Surfaces" by Lengyel et al, except by 
+      rendering four layers in a single pass, with eight total layers in only 
+      two passes. The first pass computes the texture coordinates for the first 
+      four steps along the eye vector in a vertex program. At the pixel level, 
+      we use these texture coordinates to look up into four textures 
+      representing the first four layers of grass, blend them together based on 
+      the density at each pixel, and output this intermediate color to the 
+      framebuffer. In a second pass, the final four steps along the eye ray are 
+      computed, the last four layers of grass texture are blended together, and 
+      the alpha blender is setup to correctly combine these two passes to result 
+      in the final rendering of eight layers of grass. An additional tweak is 
+      provided to cap the z-component of the eye vector in the vertex program, 
+      since this has a tendency to grow extremely large and cause aliasing as 
+      the surface is viewed edge-on.</FONT> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText> 
+      <P class=MsoBodyText>&nbsp;</P></TD></TR></TBODY></TABLE>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal>&nbsp;</P>
+<P class=MsoNormal>&nbsp;</P></BODY></HTML>

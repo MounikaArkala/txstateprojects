@@ -1,0 +1,20 @@
+
+
+Creating Program:	map.shv	map.shf
+	Vertex:
+	Shader shaders\map.shv compile: success
+	Info Log:
+
+	Geometry:
+	Shader shaders\map.shg compile: success
+	Info Log:
+
+	Fragment:
+	Shader shaders\map.shf compile: success
+	Info Log:
+
+	Geometry shader max output vertices: 1024
+	Program link: success
+	Info Log:
+
+
