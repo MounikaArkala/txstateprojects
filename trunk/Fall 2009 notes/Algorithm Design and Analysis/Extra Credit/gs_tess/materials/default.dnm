@@ -1,0 +1,7 @@
+cullface: back
+alphatest: none
+alphatestparam: 0
+vp: defaultvp
+fp: defaultfp
+textures: 1
+0: default

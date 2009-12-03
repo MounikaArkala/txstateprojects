@@ -1,0 +1,136 @@
+#version 120
+#extension GL_EXT_gpu_shader4 : enable
+#extension GL_EXT_geometry_shader4 : enable
+
+// input
+varying in vec3 normal_vout[];
+varying in vec2 tex_coord_vout[];
+varying in float subd_factor[];
+
+// output
+varying out vec3 normal_gout;
+varying out vec3 tex_coord_gout;
+
+uniform float subd_max;
+
+float step;
+float adjust_step1, adjust_step2, adjust_step3;
+
+float subd_output;
+
+void output_vertex(in vec3 t)
+{
+	// slide edge vertices to hide seams between tessellation levels
+	if (t.z == 0)
+	{
+		//if (t.x == step || t.x == 1 - step)
+		if (mod(t.x, step * 2) == step)
+		{
+			t.x -= adjust_step1;
+			t.y += adjust_step1;
+		}
+	}
+
+	if (t.x == 0)
+	{
+		//if (t.z == step || t.z == 1 - step)
+		if (mod(t.z, step * 2) == step)
+		{
+			t.y -= adjust_step2;
+			t.z += adjust_step2;
+		}
+	}
+
+	if (t.y == 0)
+	{
+		//if (t.z == step || t.z == 1 - step)
+		if (mod(t.z, step * 2) == step)
+		{
+			t.x += adjust_step3;
+			t.z -= adjust_step3;
+		}
+	}
+
+	gl_Position = t.x * gl_PositionIn[0] + t.y * gl_PositionIn[1] + t.z * gl_PositionIn[2];
+	normal_gout = t.x * normal_vout[0] + t.y * normal_vout[1] + t.z * normal_vout[2];
+	tex_coord_gout.xy = t.x * tex_coord_vout[0] + t.y * tex_coord_vout[1] + t.z * tex_coord_vout[2];
+	tex_coord_gout.z = subd_output;
+	EmitVertex();
+}
+
+void main()
+{
+	float subd_amount1, subd_amount2, subd_amount3;
+	subd_amount1 = subd_factor[0] * subd_max;
+	subd_amount2 = subd_factor[1] * subd_max;
+	subd_amount3 = subd_factor[2] * subd_max;
+
+	float subd_level = .333333 * (subd_amount1 + subd_amount2 + subd_amount3);
+	subd_level = clamp(subd_level, 0, subd_max);
+	int subd_upper = int(subd_level) + 1;
+
+	subd_output = subd_level / subd_max;
+	
+	int strips = 1 << subd_upper;
+	step = 1.0 / strips;
+
+	float direction = -1; // slide direction alternates per triangle
+	if (bool(gl_PrimitiveIDIn & 1))
+		direction = 1;
+	// per edge fractional factor - average of the fractional amount for the two end points
+	subd_amount1 = clamp(subd_amount1, float(subd_upper - 1), float(subd_upper));
+	subd_amount2 = clamp(subd_amount2, float(subd_upper - 1), float(subd_upper));
+	subd_amount3 = clamp(subd_amount3, float(subd_upper - 1), float(subd_upper));
+	float c1 = 1 - fract(.5 * (subd_amount1 + subd_amount2));
+	float c2 = 1 - fract(.5 * (subd_amount2 + subd_amount3));
+	float c3 = 1 - fract(.5 * (subd_amount3 + subd_amount1));
+	// hold the edge matching for longer to prevent seams when the adjacent triangle hasn't reached this tessellation level yet
+	c1 = clamp(c1 * 1.5, 0, 1);
+	c2 = clamp(c2 * 1.5, 0, 1);
+	c3 = clamp(c3 * 1.5, 0, 1);
+	// need to make the blend happen fairly quick
+	c1 *= c1;
+	c2 *= c2;
+	c3 *= c3;
+	c1 *= c1;
+	c2 *= c2;
+	c3 *= c3;
+	c1 *= c1;
+	c2 *= c2;
+	c3 *= c3;
+	adjust_step1 = direction * c1 * step;
+	adjust_step2 = direction * c2 * step;
+	adjust_step3 = direction * c3 * step;
+	
+	float w1 = 0;
+	float w2 = step;
+	for (int i = 0; i < strips; i++)
+	{
+		float u1 = 0;
+		float u2 = 0;
+		float v1 = 1.0 - float(i) * step;
+		float v2 = 1.0 - float(i + 1) * step;
+
+		int verts_top = strips - i;
+		for (int j = 0; j < verts_top; j++)
+		{
+			// bottom
+			output_vertex(vec3(u1, v1, w1));
+
+			// top
+			output_vertex(vec3(u2, v2, w2));
+
+			u1 += step;
+			u2 += step;
+			v1 -= step;
+			v2 -= step;
+		}
+		// bottom
+		output_vertex(vec3(u1, v1, w1));
+
+		EndPrimitive();
+
+		w1 += step;
+		w2 += step;
+	}
+}

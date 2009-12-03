@@ -1,0 +1,27 @@
+#version 120
+
+attribute vec3 position_in;
+attribute vec3 normal_in;
+
+uniform vec3 position_offset;
+
+// output
+varying out vec3 normal_vout;
+varying out vec2 tex_coord_vout;
+varying out float subd_factor;
+
+void main()
+{
+	vec4 position = vec4(position_offset + position_in, 1.0);
+
+	normal_vout = normal_in;
+
+	gl_Position = gl_ModelViewProjectionMatrix * position;
+
+	tex_coord_vout = vec2(position.x, position.z) * .1;
+
+	// calculate tessellation level based on camera distance
+	subd_factor = -.0075 * dot(gl_ModelViewMatrixTranspose[2], position);
+	subd_factor = clamp(subd_factor, 0, 1);
+	subd_factor = 1 - subd_factor;
+}

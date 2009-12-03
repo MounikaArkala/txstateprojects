@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gs_tess", "gs_tess.vcproj", "{14B93D2F-148E-422F-9A85-C0ABDE2382C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14B93D2F-148E-422F-9A85-C0ABDE2382C8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{14B93D2F-148E-422F-9A85-C0ABDE2382C8}.Debug|Win32.Build.0 = Debug|Win32
+		{14B93D2F-148E-422F-9A85-C0ABDE2382C8}.Release|Win32.ActiveCfg = Release|Win32
+		{14B93D2F-148E-422F-9A85-C0ABDE2382C8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

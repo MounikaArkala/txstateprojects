@@ -1,0 +1,18 @@
+attribute vec3 position_in;
+attribute vec3 normal_in;
+attribute vec2 texcoord_in;
+
+uniform vec3 instance_pos;
+uniform vec3 instance_scale;
+
+// output
+varying vec2 tex_coord;
+
+void main()
+{
+	vec4 position = vec4(position_in * instance_scale + instance_pos, 1);
+
+	gl_Position = gl_ModelViewProjectionMatrix * position;
+
+	tex_coord = texcoord_in;
+}

@@ -1,0 +1,22 @@
+#version 120
+
+varying in vec3 normal_gout;
+varying in vec3 tex_coord_gout;
+
+uniform sampler2D ground_tex;
+
+uniform vec3 light_dir;
+
+void main()
+{
+	//vec3 normal = normalize(normal_gout);
+	//float lighting = clamp(dot(normal, light_dir), 0.0, 1.0);
+
+	//vec4 ground_color = texture2D(ground_tex, tex_coord_gout.xy);
+	//gl_FragColor = (lighting + .1) * ground_color;
+
+	// color ramp based on tessellation level
+	vec4 out_color = mix(vec4(0, 0, 1, 1), vec4(.3, .7, .3, 1), clamp(tex_coord_gout.z * 2, 0, 1));
+	out_color = mix(out_color, vec4(1, 0, 0, 1), clamp(tex_coord_gout.z * 2 - 1, 0, 1));
+	gl_FragColor = out_color;
+}
