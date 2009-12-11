@@ -1,0 +1,54 @@
+milestone 1, exam 1, final project, exam 2, E-R model, are the most important things in this class.
+
+140-160 10
+120-139 14
+below    3
+
+
+exam will be short, probably no definitions.
+
+talk about the answer to problem 6?  idk.  
+
+DBA = database administrator
+DA = data administration.
+
+some companies put everything as DBA. 
+DA is more logical-oriented, learnign the E-R model, etc.
+DBA concentrates on software system, etc.  it does not handle the application.
+
+DA is very big department in many companies.
+
+Data administration
+-involved in strategic IS planning
+-determines long-term goals
+-enforces standards, policies, and procedures
+-determines data requirements
+-develops conceptual and logical database design
+-develops and maintains corporate data model
+-coordinates system development
+-managerial orientation
+-DBMS independent
+
+
+
+if you want to see the sample projects come by and look at them so you will know what he expects.
+
+
+
+everything you want to correct - correct it in the final project.  because the E-R model was the first time, we were allowed to be wrong.  If your final project is very good, he will ignore everything else we did before.
+
+turn in final project on the day of the demonstration.
+
+th emost important thing is your final projecft paper, final project demo, and our 2 exams, and our E-R model.  he will look at E-R model again.
+
+all the little stuff probably counts as 1 factor. 
+
+MCS 590 is the room of the project demo. 
+wednesday 9:00 december 9th, and 5:00 PM december 11th (friday).
+
+take 2-5 minutes.   each person 5 minutes would be 2 hrs.  so we'll try to be faster.
+
+work hard to get it done!
+
+next tuesday - we have exam 1 hr, then 1 hr lecture, then 20 minutes quiz.  quiz counts toward the second exam.
+

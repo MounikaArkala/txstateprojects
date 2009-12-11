@@ -1,0 +1,72 @@
+next exam concentrates on the E-R model so you need to learn it well this semester.
+
+first 30 mins before exam - we will have a review, functional dependency, primary key, foreign key, candidate key, first, second, third normal form, anomalies, E-R model.
+
+next week, when he hands out the project exam, ,he wants to volunteer a few people to bring up E-R model.
+
+"how to get correct answer" not the correct answer that's important in this class.
+
+#1- not important
+#2- he doesn't know the correct answer either
+
+
+next week or next 2 weeks we'll pick project to review w/ the class.
+
+
+
+functional dependencies!
+for a table to be in first normal form, all non-key attributes must be functionally dependent on the key attributes.
+for a table to be in second normal form, all non-key attributes must be functionally dependent on the entire primary key.
+1st -> 2nd is performed by removing the functional dependencies that are causing partial dependencies into a new table.
+2nd -> 3rd is performed by removing the funcitonal dependencies that are causing transitive dependencies into a new table.
+
+Partial dependencies are when an attribute is dependent on a subset of the primary key ,rather than the entire primary key.
+Transitive dependencies are when an attribute is functionally dependent on another attribute that is NOT part of the primary key.
+
+
+1st, 2nd, 3rd, BCNF, 4th, 5th, normal forms - no one ever goes above 3rd in practice.
+
+
+if you do normalization correclty your database supports the same data.
+"lossless decomposition".
+
+he will pick up people to walk up there and write.
+
+Put attributes there, define the primary key of each table, and make an E-R model.
+
+course - in the catalog, class is in the schedule.
+
+Student
+Student ID
+Name
+
+
+Class
+Student ID
+Course ID
+Time
+
+Course
+CourseID
+Description
+
+
+Classroom
+ClassroomID
+Time
+CourseID
+InstructorID
+
+Instructor
+InstructorID
+InstructorName
+
+
+--------------
+That was my try.
+
+They have them on the board, we're going to correct it.  
+
+Primary key can uniquely identiy that record. 
+You can either use a Index Number or you can use the courseID, semester and sectionID (eg. CS5332, fall 2009, section 1).
+
