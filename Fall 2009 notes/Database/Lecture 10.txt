@@ -1,0 +1,66 @@
+Let's assume all attribute relations are defined correctly.
+- what is wrong with the diagram he shows us?  something is not quite right.
+- how do we correct it?
+
+- supply item is not really relevant to the rest of the items.
+also, if there is not a patient using a surgical item, then 
+
+- patients may be treated by multiple wards
+
+- there is 
+
+- staff should probably work at the facility instead of the ward because some of the staff (eg. the janitors) work throughout the facility.
+
+-- many to many items shouldn't be in the diagram.
+
+his problem:
+he looked at the tables
+-relations are generated/ created by attributes, not by your imagination.
+- you can't arbitrarily create attributes, the primary key needs to determine the table.
+he is looking at the table, not the attributes.
+
+Diagnoses should go through Order.
+
+
+Break up items
+- break up patient/medical item, think about if anything goes with it.  if it does, you need to break relationship.  if nothing does, then the many-many may be acceptable.
+
+
+
+
+------------
+
+Customer
+order
+invoice
+payment
+product
+
+he wants us to do:
+- figure out the primary key & attributes of each table,
+- build a model.
+
+- you can add/delete tables if you want.  this is not 100% what the tables are.
+
+- put all the attributes there
+
+-pick out primary / foreign keys
+- relationships
+
+- draw E-R diagram
+
+
+in exam, he may give us a model that has some imperfections and expect us to make corrections.
+
+this model is partially correct / partially wrong.  so let's just throw it away?
+
+the most important thing: in between customer and product - should only be order.  he put invoice there.
+
+
+- order line is necessary
+- where are you supposed to put the order line?
+
+
+the next one
+- the center should contain the important information.
+
