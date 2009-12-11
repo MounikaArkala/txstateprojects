@@ -1,0 +1,68 @@
+Binary Search Trees
+-chapter 3
+know definition, basic operations, and performance of this.
+
+AVL trees
+-definition
+- height
+- trinode restructuring
+- basic operations by trinode restructuring
+-running time mfor basic operations
+
+Splay trees
+-definition
+-cost of splaying
+
+Heap sort
+-definition of heap
+-insertion and deletion from a heap
+-how does heap sort work?
+
+Greedy method
+-definition
+-greedy choice property
+-Fractional Knapsack Problem (be able to solve using greedy method)
+- task scheduling problem (give / solve examples, what is it, etc.)
+
+Dynamic Programming
+- definition
+-matric chain multiplication - how it is solved
+-properties of the programs that it can be applied to
+-how it can be applied ot the Knapsack problem
+
+String Matching
+-depends how much we cover today.
+
+Final Exam question outline
+- 25 true/false questions (any topic even midterm material)
+- 3 definition questions (will make it clear where we need to provide definitions - if we are unsure if we need to define elsewhere, raise hadn)
+- 3 short problem solving question
+- 1 long problem solving question
+
+
+Final Wednesday 5:00 PM at ALKEK 102
+
+- is the removal in a splay tree different than the removal of a binary tree, or if it's just that we do splaying afterward.  we do splaying in sort / search / delete.  depending on the definition we are splaying different things.
+
+
+Pattern matching - matching part of a sequence to a pattern.
+we can think of it as matching pixels as well, if you wanted, or any other item made up of discrete components.
+
+examples of alphabets: ASCII, Unicode, {0, 1}, {A, C, G, T}
+
+P be a string of size m
+pattern matching - find substring that matches the pattern P.
+T is the text of length n.
+
+
+running time: nm.
+
+
+if we have a table with the occurrence of our alphabet letters we can speed this up.
+
+might be t/f on brute force / boyer-moore.
+
+
+Boyer-moore's algorithm runs in O(nm+s) but for real--life problems it's much faster than brute-force.
+What does the 's' stand for?
+JACKET!

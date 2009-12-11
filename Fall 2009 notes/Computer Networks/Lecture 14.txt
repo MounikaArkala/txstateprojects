@@ -1,0 +1,24 @@
+in the future, in a commercial environment, you gotta creat a new unp.h file, it's application-specific.
+you have to customize it to your own needs.
+
+you have to use unp.h (includes several system header files that are needed.)
+
+in unix some header files are included for you automatically (ed: sounds dubious)
+
+
+-  if you can get it to work without including header files that's okay.
+
+
+next wednesday - no class.  next tuesday evening - finish the assignment by then.  we get a delay until then.  Nov. 24th 12:00 AM.
+
+
+
+
+Eternity Times - awesome name for a book (was in a reCAPTCHA).
+
+blue cover of athe book is the latest version.
+
+no class next week
+another class Dec. 2nd.
+finish lecture in 30 mins, lecture notes, talk about homework assignment.  This chapter has everything you need for the project.
+

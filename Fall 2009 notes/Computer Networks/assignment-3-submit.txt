@@ -1,0 +1,21 @@
+Luke Paireepinart, November 24th, 2009, Texas State Universityy
+Assignment 3, Computer Networks 5310
+
+
+1.1)  Each station will wait for between 0 and 7 time slots.  The probability that there will not be another 3-way collision is (2^3)^3 (all possible permutations) - 8 ( 3-way collisons, i.e. all 3 stations choose to wait for 0 time slots, or 1 time slot, or 2 time slots, ...)  Therefore the probability that one of the stations will be able to send is 8*8*8-8 / 8*8*8 = 504/512 = 98.4% chance that there will not be another collision.
+
+1.2)  There is a maximum allowable size of an ethernet network (due to the ability of the cables and hubs and such to propagate the signals), which sets an upper bound on the propagation time for data being sent.  Suppose A is sending data to C.  B tries to send data to A at the same time, so there is a collision.  A does not realize there is a collision at first and continues to send data to C.  Eventually A figures out there is a collision and stops sending.  The propagation time is the same no matter what the data rate, but if the data rate is higher, then more data is sent before a collision is acknowledged and resending can take place.  Therefore there are more lost data, and subsequently the channel efficiency rating is lower.
+
+2.1) "gap time" is an agreed-upon amount of time to wait after sending a frame before preparing another frame to be sent.  This is to help reduce the number of collisions, and also to make it easier for a new machine that wants to transfer to start transferring without causing a collision.
+
+2.2) The entire token must be able to be on the ring at once because a station must be able to acknowledge the token and remove it from the ring in order to switch from listen to transmit.  If the token does not fit entirely on the ring then two different stations may both try to remove the token from the ring at the same time.  Also, because the token is being passed along in a circle, (not like the data frames, which are passed around only part of the ring and removed at their destination) if the token did not fit on the ring then the front end of it would overwrite the back end and you would lose the token.
+
+3) Suppose the user at 147.26.100.1 is attempting to access google.com whose server is in california.
+The first thing to happen is to contact a DNS server in order to reference the web address into an IP address.  The DNS server address should be provided to the user's computer via the DHCP server.
+Once the IP of the destination machine is known, a packet will be formed with the destination address.  The packet(s) will contain an HTTP GET query, probably on port 80.  Once the packets are assembled, the first one will be sent to the router.  The router will have the IP range of the destination (for example 129.23.xx.xx/16) mapped to a specific next hop, and will forward the packet to the next hop.  Each subsequent router will have an entry in their routing table that tells the packet where to go.  As the hops get closer to the destination, the scope of the routing tables narrows (it contains more bits and matches the destionation address more exactly).  Eventually the chosen computer will be located.  If there is an HTTP server running on the machine it will probably get the data from port 80, and then reply with an acknowledgement, and the contents of the  web page requested.  
+Let us examine the HTTP packet sending procedure  more in detail.  Because HTTP is an application-layer protocol built on TCP/IP, we must examine the manner in which TCP behaves.
+IN order to establish TCP connecitons, first the server needs to be running and listening for connecitons.  Then the client sends a message to the server and a 3-way  handshake is performed, so that both acknoledge each other and also they keep track of the other's sequence numbers for future use.  
+after the client receives the webpage or whatever from the HTTP server, it will close the conneciton (an active close) which will send a FIN acknowledgement to the server, who will then shut down via a passive close.
+
+
+4)The program has been modified and posted.  The results from two test runs on different machines were both little-endian.

@@ -1,0 +1,10 @@
+got to class way late.
+
+Turing machines must always read and write.  if you don't wnat to overwrite a value, write the value you read back to the same location.  After you write you need to move the read head left or right.
+
+Note:
+- input tape is infinite in both directions.
+turing machines do not necessarily halt.
+
+the path (there's only one) may or may not end.
+- FSMs are still practical (eg. building robots).
