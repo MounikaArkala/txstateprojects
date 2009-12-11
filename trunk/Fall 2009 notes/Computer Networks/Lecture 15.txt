@@ -1,0 +1,48 @@
+Networks
+
+Final Exam: December 9th, 8:00 - 10:30.  Travel to San Marcos.  classroom not been decided yet.
+evaluation will be 10 mins before the Final.
+Class Webpage will announce the location of the Final.
+
+final grade is curved - percentage-wise.  
+
+most of you have started?
+- encourages us to use TCP but we can use UDP if we really have to.
+
+
+Final exam is open-book open-note.
+
+is it possible for clients to know if other clients are connected to the server?
+
+the BUS has knowledge of everyone connected.  you can have client connect and then ask who is connected.  the bus will say "1234" and then you could send to them all.  You can assume the query will not collide with anyone because it's a control message.
+
+Another way - start BUS, then start servers all up, then you start sending messages.  
+
+We are saying the server will only handle up to 6 clients...  don't hardcode the client numbers.  the clients should be able to run on any computer.  they could all be on the same computer or they could all be on different computers.
+
+
+Homework score 3 were actually quite high.
+
+100-86 or osmething?  homework 2 was a bit less.  
+
+
+UNP.H file - the one you need ?   if you look at the code, the UNP.H file, you only need a small portion.
+
+Friday he'll be in his office at 1:oo.  Thurs he'll be there a 11.  In San Marcos.
+
+you can't use notebook computer on final exam.  classroom will be decided by this week.
+
+
+we talk about network concepts, in 2nd phase we talked about progrmaming (but that was still concept-based).  So the final covers the lecture / content of the class.  
+
+open book/ open note.  Review your lecture notes.  Final exam is the main yardstick he uses to determine the grading of the students.
+is it going to be like homework problems?   Final exam is 3-5 problems. 
+when he grades the assignments, he has a file where he keeps track of the point deductions.  he already discusses what he takes off points for in the class.  So if you print out your  copy of the homework and compare it w
+
+come to the final exam 10 minutes early, from 7:50, so you can have 10 minutes to do teacher evaluation. 
+chapter 1-5, 8, 11 in 2nd book?  I don't have any idea what he said.
+
+watch class web page for location of the class.
+
+
+print out all of the stuff!

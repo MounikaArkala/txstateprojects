@@ -1,0 +1,17 @@
+- he listed the 'classical problems', we need to read/ understand them.
+
+Complexity Theory
+
+'tractable' / 'intractable' means easy/hard.
+
+
+The Complexity Zoo
+
+
+NP = nondeterministic polynomial - if a problem can be solved by a nondeterministic Turing Machine in polynomial time.
+NP is a superset of P.  Are they equal?  We don't know yet.  Millennium Problem
+
+
+please read materials so he can finish next lecture.  consider these materials as extra things taht will make you feel better.
+
+This NP hard stuff is hard for everyone.

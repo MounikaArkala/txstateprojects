@@ -1,0 +1,78 @@
+in case of a conflict between the lecture notes and the book, use the lecture notes.  His  "Path" slide is different from the text.
+
+
+How should we prepare for the exam? (in general)
+- he will talk about it after the review.
+
+if a machine "M" is deterministic, there is only ONE Path.
+for DFSM and DPDA, the path is finite and are guaranteed to end in either an exception or a rejection.  So they are guaranteed to halt in at most |w| moves, where w is the path.
+** Since DFSM = regular languages, the above halting property implies regular languages are decidable.
+
+if "M" is NONdeterministic, there may be multiple paths.
+- for NDFSM and NDPDA, if without epsilon-transitions, they are guaranteed to halt in at most |w| moves.  some NDPDA may not halt if they have epsilon.  However, we can find an equivalent NDPDA without epsilon transitions, which WILL halt.  but it is still NDPDA.
+
+If it doesn't have epsilon transitions how is it still a deterministic 
+
+
+these things "Languages Machine and Grammars" wouldn't be on test he's just showing the overview to help us out.
+
+Decidable Language == Recursive Language
+SemiDecidable - recursively enumerable.
+
+if he asks you which machine can accept "D" you should say "Turing Machines"
+** it would help to learn this Languages Machines and Grammars slide.
+
+there are actually more languages outside this SD than inside it.
+
+pumping lemma - in the assignment and also in the final.
+
+we can also use the 'closure' property.
+
+** particular pumping lemma stuff?  - will be on final, he gave us info about them.
+
+**better remember, NOT(H) is not in SD, H is in SD.  Remember at least one language that is in SD and one that is not.
+
+reduction
+
+other instructors probably don't cover it.
+-- when you use this reduction for complexity, you must consider the efficiency of the reduction (polynomial).  
+
+
+if its proved that P = NP, then intractable = not in P = not in NP.
+but most people believe P != NP.
+
+
+because we believe P != NP, we see the NP-hard and NP-complete problems as intractable.
+
+for NP-Complete problems, 
+
+
+Final - you can use a cheat sheet.  2-sided regular size 8.5x11 paper.
+
+
+Final
+part 1
+1. let M be  amchaine, L(M) is language decided by M
+
+
+50 questions of 1 point each, then 16 2-point questions.
+
+6 3-point questions.
+
+
+2nd and 3rd questions are to try to separate us into groups.
+
+#6 - 3-sat reduction problem
+
+
+about assignment submission, ask how to submit assignment 6.
+
+
+#3 - 3-point question, define a language to be co-finite iff its complement is finite, any co-finite language.... explain why.
+
+
+#35 - union of countably infinite number of countably infinite is countable.
+
+First 50 questions are just Y/N.
+
+His office, before 10 PM 225 NUECES.

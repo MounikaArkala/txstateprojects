@@ -1,0 +1,28 @@
+bertrand russel - awarded Nobel prize in Literature
+Ludwig Wittgenstein - student of his
+Bertrand and Ludwig are widely referred to as the greatest philosophers of the last century.
+
+
+Russell's Paradox - showed that the naive set theory leads to a contradiction.
+eg. A set containing exactly the sets that are not members of themselves.
+
+David Hilbert's 23 unsolved problems set course for much of mathematical research of the 20th century, and was the most successful and deeply considered compilation of open problems ever produced by an individual mathematician.
+
+Godel
+
+Alonzo Church - the guy in the church-turing hypothesis which says that all formalisms powerful enough to describe everything we thing of as a computaiton al algorithm are equivalent.
+
+therefore we should not expect to find some other formalism more powerful than a turing machine.
+
+we assume there is a reduction from Pold to Pnew.  we see that known Pold is NP-Hard, we can prove that Pnew is NP-Hard.
+why is this imprecise?
+- if Pnew is not NP-Hard, that means there si a polynomial solution, and since Pold is reducable to Pnew, we can use a polynomial solution for Pnew to build a polynomial solution to Pold, making Pold not NP-Hard, but we know Pold IS NP-Hard.
+-> this is probably in the final exam.
+the logic sounds correct.  but there is a hole in the description.  what is it?  
+
+
+the reduction - we care about the time we spend in the reduction... the first 2 were about computability, the 3rd was about complexity so you have to care about the efficiency of the reduction.
+
+next lecture we're going to do a review for the final, and he will show us the final questions in the lecture, briefly.
+
+assignment due on Thursday.  some have requested extension, if you can, try to submit on time.  otherwise you can have some extra time.

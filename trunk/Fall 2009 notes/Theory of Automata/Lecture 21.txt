@@ -1,0 +1,3 @@
+Turing machine can be used as a language recognizer - determine if language is recognizable or not.
+
+language - regular because it can be written by a regular expression, & it is context-free because it's regular.

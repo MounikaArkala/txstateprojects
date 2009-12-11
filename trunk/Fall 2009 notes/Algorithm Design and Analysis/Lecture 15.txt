@@ -1,0 +1,45 @@
+Splay Trees
+Search
+- if find it return and splay it to top
+- if not found, splay parent to top
+Delete
+- easy case: only 1 child, splay the parent and replace the item with its child. (I Think by "parent" he means "the same node that is replaced by the child" but I'm not sure.)
+- hard case, 2 children, replace the item w/ its child and splay that item.
+
+log(n) is the cost of splaying a node 'x' (i.e. any node) at depth 'd' of a tree rooted at 'r' 
+
+# of nodes rooted at subtreees of parents will be > # of nodes in its child + 2.
+
+Cost of insertion
+- the equation he's using to relate nodes before / afte rinsertion he will use later when showing cost of insertion.
+
+amortized cost?
+- for every node in the tree, we have rank dollars.
+  rank is = log2(subtree count + node (1))
+  it's log because of the height.
+  
+note, rank'(Vi) <= rank(Vi+1)
+
+we are using this equation to evaluate the cost of insertion.
+
+
+
+....?
+'n' is the # of internal nodes (keys).  pg 19, why log(2n+1+2)?
+
+
+priority queue, heap-sort
+
+
+
+sorting w/ priority queue - insert a bunch of items, remove them.  they will be removed in order.
+running time will be dependent on the running time of the insert and remove methods.
+
+we can use AVL treest to implement priority queues but we want to use a heap instead.
+
+What is a heap?
+- heap is a abinary tree storing keys at its internal nodes and satisfying the following properties:
+everything on every level until depth h-1 is full by external & internal nodes.  by level h-2 is completely full of internal nodes.
+
+heap-order : for every internal node v other than the root, ....
+

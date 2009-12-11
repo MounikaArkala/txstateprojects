@@ -1,0 +1,11 @@
+You can define turing machines with a Transition Diagram.
+
+we use the state to remember it.  if the state is 'a' we go to Q1.  we try to find the character after 'c' that matches....?
+the pump sign means you process before you're ready.
+
+He will update the notes for the Another Deciding Example.
+
+we finished the Deciding section (you can ctually draw the transition diagram to check it's working)
+so we can star ton the homework
+
+for some we provide all 3, some only 2, some only 1.  for 3 : describe english, then transition table, then transition diagram.

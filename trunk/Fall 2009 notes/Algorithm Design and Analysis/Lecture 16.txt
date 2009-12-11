@@ -1,0 +1,26 @@
+if you have the tree of N nodes, does it mean that if you go to any of those nodes and perform a rotation and at the end o I have to put the tree in a sequence again or just perform one rotation?
+- has to be represented as a sequence,
+and not the same as the initial sequence I guess
+- first you have to say how you represent it as a sequence, and then how you will perform the rotation, and prove that this will be Omega(n) time.
+but at the end it has to be in a sequence?
+- you get a sequence as input and you output a sequence (b/c tree is represented by a sequence).
+does the input sequence have to differ from the output sequence?
+- yes, yes (looks slightly unsure.)
+
+---------------------------
+t/f problem 1.6.  sort is potentially unstable.
+
+
+
+He's talking about a greedy algorithm.
+
+you have an optimal global solution, but you may not reach it unless the problem has the greedy-choice property.
+
+eg. if you are given coins and you want to return the minimum ones that will be created with it,
+if you are given coins of value .32, .08 and .01, then you know that any amount over .32 must use a .32 coin to get the minimum # of coins.
+- if you are given coins of value .30, .20, .05, .01, which doesn't have the 
+
+
+assigning tasks to machines based on their start time also has a greedy property.
+
+oral exam - he will send us an e-mail about it, if you don't get one by Friday night, you will not be given the oral exam.  it can also be thought of as an opportunity - if you answer all his questions, he will give a 100% on the final automatically.

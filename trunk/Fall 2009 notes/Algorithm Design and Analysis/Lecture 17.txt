@@ -1,0 +1,14 @@
+dynamic programming
+- lets us solve problelms that are usually exponential in polynomial time.
+
+polynomial is O(n^p) where p is constant.
+exponential is O(p^n) where p is a constant.
+
+there are many mathematical problems that aren't solved yet....
+
+greedy approach to something about matrices?
+
+he encourages us to read the book and will have lots of questions next time...
+
+Wednesday is a break for everyone.  we are not having class on Wednesday, we will meet next Monday.
+

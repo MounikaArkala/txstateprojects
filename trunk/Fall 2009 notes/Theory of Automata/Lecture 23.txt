@@ -1,0 +1,23 @@
+P - set of languages such that there is a deterministic turing machine that decides it in polynomial time.
+NP - set of languages such that there is a nondeterministic turing machine taht decides it in polynomial time.
+
+maximal - you cannot include 1 more node and still make it independent.
+maximum - largest among those maximals.  this is a definition everywhere, not just for independent sets.
+
+maximum implies maximal, but not the other way around.
+
+
+independent set
+
+Lnew is NP-complete because all languages are reducable to it... so we just need a first NP-complete problem, then we can try to reduce other langauges to it.
+
+if someone can find this Lold, the first one, other problems are easy to determine they are complete.
+
+Cook and Levin found the first one, SAT.  they proved SAT was np-complete.
+
+it's easier to establish a reduction once you become familiar w/ the existing, proved NP-Hard problem.  These "classical problems".
+
+read about the coloring problems, he's not gonna test us on it but we should read them anyway.
+
+final is easy :P
+
