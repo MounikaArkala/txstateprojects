@@ -1,6 +1,6 @@
-#!"C:/python26/python.exe"
-# -*- coding: cp1252 -*-
 #!/usr/local/bin/python
+# -*- coding: cp1252 -*-
+#!"C:/python26/python.exe"
 """ Index.cgi
 ------------------------------
 Author:    Luke Paireepinart

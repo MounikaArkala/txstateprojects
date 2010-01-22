@@ -1,0 +1,41 @@
+<!-- Chords main.html
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
+
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+The HTML page for the initial search and information on how to use the chords program.
+-->
+
+<div id="inputFields">
+<br /><br />
+<form name="noteform" id="noteform" action="chords.cgi" method="get" onSubmit="return testSubmit();">
+<label> Notes: </label>
+<input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, testSubmit);" value="%(notes)s"/>
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+<br />
+<br />
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"></div>
+<table class="chords_submission">
+<tr><td class="chords_submission">
+<label>Match Input Order</label><input type="checkbox" name="order" id="order" %(order)s><br />
+</td></tr>
+<tr><td class="chords_submission">
+<label>Match Complete Chord</label><input type="checkbox" name="complete" id="complete" %(complete)s><br />
+</td></tr>
+<tr><td class="chords_submission">
+<label>Only Consecutive Notes </label><input type="checkbox" name="consec" id="consec" %(consec)s><br />
+</td></tr>
+<br />
+%(filtertable)s
+</table>
+<br /><br />
+</div><!-- ~~inputFields -->
+</form>
+<script type="text/javascript">
+load();
+</script>
