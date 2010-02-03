@@ -1,0 +1,82 @@
+
+
+-- Front End
+The steps of the front-end - Lexical Analysis is the first step.
+it's the only part of the compiler that sees the raw source code.
+it takes in a sequence of characters and a description of tokens and it tokenizes them.
+
+-- Lexical Analysis
+- Does not have to be an individual phase, but having a separate phase
+ - better abstraction
+ - allows automation - by separating task into separate phase, we break down problem into a piece where we have strong theoretical solutions already.
+ - improves portability - supposedly you could use a scanner for C++, for example, and plug it into other compilers.
+ 
+Two issues
+ - how do we specify tokens in the language? has to be done manually.  analogy: describe what verb looks like, noun, adverb, etc.
+   - problems: verbs, for example, we don't know how to identify.  eg. you can't say "anything that ends in ous" like you could with Latin.
+     - for programming languages it's not so bad.
+ - how do we rcognize tokens given a token specification and an input program?
+   - can be fully automated.  analogy: in a sentence, identify parts of speech.
+   - recognize means "accept all tokens that are legal and reject illegal tokens" not just accepting valid or rejecting illegal.
+
+
+
+-- Project
+- we're doing a compiler for a subset of C.
+- there's a specification for languages - eg. Gosling's Java book and Stroustrup's C book specify the grammar of language at the end of the books.
+
+-- Tokenizing
+what type of tokens do we need for C?
+ - keywords
+    - may be part of a declaration or may be part of a construct (eg. "if" statement or loop).
+    C++ only has like 42/44 keywords
+    - types are sorta grouped in with keywords
+ - comments - almost all languages have them, wahtever's in that block just consider as one token.  we can just throw it away at this point.
+ - separators (similar to operators but may be classified differently)
+ - operators
+ - identifiers
+ - literals - may want to distinguish between char / string / etc.
+ 
+ - how do you distinguish between function and variable identifiers?  in C/C++ they can be the same.  you wouldn't be able to tell the difference based on the character patterns, not necessarily on the purpose they're serving.  we don't want to overcomplicate this phase so we just leave it alone.
+ 
+the lexical analyzer can do checking for matching parenthesis.
+
+-- Dictionary Approach
+The "dictionary" approach is the simplest method of specifying tokens.
+English is a natural language so we cann't use this approach, but programming languages are very easy ("int" can only be a keyword, for example).
+- exhaustive list, a unique pattern for each possible word.
+"int" for "int", "{" for "{" etc.
+- the problem is that you might not find all possibilities.  it's really inefficient.
+
+so it's better to use a different approach
+-- Pattern-Based Approach
+- we need and/or and a way to describe repeated stuff.
+- eg. "int" would be i AND n AND t.
+- one way to describe all keywords (eg. int OR float OR double OR ...)
+- repetition (eg. 0 or a series of "k" digits.)
+
+-- Regular-Expressions
+a set of notations that can express the opreations of alternation, concatenation and closure over symbols in an "alphabet".
+Regexes have their origins in formal language theory.
+    Terminology
+- RE's are defined over a collection of symbols ('alphabet').
+- Can use all symbols but is not required to.
+- a set of strings over an alphabet is a "language" eg. 'ab', 'aba', 'abb', 'abc', etc.
+- RE's are a good fit, we want to stay in the bound of regular languages.  lexical parser won't go beyond what it can parse Iwe stay within the chomsky heirarchy.)
+- assuming NF case holds, then N+1 is true.... "inductive", similar to recursive.
+- RE's are defined, we have some base cases.  all REs are defined by inducting on base case.
+
+-- 5 Rules of Regular Expressions
+- e is a regular expression that denotes {e}, the set that contains an empty string (not an empty set, it's a singleton).
+- and 4 other rules...?
+all strings over the alphabet
+(0|1)*
+all strings that start with 0
+0(0|1)*
+all strings that contain three consecutive 1s
+(0|1)*111(0|1)*
+
+
+Big Picture:
+bjarne -> C++ -> coder -> RE -> lex + source -> scanner -> tokens....
+

@@ -1,0 +1,226 @@
+
+Data Mining algorithms
+Information Retrieval
+Web Search
+
+--
+Introduction
+
+
+Byron Gao
+site: http://cs.txstate.edu/~jg66/  - first edition is fine.
+do we need txtbook?  It's nice but not necessary.  the materials are everywhere - slides, etc.
+If you come to lecture and listen that should be fine.  better to buy it though.
+Textbook
+Jiawei Han and Micheline Kamber
+
+workload - last time it was heavy, but students liked it.  
+
+for data retrieval there is a free textbook: Introduction to Information Retrieval, Cambridge University Press by Christopher D. Manning.
+
+
+Information Retrieval and Web Search - this is more advanced stuff that is covered.  normally it wouldn't be, mostly Data Mining is covered.
+http://nlp.stanford.edu/IR-book/information-retrieval-book.html
+
+We will make the decision together, which one we will start with.  We can start either way, with IR or with the standard data preprocessing/warehouse...
+
+
+
+Grading: curve - make sure only A's and B's, not C's so much.
+
+
+Exam?
+Grading:
+Assignment: 30%
+Project: 30%
+Midterm: 20%
+Final: 20%
+
+or - Midterm / Final, whichever you get a better grade you get 40% of it.
+or we might reduce the total weight for exams.
+
+Each person will demonstrate their project and we will vote on the grade we think they should get.
+
+
+--
+Course Project
+flexible:
+ - high quality implementation of one selected data mining algorithm in teh textbook
+ - IR and web search projects, eg. using Yahoo or Google API for web search
+ - other DM related applications, eg. stock prediiction, KDD cup
+ 
+- correctness is a must
+-utility is preferred
+- novelty is a plus
+
+examples:
+
+a guy in the class wrote stock prediction software.  designed his own algorithm for it.
+
+algorithms can be easy.
+
+KNN - k nearest neighbor - very simple algorithm, group with the nearest neighbors.
+
+
+one thing you could do is like - having your own search engine, with your own ranking
+
+eg "clusty" uses a clustering algorithm to cluster results of searches by common terms.
+
+we will try to start early so we can do a really interesting project.
+
+--
+Famous CS people
+
+Sergey
+http://infolab.stanford.edu/~sergey
+
+Jon Kleinberg
+his ranking algorithms influenced PageRank.  We're going to learn PageRank as well.  HITs was Jon's version.
+
+- major companies have Data Mining groups.
+
+--
+Knowledge
+
+we are in a data-rich, knowledge-poor time.  How can we glean some information from all this data that all these computers are collecting?
+
+
+because they have the background knowledge of Data Mining, some of his friends started at Google at like $120k.
+
+
+Data Mining Lab - a group of people at TxState, McKenney, Liu, and Gao, etc.  They'll help you on your project.
+
+
+Europe: LMU = university of munich.
+
+
+--
+KDD
+
+KDD - knowledge discovery and data mining.  KDD is the name of the conferences too.
+
+this year's ACM he's in the KDD review committee.  he's happy to be in it.
+
+
+
+--
+
+Classification is the more useful.  You could invent your own information retrieval, for example, you could download some dataset, and use a package that automatically indexes the data, and you provide the interface... (doesn't have to be web search)
+
+
+
+we'll start with classification.
+
+
+
+--
+Clustering
+
+in clustering we don't have training data.  in classification we do.
+we want to automatically group them so that objects that end up in the same group are similar to each other.
+
+--
+Data Warehouse
+- practical
+- eg you're a big company, you collect all your data from around the world and store it locally.  Helps to make business decisions and such.
+
+
+
+decision trees are a classification method we'll study.
+
+--
+frequent pattern mining
+- very famous in early days of data mining, everyone did this for their research.
+there's no causal relationship, just the observation of the pattern.  Eg. people who buy daipers tend to buy beer.
+
+they can build profiles for you and figure out your associations - how to make suggestions based on what you've been searching for.
+
+
+
+Our library has information retrieval too.  we need it everywhere, it's very useful.
+
+
+Wisconsin (school) is ranked #1 in Database.
+Cambridge is < Wisconsin actually.  Wisconsin has a better lab than Stanford and Berkeley and Cornell, etc.  All the prof's at the other uni's are from Wisconsin.
+
+he got to work on his postdoctoral at Wisconsin.
+
+it's good that we take database/data mining because he's very close to the center of the field.
+
+
+--
+Data Mining - Why?
+
+We're drowning in data, but starving for knowledge.
+
+we want to extract interesting (non-trivial, implicit, previously unknown, and potentially useful) patterns or knowledge from huge amount of data.
+Data Mining is a misnomer - we are not trying to extract data, we are trying to extract the knowledge FROM the data.
+
+KDD - knowledge discovery & data mining, or knowledge discovery in databases.
+
+
+Data Mining is a confluence of multiple disciplines.  the problem is that a lot of the algorithms from other disciplines don't work well with noisy / large data sets.  so we have to come up with our own algorithms.
+
+--
+multi-dimensional view of data mining
+- there's all sorts of data to be mined, relational, data warehousing, transactional, stream,
+object-oriented/relational, active, spatial, time-series, text, multimedia, heterogeneous, legacy, WWW, etc.
+
+
+--
+Discovered Patterns
+
+Data mining generates lots of results, some of them may not be interesting.
+
+
+Humans can make things more reasonable, help influence something.
+
+
+
+SQL is standardized, DMQL is not - but we won't really cover this, it's mostly just research.
+
+Top-10 algorithm finally selected at ICDM '06
+- he was in conference
+last day of conference, they all met and had 18-some candidates to vote for most influential data mining algorithms.
+Eventually they got
+C4.5, K-Means, SVM, Apriori, EM, PageRank, AdaBoost, kNN, Naive Bayes, CART.
+
+C4.5 is an influential decision tree algorithm (for classification).
+
+SVM works really well in real world.  out-performs all other algorithms.
+
+apriori does association , #1 guy in data mining rakesh agawa?, designed it (from Wisconsin).
+
+kNN - k is the size of the neighborhood.  eg. 1NN would assign its nearest neighbor.
+
+CART is a commercial system.
+
+--
+Summary
+
+you're not supposed to understand everything right away.  We'll discuss the details in this semester.
+
+
+
+
+grading scheme
+- if everyone in class likes it and we appreciate the novelty and such (very rare case, doesn't expect it) he'll give us an A straightaway, regardless of exam grades.)  no one's gotten it yet, he has a high standard.
+
+how do we get data for our project?  
+There are some free training data online.
+you apply your project to a certain domain, you can't just collect data manually (possible but takes more effort), they have some training data available already, freely downloadable.  eg. U.C. Irving, they have data mining / machine learning group, and they have benchmark data you can download and use.  in your assignment 1 we will use them (historical training data).
+
+Exams - negotiable.  if you want open book that's fine.  The thing is, his focus is learning.  Whatever we think we can learn more by doing.  We just can't sacrifice learning, he doesn't mind doing whatever makes us more comfortable.
+
+
+
+
+
+
+--
+
+
+Possible project ideas - temperature / rain prediction in a specific area?
+
+the stock guy quit his job because he could make more money
+

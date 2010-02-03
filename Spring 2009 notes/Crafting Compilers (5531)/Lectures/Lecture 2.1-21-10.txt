@@ -1,0 +1,113 @@
+Compiler's Tasks
+
+Source Code -> Compiler -> Machine Code
+C                               x86
+C++                             MIPS
+Java                            SPARC
+Python                          Power
+Lisp
+
+
+recognize = detect legal and illegal programs.
+
+must generate correct code (original meaning must be preserved).
+
+must manage storage of all variables & code
+must agree with OS & linker on object code - because it's machine-dependent.
+
+These tasks are all non-trivial.
+we need to abstract to make it manageable.
+
+--
+Abstraction Layers in Modern Systems
+
+It's just like we used the OSI model to solve the layers of a network.
+
+structure of compiler
+- we handle what we can and then hand off to the next phase.
+first several phases have strong theoretical foundations.  they're "solved" problems, we have very efficient algorithms for doing these tasks.
+
+traditional 2-pass compiler
+source code -> frontend -IR-> backend -machine code->
+
+IR is an intermediate representation.
+front end maps legal source to IR
+back end maps IR to target object code.
+
+Importance of IR
+- it's important to have a consistent IR.  Otherwise the compiler gets bloated.  Eg. you'd have to write a compiler for each source / target language pair.
+
+eg. when you get the gcc, the C, C++ and Fortran are just different front-ends, still same IR.
+
+also all the optimizations / semantic analysis, you'd want to do for every language (and maybe common for all platforms too).
+
+--
+Scanners
+
+The scanner is the only stage that gets to see the original source code.  It just sees it as a series of characters and token rules.
+
+token rules - regular expressions.
+
+a token is a pair, <word, type>.  identify words and the types of each word.  sorta like given the parts of speech.
+
+eg. number, identifier, keyword, etc.
+
+scanner just generates errors if it can't figure out the result.  Some errors you may run into - eg. maintainhis, you must be able to catch maintain, and not stop on main.
+
+
+scanner goes to the parser.  it's like the grammar checker.
+
+context-free grammar - we can't just arbitrarily write our own language.  we must be able to express our grammar with CFG or it may not be parseable.
+
+any program you write in a particular language should be derivable by using the program and following some steps.
+
+--
+Semantic Analysis
+
+input: IR, output: IR for backend.
+
+checks if program "means" anything
+- not the correctness.
+eg. ambiguity - "jack said Jerry left his assignment at home."
+
+
+--
+the backend
+- you might have 3 or 4 different instruction sets you choose, eg. how do you know which set will execute the most efficient code?  eg. 
+
+optimal schceduling is NP-Complete in nearly all cases.  Heuristic techniques are well developed.
+
+--
+Middle End
+part that does all the optimizations.  front-end problems are solved and we can do thenm pretty efficiently, back-end most problems are np-complete.  but we generally know how we can do our best.
+
+analyzes IR and rewrites (or transforms) IR.
+they're not guaranteed to be accurate (mostly in floating point, because of the lossy precision at every step).
+
+Runtime System
+- responsibilities
+ -error checking at runtime
+ -memory allocation/management (activation records - eg. recursive functions
+ 
+ 
+Commercial compilers
+PathScale- company that only writes compilers
+Portland Group - company that only writes compilers
+Intel
+IBM
+MIPSPro (SGI)
+Microsoft Visual
+Sun Studio
+HP
+
+--
+Testing Compiler
+
+gcc -v code.c
+will make it be verbose and tell you what steps it's taking.
+
+we don't concern ourselves past the assembly step?
+
+
+Tuesday we'll start w/ lexical analysis and scanning.
+

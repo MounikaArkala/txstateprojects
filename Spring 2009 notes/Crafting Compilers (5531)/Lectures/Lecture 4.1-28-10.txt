@@ -1,0 +1,59 @@
+Lexical Analysis
+
+what do we do with "int i" with no semicolon?
+well we just still assume it's a valid C program.
+
+or what if we have
+"abcprintf("Hello World!");"?
+
+C/C++ has become too general of a language, there are very very few illegal C programs at the scanner phase.
+this is a problem for many modern languages.
+
+"syntax error" means it was caught at the parsing section.
+"stray '@' in program" probably scanner section.
+
+
+-- recognizing tokens
+how do we recognize "while", for example?
+
+- chain of "if's" - actually basically a Finite State Machine.
+
+we use DFA diagrams.  some may not have explicit error states, eg. if you don't have a transition to follow then you go to an error state.
+
+A DFA accepts a string if and ONLY IF the DFA (1) ends in a final state, and (2) consumes ALL INPUT symbols.
+
+you have to have exactly 1 transition defined for every input symbol defined in the alphabet, so you can't do 
+
+s0 - i -> s1  AND s0 - i -> s2 
+you don't know which path to take.
+
+
+-- REs and DFA's
+- the approach is kinda naive
+- the generated code has a lot of branching in it
+- DFA's don't allow non-determinism.
+
+-- NDFSA
+-nondeterministic finite state automata.
+- he calls them NFA.
+
+
+-- RE to NFA
+- he covers how to convert regular expressions into NDFSA's.
+
+the algorithm for converting RE's to NFA's is known as Thompson's construction.
+
+you just follow some steps.  
+
+
+Cycle of Construction
+- RE -- thompson's construction -> NFA -- subset construction -> DFA -- hopcroft's algorithm -> Minimized DFA  which can go to either Code or back to RE.
+
+we have a lot of established theory we can apply in this context.
+also because we want to automate the scanning process, we're giving up on efficiency and we're using algorithms that may not look that elegant (not that bad in terms of complexity but thompson's construction and subset construction are somewhat naive.)
+- we do it anyway because we want to generate code for the lexer automatically.
+
+
+
+
+we'll start looking into lex and flex.  project 1 will be out Tuesday.  the Scanner project.

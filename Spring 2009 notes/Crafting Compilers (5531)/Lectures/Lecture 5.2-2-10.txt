@@ -1,0 +1,151 @@
+
+
+LEX!!
+
+
+-- Review of Last Time
+
+theoretical constructs behind lexical analysis (particularly - recognizing tokens).
+- DFA / NFA - deterministic / nondeterministic finite state automatas.
+
+it's easier to go from RE's to NFA's to DFA's.  It's proven that DFA's and NFA's can recognize the same languages.
+
+
+-- RE to NFA - algorithm is called Thompson's construction (named after Ken Thompson)
+- must remember the constructions.
+
+* Homework out soon (RE -> DFA, RE -> NFA, etc.)
+
+** Project
+we will get the grammar when we get to the next phase of the project (the parser).
+in the scanner phase we just need to know tokens.
+tokens are given in the handout.
+remember the scanner is just looking at a stream of characters.  even though a space may have no meaning in the program, in our case we ignore the spaces but we still have to read it in.  Our lexer will return a token number, he has defined them for us.
+- use the header file to include in your lexer.
+when we get to the parser phase we'll need some data.
+eg. for identifier we pass the name, characters, we return the ascii, for string we pass the string constants.
+- one way to send string to next phase is to declare a hash table of strings, and when you encounter an identifier / string in your input, you put it into the hash table and what you pass to the next table is the index to the hash table.  We don't have to do that but it would be helpful.
+
+- there should not be a lot of illegal tokens but if there are we need some sort of explicit error message.
+- you only need to catch /* without */, but you don't need to catch */ by itself.
+- string constants must not span multiple lines.
+
+* specify the column / line number whenever generating error messages.
+
+Implementation instructions - you can use lex / flex, you can write your own scanner if you want.  - we don't have to submit driver but we should write one to help us test.  create different test cases to test all the rules.
+
+- submit scanner, lex.  if you have driver / test files, you can submit or not, doesn't matter.
+- create readme so it will help him build / run the program.
+- also do bug reports here (if you know scanner doesn't work for certain cases / not catching errors for certain cases.) this helps for partial credit.
+
+Due Feb 12th.  He thinks it's reasonable.
+
+- the C code you have to write is 20/30 lines tops, you just have to come up with RE's.  one problem people run into is using lex.
+- starting with Python is probably the best idea.
+
+
+
+
+
+-- LEX
+-lex is not a scanner, it's a scanner GENERATOR.
+when you run it, you give it a file and it will generate C code which you can compile/link and will be your scanner.
+- Given a set of RE's, it generates code for a recognizer.
+- Creating RE's and executing the recognizer is the user's responsibility.
+
+lex resources
+- original paper on http://wolfram.schneider.org/bsd/7thEdManVol2/lex/lex.pdf
+- man lex
+- info lex
+- Nutshell book: lex and yacc @ the library.
+
+basically applies thompson's constructiona nd generates the NFA's then converts to a DFA then minimizes the DFA's.
+
+-- DFA acceptance criteria
+- exhaust input
+- end up in final state
+PROBLEM - will only recognize 1 string at a time!
+
+lex algorithm
+- start simulating DFA on input stream
+- continue until there is no transition on input symbol from current state
+  - if in final state, return token that matches input stream seen before the current symbol
+  - else return an error
+- then RESTART simulation with _current_ symbol
+
+-- problems with lex
+- lex always matches longest pattern.
+- may match both rules (eg. 'while' may match both rules, 'identifier' and 'keyword').
+- may have a tie.
+
+look at slides for help on syntax of lex.
+-- how to use Lex
+write file "scanner.l"
+lex scanner.l
+generates file "lex.yy.c"
+link it with the lex library "l" (or flex library "fl")
+gcc -o scanner lex.yy.c -ll
+then you run the scanner on the input file you want to scan.
+./scanner < input_file
+
+in the parsing phase the main function will be in a separate file and you'll link the object file "lex.yy.o" to it when compiling, you don't really want a separate exe.
+
+-- LEX quirks
+- in "rules" section you can't have C code in column 0.  eg comment /* adsfasdf */ should be tabbed a bit.
+- rules however MUST be in column 0.
+- lex will output everything that it doesn't recognize to stdout, so you probably want to create a catch-all rule that will create an unrecognized token exception.
+
+
+
+File:
+/*definitions */
+%{
+#include "tokendef.h"
+
+%}
+
+%%
+
+/* rules */
+
+if { return KWD_IF; }
+else { return KWD_ELSE; }
+
+%%
+
+/* code */
+
+int main() {
+  while (val == yylex()) {
+   if (val == KWD_IF)
+       printf("IF\n");
+  }
+  return 0;
+  }
+
+  
+  
+-- Operators in LEX
+*, +, (, )
+- used for different REGEX operations
+- concatenation is implicit
+[, ]
+- used to specify a set of characters, matches a single character within the set.
+- every character except ^, - and \ is considered as text inside the brackets
+
+. operator matches any character but newline.
+
+- there are two types of comments, comments that extend to end of line, and comments enclosed in a pair of symbols.
+
+-- Reporting errors
+- what kind of errors?  not too many.
+* specify the column / line number whenever generating error messages.
+- in order to keep track of the column, you'd do
+ /* rules */
+if { yycolumn += 2; return KWD_if;}
+- and to keep track of column you'd do
+\n { yyline++; }
+
+- token.def is avaliable as a support file that everyone should use.
+
+

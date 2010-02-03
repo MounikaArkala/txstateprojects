@@ -1,0 +1,136 @@
+
+
+-- Classification vs. Others
+- predict class labels
+- different from clustering because you have already-labeled historical (training) data.
+- classification and prediction are similar - classification is for categorical and prediction is for continuous data,
+but usually we call continuous data analysis regression.
+predicting a varaible (continuous) would be regression.
+
+-- Classification - a two-step process
+- classifier: model used for classification purposes.
+"model" refers to generalization/abstraction.  We want to generalize our training data into a model.
+- Step 1: construct / induct a classifier based on training data
+- Step 2: validate classifier - accuracy of its classification.
+
+-- Classifiers
+- Rules - IF/THEN.   if the first part (condition) is met, then the THEN part applies to that instance.
+eg. if we want to predict if a professor is tenured, we could have the rules:
+IF rank = "professor" OR years > 6 THEN tenured = 'yes'
+- use testing data to validate classifier, then you can use it on unseen data.
+
+
+Machine Learning is very similar to this.
+
+-- Supervised Learning vs. Unsupervised Learning
+- Supervised: classification.  training data are accompanied by labels indicating the class of the observations.
+- Unsupervised: clustering.  no guidance for class labels.
+- Semisupervised: partially-labeled data to guide our process.
+
+-- Data Preparation
+- cleaning - if your information is wrong your predictions will be wrong.  so the accuracy of the classifier depends on training data being accurate.
+- training data is by humans.
+- Relevance Analysis (feature selection): remove noisy attributes - eg. if predicting GPA, there's no point in considering their student ID.
+
+-- Evaluating Classification methods
+How do we tell if it's a good classification method?
+- accuracy
+- speed (efficiency)
+- robustness: Handling noise / missing values
+- scalability: efficiency in disk-resident databases
+- interpretability: ability of humans to understand and have insights into it.
+- training occurs off-line and then you use it all the time, so accuracy is more important because your initial model will be better.  spend the time up front, because the actual on-line usage will probably be very fast.
+- speed is critical in some cases, eg. PageRank. in this case efficiency is critical.
+
+
+-- Decision Tree
+- most studied / known classification approach
+- decision tree is tree structure that helps you make decisions.
+
+-- Decision Tree Induction Algorithms
+- top-down is also called general-specific, and specific-general for bottom-up
+- choose first attribute - once we choose the root, we automatically know which branch we are taking, and we choose the next node, etc.
+- basic algorithm (greedy) - tree constructed in top-down recursive divide-and-conquer manner.
+
+-- Random Tree Induction
+- choose an attribute for split
+- same stopping criteria.
+
+
+assignment 1 - implement random tree, and some tree with principles.
+like a mini-project - use any language you want, doesn't care about user interface.  any OS.  (ideally run on Linux systems.)
+he wants to be able to input data set and get an output.
+-report - 1 pg or so, basically like a readme.  also report the results about the experiment - what dataset you used, what are your conclusions/observations etc.
+- first project will probably take longer than the other ones.  but it's good practice.
+
+
+if we do several mini projects we don't have to do one big one.  depends on how much we complain. 3-4 mini projects (doable).
+eg. web search system (google/Yahoo API - takes a week or so).
+
+bias - preference - otherwise how do we choose...?
+for "tree induction(/building/construction)" there is strong bias for simplicity.  want to build shortest/smallest tree.
+the reason for that is - (not just because of efficiency - but on accuracy) - occam's razor.
+
+-- Occam's Razor
+- be concise - do not use extra things to explain a concept.
+
+a decision tree is a disjunction of all involved rules.
+
+-- How to Build Shortest Tree?
+- brute force - exponential # of trees.  just build all trees and choose shortest one.  guaranteed to return exact / optimal solution.
+
+
+- quinlan - arbitrary - just used whatever pages he needs.  wrote ID3 / C4.5.
+popularised the use of "Entropy" in computer science.
+how does it apply?
+
+the uncertainty is very low - we use entropy to measure the impurity of a node.
+
+-- Attribute Selection Measure - Information Gain (ID3/C4.5)
+- select attribute w/ highest info gain
+- expected information (entropy) needed to classify tuple: (some algo)
+- information needed (after using A to split D into v partitions) to classify D: (some algo)
+- information gained by branching on attribute A is the reduction of entropy (i.e. the entropy of the upper level less the lower level)
+
+-- Information Gain / Entropy calculations
+entropy before split of 14 items (9 yes, 5 no):
+I (9, 5).
+
+for Age
+5/14 * I(3, 2)  +  4/14 * I(4,2)  +   5/14 * I(2,1).
+
+You just give it a coefficient to weight it with a proportion of its contribution.  It's like a linear sum.
+
+so entropy gain would just be entropy of the overall minus entropy of the attribute you chose.
+so as you keep splitting the system becomes more stabilized.
+
+in terms of disorder, I(9, 5) and I(5, 9) will have the same result.
+- we want the biggest entropy reduction.
+
+* the little red book on the corner of the slide means it's not important, we aren't going to cover it, but you can go back and read it if you want to.
+
+
+- if you choose SSN as attribute the tree will be very short (only 2 levels) and entropy would be 0.  but what would be use of tree?  No generalization power.  can't be used for prediction.
+
+C4.5 is designed by quinlan to overcome the problem of information gain measure being biased towards attributes with a large number of values.
+it uses the gain ratio to normalize the information gain.
+- if an attribute has many values then the gain ratio will lower its contribution.  by making the denominator of gain ratio large we will discourage the larger values.
+- SplitInfo is just calculated with the group's value, eg. there are 4 high incomes, 6 mediums and 4 lows, so your splitinfo is
+- 4/14 lg2(4/14) - 6/14 lg2(6/14) - 4/14 lg2(4/14) = .926
+- the attribute with the maximum gain ratio is selected as splitting attribute.
+- the information gain itself is the same as entropy reduction of the attribute.
+
+* In our project we use this C4.5 algorithm.
+
+CART - classification and something something - commercial program but has free demo.  also IBM IntelligentMiner.  You can see the trees they build
+with different values and data sets.
+
+
+funny truth - there is not much difference in accuracy, which is unfortunate because peopole expend lots of effort in building decision trees.  there's not significant difference in terms of performance.  C4.5 probably performs better.
+
+in the assignment he doesn't have the confidence that Occam's Razor is true, random trees probably DON'T perform better than C4.5.  
+
+
+
+
+
