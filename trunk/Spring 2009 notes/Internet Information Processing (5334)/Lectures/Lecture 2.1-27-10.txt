@@ -1,0 +1,28 @@
+"zombie" computers are infected by outside viruses.   
+
+End of Lecture 1.
+
+
+lynx - sexiness.
+
+
+netscape - 90% of the market.
+i.e. came out, shabby at beginning, got better and better.
+
+C++ used to be considered high-level, now Java is high-level (java provides more abstraction.)
+
+middleware sits between O.S. and applications, tries to provide more productive development environment.
+
+
+CPI - client programming interface?
+RPC offers it.  rnning on server side.
+
+
+
+Java combined with JDBC can be regarded as database language...
+
+talking about Databases and your grades and such...
+
+
+
+12'th class day, roster, next time.

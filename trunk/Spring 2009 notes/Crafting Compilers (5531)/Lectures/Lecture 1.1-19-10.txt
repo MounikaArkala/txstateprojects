@@ -1,0 +1,144 @@
+
+Apan Qasem
+aPAn KAsem
+
+
+e-mail best way to contact him.
+
+office hours officially T-Th 2-4 but he's in his office every day pretty  much all day unless he's in a meeting.
+
+tentative schedule online, there will probably be deviations.
+eg. 2nd week of April he'll be at a conference.  last week is presentations for final projects.
+
+he has a page for submitting homework.
+
+
+
+
+
+Go to page, print syllabus & today's notes.
+http://www.cs.txstate.edu/~aq10/cs4318/
+apan@txstate.edu
+
+
+text: Engineering a Compiler by Keith Cooper and Linda Torczon
+- required txt for under and grad sections.
+
+the Dragon book on reserve in the library will also be available to be looked at, has more information.  He may put a few more books on reserve.
+
+it's on bittorrent but there are some errors as well (copied form initial draft, not final test.)
+
+if you're not into programming this may not be the class for you.
+
+need some systems programming,
+need expertise in C/C++ programming.
+you must know some low level knowledge of the system
+- unix familiarity is assumed
+- some knowledge of assembly is expected (SPARC or X86 or MIPS)
+- you will write more than thousands of lines of code
+- can write it in PYTHON yay
+
+
+you can write the compiler in Windows if you want but it will be a LOT more work.
+if you ask him he will help you get a plan going for writing it but don't do it in Windows unless you know it.
+
+
+if using MIPS you'd have to develop on another machine, port your generated code and test it out.
+
+
+Class Participation 5%
+Homework/Quizzes 10%
+(we can't actually have quizzes in this format, so it'll really be online)
+Programming Assignments 65%
+Midterm 10%
+Final 10%
+midterm and final are gonna be bvery similar even though it's cumulative
+
+
+this time we're going to do it a little differently... we have treated the graduate students as undergrads, but this semester we're going to treat the undergrads as grads.
+
+The first 2 phases, everyone's gonna be doing the scanning/parsing.  starting from phase 3/4 you can choose which route you want to go.  you can look at optimization techniques / evaluation of compilers, structure of the Open64 or GCC... what optimizations are effective, something you might be asked to actually do if you go work in a compiler group.  you need to know the fundamentals but very few are written from scratch.
+
+3 slip days used for any programming assignment.  if you don't use the slip days you don't get credit for them or anything.
+
+don't plagiarize code.  you can talk about the project even if you're not working together.
+
+don't google for solutions - you won't find source written for this specific language anyway.
+
+
+
+--
+What are Compilers?
+- takes a high level language, and generate a corresponding machine language.
+what's an interpreter?
+- a program that reads an executable program and produces the results of executing that program
+
+
+can we compare 2 arbitrary programs and see if they produce the same output?
+this is an example of the halting problem.
+
+so in order to ensure correctness, we have to guarantee that each TRANSLATION preserves the semantics.  The "safety" of the transformation.
+
+so we want correctness, but we also want EFFICIENCY!  we want it to compile as efficiently as possible.
+
+
+
+--
+History of Compilers
+we had computers but not an assembly language.
+Harvard Mark 1
+
+Grace Hopper wrote a compiler for the "A0" language back in 1952 (it was more like an assembler, A0 was very close to assembly).
+
+John Backus said that FORTRAN would only be successful if there were an efficient compiler.
+
+machines were getting more and more complicated, they wanna be able to think of the problem at a higher level of abstraction,
+but someone has to do the translation!
+
+a lot of problems have been solved (efficient translation) - first half of semester.
+
+assembly programming went on a long time, back in the 90's even (would write some assembly for efficiency).
+
+obviously the longer you spend in the compliation step the more likely you are to have a better result (deeper analysis) but the tradeoff is that people don't want to wait for their code to compile.  preprocessing time vs. execution time
+
+--
+Improving Programs & Execution
+
+Moore's law
+
+Proebsting's Law - used to be a compiler researcher, now at Microsoft.  His law is - the performance improvement due to compiler techniques - compilers double performance every 18 years.
+
+processor speed doubles every 18 months, compilers double every 18 years.
+
+
+the time it takes to bring off-chip data onto the processor - the memory speed - has been growing linearly.
+
+The bottleneck has been that for every instruction your memory just gets screwed.  the improvement in CPU speed gets bogged down by the memory.
+
+
+The gap between improvements in chip architecture vs. the increases in clock speed is growing - eg. you can't exploit them all 100% efficiently (eg. cache) so their theoretical improvement is way above the actual improvement.
+
+power density - the amount of power that is consumed per surface area.  it's actually getting too hot!
+this is the Power Wall - we have technology to put more transistors but too much power will be consumed and too much heat will come out.
+
+Moor's law still holds but it's not economically feasible anymore.
+
+So now we use multiple simplified cores in the same chip area.  fewer transistors per sq. cm.
+
+
+Why are compilers important today?
+
+- the era of clock-speed improvements is drawing to an end
+- moore's law hitting a power wall
+
+experts predict that in the next decade, performance improvements will come from exploiting the multicore.
+--
+Why Study Compilers?
+- direct application of theory to practice,
+- capstone course - ties into different areas, AI, graph theory, etc... and it's everywhere.  Not just conventional processors use compilers.
+
+
+
+
+
+
