@@ -1,0 +1,52 @@
+12-tone table
+
+Input might not be first row.
+have a button on the front page,
+1 always selected (like radioButton).
+the choices are "1st note always "0"
+or "C is always 0".
+
+
+P0 form should always be the first line (so I0 should be first also).
+- depends on if 1st note is 0 or C is 0, it changes the names of the rows and their locations.
+
+
+
+F C A E D 's prime form:
+     A C D E F is the normal form. [0, 3, 5, 7, 8] is the prime form.  
+is not in the set class list.
+
+
+
+Changes
+- fixed the Interval Vector calculation
+- added calculation for Rahn and Forte when collisions occur
+- populated the full list of prime forms / forte numbers / distinct forms in the file "normal/prime_forms.py".
+I will check the list tomorrow to see if I entered any of the data wrong but if you have time it might be good to get it checked again.
+
+
+
+
+Assumptions
+- I assumed T meant 10 and I changed them to 10's in the Set Class List, is this correct?
+
+- If there was a tie all the way down to the last item, I chose the one with the least first starting note as the tie breaker for both Rahn and Forte.
+SHould this be the least-first _interval_ or the least-first _starting note_?  I did the former.  Also I think in one of them you are supposed
+to choose a tie breaker randomly, should I implement this or is it okay if I tie break them both the same way?
+
+- I assumed that the distinct forms were the same for the pairs, I.E. 6-Z6 and 6-Z38 both only have 12 distinct forms.  Is this correct?
+
+
+- in calculating Prime Form,
+to determine which was packed most to the left,
+I took both candidate prime forms and compared them item-by-item,
+and as soon as I got to one that had an item lower than the other, I chose that one as being packed more to the left.
+Is this right?  Eg. 
+prime candidate 1: [0, 3, 5, 7, 8]
+Prime candidate 2: [0, 1, 3, 5, 8] 
+choose candidate 2 because 0 == 0 but 3 > 1 so candidate 2 is packed more to the left.
+
+
+
+Ideas
+- should the program only list Normal Form unless Rahn / Forte differ from each other, & then list both Rahn & Forte normals?

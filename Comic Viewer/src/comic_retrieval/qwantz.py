@@ -13,4 +13,4 @@ class Qwantz(comic.Comic):
         for match in re.findall(self.arch_re, temp):
             self.comics[int(match[1])] = (match[3].strip(), match[0], "")
         print self.comics
-        """
+        

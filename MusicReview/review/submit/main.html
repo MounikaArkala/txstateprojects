@@ -1,0 +1,61 @@
+<p><br />
+Please submit your files below:</p>
+<p>
+<form  name='mainform' action="submit.cgi" method='post'>
+<table class="RegistrationTable">
+<tr><td>
+<label> Performers </label>
+</td><td>
+<input class="TextInput" type="text" name="performers" id="performers" size="20" onkeypress="handleEnter(event, testSubmit);"/><br />
+</td></tr>
+<tr><td>
+<label> Composer </label>
+</td><td>
+<input class="TextInput" type="text" name="composer" id="composer" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> Title </label>
+</td><td>
+<input class="TextInput" type="text" name="title" id=="title" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> Instruments </label>
+</td><td>
+<input class="TextInput" type="text" name="instruments" id="instruments" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+
+
+<tr><td>
+<label> Composition Year </label>
+</td><td>
+<input class="TextInput" type="text" name="composition_year" id="composition_year" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+
+
+<tr><td>
+<label> Performance Year </label>
+</td><td>
+<input class="TextInput" type="text" name="performance_year" id="performance_year" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+
+<tr><td>
+<label> Live Performance </label>
+</td><td>
+<input class="CheckBox" type="checkbox" name="live_performance" id="live_performance" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+
+
+<tr><td>
+<label> File URL </label>
+</td><td>
+<input class="TextInput" type="text" name="fileurl" id="fileurl" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+
+
+</table>
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+</form>
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+<p><br />
+</p>

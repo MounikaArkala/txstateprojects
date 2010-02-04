@@ -1,0 +1,44 @@
+<p><br />
+Please register below:</p>
+<p>
+<form  name='mainform' action="register.cgi" method='post'>
+<table class="RegistrationTable">
+<tr><td>
+<label> Username </label>
+</td><td>
+<input class="TextInput" type="text" name="username" id="username" size="20" onkeypress="handleEnter(event, testSubmit);"/><br />
+</td></tr>
+<tr><td>
+<label> Password </label>
+</td><td>
+<input class="TextInput" type="password" name="password" id="password" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> First Name </label>
+</td><td>
+<input class="TextInput" type="text" name="fname" id=="fname" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> Last Name </label>
+</td><td>
+<input class="TextInput" type="text" name="lname" id="lname" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> Email </label>
+</td><td>
+<input class="TextInput" type="text" name="email" id="email" size="20" onkeypress="handleEnter(event, testSubmit);"/>
+</td></tr>
+<tr><td>
+<label> Credentials</label>
+</td><td>
+<textarea class="TextInput" name="credentials" id="credentials" cols="20" rows="4" onkeypress="handleEnter(event, testSubmit);">
+</textarea>
+</td></tr>
+</table>
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+</form>
+Credentials is a description of your qualifications for being a peer reviewer or a submitter.
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+<p><br />
+</p>

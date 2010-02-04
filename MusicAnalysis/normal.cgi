@@ -4,7 +4,7 @@
 import os, cgi
 from libs import structure
 from musiclib import all_notes
-
+from normal import prime_forms
 # Debug code, shouldn't be included unless testing.
 import cgitb
 cgitb.enable()
@@ -27,14 +27,107 @@ def intervals(notes):
     return ints
     
 def vector(notes):
+    #calculates the interval vector of an input set of notes.
     vectors = [0]*6
     for i in range(len(notes)-1):
         for j in range(i+1, len(notes)):
-            vectors[(((notes[j]-notes[i]) % 12) -1) % 6] += 1
+            offset = ((notes[j]-notes[i]) % 12)
+            if offset == 0:
+                continue
+            offset -= 1
+            if offset > 5:
+                offset = 10 - offset
+            vectors[offset] += 1
     return vectors
      
-def printPage():
-    global notes, order
+def calc_rahn(candidates, index=None):
+    print "<hr />"
+    print "Calculating Rahn..."
+    print "<br />"
+    if index == None:
+        index = -1 # initial index.
+        
+        
+    old_candidates = candidates
+    candidates = [candidate[:index] for candidate in candidates]
+    if len(candidates[0]) == 1:
+        #return the candidate with least-most first item.
+        min_item = 0
+        for x, candidate in old_candidates:
+            if candidate[0] < old_candidates[min_item][0]:
+                min_item = x
+        return old_candidates[x]
+        
+    else:
+                   
+        candidate_lengths = [sum(intervals(candidate)) for candidate in candidates]
+        min_candidate = min(candidate_lengths)
+        # check how many items meet candidate_lengths
+        min_candidates = [candidate for candidate in candidates if sum(intervals(candidate)) == min_candidate]
+        
+        if len(min_candidates) == 1:
+            return old_candidates[candidate_lengths.index(min_candidate)]
+        
+        else:
+            #multiple items have the same (minimum) outside interval.
+            print "Multiple items have the same minimum outside interval."
+            temp = []
+            #build a list of all the ones that have the same outside interval.
+            for i in range(len(candidate_lengths)):
+                if candidate_lengths[i] == min_candidate:
+                    temp.append(old_candidates[i])
+            print "<br /> The items are: ", temp, "<br />"
+            print "recursing..."
+            return calc_rahn(temp, index-1)
+        return chosen
+    
+def calc_forte(candidates):
+    print "<hr />"
+    print "Calculating Forte..."
+    print "<br />"
+    old_candidates = candidates
+    
+    candidate_lengths = [sum(intervals(candidate)) for candidate in candidates]
+    min_candidate = min(candidate_lengths)
+    # check how many items meet candidate_lengths
+    min_candidates = [candidate for candidate in candidates if sum(intervals(candidate)) == min_candidate]
+        
+    if len(min_candidates) == 1:
+        return old_candidates[candidate_lengths.index(min_candidate)]
+    
+    else:
+        
+        #multiple items have the same (minimum) outside interval.
+        print "Multiple items have the same minimum outside interval."
+        temp = []
+        #build a list of all the ones that have the same outside interval.
+        for i in range(len(candidate_lengths)):
+            if candidate_lengths[i] == min_candidate:
+                temp.append(old_candidates[i])
+        old_candidates = temp
+        
+        for i in range(1, len(candidates) - 1):
+            candidates = [candidate[:i+1] for candidate in old_candidates]
+            
+            candidate_lengths = [sum(intervals(candidate)) for candidate in candidates]
+            min_candidate = min(candidate_lengths)
+            # check how many items meet candidate_lengths
+            min_candidates = [candidate for candidate in candidates if sum(intervals(candidate)) == min_candidate]
+                
+            if len(min_candidates) == 1:
+                return old_candidates[candidate_lengths.index(min_candidate)]
+            
+            else:
+                temp = []
+                #build a list of all the ones that have the same outside interval.
+                for i in range(len(candidate_lengths)):
+                    if candidate_lengths[i] == min_candidate:
+                        temp.append(old_candidates[i])
+                                
+        return old_candidates[0]
+    #hopefully we never get here.
+     
+def printPage(notes):
     if len(notes) == 0:
         return
         
@@ -58,57 +151,106 @@ def printPage():
     print "Input: "
     print pretty(notes, encoding)
     print '<hr />'
-    if not order:
-        print "Order was not preserved, so we reorder notes.<br />"
-        notes.sort()
-        print "Notes are now: ", pretty(notes, encoding), "<br />"
-    else:
-        print "Order was preserved, so we leave the notes alone."
+    #reorder notes
+    notes.sort()
+    print "Sorted Notes: ", pretty(notes, encoding), "<br />"
     print '<hr />'
+    
+    
+    
     candidates = [notes[i:len(notes)] + notes[0:i] for i in range(len(notes))]
-    print "Possible ascending orderings<hr />"
+    print "Candidates:<br />"
+    for candidate in candidates:
+        print pretty(candidate, encoding), ": "
+        print "intervals ", intervals(candidate)
+        print ", vector ", "".join([str(i) for i in vector(candidate)])
+        print ", outside interval ", sum(intervals(candidate))
+        print "<br />"
+    print "<hr />"
+    
+    rahn = calc_rahn(candidates)
+    forte = calc_forte(candidates)
     
     
-    original_candidates = candidates
-    chosen = None
-    #loop until we run out of items, or find the minimum result. we do 'til -1 because an interval is only defined if 2 notes are present.
-    for i in range(len(notes)-1):
+    
+    
         
-        for candidate in candidates:
-            print pretty(candidate, encoding), ": "
-            print "intervals ", intervals(candidate)
-            print ", vector ", "".join([str(i) for i in vector(candidate)])
-            print ", outside interval ", sum(intervals(candidate))
-            print "<br />"
-           
+        
+    print '<hr />'
+    print "<h2>Rahn</h2>"
+    print "Normal Form : ", pretty(rahn, encoding), "<br />"
     
-        candidate_lengths = [sum(intervals(candidate)) for candidate in candidates]
-        min_candidate = min(candidate_lengths)
-        # check how many items meet candidate_lengths
-        if len([i for i in candidate_lengths if i == min_candidate]) == 1:
-            chosen = original_candidates[candidate_lengths.index(min_candidate)]
+    prime1 = [0]
+    for item in rahn[1:]:
+        prime1.append((item - rahn[0]) % 12)
+    
+    temp = [i for i in prime1] # copy it
+    temp.reverse()
+    prime2 = [0]
+    for item in temp[1:]:
+        prime2.append((temp[0] - item) % 12)
+    print "prime candidate 1: ", prime1, "<br />"
+    print "Prime candidate 2: ", prime2, "<br />"
+    
+    prime = prime1
+    for i, item in enumerate(prime1):
+        if prime2[i] < item:
+            prime = prime2
             break
-        print "multiple items have the same (minumum) outside interval! reducing length and recalculating...<hr />"
-        #there were too many matches so let's pop one off the end of all our candidates.
-        temp = []
-        for candidate in candidates:
-            temp.append(candidate[:-1])
-        candidates = temp
+        elif prime2[i] > item:
+            break
+            
         
-    if not chosen:
-        print 'choosing the interval vector with the least first pc integer...'
-        # first get a list of all the colliding ones
-        candidate_lengths = [sum(intervals(candidate)) for candidate in original_candidates]
-        min_candidate = min(candidate_lengths)
-        colliding = [i for i in original_candidates if sum(intervals(i)) == min_candidate]
-        chosen = colliding[0]
-        for c in colliding[1:]:
-            if c[0] < chosen[0]:
-                chosen = c
-        print "Chose", pretty(chosen, encoding)
+    try:
+        temp = prime_forms.forms[tuple(prime)]
+        print "<br />Prime Form: %s" % " ".join([str(i) for i in prime])
+        print "<br />Forte Name: %s" % temp[0]
+        print "<br />Distinct Forms: %s" % temp[1]
+        print "<br />Interval Vector: %s" % "".join([str(i) for i in vector(prime)])
+        
+    except:
+        print tuple(prime), "is the prime form.  "
+        print "this prime form was not found in the prime forms list."
+    
+    
+    print "<hr />"
+    print "<h2>Forte</h2>"   
+    print "Normal Order: ", pretty(forte, encoding), "<br />"
+    
+    prime1 = []
+    for item in forte:
+        prime1.append((item - forte[0]) % 12)
+    
+    temp = [i for i in prime1] # copy it
+    temp.reverse()
+    prime2 = [0]
+    for item in temp[1:]:
+        prime2.append((temp[0] - item) % 12)
+    print "prime candidate 1: ", prime1, "<br />"
+    print "Prime candidate 2: ", prime2, "<br />"
+        
+    prime = prime1
+    for i, item in enumerate(prime1):
+        if prime2[i] < item:
+            prime = prime2
+            break
+        elif prime2[i] > item:
+            break
+    
+    
+    
+    try:
+        temp = prime_forms.forms[tuple(prime)]
+        print "<br />Prime Form: %s" % " ".join([str(i) for i in prime])
+        print "<br />Forte Name: %s" % temp[0]
+        print "<br />Distinct Forms: %s" % temp[1]
+        print "<br />Interval Vector: %s" % "".join([str(i) for i in vector(prime)])
+        
+    except:
+        print tuple(prime), "is the prime form.  "
+        print "this prime form was not found in the prime forms list."
     print '<hr />'
-    print pretty(chosen, encoding), "is the normal form."
-    print '<hr />'
+    
     
     #if chosen is still None by this point we weren't able to find a candidate.
     
@@ -172,7 +314,7 @@ def printPage():
     """
     
     
-structure.print_header(title="normal",
+structure.print_header(title="Analysis of Normal Form, Normal Order, and Prime Form of Sets: Web-Based Analytical Tool for Set Theory by Nico Schuler and Luke Paireepinart",
                        scripts=["main.js","normal.js"], css=["main.css", "normal.css"])
 
                        
@@ -183,18 +325,12 @@ print "<font color='red'> This tool is currently under testing!<br /></font>"
 try:
     # Get data from fields
     notes = form.getvalue('notes').strip().lower().split()
-    try:
-        order = (form.getvalue('order').strip().lower() == "on")
-    except:
-        order = False
-
     
 except:
     notes = []
     #main page.
-    from scales.filters import filters
     structure.print_body("normal/main.html")
        
 
-printPage()
+printPage(notes)
 structure.print_footer()

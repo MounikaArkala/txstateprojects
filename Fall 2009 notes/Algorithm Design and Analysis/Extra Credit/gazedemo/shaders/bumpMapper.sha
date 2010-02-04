@@ -1,0 +1,90 @@
+//Cg
+//
+//Cg profile arbvp1 arbfp1
+
+// This is the vertex shader.
+// because the example only applies to the fragment shader, this code is unmodified.
+// you could easily modify a vertex shader to be position-independent as well though.
+// the only modification is adding the l_my_position output variable so that position
+// can be accessed in the fragment shader.
+void vshader(float3 vtx_position : POSITION,
+             float2 vtx_texcoord0 : TEXCOORD0,
+             float3 vtx_normal : NORMAL,
+             float3 vtx_tangent0 : TANGENT,
+             float3 vtx_binormal0 : BINORMAL,
+             uniform float4 mspos_light,
+             uniform float4x4 mat_modelproj,
+             out float4 l_position  : POSITION,
+             out float2 l_texcoord0,
+             out float3 l_lightvec,
+             out float3 l_pointpos,
+             out float4 l_my_position: TEXCOORD0)
+{
+  float3 lightvec = ((float3)mspos_light - vtx_position);
+  l_position = mul(mat_modelproj, float4(vtx_position,1));
+  l_my_position = mul(mat_modelproj, float4(vtx_position,1));
+  l_texcoord0 = vtx_texcoord0;
+  l_lightvec.x = dot(vtx_tangent0,  lightvec);
+  l_lightvec.y = -dot(vtx_binormal0, lightvec);
+  l_lightvec.z = dot(vtx_normal,    lightvec);
+  l_pointpos = vtx_position;
+}
+
+
+
+
+// This is the fragment shader, where the bypass code is written.
+void fshader(float4 l_position : POSITION,
+             float4 l_my_position: TEXCOORD0, // do NOT try to use l_position for this or EVERYTHING will break and you'll be sorry!  MUST have separate variable!
+             float2 l_texcoord0,
+             float3 l_lightvec,
+             float3 l_pointpos,
+             uniform float4 k_mousepos: C6,
+             uniform float4 mspos_light : C7,
+             sampler2D tex_0,
+             sampler2D tex_1,
+             out float4 o_color : COLOR)
+{
+      // both panda3d and CG represent locations on the screen as a float tuple with values from 0 to 1.
+      // point is the position of the pixel on the screen.
+      // perspective divide is ABSOLUTELY NECESSARY to get correct results, unless you
+      // use tex2Dproj rather than tex2D when loading texture items.
+      float2 point = float2(l_my_position[0]/l_my_position[3],l_my_position[1]/l_my_position[3]);
+      
+      // point2 is the position of the mouse on the screen.
+      float2 point2 = float2(k_mousepos[0], k_mousepos[1]);
+      
+      // this is our 'sensitivity' function.  k_mousepos[2] is used as a parameter
+      // switch that determines whether the function applies.
+      // so basically, if the funciton is enabled and the pythagorean distance of the point is within .5
+      // of the mouse cursor then in_area will be true.  if the function is disabled then the value will be true
+      // for any area.
+      bool in_area = (k_mousepos[2] > .9 && distance(point, point2) <= .5) || k_mousepos[2] < .1;
+      
+      // These are calculated for lighting purposes.
+      float distance = length((float3)mspos_light - l_pointpos);
+      float attenuate = saturate(80.0 / (30.0 + distance));
+      float4 albedo = tex2D(tex_0, l_texcoord0);
+      
+      // if it's in the gaze area...
+      if (in_area)
+      {
+          // perform a normal map algorithm.
+          float3 lightdir = normalize(l_lightvec);
+          float4 normalmap = tex2D(tex_1, l_texcoord0)*2.0-float4(1,1,1,1);
+          float lightprod = saturate(dot(lightdir, (float3)normalmap)+0.3);
+          float4 output_color = lightprod * attenuate * albedo;
+          output_color.w = 1.0;
+          // o_color is the only output of the fragment shader, it's the color of the pixel.
+          o_color = output_color;
+      }
+      else
+      {
+          // .85 is a magic number.  I don't know how to properly bypass this effect without fully calculating lightprod,
+          // so I just approximate it.  This is why lighting effects are a bad effect to bypass.
+          float4 output_color = .85 * attenuate * albedo;
+          output_color.w = 1.0;
+          o_color = output_color;
+      }
+   
+}
