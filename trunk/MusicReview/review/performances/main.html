@@ -1,4 +1,13 @@
 <p><br />
-Here are all of the performances that have been submitted:
+Please enter keywords to search for:
+<p>
+<form  name='mainform' action="performances.cgi" method='post'>
+<label> Search </label>
+<input class="TextInput" type="text" name="query" id="query" size="20" onkeypress="handleEnter(event, testSubmit);"/><br /><br />
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+</form>
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+
 <p><br />
 </p>

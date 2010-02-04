@@ -1,0 +1,33 @@
+<p><br />
+Please review the below submission:</p>
+<p>
+<form  name='mainform' action="review.cgi" method='post'>
+
+%(infotable)s
+
+
+<table class="RegistrationTable">
+<tr><td>
+<label> Inadmissible </label>
+</td><td>
+<input class="CheckBox" type="checkbox" name="inadmissible" id="inadmissible" /><br />
+</td></tr>
+<tr><td>
+<label> Passed Review </label>
+</td><td>
+<input class="CheckBox" type="checkbox" name="passed" id="passed" /><br />
+</td></tr>
+<tr><td>
+<label> Comments </label>
+</td><td>
+<textarea class="TextInput" name="comments" id="comments" cols="20" rows="4" onkeypress="handleEnter(event, testSubmit);">
+</textarea>
+</td></tr>
+</table>
+<input type="hidden" name="performance_id" id="performance_id" value="%(performance_id)s" />
+<input class="SubmitButton" type="submit" value="Submit" onClick="return testSubmit();" />
+</form>
+<!-- location of dynamically-loaded error message.  avoids those annoying alert()'s.-->
+<div class="error" id="error"><br /></div><br />
+<p><br />
+</p>

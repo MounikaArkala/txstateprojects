@@ -1,0 +1,1881 @@
+Example Runs
+
+
+
+~~~ Building everything ~~~
+[vp1021@zeus New Folder]$
+[vp1021@zeus New Folder]$ make clean
+rm -f client server
+[vp1021@zeus New Folder]$ make client
+gcc client.c -o client -lm
+[vp1021@zeus New Folder]$ make server
+gcc server.c -lpthread -lnsl -o server
+
+
+~~~ Server ~~~
+[vp1021@zeus New Folder]$ ./server
+Parent ready for another connection
+DEBUG: connection made, connectionDesc=4
+Registering a new client.
+Client enquired about connected clients.
+Parent ready for another connection
+DEBUG: connection made, connectionDesc=5
+Registering a new client.
+Client enquired about connected clients.
+Client enquired about connected clients.
+Parent ready for another connection
+DEBUG: connection made, connectionDesc=6
+Registering a new client.
+Client enquired about connected clients.
+Client enquired about connected clients.
+Client enquired about connected clients.
+Received message from 1 to 0, frame # 0, part 1.
+Received message from 1 to 0, frame # 0, part 2.
+Message frame # 0 from 1 to 0 sent successfully.
+Received message from 1 to 2, frame # 1, part 1.
+Received message from 1 to 2, frame # 1, part 2.
+Message frame # 1 from 1 to 2 sent successfully.
+Received message from 1 to 3, frame # 2, part 1.
+Received message from 1 to 3, frame # 2, part 2.
+Message frame # 2 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 3, part 1.
+Received message from 1 to 4, frame # 3, part 2.
+Message frame # 3 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 4, part 1.
+Received message from 1 to 5, frame # 4, part 2.
+Message frame # 4 from 1 to 5 sent successfully.
+Received message from 1 to 2, frame # 5, part 1.
+Received message from 2 to 0, frame # 0, part 1.
+Inform 5 and 1 of a collision.
+Received message from 2 to 0, frame # 0, part 1.
+Received message from 2 to 0, frame # 0, part 2.
+Message frame # 0 from 2 to 0 sent successfully.
+Received message from 2 to 1, frame # 1, part 1.
+Received message from 2 to 1, frame # 1, part 2.
+Message frame # 1 from 2 to 1 sent successfully.
+Received message from 2 to 4, frame # 2, part 1.
+Received message from 1 to 2, frame # 5, part 2.
+Inform 4 and 2 of a collision.
+Received message from 1 to 2, frame # 5, part 1.
+Received message from 2 to 4, frame # 2, part 2.
+Inform 5 and 1 of a collision.
+Received message from 1 to 2, frame # 5, part 1.
+Received message from 2 to 4, frame # 2, part 1.
+Inform 5 and 1 of a collision.
+Received message from 2 to 4, frame # 2, part 1.
+Received message from 2 to 4, frame # 2, part 1.
+Message frame # 2 from 2 to 4 sent successfully.
+Received message from 2 to 4, frame # 2, part 2.
+Received message from 2 to 3, frame # 3, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 3, frame # 3, part 2.
+Received message from 2 to 3, frame # 3, part 1.
+Message frame # 3 from 2 to 3 sent successfully.
+Received message from 1 to 2, frame # 5, part 2.
+Received message from 1 to 2, frame # 5, part 1.
+Message frame # 5 from 1 to 2 sent successfully.
+Received message from 1 to 2, frame # 5, part 2.
+Received message from 1 to 3, frame # 6, part 1.
+Inform 4 and 1 of a collision.
+Received message from 2 to 3, frame # 3, part 2.
+Received message from 1 to 3, frame # 6, part 2.
+Inform 4 and 2 of a collision.
+Received message from 1 to 3, frame # 6, part 1.
+Received message from 2 to 5, frame # 4, part 1.
+Inform 5 and 1 of a collision.
+Received message from 1 to 3, frame # 6, part 1.
+Received message from 1 to 3, frame # 6, part 1.
+Message frame # 6 from 1 to 3 sent successfully.
+Received message from 1 to 3, frame # 6, part 2.
+Received message from 1 to 5, frame # 7, part 1.
+Inform 4 and 1 of a collision.
+Received message from 1 to 5, frame # 7, part 2.
+Received message from 1 to 3, frame # 8, part 1.
+Inform 4 and 1 of a collision.
+Received message from 1 to 3, frame # 8, part 1.
+Received message from 2 to 5, frame # 4, part 2.
+Inform 5 and 1 of a collision.
+Received message from 2 to 5, frame # 4, part 1.
+Received message from 2 to 5, frame # 4, part 1.
+Message frame # 4 from 2 to 5 sent successfully.
+Received message from 2 to 5, frame # 4, part 2.
+Received message from 1 to 3, frame # 8, part 2.
+Inform 4 and 2 of a collision.
+Received message from 1 to 3, frame # 8, part 1.
+Received message from 2 to 4, frame # 5, part 1.
+Inform 5 and 1 of a collision.
+Received message from 1 to 3, frame # 8, part 2.
+Received message from 1 to 3, frame # 8, part 1.
+Message frame # 8 from 1 to 3 sent successfully.
+Received message from 1 to 3, frame # 8, part 2.
+Received message from 1 to 4, frame # 9, part 1.
+Inform 4 and 1 of a collision.
+Received message from 2 to 4, frame # 5, part 2.
+Received message from 2 to 4, frame # 5, part 1.
+Message frame # 5 from 2 to 4 sent successfully.
+Received message from 1 to 4, frame # 9, part 2.
+Received message from 2 to 4, frame # 5, part 2.
+Inform 5 and 1 of a collision.
+Received message from 1 to 2, frame # 10, part 1.
+Received message from 1 to 2, frame # 10, part 1.
+Message frame # 10 from 1 to 2 sent successfully.
+Received message from 2 to 3, frame # 6, part 1.
+Received message from 2 to 3, frame # 6, part 1.
+Message frame # 6 from 2 to 3 sent successfully.
+Received message from 1 to 2, frame # 10, part 2.
+Received message from 1 to 5, frame # 11, part 1.
+Inform 4 and 1 of a collision.
+Received message from 2 to 3, frame # 6, part 2.
+Received message from 3 to 0, frame # 0, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 0, frame # 0, part 1.
+Received message from 1 to 5, frame # 11, part 2.
+Inform 4 and 3 of a collision.
+Received message from 2 to 1, frame # 7, part 1.
+Received message from 1 to 3, frame # 12, part 1.
+Inform 4 and 2 of a collision.
+Received message from 1 to 3, frame # 12, part 1.
+Received message from 1 to 3, frame # 12, part 1.
+Message frame # 12 from 1 to 3 sent successfully.
+Received message from 1 to 3, frame # 12, part 1.
+Received message from 3 to 0, frame # 0, part 2.
+Inform 6 and 1 of a collision.
+Received message from 3 to 0, frame # 0, part 1.
+Received message from 3 to 0, frame # 0, part 1.
+Message frame # 0 from 3 to 0 sent successfully.
+Received message from 2 to 1, frame # 7, part 2.
+Received message from 2 to 1, frame # 7, part 1.
+Message frame # 7 from 2 to 1 sent successfully.
+Received message from 3 to 0, frame # 0, part 2.
+Received message from 3 to 5, frame # 1, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 5, frame # 1, part 2.
+Received message from 3 to 5, frame # 1, part 1.
+Message frame # 1 from 3 to 5 sent successfully.
+Received message from 3 to 5, frame # 1, part 2.
+Received message from 3 to 4, frame # 2, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 4, frame # 2, part 2.
+Received message from 3 to 4, frame # 2, part 1.
+Message frame # 2 from 3 to 4 sent successfully.
+Received message from 3 to 4, frame # 2, part 2.
+Received message from 3 to 2, frame # 3, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 2, frame # 3, part 2.
+Received message from 3 to 2, frame # 3, part 1.
+Message frame # 3 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 3, part 1.
+Received message from 3 to 2, frame # 3, part 2.
+Message frame # 3 from 3 to 2 sent successfully.
+Received message from 3 to 1, frame # 4, part 1.
+Received message from 3 to 1, frame # 4, part 2.
+Message frame # 4 from 3 to 1 sent successfully.
+Received message from 3 to 5, frame # 5, part 1.
+Received message from 3 to 5, frame # 5, part 2.
+Message frame # 5 from 3 to 5 sent successfully.
+Received message from 3 to 4, frame # 6, part 1.
+Received message from 3 to 4, frame # 6, part 2.
+Message frame # 6 from 3 to 4 sent successfully.
+Received message from 3 to 2, frame # 7, part 1.
+Received message from 3 to 2, frame # 7, part 2.
+Message frame # 7 from 3 to 2 sent successfully.
+Received message from 3 to 1, frame # 8, part 1.
+Received message from 3 to 1, frame # 8, part 2.
+Message frame # 8 from 3 to 1 sent successfully.
+Received message from 3 to 4, frame # 9, part 1.
+Received message from 3 to 4, frame # 9, part 2.
+Message frame # 9 from 3 to 4 sent successfully.
+Received message from 3 to 5, frame # 10, part 1.
+Received message from 2 to 1, frame # 7, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 3, frame # 8, part 1.
+Received message from 2 to 3, frame # 8, part 1.
+Message frame # 8 from 2 to 3 sent successfully.
+Received message from 2 to 3, frame # 8, part 2.
+Received message from 2 to 4, frame # 9, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 4, frame # 9, part 2.
+Received message from 2 to 4, frame # 9, part 1.
+Message frame # 9 from 2 to 4 sent successfully.
+Received message from 2 to 4, frame # 9, part 1.
+Received message from 3 to 5, frame # 10, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 1, frame # 11, part 1.
+Received message from 3 to 1, frame # 11, part 1.
+Message frame # 11 from 3 to 1 sent successfully.
+Received message from 3 to 1, frame # 11, part 2.
+Received message from 3 to 2, frame # 12, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 2, frame # 12, part 2.
+Received message from 3 to 2, frame # 12, part 1.
+Message frame # 12 from 3 to 2 sent successfully.
+Received message from 2 to 4, frame # 9, part 2.
+Received message from 3 to 2, frame # 12, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 1, frame # 13, part 1.
+Received message from 2 to 5, frame # 10, part 1.
+Inform 5 and 3 of a collision.
+Received message from 3 to 1, frame # 13, part 1.
+Received message from 3 to 1, frame # 13, part 2.
+Message frame # 13 from 3 to 1 sent successfully.
+Received message from 3 to 1, frame # 13, part 1.
+Received message from 2 to 5, frame # 10, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 5, frame # 10, part 1.
+Received message from 2 to 5, frame # 10, part 1.
+Message frame # 10 from 2 to 5 sent successfully.
+Received message from 3 to 1, frame # 13, part 2.
+Received message from 3 to 2, frame # 14, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 2, frame # 14, part 2.
+Received message from 3 to 2, frame # 14, part 1.
+Message frame # 14 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 14, part 1.
+Received message from 2 to 5, frame # 10, part 2.
+Inform 5 and 3 of a collision.
+Received message from 3 to 2, frame # 14, part 2.
+Received message from 2 to 3, frame # 11, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 3, frame # 11, part 1.
+Received message from 2 to 3, frame # 11, part 1.
+Message frame # 11 from 2 to 3 sent successfully.
+Received message from 3 to 5, frame # 15, part 1.
+Received message from 2 to 3, frame # 11, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 12, part 1.
+Received message from 2 to 4, frame # 12, part 1.
+Message frame # 12 from 2 to 4 sent successfully.
+Received message from 3 to 5, frame # 15, part 2.
+Received message from 2 to 4, frame # 12, part 2.
+Inform 5 and 3 of a collision.
+Received message from 3 to 1, frame # 16, part 1.
+Received message from 2 to 1, frame # 13, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 13, part 1.
+Received message from 2 to 1, frame # 13, part 1.
+Message frame # 13 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 13, part 2.
+Received message from 3 to 1, frame # 16, part 2.
+Inform 6 and 2 of a collision.
+Received message from 2 to 4, frame # 14, part 1.
+Received message from 3 to 5, frame # 17, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 17, part 1.
+Received message from 3 to 5, frame # 17, part 1.
+Message frame # 17 from 3 to 5 sent successfully.
+Received message from 3 to 5, frame # 17, part 1.
+Received message from 2 to 4, frame # 14, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 14, part 1.
+Received message from 3 to 5, frame # 17, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 2, frame # 18, part 1.
+Received message from 3 to 2, frame # 18, part 2.
+Message frame # 18 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 18, part 1.
+Received message from 3 to 2, frame # 18, part 2.
+Message frame # 18 from 3 to 2 sent successfully.
+Received message from 3 to 4, frame # 19, part 1.
+Received message from 3 to 4, frame # 19, part 2.
+Message frame # 19 from 3 to 4 sent successfully.
+Received message from 3 to 5, frame # 20, part 1.
+Received message from 3 to 5, frame # 20, part 2.
+Message frame # 20 from 3 to 5 sent successfully.
+Received message from 3 to 4, frame # 21, part 1.
+Received message from 3 to 4, frame # 21, part 2.
+Message frame # 21 from 3 to 4 sent successfully.
+Received message from 3 to 1, frame # 22, part 1.
+Received message from 3 to 1, frame # 22, part 2.
+Message frame # 22 from 3 to 1 sent successfully.
+Received message from 3 to 2, frame # 23, part 1.
+Received message from 3 to 2, frame # 23, part 2.
+Message frame # 23 from 3 to 2 sent successfully.
+Received message from 3 to 4, frame # 24, part 1.
+Received message from 2 to 4, frame # 14, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 14, part 1.
+Received message from 2 to 4, frame # 14, part 1.
+Message frame # 14 from 2 to 4 sent successfully.
+Received message from 3 to 4, frame # 24, part 2.
+Received message from 3 to 2, frame # 25, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 2, frame # 25, part 1.
+Received message from 3 to 2, frame # 25, part 2.
+Message frame # 25 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 25, part 1.
+Received message from 3 to 2, frame # 25, part 2.
+Message frame # 25 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 26, part 1.
+Received message from 3 to 5, frame # 26, part 2.
+Message frame # 26 from 3 to 5 sent successfully.
+Received message from 3 to 1, frame # 27, part 1.
+Received message from 3 to 1, frame # 27, part 2.
+Message frame # 27 from 3 to 1 sent successfully.
+Received message from 3 to 2, frame # 28, part 1.
+Received message from 3 to 2, frame # 28, part 2.
+Message frame # 28 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 29, part 1.
+Received message from 3 to 5, frame # 29, part 2.
+Message frame # 29 from 3 to 5 sent successfully.
+Received message from 3 to 5, frame # 30, part 1.
+Received message from 2 to 4, frame # 14, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 15, part 1.
+Received message from 3 to 5, frame # 30, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 2, frame # 31, part 1.
+Received message from 3 to 2, frame # 31, part 1.
+Message frame # 31 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 31, part 1.
+Received message from 2 to 1, frame # 15, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 15, part 2.
+Received message from 2 to 1, frame # 15, part 1.
+Message frame # 15 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 15, part 1.
+Received message from 2 to 1, frame # 15, part 2.
+Message frame # 15 from 2 to 1 sent successfully.
+Received message from 2 to 4, frame # 16, part 1.
+Received message from 2 to 4, frame # 16, part 2.
+Message frame # 16 from 2 to 4 sent successfully.
+Received message from 2 to 5, frame # 17, part 1.
+Received message from 3 to 2, frame # 31, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 1, frame # 32, part 1.
+Received message from 3 to 1, frame # 32, part 1.
+Message frame # 32 from 3 to 1 sent successfully.
+Received message from 2 to 5, frame # 17, part 2.
+Received message from 2 to 3, frame # 18, part 1.
+Inform 5 and 2 of a collision.
+Received message from 3 to 1, frame # 32, part 2.
+Received message from 3 to 5, frame # 33, part 1.
+Inform 6 and 3 of a collision.
+Received message from 2 to 3, frame # 18, part 2.
+Received message from 2 to 3, frame # 18, part 1.
+Message frame # 18 from 2 to 3 sent successfully.
+Received message from 2 to 3, frame # 18, part 2.
+Received message from 2 to 4, frame # 19, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 4, frame # 19, part 2.
+Received message from 2 to 4, frame # 19, part 1.
+Message frame # 19 from 2 to 4 sent successfully.
+Received message from 2 to 4, frame # 19, part 1.
+Received message from 2 to 4, frame # 19, part 2.
+Message frame # 19 from 2 to 4 sent successfully.
+Received message from 2 to 3, frame # 20, part 1.
+Received message from 2 to 3, frame # 20, part 2.
+Message frame # 20 from 2 to 3 sent successfully.
+Received message from 2 to 5, frame # 21, part 1.
+Received message from 2 to 5, frame # 21, part 2.
+Message frame # 21 from 2 to 5 sent successfully.
+Received message from 2 to 1, frame # 22, part 1.
+Received message from 2 to 1, frame # 22, part 2.
+Message frame # 22 from 2 to 1 sent successfully.
+Received message from 2 to 4, frame # 23, part 1.
+Received message from 3 to 5, frame # 33, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 2 to 4, frame # 23, part 2.
+Inform 5 and 3 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 2 to 3, frame # 24, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 3, frame # 24, part 1.
+Received message from 2 to 3, frame # 24, part 1.
+Message frame # 24 from 2 to 3 sent successfully.
+Received message from 2 to 3, frame # 24, part 1.
+Received message from 3 to 5, frame # 33, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 2 to 3, frame # 24, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 25, part 1.
+Received message from 3 to 5, frame # 33, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 2 to 1, frame # 25, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 25, part 1.
+Received message from 3 to 5, frame # 33, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 2 to 1, frame # 25, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 25, part 1.
+Received message from 2 to 1, frame # 25, part 1.
+Message frame # 25 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 25, part 2.
+Received message from 3 to 5, frame # 33, part 1.
+Inform 6 and 2 of a collision.
+Received message from 2 to 5, frame # 26, part 1.
+Received message from 2 to 5, frame # 26, part 2.
+Message frame # 26 from 2 to 5 sent successfully.
+Received message from 2 to 5, frame # 26, part 1.
+Received message from 3 to 5, frame # 33, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 33, part 1.
+Received message from 3 to 5, frame # 33, part 1.
+Message frame # 33 from 3 to 5 sent successfully.
+Received message from 3 to 5, frame # 33, part 2.
+Received message from 2 to 5, frame # 26, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 27, part 1.
+Received message from 2 to 1, frame # 27, part 1.
+Message frame # 27 from 2 to 1 sent successfully.
+Received message from 3 to 2, frame # 34, part 1.
+Received message from 3 to 2, frame # 34, part 2.
+Message frame # 34 from 3 to 2 sent successfully.
+Received message from 2 to 1, frame # 27, part 2.
+Received message from 3 to 2, frame # 34, part 1.
+Inform 6 and 2 of a collision.
+Received message from 2 to 1, frame # 28, part 1.
+Received message from 2 to 1, frame # 28, part 2.
+Message frame # 28 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 28, part 1.
+Received message from 2 to 1, frame # 28, part 2.
+Message frame # 28 from 2 to 1 sent successfully.
+Received message from 2 to 4, frame # 29, part 1.
+Received message from 3 to 2, frame # 34, part 2.
+Inform 6 and 2 of a collision.
+Received message from 2 to 4, frame # 29, part 2.
+Received message from 3 to 1, frame # 35, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 1, frame # 35, part 1.
+Received message from 3 to 1, frame # 35, part 1.
+Message frame # 35 from 3 to 1 sent successfully.
+Received message from 3 to 1, frame # 35, part 2.
+Received message from 3 to 2, frame # 36, part 1.
+Inform 6 and 3 of a collision.
+Received message from 2 to 3, frame # 30, part 1.
+Received message from 2 to 3, frame # 30, part 2.
+Message frame # 30 from 2 to 3 sent successfully.
+Received message from 2 to 1, frame # 31, part 1.
+Received message from 2 to 1, frame # 31, part 2.
+Message frame # 31 from 2 to 1 sent successfully.
+Received message from 2 to 5, frame # 32, part 1.
+Received message from 2 to 5, frame # 32, part 2.
+Message frame # 32 from 2 to 5 sent successfully.
+Received message from 2 to 4, frame # 33, part 1.
+Received message from 2 to 4, frame # 33, part 2.
+Message frame # 33 from 2 to 4 sent successfully.
+Received message from 2 to 3, frame # 34, part 1.
+Received message from 2 to 3, frame # 34, part 2.
+Message frame # 34 from 2 to 3 sent successfully.
+Received message from 2 to 1, frame # 35, part 1.
+Received message from 2 to 1, frame # 35, part 2.
+Message frame # 35 from 2 to 1 sent successfully.
+Received message from 2 to 5, frame # 36, part 1.
+Received message from 2 to 5, frame # 36, part 2.
+Message frame # 36 from 2 to 5 sent successfully.
+Received message from 2 to 4, frame # 37, part 1.
+Received message from 2 to 4, frame # 37, part 2.
+Message frame # 37 from 2 to 4 sent successfully.
+Received message from 2 to 3, frame # 38, part 1.
+Received message from 2 to 3, frame # 38, part 2.
+Message frame # 38 from 2 to 3 sent successfully.
+Received message from 2 to 1, frame # 39, part 1.
+Received message from 2 to 1, frame # 39, part 2.
+Message frame # 39 from 2 to 1 sent successfully.
+Received message from 2 to 5, frame # 40, part 1.
+Received message from 2 to 5, frame # 40, part 2.
+Message frame # 40 from 2 to 5 sent successfully.
+Received message from 2 to 4, frame # 41, part 1.
+Received message from 3 to 2, frame # 36, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 2, frame # 36, part 1.
+Received message from 3 to 2, frame # 36, part 1.
+Message frame # 36 from 3 to 2 sent successfully.
+Received message from 2 to 4, frame # 41, part 2.
+Received message from 2 to 5, frame # 42, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 5, frame # 42, part 1.
+Received message from 2 to 5, frame # 42, part 2.
+Message frame # 42 from 2 to 5 sent successfully.
+Received message from 2 to 5, frame # 42, part 1.
+Received message from 2 to 5, frame # 42, part 2.
+Message frame # 42 from 2 to 5 sent successfully.
+Received message from 2 to 3, frame # 43, part 1.
+Received message from 3 to 2, frame # 36, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 5, frame # 37, part 1.
+Received message from 3 to 5, frame # 37, part 1.
+Message frame # 37 from 3 to 5 sent successfully.
+Received message from 3 to 5, frame # 37, part 2.
+Received message from 2 to 3, frame # 43, part 2.
+Inform 5 and 3 of a collision.
+Received message from 3 to 4, frame # 38, part 1.
+Received message from 2 to 1, frame # 44, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 1, frame # 44, part 1.
+Received message from 2 to 1, frame # 44, part 1.
+Message frame # 44 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 44, part 2.
+Received message from 2 to 3, frame # 45, part 1.
+Inform 5 and 2 of a collision.
+Received message from 3 to 4, frame # 38, part 2.
+Received message from 3 to 2, frame # 39, part 1.
+Inform 6 and 3 of a collision.
+Received message from 2 to 3, frame # 45, part 2.
+Received message from 2 to 3, frame # 45, part 1.
+Message frame # 45 from 2 to 3 sent successfully.
+Received message from 2 to 3, frame # 45, part 1.
+Received message from 3 to 2, frame # 39, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 2, frame # 39, part 1.
+Received message from 3 to 2, frame # 39, part 1.
+Message frame # 39 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 39, part 1.
+Received message from 3 to 2, frame # 39, part 2.
+Message frame # 39 from 3 to 2 sent successfully.
+Received message from 2 to 3, frame # 45, part 2.
+Received message from 3 to 1, frame # 40, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 1, frame # 40, part 2.
+Received message from 2 to 4, frame # 46, part 1.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 46, part 1.
+Received message from 3 to 4, frame # 41, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 4, frame # 41, part 1.
+Received message from 2 to 4, frame # 46, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 46, part 1.
+Received message from 3 to 4, frame # 41, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 4, frame # 41, part 1.
+Received message from 2 to 4, frame # 46, part 2.
+Inform 5 and 3 of a collision.
+Received message from 2 to 4, frame # 46, part 1.
+Received message from 2 to 4, frame # 46, part 1.
+Message frame # 46 from 2 to 4 sent successfully.
+Received message from 2 to 4, frame # 46, part 2.
+Received message from 2 to 1, frame # 47, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 1, frame # 47, part 2.
+Received message from 2 to 1, frame # 47, part 1.
+Message frame # 47 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 47, part 1.
+Received message from 2 to 1, frame # 47, part 2.
+Message frame # 47 from 2 to 1 sent successfully.
+Received message from 2 to 5, frame # 48, part 1.
+Received message from 2 to 5, frame # 48, part 2.
+Message frame # 48 from 2 to 5 sent successfully.
+Received message from 2 to 4, frame # 49, part 1.
+Received message from 2 to 4, frame # 49, part 2.
+Message frame # 49 from 2 to 4 sent successfully.
+Received message from 2 to 3, frame # 50, part 1.
+Received message from 2 to 3, frame # 50, part 2.
+Message frame # 50 from 2 to 3 sent successfully.
+Received message from 2 to 1, frame # 51, part 1.
+Received message from 2 to 1, frame # 51, part 2.
+Message frame # 51 from 2 to 1 sent successfully.
+Received message from 2 to 3, frame # 52, part 1.
+Received message from 2 to 3, frame # 52, part 2.
+Message frame # 52 from 2 to 3 sent successfully.
+Received message from 2 to 4, frame # 53, part 1.
+Received message from 3 to 4, frame # 41, part 2.
+Inform 6 and 2 of a collision.
+Received message from 3 to 4, frame # 41, part 1.
+Received message from 3 to 4, frame # 41, part 1.
+Message frame # 41 from 3 to 4 sent successfully.
+Received message from 2 to 4, frame # 53, part 2.
+Received message from 3 to 4, frame # 41, part 2.
+Inform 6 and 2 of a collision.
+Received message from 2 to 5, frame # 54, part 1.
+Received message from 3 to 2, frame # 42, part 1.
+Inform 6 and 2 of a collision.
+Received message from 3 to 2, frame # 42, part 1.
+Received message from 3 to 2, frame # 42, part 1.
+Message frame # 42 from 3 to 2 sent successfully.
+Received message from 3 to 2, frame # 42, part 2.
+Received message from 3 to 1, frame # 43, part 1.
+Inform 6 and 3 of a collision.
+Received message from 3 to 1, frame # 43, part 2.
+Received message from 3 to 1, frame # 43, part 1.
+Message frame # 43 from 3 to 1 sent successfully.
+Received message from 3 to 1, frame # 43, part 1.
+Received message from 3 to 1, frame # 43, part 2.
+Message frame # 43 from 3 to 1 sent successfully.
+Received message from 3 to 4, frame # 44, part 1.
+Received message from 3 to 4, frame # 44, part 2.
+Message frame # 44 from 3 to 4 sent successfully.
+Received message from 3 to 2, frame # 45, part 1.
+Received message from 3 to 2, frame # 45, part 2.
+Message frame # 45 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 46, part 1.
+Received message from 3 to 5, frame # 46, part 2.
+Message frame # 46 from 3 to 5 sent successfully.
+Received message from 3 to 2, frame # 47, part 1.
+Received message from 3 to 2, frame # 47, part 2.
+Message frame # 47 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 48, part 1.
+Received message from 3 to 5, frame # 48, part 2.
+Message frame # 48 from 3 to 5 sent successfully.
+Received message from 3 to 2, frame # 49, part 1.
+Received message from 3 to 2, frame # 49, part 2.
+Message frame # 49 from 3 to 2 sent successfully.
+Received message from 3 to 1, frame # 50, part 1.
+Received message from 3 to 1, frame # 50, part 2.
+Message frame # 50 from 3 to 1 sent successfully.
+Received message from 3 to 4, frame # 51, part 1.
+Received message from 3 to 4, frame # 51, part 2.
+Message frame # 51 from 3 to 4 sent successfully.
+Received message from 3 to 5, frame # 52, part 1.
+Received message from 3 to 5, frame # 52, part 2.
+Message frame # 52 from 3 to 5 sent successfully.
+Received message from 3 to 1, frame # 53, part 1.
+Received message from 3 to 1, frame # 53, part 2.
+Message frame # 53 from 3 to 1 sent successfully.
+Received message from 3 to 2, frame # 54, part 1.
+Received message from 3 to 2, frame # 54, part 2.
+Message frame # 54 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 55, part 1.
+Received message from 3 to 5, frame # 55, part 2.
+Message frame # 55 from 3 to 5 sent successfully.
+Received message from 3 to 1, frame # 56, part 1.
+Received message from 3 to 1, frame # 56, part 2.
+Message frame # 56 from 3 to 1 sent successfully.
+Received message from 3 to 5, frame # 57, part 1.
+Received message from 3 to 5, frame # 57, part 2.
+Message frame # 57 from 3 to 5 sent successfully.
+Received message from 3 to 2, frame # 58, part 1.
+Received message from 3 to 2, frame # 58, part 2.
+Message frame # 58 from 3 to 2 sent successfully.
+Received message from 3 to 4, frame # 59, part 1.
+Received message from 3 to 4, frame # 59, part 2.
+Message frame # 59 from 3 to 4 sent successfully.
+Received message from 3 to 1, frame # 60, part 1.
+Received message from 3 to 1, frame # 60, part 2.
+Message frame # 60 from 3 to 1 sent successfully.
+Received message from 3 to 5, frame # 61, part 1.
+Received message from 3 to 5, frame # 61, part 2.
+Message frame # 61 from 3 to 5 sent successfully.
+Received message from 3 to 2, frame # 62, part 1.
+Received message from 3 to 2, frame # 62, part 2.
+Message frame # 62 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 63, part 1.
+Received message from 3 to 5, frame # 63, part 2.
+Message frame # 63 from 3 to 5 sent successfully.
+Received message from 3 to 2, frame # 64, part 1.
+Received message from 3 to 2, frame # 64, part 2.
+Message frame # 64 from 3 to 2 sent successfully.
+Received message from 3 to 4, frame # 65, part 1.
+Received message from 3 to 4, frame # 65, part 2.
+Message frame # 65 from 3 to 4 sent successfully.
+Received message from 3 to 5, frame # 66, part 1.
+Received message from 3 to 5, frame # 66, part 2.
+Message frame # 66 from 3 to 5 sent successfully.
+Received message from 3 to 1, frame # 67, part 1.
+Received message from 3 to 1, frame # 67, part 2.
+Message frame # 67 from 3 to 1 sent successfully.
+Received message from 3 to 2, frame # 68, part 1.
+Received message from 3 to 2, frame # 68, part 2.
+Message frame # 68 from 3 to 2 sent successfully.
+Received message from 3 to 5, frame # 69, part 1.
+Received message from 3 to 5, frame # 69, part 2.
+Message frame # 69 from 3 to 5 sent successfully.
+Received message from 3 to 4, frame # 70, part 1.
+Received message from 3 to 4, frame # 70, part 2.
+Message frame # 70 from 3 to 4 sent successfully.
+Received message from 2 to 5, frame # 54, part 2.
+Received message from 2 to 5, frame # 54, part 1.
+Message frame # 54 from 2 to 5 sent successfully.
+Received message from 2 to 5, frame # 54, part 2.
+Received message from 2 to 1, frame # 55, part 1.
+Inform 5 and 2 of a collision.
+Received message from 2 to 1, frame # 55, part 2.
+Received message from 2 to 1, frame # 55, part 1.
+Message frame # 55 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 55, part 1.
+Received message from 2 to 1, frame # 55, part 2.
+Message frame # 55 from 2 to 1 sent successfully.
+Received message from 2 to 1, frame # 56, part 1.
+Received message from 2 to 1, frame # 56, part 2.
+Message frame # 56 from 2 to 1 sent successfully.
+Received message from 2 to 4, frame # 57, part 1.
+Received message from 2 to 4, frame # 57, part 2.
+Message frame # 57 from 2 to 4 sent successfully.
+Received message from 2 to 3, frame # 58, part 1.
+Received message from 2 to 3, frame # 58, part 2.
+Message frame # 58 from 2 to 3 sent successfully.
+Received message from 2 to 5, frame # 59, part 1.
+Received message from 2 to 5, frame # 59, part 2.
+Message frame # 59 from 2 to 5 sent successfully.
+Received message from 2 to 0, frame # 60, part 1.
+Received message from 2 to 0, frame # 60, part 2.
+Message frame # 60 from 2 to 0 sent successfully.
+Received message from 1 to 3, frame # 12, part 2.
+Received message from 1 to 4, frame # 13, part 1.
+Inform 4 and 1 of a collision.
+Received message from 1 to 4, frame # 13, part 2.
+Received message from 1 to 4, frame # 13, part 1.
+Message frame # 13 from 1 to 4 sent successfully.
+Received message from 1 to 4, frame # 13, part 1.
+Received message from 1 to 4, frame # 13, part 2.
+Message frame # 13 from 1 to 4 sent successfully.
+Received message from 1 to 2, frame # 14, part 1.
+Received message from 1 to 2, frame # 14, part 2.
+Message frame # 14 from 1 to 2 sent successfully.
+Received message from 1 to 3, frame # 15, part 1.
+Received message from 1 to 3, frame # 15, part 2.
+Message frame # 15 from 1 to 3 sent successfully.
+Received message from 1 to 5, frame # 16, part 1.
+Received message from 1 to 5, frame # 16, part 2.
+Message frame # 16 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 17, part 1.
+Received message from 1 to 3, frame # 17, part 2.
+Message frame # 17 from 1 to 3 sent successfully.
+Received message from 1 to 2, frame # 18, part 1.
+Received message from 1 to 2, frame # 18, part 2.
+Message frame # 18 from 1 to 2 sent successfully.
+Received message from 1 to 4, frame # 19, part 1.
+Received message from 1 to 4, frame # 19, part 2.
+Message frame # 19 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 20, part 1.
+Received message from 1 to 5, frame # 20, part 2.
+Message frame # 20 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 21, part 1.
+Received message from 1 to 3, frame # 21, part 2.
+Message frame # 21 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 22, part 1.
+Received message from 1 to 4, frame # 22, part 2.
+Message frame # 22 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 23, part 1.
+Received message from 1 to 5, frame # 23, part 2.
+Message frame # 23 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 24, part 1.
+Received message from 1 to 3, frame # 24, part 2.
+Message frame # 24 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 25, part 1.
+Received message from 1 to 4, frame # 25, part 2.
+Message frame # 25 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 26, part 1.
+Received message from 1 to 5, frame # 26, part 2.
+Message frame # 26 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 27, part 1.
+Received message from 1 to 3, frame # 27, part 2.
+Message frame # 27 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 28, part 1.
+Received message from 1 to 4, frame # 28, part 2.
+Message frame # 28 from 1 to 4 sent successfully.
+Received message from 1 to 3, frame # 29, part 1.
+Received message from 1 to 3, frame # 29, part 2.
+Message frame # 29 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 30, part 1.
+Received message from 1 to 4, frame # 30, part 2.
+Message frame # 30 from 1 to 4 sent successfully.
+Received message from 1 to 2, frame # 31, part 1.
+Received message from 1 to 2, frame # 31, part 2.
+Message frame # 31 from 1 to 2 sent successfully.
+Received message from 1 to 5, frame # 32, part 1.
+Received message from 1 to 5, frame # 32, part 2.
+Message frame # 32 from 1 to 5 sent successfully.
+Received message from 1 to 4, frame # 33, part 1.
+Received message from 1 to 4, frame # 33, part 2.
+Message frame # 33 from 1 to 4 sent successfully.
+Received message from 1 to 3, frame # 34, part 1.
+Received message from 1 to 3, frame # 34, part 2.
+Message frame # 34 from 1 to 3 sent successfully.
+Received message from 1 to 2, frame # 35, part 1.
+Received message from 1 to 2, frame # 35, part 2.
+Message frame # 35 from 1 to 2 sent successfully.
+Received message from 1 to 5, frame # 36, part 1.
+Received message from 1 to 5, frame # 36, part 2.
+Message frame # 36 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 37, part 1.
+Received message from 1 to 3, frame # 37, part 2.
+Message frame # 37 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 38, part 1.
+Received message from 1 to 4, frame # 38, part 2.
+Message frame # 38 from 1 to 4 sent successfully.
+Received message from 1 to 2, frame # 39, part 1.
+Received message from 1 to 2, frame # 39, part 2.
+Message frame # 39 from 1 to 2 sent successfully.
+Received message from 1 to 5, frame # 40, part 1.
+Received message from 1 to 5, frame # 40, part 2.
+Message frame # 40 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 41, part 1.
+Received message from 1 to 3, frame # 41, part 2.
+Message frame # 41 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 42, part 1.
+Received message from 1 to 4, frame # 42, part 2.
+Message frame # 42 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 43, part 1.
+Received message from 1 to 5, frame # 43, part 2.
+Message frame # 43 from 1 to 5 sent successfully.
+Received message from 1 to 3, frame # 44, part 1.
+Received message from 1 to 3, frame # 44, part 2.
+Message frame # 44 from 1 to 3 sent successfully.
+Received message from 1 to 2, frame # 45, part 1.
+Received message from 1 to 2, frame # 45, part 2.
+Message frame # 45 from 1 to 2 sent successfully.
+Received message from 1 to 3, frame # 46, part 1.
+Received message from 1 to 3, frame # 46, part 2.
+Message frame # 46 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 47, part 1.
+Received message from 1 to 4, frame # 47, part 2.
+Message frame # 47 from 1 to 4 sent successfully.
+Received message from 1 to 3, frame # 48, part 1.
+Received message from 1 to 3, frame # 48, part 2.
+Message frame # 48 from 1 to 3 sent successfully.
+Received message from 1 to 2, frame # 49, part 1.
+Received message from 1 to 2, frame # 49, part 2.
+Message frame # 49 from 1 to 2 sent successfully.
+Received message from 1 to 3, frame # 50, part 1.
+Received message from 1 to 3, frame # 50, part 2.
+Message frame # 50 from 1 to 3 sent successfully.
+Received message from 1 to 4, frame # 51, part 1.
+Received message from 1 to 4, frame # 51, part 2.
+Message frame # 51 from 1 to 4 sent successfully.
+Received message from 1 to 5, frame # 52, part 1.
+Received message from 1 to 5, frame # 52, part 2.
+Message frame # 52 from 1 to 5 sent successfully.
+Received message from 1 to 2, frame # 53, part 1.
+Received message from 1 to 2, frame # 53, part 2.
+Message frame # 53 from 1 to 2 sent successfully.
+Received message from 1 to 5, frame # 54, part 1.
+Received message from 1 to 5, frame # 54, part 2.
+Message frame # 54 from 1 to 5 sent successfully.
+Received message from 1 to 2, frame # 55, part 1.
+Received message from 1 to 2, frame # 55, part 2.
+Message frame # 55 from 1 to 2 sent successfully.
+Received message from 1 to 4, frame # 56, part 1.
+Received message from 1 to 4, frame # 56, part 2.
+Message frame # 56 from 1 to 4 sent successfully.
+Received message from 1 to 3, frame # 57, part 1.
+Received message from 1 to 3, frame # 57, part 2.
+Message frame # 57 from 1 to 3 sent successfully.
+Received message from 1 to 2, frame # 58, part 1.
+Received message from 1 to 2, frame # 58, part 2.
+Message frame # 58 from 1 to 2 sent successfully.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~ Client 1 ~~~~
+[vp1021@zeus New Folder]$ ./client localhost < client1.txt
+client: connecting to 127.0.0.1
+Client Number: current client count: 1, loop until client count: 3
+current client count: 2, loop until client count: 3
+current client count: 3, loop until client count: 3
+Sending part 1 of frame 0.
+Sending part 2 of frame 0.
+Client successfully sent frame 0.
+Sending part 1 of frame 1.
+Sending part 2 of frame 1.
+Client successfully sent frame 1.
+Sending part 1 of frame 2.
+Sending part 2 of frame 2.
+Client successfully sent frame 2.
+Sending part 1 of frame 3.
+Sending part 2 of frame 3.
+Client successfully sent frame 3.
+Sending part 1 of frame 4.
+Sending part 2 of frame 4.
+Client successfully sent frame 4.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 5.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 1600 microseconds.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client successfully sent frame 5.
+Sending part 1 of frame 6.
+Sending part 2 of frame 6.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 6.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1500 microseconds.
+Sending part 1 of frame 6.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 4700 microseconds.
+Sending part 1 of frame 6.
+Sending part 2 of frame 6.
+Client successfully sent frame 6.
+Sending part 1 of frame 7.
+Sending part 2 of frame 7.
+Client successfully sent frame 7.
+Sending part 1 of frame 8.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 8.
+Sending part 2 of frame 8.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 8.
+Sending part 2 of frame 8.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 3900 microseconds.
+Sending part 1 of frame 8.
+Sending part 2 of frame 8.
+Client successfully sent frame 8.
+Sending part 1 of frame 9.
+Sending part 2 of frame 9.
+Client successfully sent frame 9.
+Sending part 1 of frame 10.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 2800 microseconds.
+Sending part 1 of frame 10.
+Sending part 2 of frame 10.
+Client successfully sent frame 10.
+Sending part 1 of frame 11.
+Sending part 2 of frame 11.
+Client successfully sent frame 11.
+Sending part 1 of frame 12.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 12.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 12.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 12.
+Sending part 2 of frame 12.
+Client successfully sent frame 12.
+Sending part 1 of frame 13.
+Sending part 2 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 13.
+Sending part 2 of frame 13.
+Client successfully sent frame 13.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client successfully sent frame 14.
+Sending part 1 of frame 15.
+Sending part 2 of frame 15.
+Client successfully sent frame 15.
+Sending part 1 of frame 16.
+Sending part 2 of frame 16.
+Client successfully sent frame 16.
+Sending part 1 of frame 17.
+Sending part 2 of frame 17.
+Client successfully sent frame 17.
+Sending part 1 of frame 18.
+Sending part 2 of frame 18.
+Client successfully sent frame 18.
+Sending part 1 of frame 19.
+Sending part 2 of frame 19.
+Client successfully sent frame 19.
+Sending part 1 of frame 20.
+Sending part 2 of frame 20.
+Client successfully sent frame 20.
+Sending part 1 of frame 21.
+Sending part 2 of frame 21.
+Client successfully sent frame 21.
+Sending part 1 of frame 22.
+Sending part 2 of frame 22.
+Client successfully sent frame 22.
+Sending part 1 of frame 23.
+Sending part 2 of frame 23.
+Client successfully sent frame 23.
+Sending part 1 of frame 24.
+Sending part 2 of frame 24.
+Client successfully sent frame 24.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client successfully sent frame 25.
+Sending part 1 of frame 26.
+Sending part 2 of frame 26.
+Client successfully sent frame 26.
+Sending part 1 of frame 27.
+Sending part 2 of frame 27.
+Client successfully sent frame 27.
+Sending part 1 of frame 28.
+Sending part 2 of frame 28.
+Client successfully sent frame 28.
+Sending part 1 of frame 29.
+Sending part 2 of frame 29.
+Client successfully sent frame 29.
+Sending part 1 of frame 30.
+Sending part 2 of frame 30.
+Client successfully sent frame 30.
+Sending part 1 of frame 31.
+Sending part 2 of frame 31.
+Client successfully sent frame 31.
+Sending part 1 of frame 32.
+Sending part 2 of frame 32.
+Client successfully sent frame 32.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client successfully sent frame 33.
+Sending part 1 of frame 34.
+Sending part 2 of frame 34.
+Client successfully sent frame 34.
+Sending part 1 of frame 35.
+Sending part 2 of frame 35.
+Client successfully sent frame 35.
+Sending part 1 of frame 36.
+Sending part 2 of frame 36.
+Client successfully sent frame 36.
+Sending part 1 of frame 37.
+Sending part 2 of frame 37.
+Client successfully sent frame 37.
+Sending part 1 of frame 38.
+Sending part 2 of frame 38.
+Client successfully sent frame 38.
+Sending part 1 of frame 39.
+Sending part 2 of frame 39.
+Client successfully sent frame 39.
+Sending part 1 of frame 40.
+Sending part 2 of frame 40.
+Client successfully sent frame 40.
+Sending part 1 of frame 41.
+Sending part 2 of frame 41.
+Client successfully sent frame 41.
+Sending part 1 of frame 42.
+Sending part 2 of frame 42.
+Client successfully sent frame 42.
+Sending part 1 of frame 43.
+Sending part 2 of frame 43.
+Client successfully sent frame 43.
+Sending part 1 of frame 44.
+Sending part 2 of frame 44.
+Client successfully sent frame 44.
+Sending part 1 of frame 45.
+Sending part 2 of frame 45.
+Client successfully sent frame 45.
+Sending part 1 of frame 46.
+Sending part 2 of frame 46.
+Client successfully sent frame 46.
+Sending part 1 of frame 47.
+Sending part 2 of frame 47.
+Client successfully sent frame 47.
+Sending part 1 of frame 48.
+Sending part 2 of frame 48.
+Client successfully sent frame 48.
+Sending part 1 of frame 49.
+Sending part 2 of frame 49.
+Client successfully sent frame 49.
+Sending part 1 of frame 50.
+Sending part 2 of frame 50.
+Client successfully sent frame 50.
+Sending part 1 of frame 51.
+Sending part 2 of frame 51.
+Client successfully sent frame 51.
+Sending part 1 of frame 52.
+Sending part 2 of frame 52.
+Client successfully sent frame 52.
+Sending part 1 of frame 53.
+Sending part 2 of frame 53.
+Client successfully sent frame 53.
+Sending part 1 of frame 54.
+Sending part 2 of frame 54.
+Client successfully sent frame 54.
+Sending part 1 of frame 55.
+Sending part 2 of frame 55.
+Client successfully sent frame 55.
+Sending part 1 of frame 56.
+Sending part 2 of frame 56.
+Client successfully sent frame 56.
+Sending part 1 of frame 57.
+Sending part 2 of frame 57.
+Client successfully sent frame 57.
+Sending part 1 of frame 58.
+Sending part 2 of frame 58.
+Client successfully sent frame 58.
+[vp1021@zeus New Folder]$
+
+
+
+
+
+
+
+
+
+
+
+
+~~~~ Client 2 ~~~~
+[vp1021@zeus New Folder]$ ./client localhost < client2.txt
+client: connecting to 127.0.0.1
+Client Number: current client count: 2, loop until client count: 3
+current client count: 3, loop until client count: 3
+Sending part 1 of frame 0.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 0.
+Sending part 2 of frame 0.
+Client successfully sent frame 0.
+Sending part 1 of frame 1.
+Sending part 2 of frame 1.
+Client successfully sent frame 1.
+Sending part 1 of frame 2.
+Sending part 2 of frame 2.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 2.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1400 microseconds.
+Sending part 1 of frame 2.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 2.
+Sending part 2 of frame 2.
+Client successfully sent frame 2.
+Sending part 1 of frame 3.
+Sending part 2 of frame 3.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 3.
+Sending part 2 of frame 3.
+Client successfully sent frame 3.
+Sending part 1 of frame 4.
+Sending part 2 of frame 4.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 1300 microseconds.
+Sending part 1 of frame 4.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 4.
+Sending part 2 of frame 4.
+Client successfully sent frame 4.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client successfully sent frame 5.
+Sending part 1 of frame 6.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 6.
+Sending part 2 of frame 6.
+Client successfully sent frame 6.
+Sending part 1 of frame 7.
+Sending part 2 of frame 7.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 600 microseconds.
+Sending part 1 of frame 7.
+Sending part 2 of frame 7.
+Client successfully sent frame 7.
+Sending part 1 of frame 8.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 2500 microseconds.
+Sending part 1 of frame 8.
+Sending part 2 of frame 8.
+Client successfully sent frame 8.
+Sending part 1 of frame 9.
+Sending part 2 of frame 9.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 9.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 9.
+Sending part 2 of frame 9.
+Client successfully sent frame 9.
+Sending part 1 of frame 10.
+Sending part 2 of frame 10.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 10.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1500 microseconds.
+Sending part 1 of frame 10.
+Sending part 2 of frame 10.
+Client successfully sent frame 10.
+Sending part 1 of frame 11.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 11.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 600 microseconds.
+Sending part 1 of frame 11.
+Sending part 2 of frame 11.
+Client successfully sent frame 11.
+Sending part 1 of frame 12.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 12.
+Sending part 2 of frame 12.
+Client successfully sent frame 12.
+Sending part 1 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 3400 microseconds.
+Sending part 1 of frame 13.
+Sending part 2 of frame 13.
+Client successfully sent frame 13.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1900 microseconds.
+Sending part 1 of frame 14.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client successfully sent frame 14.
+Sending part 1 of frame 15.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 35900 microseconds.
+Sending part 1 of frame 15.
+Sending part 2 of frame 15.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 15.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 15.
+Sending part 2 of frame 15.
+Client successfully sent frame 15.
+Sending part 1 of frame 16.
+Sending part 2 of frame 16.
+Client successfully sent frame 16.
+Sending part 1 of frame 17.
+Sending part 2 of frame 17.
+Client successfully sent frame 17.
+Sending part 1 of frame 18.
+Sending part 2 of frame 18.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 18.
+Sending part 2 of frame 18.
+Client successfully sent frame 18.
+Sending part 1 of frame 19.
+Sending part 2 of frame 19.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 600 microseconds.
+Sending part 1 of frame 19.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 6900 microseconds.
+Sending part 1 of frame 19.
+Sending part 2 of frame 19.
+Client successfully sent frame 19.
+Sending part 1 of frame 20.
+Sending part 2 of frame 20.
+Client successfully sent frame 20.
+Sending part 1 of frame 21.
+Sending part 2 of frame 21.
+Client successfully sent frame 21.
+Sending part 1 of frame 22.
+Sending part 2 of frame 22.
+Client successfully sent frame 22.
+Sending part 1 of frame 23.
+Sending part 2 of frame 23.
+Client successfully sent frame 23.
+Sending part 1 of frame 24.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 24.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1600 microseconds.
+Sending part 1 of frame 24.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 24.
+Sending part 2 of frame 24.
+Client successfully sent frame 24.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1300 microseconds.
+Sending part 1 of frame 25.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 1200 microseconds.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client successfully sent frame 25.
+Sending part 1 of frame 26.
+Sending part 2 of frame 26.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 26.
+Sending part 2 of frame 26.
+Client successfully sent frame 26.
+Sending part 1 of frame 27.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 27.
+Sending part 2 of frame 27.
+Client successfully sent frame 27.
+Sending part 1 of frame 28.
+Sending part 2 of frame 28.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 28.
+Sending part 2 of frame 28.
+Client successfully sent frame 28.
+Sending part 1 of frame 29.
+Sending part 2 of frame 29.
+Client successfully sent frame 29.
+Sending part 1 of frame 30.
+Sending part 2 of frame 30.
+Client successfully sent frame 30.
+Sending part 1 of frame 31.
+Sending part 2 of frame 31.
+Client successfully sent frame 31.
+Sending part 1 of frame 32.
+Sending part 2 of frame 32.
+Client successfully sent frame 32.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client successfully sent frame 33.
+Sending part 1 of frame 34.
+Sending part 2 of frame 34.
+Client successfully sent frame 34.
+Sending part 1 of frame 35.
+Sending part 2 of frame 35.
+Client successfully sent frame 35.
+Sending part 1 of frame 36.
+Sending part 2 of frame 36.
+Client successfully sent frame 36.
+Sending part 1 of frame 37.
+Sending part 2 of frame 37.
+Client successfully sent frame 37.
+Sending part 1 of frame 38.
+Sending part 2 of frame 38.
+Client successfully sent frame 38.
+Sending part 1 of frame 39.
+Sending part 2 of frame 39.
+Client successfully sent frame 39.
+Sending part 1 of frame 40.
+Sending part 2 of frame 40.
+Client successfully sent frame 40.
+Sending part 1 of frame 41.
+Sending part 2 of frame 41.
+Client successfully sent frame 41.
+Sending part 1 of frame 42.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 500 microseconds.
+Sending part 1 of frame 42.
+Sending part 2 of frame 42.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 42.
+Sending part 2 of frame 42.
+Client successfully sent frame 42.
+Sending part 1 of frame 43.
+Sending part 2 of frame 43.
+Client successfully sent frame 43.
+Sending part 1 of frame 44.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 17200 microseconds.
+Sending part 1 of frame 44.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 700 microseconds.
+Sending part 1 of frame 44.
+Sending part 2 of frame 44.
+Client successfully sent frame 44.
+Sending part 1 of frame 45.
+Sending part 2 of frame 45.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 1000 microseconds.
+Sending part 1 of frame 45.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 3500 microseconds.
+Sending part 1 of frame 45.
+Sending part 2 of frame 45.
+Client successfully sent frame 45.
+Sending part 1 of frame 46.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 46.
+Sending part 2 of frame 46.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 600 microseconds.
+Sending part 1 of frame 46.
+Sending part 2 of frame 46.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 46.
+Client received collision notification on frame, BEBO value is currently at 4.
+Sleeping for 3300 microseconds.
+Sending part 1 of frame 46.
+Sending part 2 of frame 46.
+Client successfully sent frame 46.
+Sending part 1 of frame 47.
+Sending part 2 of frame 47.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 47.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 47.
+Sending part 2 of frame 47.
+Client successfully sent frame 47.
+Sending part 1 of frame 48.
+Sending part 2 of frame 48.
+Client successfully sent frame 48.
+Sending part 1 of frame 49.
+Sending part 2 of frame 49.
+Client successfully sent frame 49.
+Sending part 1 of frame 50.
+Sending part 2 of frame 50.
+Client successfully sent frame 50.
+Sending part 1 of frame 51.
+Sending part 2 of frame 51.
+Client successfully sent frame 51.
+Sending part 1 of frame 52.
+Sending part 2 of frame 52.
+Client successfully sent frame 52.
+Sending part 1 of frame 53.
+Sending part 2 of frame 53.
+Client successfully sent frame 53.
+Sending part 1 of frame 54.
+Sending part 2 of frame 54.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 54.
+Sending part 2 of frame 54.
+Client successfully sent frame 54.
+Sending part 1 of frame 55.
+Sending part 2 of frame 55.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 55.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 55.
+Sending part 2 of frame 55.
+Client successfully sent frame 55.
+Sending part 1 of frame 56.
+Sending part 2 of frame 56.
+Client successfully sent frame 56.
+Sending part 1 of frame 57.
+Sending part 2 of frame 57.
+Client successfully sent frame 57.
+Sending part 1 of frame 58.
+Sending part 2 of frame 58.
+Client successfully sent frame 58.
+Sending part 1 of frame 59.
+Sending part 2 of frame 59.
+Client successfully sent frame 59.
+Sending part 1 of frame 60.
+Sending part 2 of frame 60.
+Client successfully sent frame 60.
+[vp1021@zeus New Folder]$
+
+
+
+
+
+
+
+
+
+
+~~~~ Client 3 ~~~~
+[vp1021@zeus New Folder]$ ./client localhost < client3.txt
+client: connecting to 127.0.0.1
+Client Number: current client count: 3, loop until client count: 3
+Sending part 1 of frame 0.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 0.
+Sending part 2 of frame 0.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 700 microseconds.
+Sending part 1 of frame 0.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 800 microseconds.
+Sending part 1 of frame 0.
+Sending part 2 of frame 0.
+Client successfully sent frame 0.
+Sending part 1 of frame 1.
+Sending part 2 of frame 1.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 1.
+Sending part 2 of frame 1.
+Client successfully sent frame 1.
+Sending part 1 of frame 2.
+Sending part 2 of frame 2.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 2.
+Sending part 2 of frame 2.
+Client successfully sent frame 2.
+Sending part 1 of frame 3.
+Sending part 2 of frame 3.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 3.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 700 microseconds.
+Sending part 1 of frame 3.
+Sending part 2 of frame 3.
+Client successfully sent frame 3.
+Sending part 1 of frame 4.
+Sending part 2 of frame 4.
+Client successfully sent frame 4.
+Sending part 1 of frame 5.
+Sending part 2 of frame 5.
+Client successfully sent frame 5.
+Sending part 1 of frame 6.
+Sending part 2 of frame 6.
+Client successfully sent frame 6.
+Sending part 1 of frame 7.
+Sending part 2 of frame 7.
+Client successfully sent frame 7.
+Sending part 1 of frame 8.
+Sending part 2 of frame 8.
+Client successfully sent frame 8.
+Sending part 1 of frame 9.
+Sending part 2 of frame 9.
+Client successfully sent frame 9.
+Sending part 1 of frame 10.
+Sending part 2 of frame 10.
+Client successfully sent frame 10.
+Sending part 1 of frame 11.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 11.
+Sending part 2 of frame 11.
+Client successfully sent frame 11.
+Sending part 1 of frame 12.
+Sending part 2 of frame 12.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 500 microseconds.
+Sending part 1 of frame 12.
+Sending part 2 of frame 12.
+Client successfully sent frame 12.
+Sending part 1 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 6300 microseconds.
+Sending part 1 of frame 13.
+Sending part 2 of frame 13.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 13.
+Sending part 2 of frame 13.
+Client successfully sent frame 13.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 14.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 9600 microseconds.
+Sending part 1 of frame 14.
+Sending part 2 of frame 14.
+Client successfully sent frame 14.
+Sending part 1 of frame 15.
+Sending part 2 of frame 15.
+Client successfully sent frame 15.
+Sending part 1 of frame 16.
+Sending part 2 of frame 16.
+Client successfully sent frame 16.
+Sending part 1 of frame 17.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 17.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 17.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 17.
+Sending part 2 of frame 17.
+Client successfully sent frame 17.
+Sending part 1 of frame 18.
+Sending part 2 of frame 18.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 600 microseconds.
+Sending part 1 of frame 18.
+Sending part 2 of frame 18.
+Client successfully sent frame 18.
+Sending part 1 of frame 19.
+Sending part 2 of frame 19.
+Client successfully sent frame 19.
+Sending part 1 of frame 20.
+Sending part 2 of frame 20.
+Client successfully sent frame 20.
+Sending part 1 of frame 21.
+Sending part 2 of frame 21.
+Client successfully sent frame 21.
+Sending part 1 of frame 22.
+Sending part 2 of frame 22.
+Client successfully sent frame 22.
+Sending part 1 of frame 23.
+Sending part 2 of frame 23.
+Client successfully sent frame 23.
+Sending part 1 of frame 24.
+Sending part 2 of frame 24.
+Client successfully sent frame 24.
+Sending part 1 of frame 25.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 700 microseconds.
+Sending part 1 of frame 25.
+Sending part 2 of frame 25.
+Client successfully sent frame 25.
+Sending part 1 of frame 26.
+Sending part 2 of frame 26.
+Client successfully sent frame 26.
+Sending part 1 of frame 27.
+Sending part 2 of frame 27.
+Client successfully sent frame 27.
+Sending part 1 of frame 28.
+Sending part 2 of frame 28.
+Client successfully sent frame 28.
+Sending part 1 of frame 29.
+Sending part 2 of frame 29.
+Client successfully sent frame 29.
+Sending part 1 of frame 30.
+Sending part 2 of frame 30.
+Client successfully sent frame 30.
+Sending part 1 of frame 31.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 300 microseconds.
+Sending part 1 of frame 31.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 31.
+Sending part 2 of frame 31.
+Client successfully sent frame 31.
+Sending part 1 of frame 32.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 32.
+Sending part 2 of frame 32.
+Client successfully sent frame 32.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 500 microseconds.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 1100 microseconds.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 4.
+Sleeping for 3200 microseconds.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 5.
+Sleeping for 23000 microseconds.
+Sending part 1 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 6.
+Sleeping for 52500 microseconds.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 7.
+Sleeping for 19100 microseconds.
+Sending part 1 of frame 33.
+Client received collision notification on frame, BEBO value is currently at 8.
+Sleeping for 32300 microseconds.
+Sending part 1 of frame 33.
+Sending part 2 of frame 33.
+Client successfully sent frame 33.
+Sending part 1 of frame 34.
+Sending part 2 of frame 34.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 1200 microseconds.
+Sending part 1 of frame 34.
+Sending part 2 of frame 34.
+Client successfully sent frame 34.
+Sending part 1 of frame 35.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 35.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 35.
+Sending part 2 of frame 35.
+Client successfully sent frame 35.
+Sending part 1 of frame 36.
+Sending part 2 of frame 36.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 36.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 1300 microseconds.
+Sending part 1 of frame 36.
+Sending part 2 of frame 36.
+Client successfully sent frame 36.
+Sending part 1 of frame 37.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 2100 microseconds.
+Sending part 1 of frame 37.
+Sending part 2 of frame 37.
+Client successfully sent frame 37.
+Sending part 1 of frame 38.
+Sending part 2 of frame 38.
+Client successfully sent frame 38.
+Sending part 1 of frame 39.
+Sending part 2 of frame 39.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 39.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 500 microseconds.
+Sending part 1 of frame 39.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 39.
+Sending part 2 of frame 39.
+Client successfully sent frame 39.
+Sending part 1 of frame 40.
+Sending part 2 of frame 40.
+Client successfully sent frame 40.
+Sending part 1 of frame 41.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 1500 microseconds.
+Sending part 1 of frame 41.
+Sending part 2 of frame 41.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 41.
+Sending part 2 of frame 41.
+Client received collision notification on frame, BEBO value is currently at 3.
+Sleeping for 900 microseconds.
+Sending part 1 of frame 41.
+Client received collision notification on frame, BEBO value is currently at 4.
+Sleeping for 2400 microseconds.
+Sending part 1 of frame 41.
+Sending part 2 of frame 41.
+Client successfully sent frame 41.
+Sending part 1 of frame 42.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 200 microseconds.
+Sending part 1 of frame 42.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 2200 microseconds.
+Sending part 1 of frame 42.
+Sending part 2 of frame 42.
+Client successfully sent frame 42.
+Sending part 1 of frame 43.
+Sending part 2 of frame 43.
+Client received collision notification on frame, BEBO value is currently at 1.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 43.
+Client received collision notification on frame, BEBO value is currently at 2.
+Sleeping for 400 microseconds.
+Sending part 1 of frame 43.
+Sending part 2 of frame 43.
+Client successfully sent frame 43.
+Sending part 1 of frame 44.
+Sending part 2 of frame 44.
+Client successfully sent frame 44.
+Sending part 1 of frame 45.
+Sending part 2 of frame 45.
+Client successfully sent frame 45.
+Sending part 1 of frame 46.
+Sending part 2 of frame 46.
+Client successfully sent frame 46.
+Sending part 1 of frame 47.
+Sending part 2 of frame 47.
+Client successfully sent frame 47.
+Sending part 1 of frame 48.
+Sending part 2 of frame 48.
+Client successfully sent frame 48.
+Sending part 1 of frame 49.
+Sending part 2 of frame 49.
+Client successfully sent frame 49.
+Sending part 1 of frame 50.
+Sending part 2 of frame 50.
+Client successfully sent frame 50.
+Sending part 1 of frame 51.
+Sending part 2 of frame 51.
+Client successfully sent frame 51.
+Sending part 1 of frame 52.
+Sending part 2 of frame 52.
+Client successfully sent frame 52.
+Sending part 1 of frame 53.
+Sending part 2 of frame 53.
+Client successfully sent frame 53.
+Sending part 1 of frame 54.
+Sending part 2 of frame 54.
+Client successfully sent frame 54.
+Sending part 1 of frame 55.
+Sending part 2 of frame 55.
+Client successfully sent frame 55.
+Sending part 1 of frame 56.
+Sending part 2 of frame 56.
+Client successfully sent frame 56.
+Sending part 1 of frame 57.
+Sending part 2 of frame 57.
+Client successfully sent frame 57.
+Sending part 1 of frame 58.
+Sending part 2 of frame 58.
+Client successfully sent frame 58.
+Sending part 1 of frame 59.
+Sending part 2 of frame 59.
+Client successfully sent frame 59.
+Sending part 1 of frame 60.
+Sending part 2 of frame 60.
+Client successfully sent frame 60.
+Sending part 1 of frame 61.
+Sending part 2 of frame 61.
+Client successfully sent frame 61.
+Sending part 1 of frame 62.
+Sending part 2 of frame 62.
+Client successfully sent frame 62.
+Sending part 1 of frame 63.
+Sending part 2 of frame 63.
+Client successfully sent frame 63.
+Sending part 1 of frame 64.
+Sending part 2 of frame 64.
+Client successfully sent frame 64.
+Sending part 1 of frame 65.
+Sending part 2 of frame 65.
+Client successfully sent frame 65.
+Sending part 1 of frame 66.
+Sending part 2 of frame 66.
+Client successfully sent frame 66.
+Sending part 1 of frame 67.
+Sending part 2 of frame 67.
+Client successfully sent frame 67.
+Sending part 1 of frame 68.
+Sending part 2 of frame 68.
+Client successfully sent frame 68.
+Sending part 1 of frame 69.
+Sending part 2 of frame 69.
+Client successfully sent frame 69.
+Sending part 1 of frame 70.
+Sending part 2 of frame 70.
+Client successfully sent frame 70.
+[vp1021@zeus New Folder]$

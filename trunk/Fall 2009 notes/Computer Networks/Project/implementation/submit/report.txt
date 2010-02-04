@@ -1,0 +1,46 @@
+Project Report
+
+I have implemented everything except for the interrupts.  So sometimes the clients do not get the collision messages when they should.
+I tried fcntl and asynch I/O for a long time but I couldn't get either to work reliably.
+
+There are still quite a few collisions and the BEBO and networking code works perfectly, as well as the multithreaded server.
+
+I used TCP for the project rather than UDP.
+
+There are frames and SDP and CBP and everything.
+
+Time slots used was 100 microseconds.
+
+I have it set up for 3 clients but it works for more clients as well.  If you would like to change the # of clients please see client.c, it's
+a #define at the top called CLIENTS.
+
+
+
+The format of my input files are
+client_id
+message_destination_id
+message_destination_id
+message_destination_id
+message_destination_id
+message_destination_id
+message_destination_id
+message_destination_id
+message_destination_id
+....
+message_destination_id
+
+
+
+I.E.
+1
+2
+4
+2
+3
+4
+3
+
+
+
+Would assign the client the clientID 1 and send messages to 2, 4, 2, 3, 4, 3.  the frame # is automatically incremented.
+
