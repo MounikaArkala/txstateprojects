@@ -1,0 +1,141 @@
+
+
+Quinlan from Australia studied them first, designed C4.5
+- uses Gain Ratio
+- we will implement this in our assignment.
+
+GainRatio = Gain / Split
+eg. on splitting on Income we end up with 4 highs, 6 mediums and 4 lows.
+
+we can calculate split ratios before we start ...
+
+remember that a specific attribute can be used more than once (in separate branches.)
+
+for each level we calculate the gain ratio of all the available attributes, and we choose the one with the biggest gain ratio.
+
+-- Overfitting
+- problem - we may not be generalized enough, (accuracy = 1 - error rate)
+ so we have learned our training data too well, and may compromize recognizing future data.
+- we can't know our generalized accuracy because our future data is infinite.
+- maximizing accuracy on training data is not the way to maximizing generalization accuracy.
+- noise and outliers in your training data will be amplified the longer you go.
+"Perfect Tree" means it has 0% error on training data (no indication of future data performance.)
+
+overfitting is one of the most important concepts in classification!
+
+-- Avoiding Overfitting
+if we just use our regular 3 stopping criteria we will overfit.
+Ways to avoid:
+1) stop earlier
+2) come back
+- stopping earlier is called "prepruning"
+- "postpruning" : learn a full tree then cut some nodes backwards off the end of the branches.
+
+- postpruning has better accuracy (in prepruning you don't know when exactly to stop.)
+
+if you prune a node, and the accuracy improves, you keep the prune.  You stop pruning when the accuracy on the testing data starts to decrease.
+- use a separate testing data besides the training data.
+
+-- Classifier Accuracy Measures
+
+-- Confusion Matrix
+- can be used to get the accuracy - eg. (correct / total).
+
+-- Evaluating Accuracy of the Classifier or Predictor
+- Learner - (eg. c4.5 or ID3) can learn multiple models / classifiers.
+ in terms of decision tree, C4.5 can learn many different trees, each being a classifier.
+* how to evaluate a learner (eg. in our assignment - C4.5 vs. Random Tree)
+
+-- Holdout Method for evaluating accuracy of the classifier
+- break treaning set into 2 groups, eg. use training data to verify as well.
+
+ 
+-- Cross-Validation for evaluating accuracy of the classifier
+- (k-fold, where k=10 usually)
+- data labeling is expensive, try to reduce data usage from holdout method.
+1) train on the whole data set
+2) break the data set into 10 pieces
+3) get a0...a10 where ak is the 
+- stratified cross-validation - each partition should have roughly the same distribution of the class data.
+eg. if you have 100 data sets, 70 are yes and 30 are no, then your test set will be 10 each, with 7 yes and 3 no for each.
+- problem with stratification, eg. if you have to stratify something that isn't even, you might have to have (7,3) in some cases and (7,4) in other cases.
+- even in stratification you should choose the ones randomly (eg. choose positives randomly then choose negatives randomly.)
+
+**** USE CROSS_VALIDATION in assignment for Random tree vs. C4.5
+** prefer to use stratified cross-validation but not required.
+
+Coverage - % of instances that a rule can apply.  eg. males would be 
+Accuracy is % of correct ones of the ones that apply.  eg. "if you are a student then you get an F" is the rule, and only 1 person out of 5 fails, then accuracy is 20%.
+
+In rule learning we have a set of rules.  the whole set of rules is the model/classifier similar to the decision tree.
+an instance can be covered by multiple rules.  eg. (if age > 10) or (if male), what do we do if there are multiple ones that apply?
+
+1 way to perform conflict resolution:
+    - the first rule to apply 
+    - the one with the most attribute tests (since it likely won't match as many things, give it things it DOES match.)
+    
+a decision tree consists of many rules.
+-- Rule Extraction from a Decision Tree
+- basically each branch from root - leaf is a rule.
+- in a sense a tree is a rule learner.  but it's different in some ways.
+
+-- Rule Extraction from the Training Data
+- sequential covering algorithm - extracts rules directly from training data
+ learn a rule, remove all instances covered by this rule, add another rule that applies, etc.
+ does decision tree do sequential covering? nope, learns rules simultaneously.  that's the first difference in decision trees.  
+ 
+ 
+principle - we need formula that can balance the 2 criteria used in rule-learning: coverage and accuracy.
+- each rule will have several attributes.
+popular algorithms for rule-learning: FOIL, AQ, CN2, RIPPER.
+AQ & CN2 are the most popular ones.
+
+*we program decision trees, and then for clustering we program the clustering
+*C4.5 and ID3 both follow breadth-first when building tree?  it doesn't matter for the output.
+
+-- Terminology
+tuple, instance, example, observation - all the same thing
+- a rule covers an example
+- consistent - a rule covers many instances, 7 yes, 3 no, and the rule is a yes-rule, then those 3 negative instances are inconsistent.
+consistent/inconsistent just means agrees / disagrees with prediction.
+
+- general -> specific is top-down
+- specific -> general is bottom-up
+
+-- Trees vs. Rules
+decision tree algorithm is divide/conquer approach.
+most rule learners separate and conquer (though some conquer without separating, learning rules simultaneously.)
+
+
+for a set of rules you can't guarantee that they will be able to classify everything.  they don't necessarily cover the full decision space.
+
+- why are rule-learners and decision trees still used?
+ - they are human-comprehensible even though their accuracy may suffer a small amount compared to more advanced classifiers.
+ - this is important in some sitations, eg. expert system for medical diagnosis.
+ 
+
+Set-Cover
+- given a large number of subsets, set-cover is the minimum of subsets that cover everything.
+- NP-hard
+
+
+
+-- Bayesian Classificaiton: Why?
+* naive bayesian classifier - on exams not in homework.
+- efficient  
+- return optimal classifiers (under certain assumptions).
+
+-- Bayes theorem
+- X is a data sample (example / evidence) - just an instance w/ attributes (class label is unknown)
+H is a hypothesis that X belongs to class C.
+Classification is determining P(H | X), that is, probability that the hypothesis H holds given the observed data sample X.
+eg. P(Yes | X) = 0.8 and P(No | X) = 0.5  (don't have to add up to 1.)
+
+P(H) is prior probability, i.e. the initial probability.  P(No) = 0.2 if given 80 Yes and 20 No.
+This is independent of the P(H|X).
+- remember this is an estimation because we don't know the P(Yes) or P(No) for sure (because we'll never know all future data.)
+
+
+
+-- Towards a Naive Bayesian Classifier
+Let D be a training set of tuples and their associated class labels

@@ -29,27 +29,32 @@ def nothing(value):
 #therefore if the 'reserved word' RE matching "if" occurs before 'identifier' in the regexes list,
 # then the string "if" will be matched to 'reserved word' not 'identifier.'
 regexes = [['if|else|while|int|string|char|return|void', tokenize],               # keywords
-           ["\".*\"", sliteral],                                                  #string literal
+           ['".*"', sliteral],                                                  #string literal
            ["[0-9]+", iliteral],                                                  #integer literal
            ["[A-Za-z][A-Za-z0-9]*", identifier],                                  #identifier
            ["\+|\-|\*|\/|\<|\>|\<=|\>=|==|!=|=|\[|\]|\(|\)|{|}|\,|\;", tokenize], #operators, brackets/parens, punctuation
            ["/\*.*?\*/", nothing, re.DOTALL], ["\s+", nothing]                    #whitespace & comments get thrown away 
            ]
-for regex in regexes: regex[0] = re.compile(regex[0]) # compile the regular expressions to speed them up.
+temp = []
+for regex in regexes:
+    if len(regex) == 3:
+        temp.append((re.compile(regex[0], regex[2]), regex[1])) # compile the regular expressions to speed them up.
+    else:
+        temp.append((re.compile(regex[0]), regex[1]))
+regexes = temp
 
 input_txt = open('test.c').read()
 print "--------------------------"
 print input_txt
 print "--------------------------"
+line = 1
+column = 1
 while 1:
     if len(input_txt) == 0:
         break
     longest_match = None
     for regex in regexes:
-        if len(regex) == 3:
-            match = regex[0].match(input_txt, regex[2])
-        else:
-            match = regex[0].match(input_txt)
+        match = regex[0].match(input_txt)
         if match:
             if not longest_match:
                 longest_match = (match, regex)
@@ -57,11 +62,23 @@ while 1:
                 longest_match = (match, regex)
             
     if not longest_match:
+        if input_txt[0] == "\"":
+            print "\nERROR: UNTERMINATED STRING CONSTANT at Line %s Column %s!\n" % (line, column)
         print "token mismatch, consuming ", input_txt[0],"." # TODO: this should be an error.
         input_txt = input_txt[1:]
+        
         continue
     try:
         sys.stdout.write(longest_match[1][1](longest_match[0].group()))
     except:
         print "Something went wrong somewhere..."
     input_txt = input_txt[longest_match[0].end():] # truncate the just-found item from the list.
+    
+    #advance our column and line numbers.
+    temp = longest_match[0].group()
+    temp = temp.split("\n")
+    if len(temp) > 1:
+        line += len(temp) - 1
+        column = len(temp[-1]) + 1
+    else:
+        column += longest_match[0].end()
