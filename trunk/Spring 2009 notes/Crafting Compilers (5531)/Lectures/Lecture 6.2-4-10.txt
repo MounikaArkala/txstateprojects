@@ -1,0 +1,9 @@
+We apply thompson's construction to convert a RE to a NFA and then we convert the NFA to a DFA.
+
+to convert NFAs to DFAs we have to get rid of nondeterminism in the DFA.
+
+there are 3 kinds of nondeterminism:
+- empty transition
+
+
+

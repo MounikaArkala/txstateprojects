@@ -18,5 +18,7 @@ int main()
        }
        
        printf("The world is \\");
+       string a = " some string
+       ";
    }
 }
