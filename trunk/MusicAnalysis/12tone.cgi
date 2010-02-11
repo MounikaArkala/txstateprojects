@@ -60,6 +60,9 @@ def printPage():
             print "You entered an invalid note: %s" % i
             return
 
+    #print "Rownumerals: ", rownumerals, "<br />"
+   # print "inversion: ", inversion(rownumerals, 0),"<br />"
+    
     if len(set(rownumerals)) != 12:
         #TODO: figure out which notes they entered that were duplicates.
         print "You must enter exactly 12 UNIQUE notes."
@@ -67,9 +70,15 @@ def printPage():
         
     # store all primes by starting note
     allprimes = []
+    
+    #realign rownumerals...
+    labels = rownumerals[:]
+    shiftamt = rownumerals[0]
+    labels = [(i-shiftamt) % 12 for i in labels] 
+    
     for x in range(12):
-        allprimes.append(prime(rownumerals, x))
-
+        allprimes.append(prime(labels, x))
+    
 
     #display the primes table and the search fields.
     print "<br />12-Tone Table<br />"
@@ -79,6 +88,40 @@ def printPage():
     #pretty-print columns in correct order.
     print "    <td />"
     # add headers to row so it looks nice.
+    
+    
+    
+    
+    print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in labels])
+    print "  </tr>"
+    inv = inversion(rownumerals, 0)
+    invlabels = inversion(labels, 0)
+    for item in range(12):
+        print "  <tr class=\"primesrow\">"
+        # add headers to first and last column so it looks nice.
+        sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % invlabels[item]))
+        print pretty(allprimes[inv[item]], encoding)
+        sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % invlabels[item]))
+        print "  </tr>"
+        
+        
+    print "    <td />"
+    print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in labels ])
+    print "  </tr>"
+    print "</table>"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """
     print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
     print "  </tr>"
     for y in inversion(rownumerals, 0):
@@ -94,7 +137,7 @@ def printPage():
     print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
     print "  </tr>"
     print "</table>"
-
+    """
 
     print '<br />'
     print '<div id="searchborder">'
