@@ -13,7 +13,7 @@ Brief Summary:  This program generates 12-tone matrices, and allows the user
 to search through them for different specific primes/retrogrades or inversions of those.
 Expects a website as output and frontend.
 """
-import sys
+import sys, urllib
 from libs import structure
 from musiclib import *
 import cgi
@@ -29,6 +29,7 @@ def pretty(notes, encoding):
     return temp % tuple([encoding[i] for i in notes])
     
 def printPage():
+    global row, normal, absolute, wrap
     #this is a function so it can be "return'd" from.
     #it's a bit of an exploitation of a function for a control flow advantage but
     #I feel it greatly simplifies the code in this case.
@@ -81,7 +82,12 @@ def printPage():
     
 
     #display the primes table and the search fields.
-    print "<br />12-Tone Table<br />"
+    
+    #TODO: fix these links so they preserve queries.
+    if absolute:
+        print '<br />12-Tone Table (Absolute)'
+    else:
+        print '<br />12-Tone Table<br />'
     # primes table
     print "<table class=\"primes\">"
     print "  <tr class=\"primesrow\">"
@@ -89,56 +95,55 @@ def printPage():
     print "    <td />"
     # add headers to row so it looks nice.
     
-    
-    
-    
-    print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in labels])
-    print "  </tr>"
+        
     inv = inversion(rownumerals, 0)
     invlabels = inversion(labels, 0)
+    
+    
+    #if absolute we just assume that the first row of the table has the labels we want.
+    if absolute:
+        print "".join([("    <th class=\"primesheader\">I<sub>%s</sub></th>\n" % ((i - 3) % 12))for i in rownumerals]) # we normally assume A = 0 but in this case C = 0 so shift by 3.
+    else:
+        print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i) for i in labels])
+    
+    print "  </tr>"
+    
+    
     for item in range(12):
         print "  <tr class=\"primesrow\">"
         # add headers to first and last column so it looks nice.
-        sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % invlabels[item]))
+        if absolute:            
+            print "    <th class=\"primesheader\">P<sub>%s</sub></th>\n" % ((allprimes[inv[item]][0] - 3) % 12)
+        else:
+            print "    <th class=\"primesheader\">P%s</th>\n" % invlabels[item]
+            
         print pretty(allprimes[inv[item]], encoding)
-        sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % invlabels[item]))
+        if absolute:
+            print "    <th class=\"primesheader\">R<sub>%s</sub></th>\n" % ((allprimes[inv[item]][0] - 3) % 12)
+        else:
+            print "    <th class=\"primesheader\">R%s</th>\n" % invlabels[item]
         print "  </tr>"
         
         
     print "    <td />"
-    print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in labels ])
+    if absolute:
+        print "".join([("    <th class=\"primesheader\">RI<sub>%s</sub></th>\n" % ((i - 3) % 12))for i in rownumerals]) # we normally assume A = 0 but in this case C = 0 so shift by 3.
+    
+    else:
+        print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in labels])
     print "  </tr>"
     print "</table>"
     
+    if absolute:
+        print '<a href="./12tone.cgi?notes=%s&normal=on">Switch to %s is P0</a><br />' % (urllib.quote_plus(row), encoding[rownumerals[0]])
+    else:
+        print '<a href="./12tone.cgi?notes=%s&absolute=on">Switch to C is P0</a><br />' % urllib.quote_plus(row)
     
     
     
     
     
     
-    
-    
-    
-    
-    
-    """
-    print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i)for i in rownumerals])
-    print "  </tr>"
-    for y in inversion(rownumerals, 0):
-        print "  <tr class=\"primesrow\">"
-        # add headers to first and last column so it looks nice.
-        sys.stdout.write(("    <th class=\"primesheader\">P%s</th>\n" % y))
-        print pretty(allprimes[y], encoding)
-        sys.stdout.write(("    <th class=\"primesheader\">R%s</th>\n" % y))
-        print "  </tr>"
-        
-        
-    print "    <td />"
-    print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in rownumerals])
-    print "  </tr>"
-    print "</table>"
-    """
-
     print '<br />'
     print '<div id="searchborder">'
     print '<div id="searchheader">'
@@ -158,6 +163,11 @@ def printPage():
         print 'Allow Rotations (Wrap-Around) <input type="checkbox" name="wrap" id="wrap"><br />'
     print '</div> <!-- ~searchcheck -->'
     print '<input type="hidden" name="notes" id="notes" value="%s" />' % row
+    if absolute:
+        print '<input type="hidden" name="absolute" id="absolute" value="on" />'
+    if normal:
+        print '<input type="hidden" name="normal" id="normal" value="on" />'
+		
     print '</form>'
     print '</div> <!-- ~searchborder -->'
     print '<div id="primesdiv">'
@@ -240,16 +250,19 @@ structure.print_header(title="Twelve-Tone Music Analysis: Web-Based Analytical T
 #default values.    
 wrap = False
 order = False
+absolute = False
+normal = False
 series = [""]
-try:
+try:       
+    #The following items are not set unless the user has searched for something.
+        
     series = form.getvalue('series').strip()       
-    series = series.split()
+    series = series.split()    
     try:
         wrap = (form.getvalue('wrap').strip().lower() == "on")
     except:
         #it won't submit "wrap"'s value if it's not checked, so default it to False.
-        wrap = False
-        
+        wrap = False        
     try:
         order = (form.getvalue('order').strip().lower() == "on")
     except:
@@ -267,7 +280,16 @@ except:
 try:
     # Grab all input and get it ready for print function.
     row = form.getvalue('notes').strip().lower()
-    #temp = form.getvalue('notes').strip()
+    try:
+        absolute = (form.getvalue('absolute').strip().lower() == "on")
+    except:
+        absolute = False
+    try:
+        normal = (form.getvalue('normal').strip().lower() == "on")
+    except:
+        normal = False
+    
+    
 except:
     structure.print_body("12tone/main.html")
     page = "main"
