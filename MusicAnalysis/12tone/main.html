@@ -11,10 +11,16 @@ The HTML page for the initial search and information on how to use the 12tone pr
 -->
 
 <!-- search bar code -->
+<font color="red"> This tool is currently being modified, stuff might be broken for the next few hours</font>
 <form name="noteform" id="noteform" action="12tone.cgi" method="get">
 <label> Row: </label>
 <input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, document.noteform.submit);"/>
-<input class="SubmitButton" type="submit" onClick="return true;" value="Submit" />
+<input class="SubmitButton" type="submit" onClick="return true;" value="Submit" /><br /><br />
+<input class="CheckBox" type="checkbox" name="normal" id="normal"
+    onclick="if(this.checked) {document.noteform.absolute.checked=false;}" checked>1st note is P<sub>0</sub></input>
+<input type="checkbox" name="absolute" id="absolute"
+    onclick="if(this.checked) {document.noteform.normal.checked=false;}">C is P<sub>0</sub></input>
+
 </form>
 
 <br /> <br />
