@@ -1,57 +1,28 @@
-import re, sys
-tokendefs = {
-'ID':     251, 'INTCONST': 252, 'CHARCONST': 253, 'STRCONST': 254, #Major Stuff
-'if':     255, 'else':     256, 'while':     257, 'int':      258, #Keywords
-'string': 259, 'char':     260, 'return':    261, 'void':     262, #Keywords
-'+' : 263, '-' : 264, '*' : 265, '/' : 266, '<': 267, '>': 268,    #OPs
-'>=': 269, '<=': 270, '==': 271, '!=': 272, '=': 273,              #OPs
-'[' : 274, ']' : 275, '{' : 276, '}' : 277, '(': 278, ')': 279,    #Brackets/Parens
-',' : 280, ';' : 281                                               #Punctuation
-} 
-
-def tokenize(value): # used for operators, punctuation, parens/brackets, and keywords.
-    return str(tokendefs[value]) + "|"    
-def sliteral(value): #used for string literals
-    return str(tokendefs["STRCONST"]) + " " + value.strip("\"") + "|"
-def iliteral(value): #used for integer literals
-    return str(tokendefs["INTCONST"]) + " " + value + "|"
+import re, sys    
+from config import regexes, toks, debug 
+# This is the main file, it does the scanning and calls the callback function for whichever regular
+# expression had the longest match.  If no regular expressions matched then it will print an invalid
+# token error.
+ 
+try:
+    fname = sys.argv[1]
+except:
+    print 'Invalid Usage: type "python %s filename" (without quotes) to run program "filename".' % sys.argv[0]
+    print "example: python %s test.c" % sys.argv[0]
+    raise SystemExit
     
-
-def identifier(value): # used for identifiers
-    return str(tokendefs["ID"]) + " " + value + "|"
-def nothing(value):
-    return ""        
-    
-    
-#TODO: match string "   \" " correctly.
-        
-# The way precedence works is that the first RE has higher relevance.
-#therefore if the 'reserved word' RE matching "if" occurs before 'identifier' in the regexes list,
-# then the string "if" will be matched to 'reserved word' not 'identifier.'
-regexes = [['if|else|while|int|string|char|return|void', tokenize],               # keywords
-           ['".*"', sliteral],                                                  #string literal
-           ["[0-9]+", iliteral],                                                  #integer literal
-           ["[A-Za-z][A-Za-z0-9]*", identifier],                                  #identifier
-           ["\+|\-|\*|\/|\<|\>|\<=|\>=|==|!=|=|\[|\]|\(|\)|{|}|\,|\;", tokenize], #operators, brackets/parens, punctuation
-           ["/\*.*?\*/", nothing, re.DOTALL], ["\s+", nothing]                    #whitespace & comments get thrown away 
-           ]
-temp = []
-for regex in regexes:
-    if len(regex) == 3:
-        temp.append((re.compile(regex[0], regex[2]), regex[1])) # compile the regular expressions to speed them up.
-    else:
-        temp.append((re.compile(regex[0]), regex[1]))
-regexes = temp
-
-input_txt = open('test.c').read()
+input_txt = open(fname).read()
+print "this is your input text: "
 print "--------------------------"
 print input_txt
 print "--------------------------"
+#keep track of our line / column numbers.
 line = 1
 column = 1
-while 1:
-    if len(input_txt) == 0:
-        break
+while input_txt: #scan through all the input file.
+    #longest match stores the longest matching regular expression.
+    #we try to match all regexes and any time one matches longer than the others
+    # it supercedes the other regex.
     longest_match = None
     for regex in regexes:
         match = regex[0].match(input_txt)
@@ -60,18 +31,35 @@ while 1:
                 longest_match = (match, regex)
             elif match.end() > longest_match[0].end():
                 longest_match = (match, regex)
-            
+          
+    # there was no longest match, this is usually due to a syntax error in defining literals/constants.
     if not longest_match:
         if input_txt[0] == "\"":
             print "\nERROR: UNTERMINATED STRING CONSTANT at Line %s Column %s!\n" % (line, column)
-        print "token mismatch, consuming ", input_txt[0],"." # TODO: this should be an error.
+        elif input_txt[0] == "0":
+            print "\nERRROR: INVALID INT LITERAL at Line %s Column %s!\n" % (line, column)
+        elif input_txt[0] == "'":
+            print "\nERRROR: INVALID CHAR LITERAL at Line %s Column %s!\n" % (line, column)
+        else:
+            print "\nERROR: ILLEGAL TOKEN %s at Line %s Column %s!\n" % (input_txt[0], line, column)
+            
         input_txt = input_txt[1:]
-        
         continue
+        
     try:
-        sys.stdout.write(longest_match[1][1](longest_match[0].group()))
+        result = longest_match[1][1](longest_match[0].group())
+        if result:
+            if longest_match[0].group() == '/':                
+                #an unterminated comment will end up in here, because / and * are valid tokens unfortunately.
+                if input_txt[0:2] == "/*":
+                    print "\nERROR: UNTERMINATED COMMENT at Line %s Column %s!\n" % (line, column)
+                
+                input_txt = input_txt[2:]
+                continue
+                
+            print result
     except:
-        print "Something went wrong somewhere..."
+        print "\nSomething went wrong somewhere... crap.  not sure.\n"
     input_txt = input_txt[longest_match[0].end():] # truncate the just-found item from the list.
     
     #advance our column and line numbers.
