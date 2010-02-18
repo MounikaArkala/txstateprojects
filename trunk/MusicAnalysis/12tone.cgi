@@ -83,11 +83,17 @@ def printPage():
 
     #display the primes table and the search fields.
     
+    
+    print "<br />"
+    print "<table class='twelvetoneheader'><tr><td>"
     #TODO: fix these links so they preserve queries.
     if absolute:
-        print '<br />12-Tone Table (Absolute)'
+        print '12-Tone Matrix (Absolute)'
     else:
-        print '<br />12-Tone Table<br />'
+        print '12-Tone Matrix (Traditional)'
+    print "</td></tr></table>"
+        
+        
     # primes table
     print "<table class=\"primes\">"
     print "  <tr class=\"primesrow\">"
@@ -99,12 +105,11 @@ def printPage():
     inv = inversion(rownumerals, 0)
     invlabels = inversion(labels, 0)
     
-    
     #if absolute we just assume that the first row of the table has the labels we want.
     if absolute:
         print "".join([("    <th class=\"primesheader\">I<sub>%s</sub></th>\n" % ((i - 3) % 12))for i in rownumerals]) # we normally assume A = 0 but in this case C = 0 so shift by 3.
     else:
-        print "".join([("    <th class=\"primesheader\">I%s</th>\n" % i) for i in labels])
+        print "".join([("    <th class=\"primesheader\">I<sub>%s</sub></th>\n" % i) for i in labels])
     
     print "  </tr>"
     
@@ -115,13 +120,13 @@ def printPage():
         if absolute:            
             print "    <th class=\"primesheader\">P<sub>%s</sub></th>\n" % ((allprimes[inv[item]][0] - 3) % 12)
         else:
-            print "    <th class=\"primesheader\">P%s</th>\n" % invlabels[item]
+            print "    <th class=\"primesheader\">P<sub>%s</sub></th>\n" % invlabels[item]
             
         print pretty(allprimes[inv[item]], encoding)
         if absolute:
             print "    <th class=\"primesheader\">R<sub>%s</sub></th>\n" % ((allprimes[inv[item]][0] - 3) % 12)
         else:
-            print "    <th class=\"primesheader\">R%s</th>\n" % invlabels[item]
+            print "    <th class=\"primesheader\">R<sub>%s</sub></th>\n" % invlabels[item]
         print "  </tr>"
         
         
@@ -130,21 +135,38 @@ def printPage():
         print "".join([("    <th class=\"primesheader\">RI<sub>%s</sub></th>\n" % ((i - 3) % 12))for i in rownumerals]) # we normally assume A = 0 but in this case C = 0 so shift by 3.
     
     else:
-        print "".join([("    <th class=\"primesheader\">RI%s</th>\n" % i)for i in labels])
+        print "".join([("    <th class=\"primesheader\">RI<sub>%s</sub></th>\n" % i)for i in labels])
     print "  </tr>"
     print "</table>"
+    #encoding[rownumerals[0]]
     
+    #fake form just so it's easier for JS to find the notes
+    print '<form name="fakeForm1" id="fakeForm1">'
+    print "<table class='traditionalabsolute'><tr>"
+    #print out the checkboxes that will let them toggle between the different states.
     if absolute:
-        print '<a href="./12tone.cgi?notes=%s&normal=on">Switch to %s is P0</a><br />' % (urllib.quote_plus(row), encoding[rownumerals[0]])
+        print "<td>"
+        print ' <input class="CheckBox" type="checkbox" name="normal" id="normal" \
+                 onClick="if(this.checked) {document.fakeForm1.absolute.checked=false;window.location=\'./12tone.cgi?notes=%s&normal=on\';}">Traditional Matrix (first note=0)</input>\
+              ' % urllib.quote_plus(row)
+        print "</td><td>"
+        print '<input class="CheckBox" type="checkbox" name="absolute" id="absolute" checked onClick="if(!this.checked) {document.fakeForm1.absolute.checked=true;}">Absolute Matrix (C=0)</input>'
+        print "</td></tr>"
     else:
-        print '<a href="./12tone.cgi?notes=%s&absolute=on">Switch to C is P0</a><br />' % urllib.quote_plus(row)
+        print "<td>"
+        print '<input class="CheckBox" type="checkbox" name="normal" id="normal" checked onClick="if(!this.checked) {document.fakeForm1.normal.checked=true;}">Traditional Matrix (first note=0)</input>'
+        print "</td><td>"
+        print ' <input class="CheckBox" type="checkbox" name="absolute" id="absolute" \
+                 onClick="if(this.checked) {document.fakeForm1.normal.checked=false;window.location=\'./12tone.cgi?notes=%s&absolute=on\';}">Absolute Matrix (C=0)</input>\
+              ' % urllib.quote_plus(row)    
+        print "</td></tr>"
+    print "</table>"
+              
+    print '</form>'
     
     
     
-    
-    
-    
-    print '<br />'
+    print '<br /><br />'
     print '<div id="searchborder">'
     print '<div id="searchheader">'
     print 'Search table for a series of notes'
