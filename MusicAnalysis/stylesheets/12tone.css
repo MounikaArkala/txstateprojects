@@ -44,6 +44,29 @@ th.primesheader
   
 }
 
+/*Traditional/Absolute check boxes style table */
+table.traditionalabsolute
+{
+  border:solid;
+  border-width: 0px 1px 1px 1px;
+  margin: 0 auto;
+  /*font-family: monospace;*/
+  text-align: center;
+  background-color: #FFFFFF;
+  padding: 3px 5px 3px 5px;
+}
+
+table.twelvetoneheader
+{
+  border:solid;
+  border-width: 1px 1px 0px 1px;
+  margin: 0 auto;
+  /*font-family: monospace;*/
+  text-align: center;
+  background-color: #FFFFFF;
+  font-size: large;
+  padding: 3px 5px 3px 5px;
+}
 
 /******************
 * Search Results  *
@@ -77,6 +100,7 @@ td.primesresulty
 /******************
 *    Containers   *
 ******************/
+
 #searchborder
 {
   display:table;

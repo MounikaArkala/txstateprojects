@@ -1,0 +1,19 @@
+projects:
+
+#1
+    program that will autodelete stuff from a folder after 'x' days of existence,
+    or after 'x' days of accessing, it will prompt you and you can postpone it for x days
+    or you can delete it or cancel the autodelete forever for that file.
+    the prompt will have a 'postpone' button that is automatically selected,
+    a 'cancel' button that cancels the autodelete, and a check box that enables
+    a box that says "delete now".  There should be a main UI page where it will show
+    you the pending deletions and you can go ahead and do them there.
+    
+#2 thread title gp32x: An advanced alarm clock application idea
+
+
+#3. Monopoly game
+
+  - each square on the board is an object.
+  - it has an owner (Bank by default)
+  - calling "next" 
