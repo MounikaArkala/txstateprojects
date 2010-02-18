@@ -1,0 +1,42 @@
+Why is left-recursion problematic?
+- we can't be sure whether we're going to terminate or not, because
+one of the things in top-down parsing and in left-right we match
+our input symbol when we actually produce a terminal in the sentential form.
+but if you have a left-recursive production then it's possible you may
+re-apply the same rule forever and never produce a terminal.
+
+as an exam / homework question, you may have "here's left-recursion,.
+apply the algorithm we covered in class to eliminate it."
+
+
+in the case of
+Expr -> Expr + Term
+where we try to eliminate left-recursion, the portion we need to remove is actually "+ term" not just "Term".
+
+
+if you have a production where there are alternate rules for the same nonterminal,
+then you will have to do backtracking (there might be alternate paths.)
+
+how much "lookahead" do you need in a topdown parser if you don't want to do backtracking?
+- in general an arbitrarily large amount
+fortunately larg subsets of CFG's can be parsed w/o much lookahead.
+
+
+
+on the "picking the Right rule" example, you know rule 4 is a mismatch... but you can tell after you choose rule 1 if you look ahead 1 symbol and see the "a" you can know that for the next rule you should choose rule 2 not rule 3 next.
+
+- whenever he uses greek symbols in slide, that refers to a sequence of terminals/nonterminals, eg. nonterminals are upper-case english letters, terminals are lowercase letters, greek letters are sentential form (both terminal and nonterminal)
+
+which ones do we compute First sets for?
+- any ones that have alternate rules (in our example, 2&3 and 4&5.)
+
+
+
+We have to come up with a way to handle epsilon productions
+otherwise our expansion will not work well.
+however this doesn't completely fix the lookahead problem (not finding every branch.)
+
+epsilon-productiosn complicate definition
+- allows FOLLOW sets.
+ - confusing.
+ 
