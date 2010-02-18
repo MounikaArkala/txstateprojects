@@ -120,7 +120,7 @@ Set-Cover
 
 
 
--- Bayesian Classificaiton: Why?
+-- Bayesian Classification: Why?
 * naive bayesian classifier - on exams not in homework.
 - efficient  
 - return optimal classifiers (under certain assumptions).
@@ -138,4 +138,25 @@ This is independent of the P(H|X).
 
 
 -- Towards a Naive Bayesian Classifier
-Let D be a training set of tuples and their associated class labels
+Let D be a training set of tuples and their associated class labels, and each tuple is represented by an n-D attribute vector X = (x1, x2, ... xn)
+- m classes C1, .... Cm.
+
+-- Maximizing Joint Probability
+- joint probability: eg. P(Ci|X) = P(X1, X2, ...Xn | Ci)*P(Ci) where X1...Xn are the attributes of X.
+after applying conditional probability, 
+P(Ci)P(X1 | Ci)P(X2|Ci, X1), ....P(Xn|Ci, X1, X2... Xn)
+
+
+How do we apply this to bayesian?
+-- Conditional Independence
+- we assume attributes are all mutually independent.  this is the "naive" part.
+- attributes are not really independent, because if they were then they would have no useful information (essentially be noise.)
+- however by making this assumption we can simplify our equation to
+P(Ci)P(X1|Ci)P(X2|Ci)P(X3|Ci)...P(Xn|Ci)
+- this greatly reduces computation cost - only counts the class distribution.
+
+-- Naive Bayesian Classifier: An Example (slide)
+you just multiply up the probabilities after you calculate P(X|Ci) for each class.
+
+- we add a very small number if 0, for example if P(...) is 0, we make it a small number so that in the multiplication it won't end up zeroing out the result.
+

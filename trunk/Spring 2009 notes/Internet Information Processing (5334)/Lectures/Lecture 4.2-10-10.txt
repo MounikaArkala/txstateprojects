@@ -1,0 +1,2 @@
+talks about Perl a lot.
+"chop" - 

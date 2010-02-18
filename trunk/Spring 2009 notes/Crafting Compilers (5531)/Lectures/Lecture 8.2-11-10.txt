@@ -1,0 +1,11 @@
+bottom-up parsing: start at the leaves (the tokens you receive from your scanner) and see if the leaves match any RHS of the rules.
+if it does then whatever nonterminal appears on the LHS, you make the nonterminal the parent of the node.
+
+Bottom-up parsers are more intuitive for him, but for some people top-down seems more intuitive (because it's more aligned with the grammar definitions) but you don't really know what direction you're trying to go in top-down.
+
+remember we want to avoid creating error messages unless we get to a point where we can't continue anymore.
+- whenever we have a NT with multiple rules we may choose the wrong one, so we need to include backtracking.
+however backtracking is only triggered when we get a mismatch, so we can still get in a situation that never terminates.
+
+the issue is how we're scanning the input (whether we replace the leftmost or rightmost nonterminal) we're looking for input symbol that exists on the left side of the fringe.  if you're doing a rightmost derivation you'll start matching further down.  but we're scanning the input left-to-right.
+that's why left-recursion is problematic.

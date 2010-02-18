@@ -1,0 +1,116 @@
+
+-- Bayesian classifiers
+- there are a lot
+- naive:
+    - mutual independence assumption
+    - calculation of join probability can be made very simply
+    = can be optimal if assumption is true
+
+- there can be dependencies (eg. symptoms, patien family history, and disease may be interrelated)
+
+-- Bayesian Belief Networks
+- allows dependencies.  makes a heirarchy sort of, like a tree.  a node depends on its parents.
+each node needs a table with an exhaustive list of probabilities of all its parents.
+each column should add up to be 1.
+- with the network and the tables we can calculate the join probability.
+
+-- SVM
+- support vector machines - Vapnik - russian, moved from London to Princeton (city) at NEC Lab.
+
+there are lots of different classifiers.
+
+associative classification
+- based on frequent patterns.
+- apparently quite accurate
+
+-- k-Nearest Neighbor
+- one of the simplest but most accurate classifiers.
+- design issue: what "k" do we choose?
+- lazy learner
+
+
+-- Lazy vs. eager learning
+learner - learns decision trees based on training data.
+
+in an eager learning you base just on training data without seeing any future data.
+lazy - you learn when you see queries (future data).
+
+accuracy vs. efficiency (time efficiency = speed in this case (could also be space))
+- accuracy is preferential
+- lazy learners are more accurate.
+eager learning - learns a model ( a generalization) - like a pattern (like a line e.g.)
+for the lazy learner you need to keep all the data in mind.
+lazy learners are better for capturing locality - eager learners will let data get overwhelmed.
+
+kNN takes a few hours to implement, and it's more accurate than the decision trees.
+
+--Ensemble Methods: increasing the accuracy
+- mostly stuff that we're not covering.
+
+**Assignment
+- for cross-validation how do we do 10-fold cross-validation
+- in first iteration it will be 1 testing 9 training data, etc?
+10-fold cross-validation:
+partition training data into 10 partitions.  You take 1 as testing and use the other 9 as training data. then you take the average.
+"stratified" means that in each partition you want to keep the class distribution as close as possible to the class distribution over all data.
+we don't necessarily need to do that.
+
+- you can use the data mining package (he used Orange - a Python package)
+
+-- Done with Classification
+---- Clustering
+-- Clustering
+-Clusty
+  - group search engine results
+  - most search engines use a vector space model
+
+good clustering should produce
+- high intra-class similarity
+- low inter-class similarity
+
+- min-diameter - we want to find the smallest diameter of clusters we can (that means they're packed tightly) and we want to find a center
+that is as close to the center of the cluster as possible.
+
+to find the 3-center, one solution would be to try all possible pair of 3 items.
+but this would suck if we actually should have 4 clusters.  we'll only find 3 centers and they likely won't be centered in the clusters.
+
+-- Issues w/ clustering
+- scalability is always an issue in Data Mining tasks
+- ability to have arbitrarily-shaped (and comingled) clusters
+- have to be able to deal w/ noise / outliers
+- high dimensionality - many dimensions means data points tend to become equidistant as you add more dimensions.  in a high-dimensional space clustering is meaningless.  "subspace clustering" (2^n subspaces) where you have a subset of each dimension where you cluster - but it's unsolved until now, it is very useful. (?? is it solved?)
+** (optional) - is there possibly a solution to this? investigate: clustering meaningfully in highly-dimensional data.
+
+-- Cluster Analysis
+types of data in cluster analysis
+- partitioning methods are one of the common ones
+- hierarchical methods were used until subspace clustering came out.
+
+- similarity and dissimilarity are the same thing - for a pair of objects
+
+-- Types of data in Clustering Analysis
+- we need to be able to do some prerequisites before we can start learning about clustering
+- we should be able to calculate pairwise distances.
+interval-scaled : same as integers
+binary variables: 0, 1
+nominal: categorical attributes (eg. "color")
+ordinal: rank (eg. grade) - has an order.
+
+standardizing data - helps us compress data to a range better specified.
+
+-- Similarity and Dissimmilarity between objects
+Minkowski distance 
+if q = 1 it's the manhattan distance ( like traveling "blocks" in the city),
+if q = 2 it's the euclidean distance.
+
+properties: triangle inequality
+- cosine distance
+
+
+** if you need an extension, e-mail him and let him know how long you'll need.  He'll give extensions on an individual basis.
+
+
+
+
+
+

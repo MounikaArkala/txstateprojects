@@ -1,0 +1,54 @@
+Parsers don't capture lexical errors, mostly  just catch syntax errors.
+
+Additional Responsibilities:
+  - generate meaningful error messages
+  - detect errors quickly
+  - don't generate errors that aren't there.
+  - context-free grammars have the "viable prefix property".
+  
+Also,
+  - recover from errors.  eg. should we quit after the first error?
+  - recovering gracefully can be difficult
+  - error recovery is based on the programmer of the parser.
+  
+  - require minimal overhead in processing correct programs.
+  
+
+What the parser needs to do:
+- create an intermediate representation for later phases
+  - IR should be easy to work with and capture the necessary information.
+  - a second layer of abstraction on the program.
+  
+- we're going to be writing a parser for mC using "yacc".
+
+-- Specifying Syntax
+- every statement must be immediately followed by a ';'.
+    - what is a statement?
+        - LHS = RHS
+        - LHS is variable
+        - variable is an identifier
+        - RHS is an expression
+        - an expression is something that has operators, varaibles, constants, ....
+you'll realize that for every rule you'll have to come up with a lot of other rules,
+and 2) we'll need some formalism (ad-hoc won't work too well) and 3) a particular construct may be described in terms of other constructs
+(eg. a statement is described as variables / expressions, expressions are defined as ... etc.)
+
+- some regexes can't always describe the syntax of a programming language.
+- we can't count with RE's (eg. language of "equal # of a's and b's" we can't describe with RE's.)
+
+backus-naur form was designed for typewriters so they didn't have -> or italics, so they use <> for italics and ::= for arrow.
+
+
+Context-free grammar is a four-tuple.
+S is start symbol
+N is set of nonterminal symbols
+T is set of terminal symbols
+P is set of production rules of the form
+  - NT -> (T U NT)*
+  - a single non-terminal on the LHS
+      - do not need to look at neighboring symbols to do derivations
+      - hence, context-free!
+      
+you need to derive the grammar and make parse trees.
+
+next lecture we'll start on the expression / grammar derivation.
