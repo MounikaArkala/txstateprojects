@@ -17,9 +17,9 @@ The HTML page for the initial search and information on how to use the 12tone pr
 <input class="TextInput" type="text" name="notes" id="notes" size="60" onkeypress="handleEnter(event, document.noteform.submit);"/>
 <input class="SubmitButton" type="submit" onClick="return true;" value="Submit" /><br /><br />
 <input class="CheckBox" type="checkbox" name="normal" id="normal"
-    onclick="if(this.checked) {document.noteform.absolute.checked=false;}" checked>Traditional Matrix (first note=0)</input>
+    onclick="if(this.checked) {document.noteform.absolute.checked=false;} else {document.noteform.absolute.checked=true;}" checked>Traditional Matrix (first note = 0)</input>
 <input type="checkbox" name="absolute" id="absolute"
-    onclick="if(this.checked) {document.noteform.normal.checked=false;}">Absolute Matrix (C=0)</input>
+    onclick="if(this.checked) {document.noteform.normal.checked=false;} else {document.noteform.normal.checked=true;}">Absolute Matrix (C = 0)</input>
 
 </form>
 
