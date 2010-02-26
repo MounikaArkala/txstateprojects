@@ -144,11 +144,22 @@ def printPage():
     print '<form name="fakeForm1" id="fakeForm1">'
     print "<table class='traditionalabsolute'><tr>"
     #print out the checkboxes that will let them toggle between the different states.
+    
+    #build up a link with all our current parameters.
+    #TODO: rewrite this to use CGI variables to get the query string and just replace 'absolute' with 'normal' if it exists.
+    linkloc = "./12tone.cgi?notes=%s" % urllib.quote_plus(row)
+    if wrap:
+        linkloc += "&wrap=on"
+    if order:
+        linkloc += "&order=on"
+    if series:
+        linkloc += "&series=%s" % urllib.quote_plus(" ".join(series))
+    
     if absolute:
         print "<td>"
         print ' <input class="CheckBox" type="checkbox" name="normal" id="normal" \
-                 onClick="if(this.checked) {document.fakeForm1.absolute.checked=false;window.location=\'./12tone.cgi?notes=%s&normal=on\';}">Traditional Matrix (first note=0)</input>\
-              ' % urllib.quote_plus(row)
+                 onClick="if(this.checked) {document.fakeForm1.absolute.checked=false;window.location=\'%s&normal=on\';}">Traditional Matrix (First Note=0)</input>\
+              ' % linkloc 
         print "</td><td>"
         print '<input class="CheckBox" type="checkbox" name="absolute" id="absolute" checked onClick="if(!this.checked) {document.fakeForm1.absolute.checked=true;}">Absolute Matrix (C=0)</input>'
         print "</td></tr>"
@@ -157,8 +168,8 @@ def printPage():
         print '<input class="CheckBox" type="checkbox" name="normal" id="normal" checked onClick="if(!this.checked) {document.fakeForm1.normal.checked=true;}">Traditional Matrix (first note=0)</input>'
         print "</td><td>"
         print ' <input class="CheckBox" type="checkbox" name="absolute" id="absolute" \
-                 onClick="if(this.checked) {document.fakeForm1.normal.checked=false;window.location=\'./12tone.cgi?notes=%s&absolute=on\';}">Absolute Matrix (C=0)</input>\
-              ' % urllib.quote_plus(row)    
+                 onClick="if(this.checked) {document.fakeForm1.normal.checked=false;window.location=\'%s&absolute=on\';}">Absolute Matrix (C=0)</input>\
+              ' % linkloc
         print "</td></tr>"
     print "</table>"
               
@@ -213,10 +224,16 @@ def printPage():
     #display ordered search results.
     if page == "od":
         print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(notes, encoding) + "</table><br />"
-        result = detect(rownumerals, notes, wrap)
+        if absolute:
+            result = detect(labels, notes, wrap)
+            #since we use A = 0 we now need to shift so that the Prime values will be correct.
+            result = [(i[0], ((i[1] - 3) % 12), i[2], i[3]) for i in result]
+        else:
+            result = detect(rownumerals, notes, wrap)
+        
         if len(result) == 0:
             print "No occurrences were found!<br />"
-        for item in detect(rownumerals, notes, wrap):
+        for item in result:
             markupstr = '<table class="primesresult"><tr>%s</tr></table>'
             datastr = ""
             wraparound = 0
@@ -227,6 +244,11 @@ def printPage():
                     datastr += '<td class="primesresulty">' + encoding[item[3][i]] + '</td>'
                 else:
                     datastr += '<td class="primesresultn">' + encoding[item[3][i]] + '</td>'
+            
+            #primenum = item[1]
+            #if absolute:
+                #convert from rownumerals to labels prime#
+            #    temp = 
             print "%s %i <div>%s</div> <br />" % (item[0], item[1], markupstr % datastr)
 
         print "</div>"
@@ -237,7 +259,13 @@ def printPage():
     
         someresult = False
         for perm in all_perms(notes):
-            result = detect(rownumerals, perm, wrap)
+            if absolute:
+                #use labels rather than rownumerals because labels are corrected to be absolute.
+                result = detect(labels, perm, wrap)
+                #since we use A = 0 we now need to shift so that the Prime values will be correct.
+                result = [(i[0], ((i[1] - 3) % 12), i[2], i[3]) for i in result]
+            else:
+                result = detect(rownumerals, perm, wrap)
             if len(result) > 0:
                 someresult = True
                 print '<div id="occurrence">Occurrences of <table class="primesresult">' + pretty(perm, encoding) + "</table><br />"

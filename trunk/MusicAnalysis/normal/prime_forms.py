@@ -1,7 +1,14 @@
 # Trichords
 
-# Prime Form: (forte name, distinct forms)
+# Prime Form: (forte name, distinct forms, [normal name])
 forms = {\
+  #Intervals / Dyads
+  (0,1) : ("Undefined", 24, "Minor Second"),
+  (0,2) : ("Undefined", 24, "Major Second"),
+  (0,3) : ("Undefined", 24, "Minor Third"),
+  (0,4) : ("Undefined", 24, "Major Third"),
+  (0,5) : ("Undefined", 24, "Fourth"),
+  (0,6) : ("Undefined", 24, "Tritone"),  
   #Trichords
   (0,1,2) : ("3-1",  12),
   (0,1,3) : ("3-2",  24),
@@ -216,5 +223,16 @@ forms = {\
   (0,1,2,3,5,6,7,8,10) : ("9-9",   12),
   (0,1,2,3,4,6,7,9,10) : ("9-10",  12),
   (0,1,2,3,5,6,7,9,10) : ("9-11",  24),
-  (0,1,2,4,5,6,8,9,10) : ("9-12",   4)
+  (0,1,2,4,5,6,8,9,10) : ("9-12",   4),
+  #Decachords (?)
+  (0,1,2,3,4,6,7,8,9,10) : ("Undefined", 24),
+  (0,1,2,3,4,5,7,8,9,10) : ("Undefined", 24),
+  (0,1,2,3,4,5,6,8,9,10) : ("Undefined", 24),
+  (0,1,2,3,4,5,6,7,9,10) : ("Undefined", 24),
+  (0,1,2,3,4,5,6,7,8,10) : ("Undefined", 24),
+  (0,1,2,3,4,5,6,7,8,9 ) : ("Undefined", 24),
+  #Undecachords (?)
+  (0,1,2,3,4,5,6,7,8,9,10)    : ("Undefined", 24),
+  #Didecachords (?)
+  (0,1,2,3,4,5,6,7,8,9,10,11) : ("Undefined", 24)
 }
