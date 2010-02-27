@@ -150,7 +150,7 @@ while not exit:
                 prevpos = (-1, -1)
                 prevpressure = -1
                 if state == "drawing":
-                    drawevent = DrawEvent(time.time()-starttime, Brush(color, brushsize))
+                    drawevent = DrawEvent(time.time()-starttime, Brush(color, brushsize, 255))
                     end_event = False
                 
                     
