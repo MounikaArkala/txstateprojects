@@ -1,0 +1,1636 @@
+
+------------------------
+--   Classification   --
+------------------------
+
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+B
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+B
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+B
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+L
+B
+L
+L
+R
+R
+R
+L
+R
+R
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+L
+B
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+B
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+B
+R
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+L
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+B
+R
+L
+L
+R
+R
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+R
+R
+L
+L
+R
+R
+R
+L
+B
+R
+R
+R
+L
+L
+B
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+B
+R
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+L
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+R
+L
+L
+B
+R
+R
+L
+L
+R
+R
+R
+L
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+R
+L
+L
+B
+R
+R
+L
+L
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+R
+R
+L
+L
+B
+R
+R
+L
+L
+L
+B
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+R
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+B
+R
+L
+L
+R
+R
+R
+L
+B
+R
+R
+R
+L
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+R
+L
+L
+B
+R
+R
+L
+L
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+R
+L
+L
+L
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+B
+R
+L
+L
+L
+L
+B
+L
+L
+R
+R
+R
+L
+R
+R
+R
+R
+L
+R
+R
+R
+R
+B
+R
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+R
+R
+L
+L
+R
+R
+R
+L
+B
+R
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+R
+R
+L
+L
+B
+R
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+L
+L
+L
+B
+R
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+L
+B
+
+------------------------
+--   Decision Tree    --
+------------------------
+
+right-distance
+	1
+	left-distance
+		1
+		right-weight
+			1
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+		3
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	B
+				2
+					->	L
+				5
+					->	R
+				4
+					->	R
+			3
+				->	L
+			2
+				->	L
+			5
+				->	L
+			4
+				->	L
+		2
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	B
+				5
+					->	R
+				4
+					->	R
+			3
+				->	L
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	B
+			5
+				->	L
+			4
+				->	L
+		5
+		right-weight
+			1
+				->	L
+			3
+				->	L
+			2
+				->	L
+			5
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			4
+				->	L
+		4
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	B
+			3
+				->	L
+			2
+				->	L
+			5
+				->	L
+			4
+				->	L
+	3
+	left-distance
+		1
+		right-weight
+			1
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			3
+				->	R
+			2
+				->	R
+			5
+				->	R
+			4
+				->	R
+		3
+		right-weight
+			1
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+		2
+		right-weight
+			1
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	R
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			5
+				->	R
+			4
+				->	R
+		5
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	R
+				5
+					->	R
+				4
+					->	R
+			3
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	B
+				4
+					->	L
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	R
+			5
+				->	L
+			4
+				->	L
+		4
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	R
+				5
+					->	R
+				4
+					->	R
+			3
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	B
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	L
+				5
+					->	R
+				4
+					->	R
+			5
+				->	L
+			4
+				->	L
+	2
+	left-distance
+		1
+		right-weight
+			1
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			3
+				->	R
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			5
+				->	R
+			4
+				->	R
+		3
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	R
+				5
+					->	R
+				4
+					->	R
+			3
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	L
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	B
+				2
+					->	L
+				5
+					->	R
+				4
+					->	R
+			5
+				->	L
+			4
+				->	L
+		2
+		right-weight
+			1
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+		5
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	L
+				5
+					->	R
+				4
+					->	R
+			3
+				->	L
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	B
+				4
+					->	L
+			5
+				->	L
+			4
+				->	L
+		4
+		left-weight
+			1
+			right-weight
+				1
+					->	L
+				3
+					->	R
+				2
+					->	B
+				5
+					->	R
+				4
+					->	R
+			3
+				->	L
+			2
+			right-weight
+				1
+					->	L
+				3
+					->	L
+				2
+					->	L
+				5
+					->	R
+				4
+					->	B
+			5
+				->	L
+			4
+				->	L
+	5
+	right-weight
+		1
+		left-distance
+			1
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			5
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+		3
+		left-distance
+			1
+				->	R
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+		2
+		left-distance
+			1
+				->	R
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+		5
+		left-distance
+			1
+				->	R
+			3
+				->	R
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+			4
+				->	R
+		4
+		left-distance
+			1
+				->	R
+			3
+				->	R
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+	4
+	right-weight
+		1
+		left-distance
+			1
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+			5
+				->	L
+			4
+			left-weight
+				1
+					->	B
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+		3
+		left-distance
+			1
+				->	R
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	B
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+		2
+		left-distance
+			1
+				->	R
+			3
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			2
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	L
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	L
+				2
+					->	B
+				5
+					->	L
+				4
+					->	L
+		5
+		left-distance
+			1
+				->	R
+			3
+				->	R
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	B
+				4
+					->	R
+		4
+		left-distance
+			1
+				->	R
+			3
+				->	R
+			2
+				->	R
+			5
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	L
+			4
+			left-weight
+				1
+					->	R
+				3
+					->	R
+				2
+					->	R
+				5
+					->	L
+				4
+					->	B

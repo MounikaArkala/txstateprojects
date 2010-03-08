@@ -152,6 +152,101 @@ def calc_forte(candidates):
                                 
         return old_candidates[0]
     #hopefully we never get here.
+    
+    
+
+def getPrime(candidate):  # get the prime form of an input.
+    prime1 = [0]
+    for item in candidate[1:]:
+        prime1.append((item - candidate[0]) % 12)
+    
+    temp = [i for i in prime1] # copy it
+    temp.reverse()
+    prime2 = [0]
+    for item in temp[1:]:
+        prime2.append((temp[0] - item) % 12)
+        
+    if debug:
+        print "prime candidate 1: ", prime1, "<br />"
+        print "Prime candidate 2: ", prime2, "<br />"
+    
+    prime = prime1#compare pairwise and choose whichever one is packed more to the left.
+    for i, item in enumerate(prime1):
+        if prime2[i] < item:
+            prime = prime2
+            break
+        elif prime2[i] > item:
+            break
+    return prime
+    
+    
+     
+def printPrime(orig, prime, encoding, header): #output a prime's information.
+    temp = None
+    try:
+        temp = prime_forms.forms[tuple(prime)]
+    except:
+        print "<h2> header </h2>"
+        print "Normal Form: ", pretty(orig, encoding), "<br />"
+        print tuple(prime), "is the prime form. <br /> "
+        print "this prime form was not found in the prime forms list.<br />"
+        
+    if temp != None:
+    
+        print "<table class='primes'>"
+        print "<tr class='primes'><th class='primes' colspan=2>%s</th> </tr>" % header
+        print "<tr class='primes'><td class='primes'>Normal Form</td><td class='primes2'>", pretty(orig, encoding), "</td></tr>"
+        print "<tr class='primes'><td class='primes'>Prime Form</td><td class='primes2'>%s</td></tr>" % " ".join([str(i) for i in prime])
+        print "<tr class='primes'><td class='primes'>Forte Name</td><td class='primes2'>%s</td></tr>" % temp[0]
+        print "<tr class='primes'><td class='primes'>Distinct Forms</td><td class='primes2'>%s</td></tr>" % temp[1]
+        iv = []
+        for i in vector(prime):
+            if i >= 10:
+                i -= 10
+                try:
+                    iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i])
+                except:
+                    iv.append(' ' + str(i+10) + ' ')
+            else:
+                iv.append(str(i))
+        print "<tr class='primes'><td class='primes'>Interval Vector</td><td class='primes2'>%s</td></tr>" % "".join(iv)
+        print "</table>"
+    #if debug:
+    #    print "<hr />"
+    #else:
+    #    print "<br />"
+     
+     
+"""
+ def printPrime(orig, prime, encoding):
+    print "<table class='primestable'>"
+    print "<tr><td>Normal Form</td><td>", pretty(orig, encoding), "</td></tr>"
+    try:
+        temp = prime_forms.forms[tuple(prime)]
+        print "Prime Form: %s<br />" % " ".join([str(i) for i in prime])
+        print "Forte Name: %s<br />" % temp[0]
+        print "Distinct Forms: %s<br />" % temp[1]
+        iv = []
+        for i in vector(prime):
+            if i >= 10:
+                i -= 10
+                try:
+                    iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i])
+                except:
+                    iv.append(' ' + str(i+10) + ' ')
+            else:
+                iv.append(str(i))
+        print "Interval Vector: %s<br />" % "".join(iv)
+        
+    except:
+        print tuple(prime), "is the prime form.  "
+        print "this prime form was not found in the prime forms list."
+    
+    if debug:
+        print "<hr />"
+    else:
+        print "<br />"
+"""
      
 def printPage(notes):
     if len(notes) == 0:
@@ -174,8 +269,9 @@ def printPage(notes):
         print '<h2 class="error">Not enough notes for calculating normal form!  Enter at least 2 unique notes.</h2>'
         return
       
-    print "Input: "
-    print pretty(notes, encoding)
+    if debug:
+        print "Input: "
+        print pretty(notes, encoding)
     noteslen = len(notes)
     notes = list(set(temp))
     if len(notes) < noteslen:
@@ -215,113 +311,17 @@ def printPage(notes):
         print '<hr />'
         
         
-        
-        
-        
-        
     #if rahn and forte are different, display both, otherwise just display 1.
+    rprime = getPrime(rahn)
+    fprime = getPrime(forte)
     
-    print "<h2>Rahn</h2>"
-    print "Normal Form : ", pretty(rahn, encoding), "<br />"
-    
-    prime1 = [0]
-    for item in rahn[1:]:
-        prime1.append((item - rahn[0]) % 12)
-    
-    temp = [i for i in prime1] # copy it
-    temp.reverse()
-    prime2 = [0]
-    for item in temp[1:]:
-        prime2.append((temp[0] - item) % 12)
-        
-    if debug:
-        print "prime candidate 1: ", prime1, "<br />"
-        print "Prime candidate 2: ", prime2, "<br />"
-    
-    prime = prime1
-    for i, item in enumerate(prime1):
-        if prime2[i] < item:
-            prime = prime2
-            break
-        elif prime2[i] > item:
-            break
-            
-        #TODO make the rahn and forte codes not so duplicated.
-    try:
-        temp = prime_forms.forms[tuple(prime)]
-        print "Prime Form: %s<br />" % " ".join([str(i) for i in prime])
-        print "Forte Name: %s<br />" % temp[0]
-        print "Distinct Forms: %s<br />" % temp[1]
-        iv = []
-        for i in vector(prime):
-            if i >= 10:
-                i -= 10
-                try:
-                    iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i])
-                except:
-                    iv.append(' ' + str(i+10) + ' ')
-            else:
-                iv.append(str(i))
-        print "Interval Vector: %s<br />" % "".join(iv)
-        
-    except:
-        print tuple(prime), "is the prime form.  "
-        print "this prime form was not found in the prime forms list."
-    
-    if debug:
-        print "<hr />"
+    if rprime == fprime: #they're combined!
+        printPrime(rahn, rprime, encoding, "Rahn/Forte")
     else:
+        printPrime(rahn, rprime, encoding, "Rahn")
         print "<br />"
-    print "<h2>Forte</h2>"   
-    print "Normal Order: ", pretty(forte, encoding), "<br />"
-    
-    prime1 = []
-    for item in forte:
-        prime1.append((item - forte[0]) % 12)
-    
-    temp = [i for i in prime1] # copy it
-    temp.reverse()
-    prime2 = [0]
-    for item in temp[1:]:
-        prime2.append((temp[0] - item) % 12)
-    if debug:
-        print "prime candidate 1: ", prime1, "<br />"
-        print "Prime candidate 2: ", prime2, "<br />"
+        printPrime(forte, fprime, encoding, "Forte")
         
-    prime = prime1
-    for i, item in enumerate(prime1):
-        if prime2[i] < item:
-            prime = prime2
-            break
-        elif prime2[i] > item:
-            break
-    
-    
-    
-    try:
-        temp = prime_forms.forms[tuple(prime)]
-        print "Prime Form: %s<br />" % " ".join([str(i) for i in prime])
-        print "Forte Name: %s<br />" % temp[0]
-        print "Distinct Forms: %s<br />" % temp[1]
-        iv = []
-        for i in vector(prime):
-            if i >= 10:
-                i -= 10
-                try:
-                    iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i])
-                except:
-                    iv.append(' ' + str(i+10) + ' ')
-            else:
-                iv.append(str(i))
-        print "Interval Vector: %s<br />" % "".join(iv)
-        
-    except:
-        print tuple(prime), "is the prime form.  "
-        print "this prime form was not found in the prime forms list."
-    
-    if debug:
-        print '<hr />'
-    
     
     
     
