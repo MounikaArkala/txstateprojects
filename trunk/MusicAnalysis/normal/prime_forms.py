@@ -234,5 +234,13 @@ forms = {\
   #Undecachords (?)
   (0,1,2,3,4,5,6,7,8,9,10)    : ("Undefined", 24),
   #Didecachords (?)
-  (0,1,2,3,4,5,6,7,8,9,10,11) : ("Undefined", 24)
+  (0,1,2,3,4,5,6,7,8,9,10,11) : ("Undefined", 24),
+  
+  #Alternate chords (where Rahn / Forte differ - must add Forte versions...)
+  (0,1,3,7,8)        : ("5-20 (alt)",  24),
+  (0,1,3,6,8,9)      : ("6-Z29 (alt)", 12),
+  (0,1,3,5,8,9)      : ("6-31 (alt)",  24),
+  (0,1,2,4,7,8,9)    : ("7-20 (alt)",  24),
+  (0,1,2,4,5,7,9,10) : ("8-26 (alt)",  12)
+  
 }

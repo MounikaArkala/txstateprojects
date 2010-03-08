@@ -1,0 +1,360 @@
+====================================================================
+Dataset: adult+stretch
+there are 20 data.
+each example includes 5 attributes:
+
+color, size, act, age, inflated
+
+The class is: inflated
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.9
+Height: 3.2
+
+
+Run 2 of Random Tree...
+Accuracy: 1.0
+Height: 3.6
+
+
+Run 3 of Random Tree...
+Accuracy: 1.0
+Height: 3.8
+
+
+Total Accuracy Avg (over all 3 runs):  0.966666666667
+Total Height  Avg  (over all 3 runs):  3.53333333333
+
+Run 1 of C45 Tree...
+Height: 2.0
+Accuracy: 1.0
+
+
+
+
+
+
+====================================================================
+Dataset: adult-stretch
+there are 20 data.
+each example includes 5 attributes:
+
+color, size, act, age, inflated
+
+The class is: inflated
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 1.0
+Height: 3.2
+
+
+Run 2 of Random Tree...
+Accuracy: 0.9
+Height: 3.4
+
+
+Run 3 of Random Tree...
+Accuracy: 1.0
+Height: 3.9
+
+
+Total Accuracy Avg (over all 3 runs):  0.966666666667
+Total Height  Avg  (over all 3 runs):  3.5
+
+Run 1 of C45 Tree...
+Height: 2.0
+Accuracy: 1.0
+
+
+
+
+
+
+====================================================================
+Dataset: balance
+there are 625 data.
+each example includes 5 attributes:
+
+Left-Weight, Left-Distance, Right-Weight, Right-Distance, Balance
+
+The class is: Balance
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.262903225806
+Height: 4.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.246774193548
+Height: 4.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.251612903226
+Height: 4.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.25376344086
+Total Height  Avg  (over all 3 runs):  4.0
+
+Run 1 of C45 Tree...
+Height: 3.0
+Accuracy: 0.643164362519
+
+
+
+
+
+
+====================================================================
+Dataset: car
+there are 1728 data.
+each example includes 7 attributes:
+
+Buying Price, Maintenance Price, Doors, Capacity, Trunk Size, Safety, Desirability
+
+The class is: Desirability
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.523709503966
+Height: 6.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.495409329211
+Height: 6.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.516678989111
+Height: 6.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.511932607429
+Total Height  Avg  (over all 3 runs):  6.0
+
+Run 1 of C45 Tree...
+Height: 5.0
+Accuracy: 0.924754671327
+
+
+
+
+
+
+====================================================================
+Dataset: connect-4
+there are 67557 data.
+each example includes 43 attributes:
+
+a1, a2, a3, a4, a5, a6, b1, b2, b3, b4, b5, b6, c1, c2, c3, c4, c5, c6, d1, d2, d3, d4, d5, d6, e1, e2, e3, e4, e5, e6, f1, f2, f3, f4, f5, f6, g1, g2, g3, g4, g5, g6, X Wins
+
+The class is: X Wins
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.449996009797
+Height: 41.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.443453010927
+Height: 41.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.444296768966
+Height: 41.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.44591526323
+Total Height  Avg  (over all 3 runs):  41.0
+
+Run 1 of C45 Tree...
+Height: 20.8
+Accuracy: 0.809390673487
+
+
+
+
+
+
+====================================================================
+Dataset: kr-vs-kp
+there are 3196 data.
+each example includes 37 attributes:
+
+bkblk, bknwy, bkon8, bkona, bkspr, bkxbq, bkxcr, bkxwp, blxwp, bxqsq, cntxt, dsopp, dwipd, hdchk, katri, mulch, qxmsq, r2ar8, reskd, reskr, rimmx, rkxwp, rxmsq, simpl, skach, skewr, skrxp, spcop, stlmt, thrsk, wkcti, wkna8, wknck, wkovl, wkpos, wtoeg, Win State
+
+The class is: Win State
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.581480211599
+Height: 36.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.652789968652
+Height: 36.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.569877547022
+Height: 36.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.601382575758
+Total Height  Avg  (over all 3 runs):  36.0
+
+Run 1 of C45 Tree...
+Height: 12.6
+Accuracy: 0.994372061129
+
+
+
+
+
+
+====================================================================
+Dataset: nursery
+there are 12960 data.
+each example includes 9 attributes:
+
+parents, has_nurs, form, children, housing, finance, social, health, daycare
+
+The class is: daycare
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.408262548263
+Height: 8.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.351274131274
+Height: 8.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.361081081081
+Height: 8.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.373539253539
+Total Height  Avg  (over all 3 runs):  8.0
+
+Run 1 of C45 Tree...
+Height: 7.0
+Accuracy: 0.970216049383
+
+
+
+
+
+
+====================================================================
+Dataset: tic-tac-toe
+there are 958 data.
+each example includes 10 attributes:
+
+top-left, top-middle, top-right, middle-left, middle-middle, middle-right, bottom-left, bottom-middle, bottom-right, X Wins
+
+The class is: X Wins
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.403782894737
+Height: 8.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.449835526316
+Height: 8.0
+
+
+Run 3 of Random Tree...
+Accuracy: 0.421765350877
+Height: 8.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.425127923977
+Total Height  Avg  (over all 3 runs):  8.0
+
+Run 1 of C45 Tree...
+Height: 6.0
+Accuracy: 0.836030701754
+
+
+
+
+
+
+====================================================================
+Dataset: yellow-small+adult-stretch
+there are 16 data.
+each example includes 5 attributes:
+
+color, size, act, age, inflated
+
+The class is: inflated
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.5
+Height: 4.0
+
+
+Run 2 of Random Tree...
+Accuracy: 0.65
+Height: 3.9
+
+
+Run 3 of Random Tree...
+Accuracy: 0.45
+Height: 4.0
+
+
+Total Accuracy Avg (over all 3 runs):  0.533333333333
+Total Height  Avg  (over all 3 runs):  3.96666666667
+
+Run 1 of C45 Tree...
+Height: 2.4
+Accuracy: 0.65
+
+
+
+
+
+
+====================================================================
+Dataset: yellow-small
+there are 20 data.
+each example includes 5 attributes:
+
+color, size, act, age, inflated
+
+The class is: inflated
+====================================================================
+Run 1 of Random Tree...
+Accuracy: 0.9
+Height: 3.8
+
+
+Run 2 of Random Tree...
+Accuracy: 0.9
+Height: 3.4
+
+
+Run 3 of Random Tree...
+Accuracy: 0.8
+Height: 3.6
+
+
+Total Accuracy Avg (over all 3 runs):  0.866666666667
+Total Height  Avg  (over all 3 runs):  3.6
+
+Run 1 of C45 Tree...
+Height: 2.0
+Accuracy: 1.0
+
+
+
+
+
+

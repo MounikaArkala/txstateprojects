@@ -16,13 +16,13 @@ table.symm
   border-width: 1px;
   margin: 5 auto;
   font-family: monospace;
-  table-layout: fixed;
-  background-color: teal;
+  /*table-layout: fixed;*/
+  background-color: white;
 }
 
 td.symm
 {
-  background-color:#FFFFE1;
+  background-color:#99FF99;
   border:solid;
   border-width:1px;
   width: 3em;
@@ -33,7 +33,7 @@ td.symm
 
 td.inaxis
 {
-  background-color:#99FF99;
+  background-color:#99FFFF;
   border:solid;
   border-width:1px;
   width: 3em;
