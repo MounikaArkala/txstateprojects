@@ -1,0 +1,9 @@
+Tuesday's Undergrad class attended... so lecture 7 + 8 will be about the same as lecture 7 by itself would have been in the grad one.
+
+- clustering by pattern similarity is possible.
+-constraint-based clustering: users know application the best - based on user feedback. useful for things like - house prices are based on area.   user may have domain knowledge (eg. these 2 points can't be in same cluster, these 2 points must be in same cluster...)
+
+hopefully we'll be able to start on the project.  or at least set up a server. so you'll be able to draw the networks etc.
+
+midterm - 50 questions on first 2 chapters.
+#1 - classification is supervised learning, .... yes
