@@ -1,0 +1,148 @@
+
+2 categories of projects posted - we can have our own choices
+**** project 1 - dmalg
+- evaluate feasability of whether you can implement algorithm correctly or not. can do clustering,
+or classification, or soemting.
+- Couple algorithms with some sort of project.
+- he's interested in PageRank - workload is not hard.
+eg. he wants you to implement demo for PageRank 
+- drawing a web graph (a directed graph)
+nodes w/ arrows: nodes represent pages and arrows represent hyperlinks.
+you should be able to click and see a value of the pageranks.
+- there are many pagerank demos online.
+so he draws the webgraph and he goes to the website and clicks to draw a graph, and you calculate the pagerank values of each node.
+
+Some Ideas : Facebook interconnections graph with PageRank
+
+Implement client-side web search engine, using Yahoo! / Google web search API / google maps API.
+
+first part is worth 50% credit - just to set up client-side search engine server - because it takes a while to set it up.  you're encouraged to use PHP.
+
+one example - you could use some clustering.
+one example - you can implement something where users could cluster stuff for you - you wouldn't use an algorithm.
+
+Google Maps api would probably be better to use.
+
+one idea - you could parse Craigslist and use the results for home listings and draw them on the map.
+
+his e-tour site : you search for a location, you see a list of services that are available (people there have webcams) and you can drop in and see it.
+you can simulate this service.  Eg. you click it and you see a video.
+
+His suggestion - start project during spring break.  eg. set up the server and be able to set up web graphs and such.
+
+for innovation you can come to him and consult if we want, but we don't have to get his approval.
+
+The project is going to be peer-evaluated.
+
+his opinion weights 50%, peer's opinions weight 50%.
+
+* good idea: Panda3D 3-dimensional graph embedded in website, some sort of clustering, with animations and such.
+
+
+midterm - 50 questions, worth 2 points, yes/no questions.  Many questions he will ask during lecture.
+
+-- Binary Variables
+
+- generalization of manhattan and euclidean distance is ??.
+contingency table is similar to confusion matrix.
+- a is the # of attributes that both have the "1" value.  b is where i=1 and j=0.
+- a binary variable can be symmetric or asymmetric.  eg. Gender is symmetric binary variable because distribution is almost equal.
+- eg. of asymmetric would be test results - i.e. mostly Negative so it's not balanced.
+distance and similarity are opposites.  the similarity is the ones that share the same value / the total.  eg. a+d / a+b+c+d.  You can also get this formula by 1 - d(i, j).
+- the reason the formula for asymmetric ignores 'd', given 2 different objects, your 'd' will be very high because any 2 objects will have very small distance (because there's a large # of negative variables (d) in our medical case.)
+- to use these formulas you just ignore the one that is mostly staying the same between results.
+- Jaccard coefficient - used to measure similarity between 2 sets.  It's the similarity for asymmetric binary variables: a / a+b+c
+it's basically the cardinality (# of items) of the intersection divided by the cardinality of the union.
+
+-- Nominal/Categorical variables
+- generalization of binary variables
+Symmmetrical (simple matching) :
+'age' is usually ordinal (discrete) because it has order.
+- m = # of matches, p = total # of variables
+so similarity would be m / p.
+Asymmetrical matching:
+- use a large # of binary variables
+- create a new binary variable for each of the M nominal states.
+eg. you'd go from "yellow" "green" "blue" to categories w/ "yellow" "green" "blue" binary variables, and each could be either asymmetric or symmetric.
+
+-- Ordinal Variables
+skip
+
+-- Ratio-scaled varables
+- a positive measurement on a nonlinear scale
+ - you'd take the logarithms.
+ 
+-- Vector Objects
+- like in documents, keywords are elements in a vector.  cosine distance is most popular distance measure for vectors.
+
+
+CLASSIfication is more practical, but clustering is more interesting in terms of research because in classification you have a very accurate measure that you are compared against.  classification there's no objective measure to compare against so you can say your own algorithm is better (because the evaluation is subjective.)
+
+
+-- Clustering Approaches
+Partitioning and heirarchical.
+-partitioning - you partition into 'k' clusters.  this # of clusters is given as the input.
+- heirarchical - you make a tree basically.
+-density-based - consider the connections between items.
+Those 3 categories are most influential.  we don't need to know the others but if you wanted to study clustering you should know them.
+also grid-based, model-based, frequent pattern-based, and user-guided / constraint-based.
+constraint based is where you say "these guys must be clustered" or they "must not" or something.  this is 'semi-supervised' clustering.
+
+
+a cluster is a set of objects
+how do we calculate the distance between 2 clusters?
+single-link - 2 closest points' distances
+complete-link - 2 furthest points' distances
+centroid - centers' distances.
+medoid - distance between the 2 objects that are closest to the center of each cluster. ** in Midterm, diff. between medoid vs. centroid
+average - average of pairwise distances.
+average is most robust but takes the longest to calculate.
+
+Centroid - center of the cluster.
+radius - thse definitions use average distance, but the definition he uses is more popular. the center point to the furthest point.  center point is chosen by minimizing distance.  center point has the smallest radius.
+medoid - all the distances to this point from other cluster members, the average is smallest.
+
+-- partitioning - most basic clustering algorithsm
+construct a partition of 'n' objects into a set of 'k' clusters.
+k-center problem - you want to choose k center such that maximum radius is minimized.
+k-means is an algorithm but also a problem formulation.  we want to minimize the formula 'compactness' - sum of square distances from data points to cluster centers.  These problems minimize the maximum cluster radius.
+
+we want to maximize inter-cluster distance and minimize the intra-cluster distance.
+
+
+k-means finds the local maxima.
+
+k-medoids takes longer (more computation) than k-means.
+
+** Final will be at 6 or so, on May 6th.  hopefully it will work out?  let him know if we have conflict.
+
+-- K-means clustering method
+given k, the k-means algorithm is implemented in 4 steps:
+1) partition into k nonempty subsets
+2) compute center of each cluster.
+3) reassign objects to the cluster w/ nearest center
+4) go back to step 2 and repeat until no more assignments take place.
+
+for initialization, choose objects as the intial centers randomly.
+during iteration we compute the centers (don't need to be objects.)
+the clusters we end up with depends on the initialization.
+
+- randomized algorithsm are a nice category of algorithms because they choose jpretty good results.
+
+-k-means also terminates very fast.  it moves the means to the proper positions.
+
+
+- there's an alternate to k-means where you update the center every time you assign an object rather than waiting for all assignments.
+ - this is a popular variation, there's no obvious advantage/disadvantage.
+
+ Pros:
+kmeans is pretty efficient.
+ Cons
+- finds local maxima.  global may be found using deterministic annealing or genetic algorithms.
+ Weaknesses
+- applicable only when 'mean' is defined, so can't be used for categorical data.
+
+silhouette coefficient - some sorta OK solution for some sorta unsolved problem.
+
+  
+

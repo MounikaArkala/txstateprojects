@@ -1,0 +1,163 @@
+
+
+
+-- K-Means:
+2 phases, initialization and iteration.
+- recompute cluster centers
+- reassign membership
+until algorithm stabilizes.
+Center does not have to be an object.
+K-medoid - object that is centrally-located.
+Complexity of k-means is O(tkn).  relatively efficient.
+PAM & CLARA (some other algos for this problem) have quadratic complexity.
+k-means computes local optimum.
+weaknesses: 
+- you must specify # of k.  For all partitioning algorithms this is a drawback.
+- not suitable to discover clusters w/ non-convex shapes.
+- k-means algorithm is sensitive to outliers.
+
+
+-- PAM - earliest / most famous for k-medoids clustering.
+- initialization - start with random medoids.
+- starts from initial set of medoids and iteratively replaces one of the mideoids by one of the non-medoids if it improves total distance of resulting clustering.
+brute-force would be: n C k  time, where n is # of nodes.
+
+- deciding the mean of a cluster takes linear time (n / # of objects in cluster).
+- medoid you need to pick each one and choose the one with the smallest.
+
+calculating total distance
+- we only need to calculate the change relative to the previous state.
+- swapping cost can be calculated.
+
+Problems:
+- not efficient, doesn't scale well.
+
+CLARA - clustering large applications - deals with PAM's scalability problem.
+  - sampling-based method.
+  - eg. if your memory can handle 1,000,000 objects, just choose 1,000,000 objects to cluster.
+- very simple - just take multiple samples of data set, applies PAM on each, and compare results.
+- use best result.
+Strength: Deals w/ larger data sets than PAM
+Weaknesses:
+- efficiency based on sample size
+- can be biased by your sample selection
+- more samples = better result.
+
+CLARANS - improved on CLARA - not going into detail
+
+
+drawbacks of clustering:
+- only work on spherical data
+- k must be given
+
+---- End Partitioning Methods
+
+---- Start Hierarchical Clustering
+
+-- Overview
+- uses distance matrix.  doesn't require clusters k, but needs termination condition.
+agglomerative (AGNES)
+divisive (DIANA)
+- 2 categories.  top-down and bottom-up.  You can start with (ABCDE) and do bisection, or you can start with (A)(B)(C)(D)(E)
+- for decision trees top-down is dominant.  For heirarchical clustering, bottom-up is dominant.
+- divisive method (DIANA) is not very popular because it's hard to figure out where to bisect a cluster.
+
+* single-link, complete-link, average-link (or outer??) - remember these!
+* single link = closest pairwise distance between 2 clusters.
+
+Dendrogram - diagram that is result of heirarchical clustering.
+
+a resulting cluster is determined by where you "cut" the dendrogram horizontally.
+Each merge results in 1 less cluster.  So there is a point in the dendrogram where you can make a cut to get any # of clusters from 1 to n.
+
+- there's an applet you can run at http://home.dei.polimi.it/matteucc/Clustering/tutorial_html/AppletH.html that will show you the clustering examples.
+
+
+-- Recent Hierarchical Clustering Methods
+BIRCH, ROCK, CHAMELEON  - BIRCH won 'test of time' best paper from sigmod.  database text author Ragu wrote paper.  graduated from UT Austin, classmate of Carol.  Gao published papers with him, he's VP of Yahoo! now.  (Ragu Ramakrishnan)
+
+-- BIRCH
+- compute CF (Cluster Feature) trees - helps to make algorithm scalable.
+basically scans it and makes a 'summary' of the cluster (just like 'center') which is essentially a compressed representation
+of the clusters.
+- info in CF trees: points in a cluster, location of cluster, ....
+Linear and Square Sum.  To find mean you  just divide linear sum by the number of items.
+Eg.
+(5, (16, 30), (54, 190)) - you take 16 / 5 and 30 / 5 and you get the mean.
+linear sum tells you the location information but the square sum tells you how close the points are.
+So 2 items with the same centers may have the same linear sums but if their square sums are ifferent then the points are more spread out in one than the other.
+
+-- CF Tree Structure
+diameter - if diameter = 0 then all points must be represented in the tree (contains all original data points.)  i.e. no summarization/compression
+SO you want to use a higher diameter if you need to save memory but you only want to raise diameter until you fit inside memory constraints.
+
+
+*In general, hierarchical methods are less efficient than partitioning methods.
+
+
+ROCK & CHAMELEON are not studied.
+
+-- Density-Based Methods
+- partitioning & heirarchical are most used.
+- used for human genome project - finding groups of genes that are coregulated (may determine a disease together, for exmaple).
+biologists like dendrograms because it's intuitive, so biologists consider heirarchical methods to be golden standard of data mining algos
+
+** DBSCAN
+density-based clustering - basic concepts
+1) we need a range / area
+2) a head-count
+so we have these 2 parameters:
+Epsilon: Maximum radius of the neighborhood
+MinPts: Minimum # of points in an eps-neighborhood of that point.
+these together - max radius and min points, defines a minimum density threshold.
+A point 'p' is directly density-reachable from a point q if p belongs to the neighborhood(q) and  core point condition holds:
+|N eps(q)| >= MinPoints
+
+basically you have a bunch of overlapping circles.  If your destination point  is a core point (has enough points in its neighbohood) and your source point is in the same neighborhood as your destination point, then yes.
+
+* if q is density reachable from p, is p density reachable from q?  NO
+Densnity-reachable: if there are points p1, p2, .... from  p to q where p(i+1) is directly density reachable from p(i).
+Density-connected: if a point p is density-connected to point q, then there is a point o such that both p and q are density reachable from o.
+* does not work the other way around because p and q may be border objects.
+in some cases, a border object can belong to more than one object, which is why DBSCAN may not return a unique result.
+
+cluster - maximal set of density-connected points.
+
+** DBSCAN the algorithm
+- get this from slides
+
+- use data structures called R* tree - used for spatial data.  eg. all the restaurants close to a point.  used to retrieve epsilon neighborhoods.  we don't need to know this.
+
+- clustering parameters are not as sensitive - it just depends on the separation of data, basically how good it is at rejecting outliers. whereas with partitioning if you change "k" you will get wildly different results.  
+
+
+Drawback of DBSCAN - if clusters are of different densities you won't find them as well.  eg. if you have 2 dense clusters nearby each other and one sparse cluster far away, it will be hard to find settings that will allow the 2 dense clusters to not be grouped together, and not also consider the sparse cluster as only outliers.
+
+-- OPTICS - a cluster-ordering method
+OPTICS is a generalization of DBSCAN that considers all the different density specifications.
+The algorithm is very complicated, but the result is very nice.  OPTICS is one of the nicest algorithms - very novel & different from other algorithms.
+
+DBSCAN is very efficient b/c if R* tree is already created then only a single scan is needed -it's a linear algorithm.  but creating the R* takes some time.
+None of these are as efficient as K-means though.
+
+-- Grid-Based Clustering Method
+- not that important
+- similar to density-based in some sense.
+
+grid is like 'frames' for the data points.  
+they cluster the cells.  eg. if there are many points in a cell, then this cell is dense.  if 2 connected cells are dense then they consider it a cluster.
+
+-- Model-Based Clustering
+* one question on midterm
+- attempt to optimize  fit between given data and some mathematical model
+(eg. 'gausssian distribution can be used to describe this model).
+We use an algorithm to maximize fit between a mathematical model and the data by modifying the attributes in the models.
+
+Statistical approach - EM (expectation maximization)
+Self-Organizing Maps - NN version of same idea.
+
+** Memorize: EM is an extension/generalization of k-means.  try to understand the algorithm.
+- each point belongs to a cluster as a probability based on its distance.   If you just use the distance directly to cluster with the closest one, you will just have k-means.
+In this one you assign to every center with a certain probability.  after this you recompute the model / center.
+
+next lecture we will probably continue lecture - use 20 mins to continue lecture.   about 2 questions from this section up until slide "Why p-Clustering?"
