@@ -1,0 +1,2187 @@
+Created by PLY version 3.3 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> declList
+Rule 2     declList -> decl
+Rule 3     declList -> decl declList
+Rule 4     decl -> varDecl
+Rule 5     decl -> funDecl
+Rule 6     varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+Rule 7     varDecl -> typeSpecifier IDENTIFIER SEMICOLON
+Rule 8     typeSpecifier -> INT
+Rule 9     typeSpecifier -> CHAR
+Rule 10    typeSpecifier -> VOID
+Rule 11    typeSpecifier -> STRING
+Rule 12    funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody
+Rule 13    formalDeclList -> empty
+Rule 14    formalDeclList -> formalDecl
+Rule 15    formalDeclList -> formalDecl COMMA formalDeclList
+Rule 16    formalDecl -> typeSpecifier IDENTIFIER
+Rule 17    formalDecl -> typeSpecifier IDENTIFIER LBRACKET RBRACKET
+Rule 18    funBody -> LBRACE localDeclList statementList RBRACE
+Rule 19    localDeclList -> empty
+Rule 20    localDeclList -> varDecl localDeclList
+Rule 21    statementList -> empty
+Rule 22    statementList -> statement statementList
+Rule 23    statement -> compoundStmt
+Rule 24    statement -> assignStmt
+Rule 25    statement -> condStmt
+Rule 26    statement -> loopStmt
+Rule 27    statement -> returnStmt
+Rule 28    compoundStmt -> LBRACE statementList RBRACE
+Rule 29    assignStmt -> var ASSIGN expression SEMICOLON
+Rule 30    assignStmt -> expression SEMICOLON
+Rule 31    condStmt -> IF LPAREN expression RPAREN statement
+Rule 32    condStmt -> ELSE statement
+Rule 33    loopStmt -> WHILE LPAREN expression RPAREN statement
+Rule 34    returnStmt -> RETURN SEMICOLON
+Rule 35    returnStmt -> RETURN expression SEMICOLON
+Rule 36    var -> IDENTIFIER
+Rule 37    var -> IDENTIFIER LBRACKET addExpr RBRACKET
+Rule 38    expression -> addExpr
+Rule 39    expression -> expression relop addExpr
+Rule 40    relop -> LTE
+Rule 41    relop -> LESS
+Rule 42    relop -> EQ
+Rule 43    relop -> GREATER
+Rule 44    relop -> GTE
+Rule 45    relop -> NEQ
+Rule 46    addExpr -> term
+Rule 47    addExpr -> addExpr addop term
+Rule 48    addop -> PLUS
+Rule 49    addop -> MINUS
+Rule 50    term -> factor
+Rule 51    term -> term mulop factor
+Rule 52    mulop -> MULTIPLY
+Rule 53    mulop -> DIVIDE
+Rule 54    factor -> LPAREN expression RPAREN
+Rule 55    factor -> var
+Rule 56    factor -> funcCallExpr
+Rule 57    factor -> INT_LITERAL
+Rule 58    factor -> CHAR_LITERAL
+Rule 59    factor -> STRING_LITERAL
+Rule 60    funcCallExpr -> IDENTIFIER LPAREN argList RPAREN
+Rule 61    argList -> expression
+Rule 62    argList -> expression COMMA argList
+Rule 63    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ASSIGN               : 29
+CHAR                 : 9
+CHAR_LITERAL         : 58
+COMMA                : 15 62
+DIVIDE               : 53
+ELSE                 : 32
+EQ                   : 42
+GREATER              : 43
+GTE                  : 44
+IDENTIFIER           : 6 7 12 16 17 36 37 60
+IF                   : 31
+INT                  : 8
+INT_LITERAL          : 6 57
+LBRACE               : 18 28
+LBRACKET             : 6 17 37
+LESS                 : 41
+LPAREN               : 12 31 33 54 60
+LTE                  : 40
+MINUS                : 49
+MULTIPLY             : 52
+NEQ                  : 45
+PLUS                 : 48
+RBRACE               : 18 28
+RBRACKET             : 6 17 37
+RETURN               : 34 35
+RPAREN               : 12 31 33 54 60
+SEMICOLON            : 6 7 29 30 34 35
+STRING               : 11
+STRING_LITERAL       : 59
+VOID                 : 10
+WHILE                : 33
+error                : 
+
+Nonterminals, with rules where they appear
+
+addExpr              : 37 38 39 47
+addop                : 47
+argList              : 60 62
+assignStmt           : 24
+compoundStmt         : 23
+condStmt             : 25
+decl                 : 2 3
+declList             : 1 3
+empty                : 13 19 21
+expression           : 29 30 31 33 35 39 54 61 62
+factor               : 50 51
+formalDecl           : 14 15
+formalDeclList       : 12 15
+funBody              : 12
+funDecl              : 5
+funcCallExpr         : 56
+localDeclList        : 18 20
+loopStmt             : 26
+mulop                : 51
+program              : 0
+relop                : 39
+returnStmt           : 27
+statement            : 22 31 32 33
+statementList        : 18 22 28
+term                 : 46 47 51
+typeSpecifier        : 6 7 12 16 17
+var                  : 29 55
+varDecl              : 4 20
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . declList
+    (2) declList -> . decl
+    (3) declList -> . decl declList
+    (4) decl -> . varDecl
+    (5) decl -> . funDecl
+    (6) varDecl -> . typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> . typeSpecifier IDENTIFIER SEMICOLON
+    (12) funDecl -> . typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    decl                           shift and go to state 1
+    declList                       shift and go to state 3
+    funDecl                        shift and go to state 6
+    varDecl                        shift and go to state 8
+    program                        shift and go to state 9
+    typeSpecifier                  shift and go to state 10
+
+state 1
+
+    (2) declList -> decl .
+    (3) declList -> decl . declList
+    (2) declList -> . decl
+    (3) declList -> . decl declList
+    (4) decl -> . varDecl
+    (5) decl -> . funDecl
+    (6) varDecl -> . typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> . typeSpecifier IDENTIFIER SEMICOLON
+    (12) funDecl -> . typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    $end            reduce using rule 2 (declList -> decl .)
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    decl                           shift and go to state 1
+    declList                       shift and go to state 11
+    funDecl                        shift and go to state 6
+    varDecl                        shift and go to state 8
+    typeSpecifier                  shift and go to state 10
+
+state 2
+
+    (9) typeSpecifier -> CHAR .
+
+    IDENTIFIER      reduce using rule 9 (typeSpecifier -> CHAR .)
+
+
+state 3
+
+    (1) program -> declList .
+
+    $end            reduce using rule 1 (program -> declList .)
+
+
+state 4
+
+    (11) typeSpecifier -> STRING .
+
+    IDENTIFIER      reduce using rule 11 (typeSpecifier -> STRING .)
+
+
+state 5
+
+    (8) typeSpecifier -> INT .
+
+    IDENTIFIER      reduce using rule 8 (typeSpecifier -> INT .)
+
+
+state 6
+
+    (5) decl -> funDecl .
+
+    INT             reduce using rule 5 (decl -> funDecl .)
+    CHAR            reduce using rule 5 (decl -> funDecl .)
+    VOID            reduce using rule 5 (decl -> funDecl .)
+    STRING          reduce using rule 5 (decl -> funDecl .)
+    $end            reduce using rule 5 (decl -> funDecl .)
+
+
+state 7
+
+    (10) typeSpecifier -> VOID .
+
+    IDENTIFIER      reduce using rule 10 (typeSpecifier -> VOID .)
+
+
+state 8
+
+    (4) decl -> varDecl .
+
+    INT             reduce using rule 4 (decl -> varDecl .)
+    CHAR            reduce using rule 4 (decl -> varDecl .)
+    VOID            reduce using rule 4 (decl -> varDecl .)
+    STRING          reduce using rule 4 (decl -> varDecl .)
+    $end            reduce using rule 4 (decl -> varDecl .)
+
+
+state 9
+
+    (0) S' -> program .
+
+
+
+state 10
+
+    (6) varDecl -> typeSpecifier . IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> typeSpecifier . IDENTIFIER SEMICOLON
+    (12) funDecl -> typeSpecifier . IDENTIFIER LPAREN formalDeclList RPAREN funBody
+
+    IDENTIFIER      shift and go to state 12
+
+
+state 11
+
+    (3) declList -> decl declList .
+
+    $end            reduce using rule 3 (declList -> decl declList .)
+
+
+state 12
+
+    (6) varDecl -> typeSpecifier IDENTIFIER . LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> typeSpecifier IDENTIFIER . SEMICOLON
+    (12) funDecl -> typeSpecifier IDENTIFIER . LPAREN formalDeclList RPAREN funBody
+
+    LBRACKET        shift and go to state 14
+    SEMICOLON       shift and go to state 13
+    LPAREN          shift and go to state 15
+
+
+state 13
+
+    (7) varDecl -> typeSpecifier IDENTIFIER SEMICOLON .
+
+    INT             reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    CHAR            reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    VOID            reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    STRING          reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    $end            reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    LBRACE          reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    IF              reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    ELSE            reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    WHILE           reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    RETURN          reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    IDENTIFIER      reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    LPAREN          reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    INT_LITERAL     reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    STRING_LITERAL  reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+    RBRACE          reduce using rule 7 (varDecl -> typeSpecifier IDENTIFIER SEMICOLON .)
+
+
+state 14
+
+    (6) varDecl -> typeSpecifier IDENTIFIER LBRACKET . INT_LITERAL RBRACKET SEMICOLON
+
+    INT_LITERAL     shift and go to state 16
+
+
+state 15
+
+    (12) funDecl -> typeSpecifier IDENTIFIER LPAREN . formalDeclList RPAREN funBody
+    (13) formalDeclList -> . empty
+    (14) formalDeclList -> . formalDecl
+    (15) formalDeclList -> . formalDecl COMMA formalDeclList
+    (63) empty -> .
+    (16) formalDecl -> . typeSpecifier IDENTIFIER
+    (17) formalDecl -> . typeSpecifier IDENTIFIER LBRACKET RBRACKET
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    RPAREN          reduce using rule 63 (empty -> .)
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    formalDeclList                 shift and go to state 17
+    typeSpecifier                  shift and go to state 19
+    empty                          shift and go to state 20
+    formalDecl                     shift and go to state 18
+
+state 16
+
+    (6) varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL . RBRACKET SEMICOLON
+
+    RBRACKET        shift and go to state 21
+
+
+state 17
+
+    (12) funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList . RPAREN funBody
+
+    RPAREN          shift and go to state 22
+
+
+state 18
+
+    (14) formalDeclList -> formalDecl .
+    (15) formalDeclList -> formalDecl . COMMA formalDeclList
+
+    RPAREN          reduce using rule 14 (formalDeclList -> formalDecl .)
+    COMMA           shift and go to state 23
+
+
+state 19
+
+    (16) formalDecl -> typeSpecifier . IDENTIFIER
+    (17) formalDecl -> typeSpecifier . IDENTIFIER LBRACKET RBRACKET
+
+    IDENTIFIER      shift and go to state 24
+
+
+state 20
+
+    (13) formalDeclList -> empty .
+
+    RPAREN          reduce using rule 13 (formalDeclList -> empty .)
+
+
+state 21
+
+    (6) varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 25
+
+
+state 22
+
+    (12) funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN . funBody
+    (18) funBody -> . LBRACE localDeclList statementList RBRACE
+
+    LBRACE          shift and go to state 26
+
+    funBody                        shift and go to state 27
+
+state 23
+
+    (15) formalDeclList -> formalDecl COMMA . formalDeclList
+    (13) formalDeclList -> . empty
+    (14) formalDeclList -> . formalDecl
+    (15) formalDeclList -> . formalDecl COMMA formalDeclList
+    (63) empty -> .
+    (16) formalDecl -> . typeSpecifier IDENTIFIER
+    (17) formalDecl -> . typeSpecifier IDENTIFIER LBRACKET RBRACKET
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    RPAREN          reduce using rule 63 (empty -> .)
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    formalDeclList                 shift and go to state 28
+    typeSpecifier                  shift and go to state 19
+    empty                          shift and go to state 20
+    formalDecl                     shift and go to state 18
+
+state 24
+
+    (16) formalDecl -> typeSpecifier IDENTIFIER .
+    (17) formalDecl -> typeSpecifier IDENTIFIER . LBRACKET RBRACKET
+
+    COMMA           reduce using rule 16 (formalDecl -> typeSpecifier IDENTIFIER .)
+    RPAREN          reduce using rule 16 (formalDecl -> typeSpecifier IDENTIFIER .)
+    LBRACKET        shift and go to state 29
+
+
+state 25
+
+    (6) varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .
+
+    INT             reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    CHAR            reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    VOID            reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    STRING          reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    $end            reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    LBRACE          reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    IF              reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    ELSE            reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    WHILE           reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    RETURN          reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    IDENTIFIER      reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    LPAREN          reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    INT_LITERAL     reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    STRING_LITERAL  reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+    RBRACE          reduce using rule 6 (varDecl -> typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON .)
+
+
+state 26
+
+    (18) funBody -> LBRACE . localDeclList statementList RBRACE
+    (19) localDeclList -> . empty
+    (20) localDeclList -> . varDecl localDeclList
+    (63) empty -> .
+    (6) varDecl -> . typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> . typeSpecifier IDENTIFIER SEMICOLON
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    LBRACE          reduce using rule 63 (empty -> .)
+    IF              reduce using rule 63 (empty -> .)
+    ELSE            reduce using rule 63 (empty -> .)
+    WHILE           reduce using rule 63 (empty -> .)
+    RETURN          reduce using rule 63 (empty -> .)
+    IDENTIFIER      reduce using rule 63 (empty -> .)
+    LPAREN          reduce using rule 63 (empty -> .)
+    INT_LITERAL     reduce using rule 63 (empty -> .)
+    CHAR_LITERAL    reduce using rule 63 (empty -> .)
+    STRING_LITERAL  reduce using rule 63 (empty -> .)
+    RBRACE          reduce using rule 63 (empty -> .)
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    localDeclList                  shift and go to state 30
+    varDecl                        shift and go to state 31
+    empty                          shift and go to state 33
+    typeSpecifier                  shift and go to state 32
+
+state 27
+
+    (12) funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .
+
+    INT             reduce using rule 12 (funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .)
+    CHAR            reduce using rule 12 (funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .)
+    VOID            reduce using rule 12 (funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .)
+    STRING          reduce using rule 12 (funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .)
+    $end            reduce using rule 12 (funDecl -> typeSpecifier IDENTIFIER LPAREN formalDeclList RPAREN funBody .)
+
+
+state 28
+
+    (15) formalDeclList -> formalDecl COMMA formalDeclList .
+
+    RPAREN          reduce using rule 15 (formalDeclList -> formalDecl COMMA formalDeclList .)
+
+
+state 29
+
+    (17) formalDecl -> typeSpecifier IDENTIFIER LBRACKET . RBRACKET
+
+    RBRACKET        shift and go to state 34
+
+
+state 30
+
+    (18) funBody -> LBRACE localDeclList . statementList RBRACE
+    (21) statementList -> . empty
+    (22) statementList -> . statement statementList
+    (63) empty -> .
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    RBRACE          reduce using rule 63 (empty -> .)
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    statementList                  shift and go to state 41
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 42
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+    empty                          shift and go to state 46
+
+state 31
+
+    (20) localDeclList -> varDecl . localDeclList
+    (19) localDeclList -> . empty
+    (20) localDeclList -> . varDecl localDeclList
+    (63) empty -> .
+    (6) varDecl -> . typeSpecifier IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> . typeSpecifier IDENTIFIER SEMICOLON
+    (8) typeSpecifier -> . INT
+    (9) typeSpecifier -> . CHAR
+    (10) typeSpecifier -> . VOID
+    (11) typeSpecifier -> . STRING
+
+    LBRACE          reduce using rule 63 (empty -> .)
+    IF              reduce using rule 63 (empty -> .)
+    ELSE            reduce using rule 63 (empty -> .)
+    WHILE           reduce using rule 63 (empty -> .)
+    RETURN          reduce using rule 63 (empty -> .)
+    IDENTIFIER      reduce using rule 63 (empty -> .)
+    LPAREN          reduce using rule 63 (empty -> .)
+    INT_LITERAL     reduce using rule 63 (empty -> .)
+    CHAR_LITERAL    reduce using rule 63 (empty -> .)
+    STRING_LITERAL  reduce using rule 63 (empty -> .)
+    RBRACE          reduce using rule 63 (empty -> .)
+    INT             shift and go to state 5
+    CHAR            shift and go to state 2
+    VOID            shift and go to state 7
+    STRING          shift and go to state 4
+
+    localDeclList                  shift and go to state 59
+    varDecl                        shift and go to state 31
+    typeSpecifier                  shift and go to state 32
+    empty                          shift and go to state 33
+
+state 32
+
+    (6) varDecl -> typeSpecifier . IDENTIFIER LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> typeSpecifier . IDENTIFIER SEMICOLON
+
+    IDENTIFIER      shift and go to state 60
+
+
+state 33
+
+    (19) localDeclList -> empty .
+
+    LBRACE          reduce using rule 19 (localDeclList -> empty .)
+    IF              reduce using rule 19 (localDeclList -> empty .)
+    ELSE            reduce using rule 19 (localDeclList -> empty .)
+    WHILE           reduce using rule 19 (localDeclList -> empty .)
+    RETURN          reduce using rule 19 (localDeclList -> empty .)
+    IDENTIFIER      reduce using rule 19 (localDeclList -> empty .)
+    LPAREN          reduce using rule 19 (localDeclList -> empty .)
+    INT_LITERAL     reduce using rule 19 (localDeclList -> empty .)
+    CHAR_LITERAL    reduce using rule 19 (localDeclList -> empty .)
+    STRING_LITERAL  reduce using rule 19 (localDeclList -> empty .)
+    RBRACE          reduce using rule 19 (localDeclList -> empty .)
+
+
+state 34
+
+    (17) formalDecl -> typeSpecifier IDENTIFIER LBRACKET RBRACKET .
+
+    COMMA           reduce using rule 17 (formalDecl -> typeSpecifier IDENTIFIER LBRACKET RBRACKET .)
+    RPAREN          reduce using rule 17 (formalDecl -> typeSpecifier IDENTIFIER LBRACKET RBRACKET .)
+
+
+state 35
+
+    (34) returnStmt -> RETURN . SEMICOLON
+    (35) returnStmt -> RETURN . expression SEMICOLON
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    SEMICOLON       shift and go to state 61
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    expression                     shift and go to state 63
+
+state 36
+
+    (59) factor -> STRING_LITERAL .
+
+    MULTIPLY        reduce using rule 59 (factor -> STRING_LITERAL .)
+    DIVIDE          reduce using rule 59 (factor -> STRING_LITERAL .)
+    RBRACKET        reduce using rule 59 (factor -> STRING_LITERAL .)
+    PLUS            reduce using rule 59 (factor -> STRING_LITERAL .)
+    MINUS           reduce using rule 59 (factor -> STRING_LITERAL .)
+    RPAREN          reduce using rule 59 (factor -> STRING_LITERAL .)
+    LTE             reduce using rule 59 (factor -> STRING_LITERAL .)
+    LESS            reduce using rule 59 (factor -> STRING_LITERAL .)
+    EQ              reduce using rule 59 (factor -> STRING_LITERAL .)
+    GREATER         reduce using rule 59 (factor -> STRING_LITERAL .)
+    GTE             reduce using rule 59 (factor -> STRING_LITERAL .)
+    NEQ             reduce using rule 59 (factor -> STRING_LITERAL .)
+    SEMICOLON       reduce using rule 59 (factor -> STRING_LITERAL .)
+    COMMA           reduce using rule 59 (factor -> STRING_LITERAL .)
+
+
+state 37
+
+    (26) statement -> loopStmt .
+
+    LBRACE          reduce using rule 26 (statement -> loopStmt .)
+    IF              reduce using rule 26 (statement -> loopStmt .)
+    ELSE            reduce using rule 26 (statement -> loopStmt .)
+    WHILE           reduce using rule 26 (statement -> loopStmt .)
+    RETURN          reduce using rule 26 (statement -> loopStmt .)
+    IDENTIFIER      reduce using rule 26 (statement -> loopStmt .)
+    LPAREN          reduce using rule 26 (statement -> loopStmt .)
+    INT_LITERAL     reduce using rule 26 (statement -> loopStmt .)
+    CHAR_LITERAL    reduce using rule 26 (statement -> loopStmt .)
+    STRING_LITERAL  reduce using rule 26 (statement -> loopStmt .)
+    RBRACE          reduce using rule 26 (statement -> loopStmt .)
+
+
+state 38
+
+    (33) loopStmt -> WHILE . LPAREN expression RPAREN statement
+
+    LPAREN          shift and go to state 64
+
+
+state 39
+
+    (56) factor -> funcCallExpr .
+
+    MULTIPLY        reduce using rule 56 (factor -> funcCallExpr .)
+    DIVIDE          reduce using rule 56 (factor -> funcCallExpr .)
+    RBRACKET        reduce using rule 56 (factor -> funcCallExpr .)
+    PLUS            reduce using rule 56 (factor -> funcCallExpr .)
+    MINUS           reduce using rule 56 (factor -> funcCallExpr .)
+    RPAREN          reduce using rule 56 (factor -> funcCallExpr .)
+    LTE             reduce using rule 56 (factor -> funcCallExpr .)
+    LESS            reduce using rule 56 (factor -> funcCallExpr .)
+    EQ              reduce using rule 56 (factor -> funcCallExpr .)
+    GREATER         reduce using rule 56 (factor -> funcCallExpr .)
+    GTE             reduce using rule 56 (factor -> funcCallExpr .)
+    NEQ             reduce using rule 56 (factor -> funcCallExpr .)
+    SEMICOLON       reduce using rule 56 (factor -> funcCallExpr .)
+    COMMA           reduce using rule 56 (factor -> funcCallExpr .)
+
+
+state 40
+
+    (38) expression -> addExpr .
+    (47) addExpr -> addExpr . addop term
+    (48) addop -> . PLUS
+    (49) addop -> . MINUS
+
+    SEMICOLON       reduce using rule 38 (expression -> addExpr .)
+    LTE             reduce using rule 38 (expression -> addExpr .)
+    LESS            reduce using rule 38 (expression -> addExpr .)
+    EQ              reduce using rule 38 (expression -> addExpr .)
+    GREATER         reduce using rule 38 (expression -> addExpr .)
+    GTE             reduce using rule 38 (expression -> addExpr .)
+    NEQ             reduce using rule 38 (expression -> addExpr .)
+    COMMA           reduce using rule 38 (expression -> addExpr .)
+    RPAREN          reduce using rule 38 (expression -> addExpr .)
+    PLUS            shift and go to state 66
+    MINUS           shift and go to state 67
+
+    addop                          shift and go to state 65
+
+state 41
+
+    (18) funBody -> LBRACE localDeclList statementList . RBRACE
+
+    RBRACE          shift and go to state 68
+
+
+state 42
+
+    (22) statementList -> statement . statementList
+    (21) statementList -> . empty
+    (22) statementList -> . statement statementList
+    (63) empty -> .
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    RBRACE          reduce using rule 63 (empty -> .)
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    statementList                  shift and go to state 69
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 42
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+    empty                          shift and go to state 46
+
+state 43
+
+    (50) term -> factor .
+
+    MULTIPLY        reduce using rule 50 (term -> factor .)
+    DIVIDE          reduce using rule 50 (term -> factor .)
+    PLUS            reduce using rule 50 (term -> factor .)
+    MINUS           reduce using rule 50 (term -> factor .)
+    SEMICOLON       reduce using rule 50 (term -> factor .)
+    LTE             reduce using rule 50 (term -> factor .)
+    LESS            reduce using rule 50 (term -> factor .)
+    EQ              reduce using rule 50 (term -> factor .)
+    GREATER         reduce using rule 50 (term -> factor .)
+    GTE             reduce using rule 50 (term -> factor .)
+    NEQ             reduce using rule 50 (term -> factor .)
+    COMMA           reduce using rule 50 (term -> factor .)
+    RPAREN          reduce using rule 50 (term -> factor .)
+    RBRACKET        reduce using rule 50 (term -> factor .)
+
+
+state 44
+
+    (29) assignStmt -> var . ASSIGN expression SEMICOLON
+    (55) factor -> var .
+
+    ASSIGN          shift and go to state 70
+    MULTIPLY        reduce using rule 55 (factor -> var .)
+    DIVIDE          reduce using rule 55 (factor -> var .)
+    PLUS            reduce using rule 55 (factor -> var .)
+    MINUS           reduce using rule 55 (factor -> var .)
+    SEMICOLON       reduce using rule 55 (factor -> var .)
+    LTE             reduce using rule 55 (factor -> var .)
+    LESS            reduce using rule 55 (factor -> var .)
+    EQ              reduce using rule 55 (factor -> var .)
+    GREATER         reduce using rule 55 (factor -> var .)
+    GTE             reduce using rule 55 (factor -> var .)
+    NEQ             reduce using rule 55 (factor -> var .)
+
+
+state 45
+
+    (36) var -> IDENTIFIER .
+    (37) var -> IDENTIFIER . LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> IDENTIFIER . LPAREN argList RPAREN
+
+    MULTIPLY        reduce using rule 36 (var -> IDENTIFIER .)
+    DIVIDE          reduce using rule 36 (var -> IDENTIFIER .)
+    PLUS            reduce using rule 36 (var -> IDENTIFIER .)
+    MINUS           reduce using rule 36 (var -> IDENTIFIER .)
+    RPAREN          reduce using rule 36 (var -> IDENTIFIER .)
+    LTE             reduce using rule 36 (var -> IDENTIFIER .)
+    LESS            reduce using rule 36 (var -> IDENTIFIER .)
+    EQ              reduce using rule 36 (var -> IDENTIFIER .)
+    GREATER         reduce using rule 36 (var -> IDENTIFIER .)
+    GTE             reduce using rule 36 (var -> IDENTIFIER .)
+    NEQ             reduce using rule 36 (var -> IDENTIFIER .)
+    RBRACKET        reduce using rule 36 (var -> IDENTIFIER .)
+    ASSIGN          reduce using rule 36 (var -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 36 (var -> IDENTIFIER .)
+    COMMA           reduce using rule 36 (var -> IDENTIFIER .)
+    LBRACKET        shift and go to state 71
+    LPAREN          shift and go to state 72
+
+
+state 46
+
+    (21) statementList -> empty .
+
+    RBRACE          reduce using rule 21 (statementList -> empty .)
+
+
+state 47
+
+    (32) condStmt -> ELSE . statement
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 73
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+
+state 48
+
+    (54) factor -> LPAREN . expression RPAREN
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    expression                     shift and go to state 74
+
+state 49
+
+    (27) statement -> returnStmt .
+
+    LBRACE          reduce using rule 27 (statement -> returnStmt .)
+    IF              reduce using rule 27 (statement -> returnStmt .)
+    ELSE            reduce using rule 27 (statement -> returnStmt .)
+    WHILE           reduce using rule 27 (statement -> returnStmt .)
+    RETURN          reduce using rule 27 (statement -> returnStmt .)
+    IDENTIFIER      reduce using rule 27 (statement -> returnStmt .)
+    LPAREN          reduce using rule 27 (statement -> returnStmt .)
+    INT_LITERAL     reduce using rule 27 (statement -> returnStmt .)
+    CHAR_LITERAL    reduce using rule 27 (statement -> returnStmt .)
+    STRING_LITERAL  reduce using rule 27 (statement -> returnStmt .)
+    RBRACE          reduce using rule 27 (statement -> returnStmt .)
+
+
+state 50
+
+    (23) statement -> compoundStmt .
+
+    LBRACE          reduce using rule 23 (statement -> compoundStmt .)
+    IF              reduce using rule 23 (statement -> compoundStmt .)
+    ELSE            reduce using rule 23 (statement -> compoundStmt .)
+    WHILE           reduce using rule 23 (statement -> compoundStmt .)
+    RETURN          reduce using rule 23 (statement -> compoundStmt .)
+    IDENTIFIER      reduce using rule 23 (statement -> compoundStmt .)
+    LPAREN          reduce using rule 23 (statement -> compoundStmt .)
+    INT_LITERAL     reduce using rule 23 (statement -> compoundStmt .)
+    CHAR_LITERAL    reduce using rule 23 (statement -> compoundStmt .)
+    STRING_LITERAL  reduce using rule 23 (statement -> compoundStmt .)
+    RBRACE          reduce using rule 23 (statement -> compoundStmt .)
+
+
+state 51
+
+    (31) condStmt -> IF . LPAREN expression RPAREN statement
+
+    LPAREN          shift and go to state 75
+
+
+state 52
+
+    (46) addExpr -> term .
+    (51) term -> term . mulop factor
+    (52) mulop -> . MULTIPLY
+    (53) mulop -> . DIVIDE
+
+    PLUS            reduce using rule 46 (addExpr -> term .)
+    MINUS           reduce using rule 46 (addExpr -> term .)
+    SEMICOLON       reduce using rule 46 (addExpr -> term .)
+    LTE             reduce using rule 46 (addExpr -> term .)
+    LESS            reduce using rule 46 (addExpr -> term .)
+    EQ              reduce using rule 46 (addExpr -> term .)
+    GREATER         reduce using rule 46 (addExpr -> term .)
+    GTE             reduce using rule 46 (addExpr -> term .)
+    NEQ             reduce using rule 46 (addExpr -> term .)
+    RBRACKET        reduce using rule 46 (addExpr -> term .)
+    RPAREN          reduce using rule 46 (addExpr -> term .)
+    COMMA           reduce using rule 46 (addExpr -> term .)
+    MULTIPLY        shift and go to state 76
+    DIVIDE          shift and go to state 77
+
+    mulop                          shift and go to state 78
+
+state 53
+
+    (28) compoundStmt -> LBRACE . statementList RBRACE
+    (21) statementList -> . empty
+    (22) statementList -> . statement statementList
+    (63) empty -> .
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    RBRACE          reduce using rule 63 (empty -> .)
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    statementList                  shift and go to state 79
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 42
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+    empty                          shift and go to state 46
+
+state 54
+
+    (58) factor -> CHAR_LITERAL .
+
+    MULTIPLY        reduce using rule 58 (factor -> CHAR_LITERAL .)
+    DIVIDE          reduce using rule 58 (factor -> CHAR_LITERAL .)
+    RBRACKET        reduce using rule 58 (factor -> CHAR_LITERAL .)
+    PLUS            reduce using rule 58 (factor -> CHAR_LITERAL .)
+    MINUS           reduce using rule 58 (factor -> CHAR_LITERAL .)
+    RPAREN          reduce using rule 58 (factor -> CHAR_LITERAL .)
+    LTE             reduce using rule 58 (factor -> CHAR_LITERAL .)
+    LESS            reduce using rule 58 (factor -> CHAR_LITERAL .)
+    EQ              reduce using rule 58 (factor -> CHAR_LITERAL .)
+    GREATER         reduce using rule 58 (factor -> CHAR_LITERAL .)
+    GTE             reduce using rule 58 (factor -> CHAR_LITERAL .)
+    NEQ             reduce using rule 58 (factor -> CHAR_LITERAL .)
+    SEMICOLON       reduce using rule 58 (factor -> CHAR_LITERAL .)
+    COMMA           reduce using rule 58 (factor -> CHAR_LITERAL .)
+
+
+state 55
+
+    (25) statement -> condStmt .
+
+    LBRACE          reduce using rule 25 (statement -> condStmt .)
+    IF              reduce using rule 25 (statement -> condStmt .)
+    ELSE            reduce using rule 25 (statement -> condStmt .)
+    WHILE           reduce using rule 25 (statement -> condStmt .)
+    RETURN          reduce using rule 25 (statement -> condStmt .)
+    IDENTIFIER      reduce using rule 25 (statement -> condStmt .)
+    LPAREN          reduce using rule 25 (statement -> condStmt .)
+    INT_LITERAL     reduce using rule 25 (statement -> condStmt .)
+    CHAR_LITERAL    reduce using rule 25 (statement -> condStmt .)
+    STRING_LITERAL  reduce using rule 25 (statement -> condStmt .)
+    RBRACE          reduce using rule 25 (statement -> condStmt .)
+
+
+state 56
+
+    (24) statement -> assignStmt .
+
+    LBRACE          reduce using rule 24 (statement -> assignStmt .)
+    IF              reduce using rule 24 (statement -> assignStmt .)
+    ELSE            reduce using rule 24 (statement -> assignStmt .)
+    WHILE           reduce using rule 24 (statement -> assignStmt .)
+    RETURN          reduce using rule 24 (statement -> assignStmt .)
+    IDENTIFIER      reduce using rule 24 (statement -> assignStmt .)
+    LPAREN          reduce using rule 24 (statement -> assignStmt .)
+    INT_LITERAL     reduce using rule 24 (statement -> assignStmt .)
+    CHAR_LITERAL    reduce using rule 24 (statement -> assignStmt .)
+    STRING_LITERAL  reduce using rule 24 (statement -> assignStmt .)
+    RBRACE          reduce using rule 24 (statement -> assignStmt .)
+
+
+state 57
+
+    (57) factor -> INT_LITERAL .
+
+    MULTIPLY        reduce using rule 57 (factor -> INT_LITERAL .)
+    DIVIDE          reduce using rule 57 (factor -> INT_LITERAL .)
+    RBRACKET        reduce using rule 57 (factor -> INT_LITERAL .)
+    PLUS            reduce using rule 57 (factor -> INT_LITERAL .)
+    MINUS           reduce using rule 57 (factor -> INT_LITERAL .)
+    RPAREN          reduce using rule 57 (factor -> INT_LITERAL .)
+    LTE             reduce using rule 57 (factor -> INT_LITERAL .)
+    LESS            reduce using rule 57 (factor -> INT_LITERAL .)
+    EQ              reduce using rule 57 (factor -> INT_LITERAL .)
+    GREATER         reduce using rule 57 (factor -> INT_LITERAL .)
+    GTE             reduce using rule 57 (factor -> INT_LITERAL .)
+    NEQ             reduce using rule 57 (factor -> INT_LITERAL .)
+    SEMICOLON       reduce using rule 57 (factor -> INT_LITERAL .)
+    COMMA           reduce using rule 57 (factor -> INT_LITERAL .)
+
+
+state 58
+
+    (30) assignStmt -> expression . SEMICOLON
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    SEMICOLON       shift and go to state 81
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 59
+
+    (20) localDeclList -> varDecl localDeclList .
+
+    LBRACE          reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    IF              reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    ELSE            reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    WHILE           reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    RETURN          reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    IDENTIFIER      reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    LPAREN          reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    INT_LITERAL     reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    CHAR_LITERAL    reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    STRING_LITERAL  reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+    RBRACE          reduce using rule 20 (localDeclList -> varDecl localDeclList .)
+
+
+state 60
+
+    (6) varDecl -> typeSpecifier IDENTIFIER . LBRACKET INT_LITERAL RBRACKET SEMICOLON
+    (7) varDecl -> typeSpecifier IDENTIFIER . SEMICOLON
+
+    LBRACKET        shift and go to state 14
+    SEMICOLON       shift and go to state 13
+
+
+state 61
+
+    (34) returnStmt -> RETURN SEMICOLON .
+
+    LBRACE          reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    IF              reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    ELSE            reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    WHILE           reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    IDENTIFIER      reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    LPAREN          reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    INT_LITERAL     reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    STRING_LITERAL  reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+    RBRACE          reduce using rule 34 (returnStmt -> RETURN SEMICOLON .)
+
+
+state 62
+
+    (55) factor -> var .
+
+    MULTIPLY        reduce using rule 55 (factor -> var .)
+    DIVIDE          reduce using rule 55 (factor -> var .)
+    RBRACKET        reduce using rule 55 (factor -> var .)
+    PLUS            reduce using rule 55 (factor -> var .)
+    MINUS           reduce using rule 55 (factor -> var .)
+    RPAREN          reduce using rule 55 (factor -> var .)
+    LTE             reduce using rule 55 (factor -> var .)
+    LESS            reduce using rule 55 (factor -> var .)
+    EQ              reduce using rule 55 (factor -> var .)
+    GREATER         reduce using rule 55 (factor -> var .)
+    GTE             reduce using rule 55 (factor -> var .)
+    NEQ             reduce using rule 55 (factor -> var .)
+    COMMA           reduce using rule 55 (factor -> var .)
+    SEMICOLON       reduce using rule 55 (factor -> var .)
+
+
+state 63
+
+    (35) returnStmt -> RETURN expression . SEMICOLON
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    SEMICOLON       shift and go to state 88
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 64
+
+    (33) loopStmt -> WHILE LPAREN . expression RPAREN statement
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    expression                     shift and go to state 89
+
+state 65
+
+    (47) addExpr -> addExpr addop . term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 90
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+
+state 66
+
+    (48) addop -> PLUS .
+
+    LPAREN          reduce using rule 48 (addop -> PLUS .)
+    INT_LITERAL     reduce using rule 48 (addop -> PLUS .)
+    CHAR_LITERAL    reduce using rule 48 (addop -> PLUS .)
+    STRING_LITERAL  reduce using rule 48 (addop -> PLUS .)
+    IDENTIFIER      reduce using rule 48 (addop -> PLUS .)
+
+
+state 67
+
+    (49) addop -> MINUS .
+
+    LPAREN          reduce using rule 49 (addop -> MINUS .)
+    INT_LITERAL     reduce using rule 49 (addop -> MINUS .)
+    CHAR_LITERAL    reduce using rule 49 (addop -> MINUS .)
+    STRING_LITERAL  reduce using rule 49 (addop -> MINUS .)
+    IDENTIFIER      reduce using rule 49 (addop -> MINUS .)
+
+
+state 68
+
+    (18) funBody -> LBRACE localDeclList statementList RBRACE .
+
+    INT             reduce using rule 18 (funBody -> LBRACE localDeclList statementList RBRACE .)
+    CHAR            reduce using rule 18 (funBody -> LBRACE localDeclList statementList RBRACE .)
+    VOID            reduce using rule 18 (funBody -> LBRACE localDeclList statementList RBRACE .)
+    STRING          reduce using rule 18 (funBody -> LBRACE localDeclList statementList RBRACE .)
+    $end            reduce using rule 18 (funBody -> LBRACE localDeclList statementList RBRACE .)
+
+
+state 69
+
+    (22) statementList -> statement statementList .
+
+    RBRACE          reduce using rule 22 (statementList -> statement statementList .)
+
+
+state 70
+
+    (29) assignStmt -> var ASSIGN . expression SEMICOLON
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    expression                     shift and go to state 91
+
+state 71
+
+    (37) var -> IDENTIFIER LBRACKET . addExpr RBRACKET
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 92
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+
+state 72
+
+    (60) funcCallExpr -> IDENTIFIER LPAREN . argList RPAREN
+    (61) argList -> . expression
+    (62) argList -> . expression COMMA argList
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    argList                        shift and go to state 93
+    expression                     shift and go to state 94
+
+state 73
+
+    (32) condStmt -> ELSE statement .
+
+    LBRACE          reduce using rule 32 (condStmt -> ELSE statement .)
+    IF              reduce using rule 32 (condStmt -> ELSE statement .)
+    ELSE            reduce using rule 32 (condStmt -> ELSE statement .)
+    WHILE           reduce using rule 32 (condStmt -> ELSE statement .)
+    RETURN          reduce using rule 32 (condStmt -> ELSE statement .)
+    IDENTIFIER      reduce using rule 32 (condStmt -> ELSE statement .)
+    LPAREN          reduce using rule 32 (condStmt -> ELSE statement .)
+    INT_LITERAL     reduce using rule 32 (condStmt -> ELSE statement .)
+    CHAR_LITERAL    reduce using rule 32 (condStmt -> ELSE statement .)
+    STRING_LITERAL  reduce using rule 32 (condStmt -> ELSE statement .)
+    RBRACE          reduce using rule 32 (condStmt -> ELSE statement .)
+
+
+state 74
+
+    (54) factor -> LPAREN expression . RPAREN
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    RPAREN          shift and go to state 95
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 75
+
+    (31) condStmt -> IF LPAREN . expression RPAREN statement
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    expression                     shift and go to state 96
+
+state 76
+
+    (52) mulop -> MULTIPLY .
+
+    LPAREN          reduce using rule 52 (mulop -> MULTIPLY .)
+    INT_LITERAL     reduce using rule 52 (mulop -> MULTIPLY .)
+    CHAR_LITERAL    reduce using rule 52 (mulop -> MULTIPLY .)
+    STRING_LITERAL  reduce using rule 52 (mulop -> MULTIPLY .)
+    IDENTIFIER      reduce using rule 52 (mulop -> MULTIPLY .)
+
+
+state 77
+
+    (53) mulop -> DIVIDE .
+
+    LPAREN          reduce using rule 53 (mulop -> DIVIDE .)
+    INT_LITERAL     reduce using rule 53 (mulop -> DIVIDE .)
+    CHAR_LITERAL    reduce using rule 53 (mulop -> DIVIDE .)
+    STRING_LITERAL  reduce using rule 53 (mulop -> DIVIDE .)
+    IDENTIFIER      reduce using rule 53 (mulop -> DIVIDE .)
+
+
+state 78
+
+    (51) term -> term mulop . factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 97
+    var                            shift and go to state 62
+
+state 79
+
+    (28) compoundStmt -> LBRACE statementList . RBRACE
+
+    RBRACE          shift and go to state 98
+
+
+state 80
+
+    (39) expression -> expression relop . addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 99
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+
+state 81
+
+    (30) assignStmt -> expression SEMICOLON .
+
+    LBRACE          reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    IF              reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    ELSE            reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    WHILE           reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    RETURN          reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    IDENTIFIER      reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    LPAREN          reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    INT_LITERAL     reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    STRING_LITERAL  reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+    RBRACE          reduce using rule 30 (assignStmt -> expression SEMICOLON .)
+
+
+state 82
+
+    (41) relop -> LESS .
+
+    LPAREN          reduce using rule 41 (relop -> LESS .)
+    INT_LITERAL     reduce using rule 41 (relop -> LESS .)
+    CHAR_LITERAL    reduce using rule 41 (relop -> LESS .)
+    STRING_LITERAL  reduce using rule 41 (relop -> LESS .)
+    IDENTIFIER      reduce using rule 41 (relop -> LESS .)
+
+
+state 83
+
+    (42) relop -> EQ .
+
+    LPAREN          reduce using rule 42 (relop -> EQ .)
+    INT_LITERAL     reduce using rule 42 (relop -> EQ .)
+    CHAR_LITERAL    reduce using rule 42 (relop -> EQ .)
+    STRING_LITERAL  reduce using rule 42 (relop -> EQ .)
+    IDENTIFIER      reduce using rule 42 (relop -> EQ .)
+
+
+state 84
+
+    (44) relop -> GTE .
+
+    LPAREN          reduce using rule 44 (relop -> GTE .)
+    INT_LITERAL     reduce using rule 44 (relop -> GTE .)
+    CHAR_LITERAL    reduce using rule 44 (relop -> GTE .)
+    STRING_LITERAL  reduce using rule 44 (relop -> GTE .)
+    IDENTIFIER      reduce using rule 44 (relop -> GTE .)
+
+
+state 85
+
+    (40) relop -> LTE .
+
+    LPAREN          reduce using rule 40 (relop -> LTE .)
+    INT_LITERAL     reduce using rule 40 (relop -> LTE .)
+    CHAR_LITERAL    reduce using rule 40 (relop -> LTE .)
+    STRING_LITERAL  reduce using rule 40 (relop -> LTE .)
+    IDENTIFIER      reduce using rule 40 (relop -> LTE .)
+
+
+state 86
+
+    (45) relop -> NEQ .
+
+    LPAREN          reduce using rule 45 (relop -> NEQ .)
+    INT_LITERAL     reduce using rule 45 (relop -> NEQ .)
+    CHAR_LITERAL    reduce using rule 45 (relop -> NEQ .)
+    STRING_LITERAL  reduce using rule 45 (relop -> NEQ .)
+    IDENTIFIER      reduce using rule 45 (relop -> NEQ .)
+
+
+state 87
+
+    (43) relop -> GREATER .
+
+    LPAREN          reduce using rule 43 (relop -> GREATER .)
+    INT_LITERAL     reduce using rule 43 (relop -> GREATER .)
+    CHAR_LITERAL    reduce using rule 43 (relop -> GREATER .)
+    STRING_LITERAL  reduce using rule 43 (relop -> GREATER .)
+    IDENTIFIER      reduce using rule 43 (relop -> GREATER .)
+
+
+state 88
+
+    (35) returnStmt -> RETURN expression SEMICOLON .
+
+    LBRACE          reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    IF              reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    ELSE            reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    WHILE           reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    RETURN          reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    IDENTIFIER      reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    LPAREN          reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    INT_LITERAL     reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    STRING_LITERAL  reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+    RBRACE          reduce using rule 35 (returnStmt -> RETURN expression SEMICOLON .)
+
+
+state 89
+
+    (33) loopStmt -> WHILE LPAREN expression . RPAREN statement
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    RPAREN          shift and go to state 100
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 90
+
+    (47) addExpr -> addExpr addop term .
+    (51) term -> term . mulop factor
+    (52) mulop -> . MULTIPLY
+    (53) mulop -> . DIVIDE
+
+    PLUS            reduce using rule 47 (addExpr -> addExpr addop term .)
+    MINUS           reduce using rule 47 (addExpr -> addExpr addop term .)
+    SEMICOLON       reduce using rule 47 (addExpr -> addExpr addop term .)
+    LTE             reduce using rule 47 (addExpr -> addExpr addop term .)
+    LESS            reduce using rule 47 (addExpr -> addExpr addop term .)
+    EQ              reduce using rule 47 (addExpr -> addExpr addop term .)
+    GREATER         reduce using rule 47 (addExpr -> addExpr addop term .)
+    GTE             reduce using rule 47 (addExpr -> addExpr addop term .)
+    NEQ             reduce using rule 47 (addExpr -> addExpr addop term .)
+    RBRACKET        reduce using rule 47 (addExpr -> addExpr addop term .)
+    RPAREN          reduce using rule 47 (addExpr -> addExpr addop term .)
+    COMMA           reduce using rule 47 (addExpr -> addExpr addop term .)
+    MULTIPLY        shift and go to state 76
+    DIVIDE          shift and go to state 77
+
+    mulop                          shift and go to state 78
+
+state 91
+
+    (29) assignStmt -> var ASSIGN expression . SEMICOLON
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    SEMICOLON       shift and go to state 101
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 92
+
+    (37) var -> IDENTIFIER LBRACKET addExpr . RBRACKET
+    (47) addExpr -> addExpr . addop term
+    (48) addop -> . PLUS
+    (49) addop -> . MINUS
+
+    RBRACKET        shift and go to state 102
+    PLUS            shift and go to state 66
+    MINUS           shift and go to state 67
+
+    addop                          shift and go to state 65
+
+state 93
+
+    (60) funcCallExpr -> IDENTIFIER LPAREN argList . RPAREN
+
+    RPAREN          shift and go to state 103
+
+
+state 94
+
+    (61) argList -> expression .
+    (62) argList -> expression . COMMA argList
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    RPAREN          reduce using rule 61 (argList -> expression .)
+    COMMA           shift and go to state 104
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 95
+
+    (54) factor -> LPAREN expression RPAREN .
+
+    MULTIPLY        reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    LTE             reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    GTE             reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    NEQ             reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 54 (factor -> LPAREN expression RPAREN .)
+
+
+state 96
+
+    (31) condStmt -> IF LPAREN expression . RPAREN statement
+    (39) expression -> expression . relop addExpr
+    (40) relop -> . LTE
+    (41) relop -> . LESS
+    (42) relop -> . EQ
+    (43) relop -> . GREATER
+    (44) relop -> . GTE
+    (45) relop -> . NEQ
+
+    RPAREN          shift and go to state 105
+    LTE             shift and go to state 85
+    LESS            shift and go to state 82
+    EQ              shift and go to state 83
+    GREATER         shift and go to state 87
+    GTE             shift and go to state 84
+    NEQ             shift and go to state 86
+
+    relop                          shift and go to state 80
+
+state 97
+
+    (51) term -> term mulop factor .
+
+    MULTIPLY        reduce using rule 51 (term -> term mulop factor .)
+    DIVIDE          reduce using rule 51 (term -> term mulop factor .)
+    PLUS            reduce using rule 51 (term -> term mulop factor .)
+    MINUS           reduce using rule 51 (term -> term mulop factor .)
+    SEMICOLON       reduce using rule 51 (term -> term mulop factor .)
+    LTE             reduce using rule 51 (term -> term mulop factor .)
+    LESS            reduce using rule 51 (term -> term mulop factor .)
+    EQ              reduce using rule 51 (term -> term mulop factor .)
+    GREATER         reduce using rule 51 (term -> term mulop factor .)
+    GTE             reduce using rule 51 (term -> term mulop factor .)
+    NEQ             reduce using rule 51 (term -> term mulop factor .)
+    COMMA           reduce using rule 51 (term -> term mulop factor .)
+    RPAREN          reduce using rule 51 (term -> term mulop factor .)
+    RBRACKET        reduce using rule 51 (term -> term mulop factor .)
+
+
+state 98
+
+    (28) compoundStmt -> LBRACE statementList RBRACE .
+
+    LBRACE          reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    IF              reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    ELSE            reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    WHILE           reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    RETURN          reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    IDENTIFIER      reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    LPAREN          reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    INT_LITERAL     reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    CHAR_LITERAL    reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    STRING_LITERAL  reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+    RBRACE          reduce using rule 28 (compoundStmt -> LBRACE statementList RBRACE .)
+
+
+state 99
+
+    (39) expression -> expression relop addExpr .
+    (47) addExpr -> addExpr . addop term
+    (48) addop -> . PLUS
+    (49) addop -> . MINUS
+
+    SEMICOLON       reduce using rule 39 (expression -> expression relop addExpr .)
+    LTE             reduce using rule 39 (expression -> expression relop addExpr .)
+    LESS            reduce using rule 39 (expression -> expression relop addExpr .)
+    EQ              reduce using rule 39 (expression -> expression relop addExpr .)
+    GREATER         reduce using rule 39 (expression -> expression relop addExpr .)
+    GTE             reduce using rule 39 (expression -> expression relop addExpr .)
+    NEQ             reduce using rule 39 (expression -> expression relop addExpr .)
+    COMMA           reduce using rule 39 (expression -> expression relop addExpr .)
+    RPAREN          reduce using rule 39 (expression -> expression relop addExpr .)
+    PLUS            shift and go to state 66
+    MINUS           shift and go to state 67
+
+    addop                          shift and go to state 65
+
+state 100
+
+    (33) loopStmt -> WHILE LPAREN expression RPAREN . statement
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 106
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+
+state 101
+
+    (29) assignStmt -> var ASSIGN expression SEMICOLON .
+
+    LBRACE          reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    ELSE            reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    WHILE           reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    RETURN          reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    IDENTIFIER      reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    INT_LITERAL     reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    CHAR_LITERAL    reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    STRING_LITERAL  reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 29 (assignStmt -> var ASSIGN expression SEMICOLON .)
+
+
+state 102
+
+    (37) var -> IDENTIFIER LBRACKET addExpr RBRACKET .
+
+    MULTIPLY        reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    DIVIDE          reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    PLUS            reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    MINUS           reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    RPAREN          reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    LTE             reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    LESS            reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    EQ              reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    GREATER         reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    GTE             reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    NEQ             reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    RBRACKET        reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    ASSIGN          reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    SEMICOLON       reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+    COMMA           reduce using rule 37 (var -> IDENTIFIER LBRACKET addExpr RBRACKET .)
+
+
+state 103
+
+    (60) funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .
+
+    MULTIPLY        reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    DIVIDE          reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    PLUS            reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    MINUS           reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    SEMICOLON       reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    LTE             reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    LESS            reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    EQ              reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    GREATER         reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    GTE             reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    NEQ             reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    RPAREN          reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    COMMA           reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+    RBRACKET        reduce using rule 60 (funcCallExpr -> IDENTIFIER LPAREN argList RPAREN .)
+
+
+state 104
+
+    (62) argList -> expression COMMA . argList
+    (61) argList -> . expression
+    (62) argList -> . expression COMMA argList
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+    IDENTIFIER      shift and go to state 45
+
+    term                           shift and go to state 52
+    addExpr                        shift and go to state 40
+    funcCallExpr                   shift and go to state 39
+    factor                         shift and go to state 43
+    var                            shift and go to state 62
+    argList                        shift and go to state 107
+    expression                     shift and go to state 94
+
+state 105
+
+    (31) condStmt -> IF LPAREN expression RPAREN . statement
+    (23) statement -> . compoundStmt
+    (24) statement -> . assignStmt
+    (25) statement -> . condStmt
+    (26) statement -> . loopStmt
+    (27) statement -> . returnStmt
+    (28) compoundStmt -> . LBRACE statementList RBRACE
+    (29) assignStmt -> . var ASSIGN expression SEMICOLON
+    (30) assignStmt -> . expression SEMICOLON
+    (31) condStmt -> . IF LPAREN expression RPAREN statement
+    (32) condStmt -> . ELSE statement
+    (33) loopStmt -> . WHILE LPAREN expression RPAREN statement
+    (34) returnStmt -> . RETURN SEMICOLON
+    (35) returnStmt -> . RETURN expression SEMICOLON
+    (36) var -> . IDENTIFIER
+    (37) var -> . IDENTIFIER LBRACKET addExpr RBRACKET
+    (38) expression -> . addExpr
+    (39) expression -> . expression relop addExpr
+    (46) addExpr -> . term
+    (47) addExpr -> . addExpr addop term
+    (50) term -> . factor
+    (51) term -> . term mulop factor
+    (54) factor -> . LPAREN expression RPAREN
+    (55) factor -> . var
+    (56) factor -> . funcCallExpr
+    (57) factor -> . INT_LITERAL
+    (58) factor -> . CHAR_LITERAL
+    (59) factor -> . STRING_LITERAL
+    (60) funcCallExpr -> . IDENTIFIER LPAREN argList RPAREN
+
+    LBRACE          shift and go to state 53
+    IF              shift and go to state 51
+    ELSE            shift and go to state 47
+    WHILE           shift and go to state 38
+    RETURN          shift and go to state 35
+    IDENTIFIER      shift and go to state 45
+    LPAREN          shift and go to state 48
+    INT_LITERAL     shift and go to state 57
+    CHAR_LITERAL    shift and go to state 54
+    STRING_LITERAL  shift and go to state 36
+
+    term                           shift and go to state 52
+    assignStmt                     shift and go to state 56
+    loopStmt                       shift and go to state 37
+    condStmt                       shift and go to state 55
+    funcCallExpr                   shift and go to state 39
+    statement                      shift and go to state 108
+    factor                         shift and go to state 43
+    var                            shift and go to state 44
+    returnStmt                     shift and go to state 49
+    addExpr                        shift and go to state 40
+    expression                     shift and go to state 58
+    compoundStmt                   shift and go to state 50
+
+state 106
+
+    (33) loopStmt -> WHILE LPAREN expression RPAREN statement .
+
+    LBRACE          reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    IF              reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    ELSE            reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    WHILE           reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    RETURN          reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    IDENTIFIER      reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    INT_LITERAL     reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    CHAR_LITERAL    reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    STRING_LITERAL  reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+    RBRACE          reduce using rule 33 (loopStmt -> WHILE LPAREN expression RPAREN statement .)
+
+
+state 107
+
+    (62) argList -> expression COMMA argList .
+
+    RPAREN          reduce using rule 62 (argList -> expression COMMA argList .)
+
+
+state 108
+
+    (31) condStmt -> IF LPAREN expression RPAREN statement .
+
+    LBRACE          reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    IF              reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    ELSE            reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    WHILE           reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    RETURN          reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    IDENTIFIER      reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    INT_LITERAL     reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    CHAR_LITERAL    reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    STRING_LITERAL  reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+    RBRACE          reduce using rule 31 (condStmt -> IF LPAREN expression RPAREN statement .)
+

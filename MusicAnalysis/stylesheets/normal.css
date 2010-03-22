@@ -1,0 +1,64 @@
+/* normal.css
+------------------------------
+Author:    Luke Paireepinart
+Copyright: Nico Schüler
+
+Texas State University
+Summer 2009
+------------------------------
+Brief Summary:
+Style sheet for the Set Theory (normal) program.
+*/
+
+
+table.primes 
+{
+  border: 1px solid;
+  border-collapse: collapse;
+  background-color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto;
+  font-family: serif;
+  font-weight: normal;
+  font-size: larger;
+}
+
+tr.primes
+{
+  border: 1px solid;
+}
+
+td.primes
+{
+  border: 1px solid;
+  background-color: #DDDDFF;
+  width:auto;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: left;
+  font-size: large;
+}
+
+th.primes
+{
+  border: 1px solid;
+  background-color: #FFE2FF;
+  width:auto;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+}
+
+td.primes2
+{
+  border: 1px solid;
+  background-color: #FFFFDD;
+  width:auto;
+  min-width: 6em;
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  text-align: center;
+}
