@@ -5,28 +5,18 @@ import os, cgi
 from libs import structure
 from musiclib import all_notes
 from libs import prime_forms
-from libs import prime_functions
-debug = False
+
 # Debug code, shouldn't be included unless testing.
-if debug:
-    import cgitb
-    cgitb.enable()
-      
-   
-def pretty(notes, encoding):
-    ' notes is int array, encoding is a dict such as {0:"A", 1:"A#" ... 11:"G#"}'
-    return " ".join([encoding[i] for i in notes])
+import cgitb
+cgitb.enable()
+    
+    
+    
+debug = False
 
-
-# Create instance of FieldStorage 
-form = cgi.FieldStorage()
-
-
-
-
-
-
-
+#TODO: 
+#!---------------------------
+#!---------------------------
 
 def intervals(notes):
     ints = []
@@ -103,6 +93,10 @@ def calc_rahn(candidates, index=None):
             if debug:
                 print "<br /> The items are: ", temp, "<br />"
                 print "recursing..."
+            
+            if len(candidates[0]) <= 2:
+                return candidates[0]#todo make this better?
+            
             return calc_rahn(temp, index-1)
         return chosen
         
@@ -220,148 +214,171 @@ def printPrime(orig, prime, encoding, header): #output a prime's information.
     #    print "<hr />"
     #else:
     #    print "<br />"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
-     
-     
-"""
- def printPrime(orig, prime, encoding):
-    print "<table class='primestable'>"
-    print "<tr><td>Normal Form</td><td>", pretty(orig, encoding), "</td></tr>"
-    try:
-        temp = prime_forms.forms[tuple(prime)]
-        print "Prime Form: %s<br />" % " ".join([str(i) for i in prime])
-        print "Forte Name: %s<br />" % temp[0]
-        print "Distinct Forms: %s<br />" % temp[1]
-        iv = []
-        for i in vector(prime):
-            if i >= 10:
-                i -= 10
-                try:
-                    iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[i])
-                except:
-                    iv.append(' ' + str(i+10) + ' ')
-            else:
-                iv.append(str(i))
-        print "Interval Vector: %s<br />" % "".join(iv)
-        
-    except:
-        print tuple(prime), "is the prime form.  "
-        print "this prime form was not found in the prime forms list."
     
-    if debug:
-        print "<hr />"
-    else:
-        print "<br />"
-"""
-     
-def printPage(notes):
+    
+    
+    
+    
+#!---------------------------
+#!---------------------------
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+def pretty(notes, encoding):
+    ' notes is int array, encoding is a dict such as {0:"A", 1:"A#" ... 11:"G#"}'
+    return " ".join([encoding[i] for i in notes])
+
+
+# Create instance of FieldStorage 
+form = cgi.FieldStorage()
+def rotations(notes):
+    results = [notes[:]]
+    for i in range(len(notes) - 1):
+        temp = [results[-1][1]]
+        temp.extend(results[-1][2:])
+        temp.append(results[-1][0])
+        results.append(temp)
+    return results
+    
+def printPage():
+    global notes, wraparound
     if len(notes) == 0:
         return
-        
-    encoding = {0:"C", 1:"C#", 2:"D", 3:"D#", 4:"E", 5:"F", 6:"F#", 7:"G", 8:"G#", 9:"A", 10:"A#", 11:"B"}
+    encoding = {}
     temp = []
     for note in notes:
         i = note.strip()
         i = i[0].upper() + i[1:].lower()
         try:
-            #  our all_notes refers to notes from base A but we refer to them as base C.
             encoding[(all_notes[i]-3) % 12] = i
             temp.append((all_notes[i]-3) % 12)
+            """
+            
+            encoding[all_notes[i]] = i
+            temp.append(all_notes[i])
+            """
+            
         except KeyError:
             print '<h2 class="error">You entered an invalid note: %s</h2>' % i
             return
     notes = temp
-    if len(set(notes)) < 2:
-        print '<h2 class="error">Not enough notes for calculating normal form!  Enter at least 2 unique notes.</h2>'
+    if len(set(notes)) < 12:
+        print '<h2 class="error">Not enough notes for calculation!  Enter 12 unique notes.</h2>'
         return
-      
-    if debug:
-        print "Input: "
-        print pretty(notes, encoding)
-    noteslen = len(notes)
-    notes = list(set(temp))
-    if len(notes) < noteslen:
-        print "<br />You entered some duplicate notes, discarding duplicates...<br />"
-    #reorder notes
-    notes.sort()
-    if debug:
-        print '<hr />'
-        print "Sorted Notes: ", pretty(notes, encoding), "<br />"
-        print '<hr />'
-    
-    else:
-        print "<br /><br /><br />"
-    
-    candidates = [notes[i:len(notes)] + notes[0:i] for i in range(len(notes))]
-    if debug:
-        print "Candidates:<br />"
-        for candidate in candidates:
-            print pretty(candidate, encoding), ": "
-            print "intervals ", intervals(candidate)
-            print ", vector ", "".join([str(i) for i in vector(candidate)])
-            print ", outside interval ", sum(intervals(candidate))
-            print "<br />"
-        print "<hr />"
         
-    rahn = calc_rahn(candidates)
-    forte = calc_forte(candidates)
+    # print '<div id="symmdiv">'
+    print "original row: ", pretty(notes, encoding)
+    print "wraparound: ", wraparound
     
-    
-    
-    
-    if debug:
-        print "<hr />"
-        print "rahn func returned", rahn
-        print "<br />"
-        print "forte func returned", forte
-        print '<hr />'
+
+
+    #notes = map(str, notes)
+    notes.extend(notes)
+    print "<br />", notes, "<br />"
+    print '<table class="primes">'
+    print '<tr class="primes">'
+    print '<td class="primes">Forte Code</td><td class="primes">Prime form</td><td class="primes">Inversion form</td><td class="primes">Interval Vector</td><td  class="primes" colspan=12>pitches</td>'
+    print '</tr>'
+    for length in range(2,13):
+        ranges = range(13-length)
+        totalvecs = [0,0,0,0,0,0]
+        if wraparound:
+            ranges = range(12)
+            if length == 12:
+                ranges = range(1)
+        for i in ranges:
+            print '<tr class="primes">'
+            line = []
+            selected_notes = notes[i:i+length]
+            #TODO: clean this up.
+            if i+length > 12:
+                line.extend([encoding[j] for j in notes[12:i+length]])
+                line.extend([""]*(12-len(line) - (12-i)))
+                line.extend([encoding[j] for j in notes[i:12]])
+            else:
+                line.extend([""]*i)
+                line.extend([encoding[j] for j in notes[i:i+length]])
+                line.extend([""]*(12-i-length))
+                
+            temp = list(set(selected_notes))
+            temp.sort()
+            candidates = [temp[j:len(temp)] + temp[0:j] for j in range(len(temp))]
+            
+            rahn = calc_forte(candidates)
+            rprime = getPrime(rahn)
+            victor = vector(rprime)
+            try:
+                forte = prime_forms.forms[tuple(rprime)][0]
+            except:
+                forte = "N/A"
+            for x,v in enumerate(victor):
+                totalvecs[x] += v
+                
+            
+            iv = []
+            for j in vector(rprime):
+                if j >= 10:
+                    j -= 10
+                    try:
+                        iv.append('ABCDEFGHIJKLMNOPQRSTUVWXYZ'[j])
+                    except:
+                        iv.append(' ' + str(j+10) + ' ')
+                else:
+                    iv.append(str(j))
+                    
+            print '<td class="primes">%s</td>' % str(forte) # forte code
+            print '<td class="primes">%s</td>' % repr(tuple(rprime)) # prime form
+            print '<td class="primes">%s</td>' % "N/A" # inversion form
+            print '<td class="primes">%s</td>' % "".join(iv) # interval vector
+            print '<td class="primes">%s</td>'*12 % tuple(line)
+            print "</tr>"
+        print '<tr class="primes"><td class="primes" colspan=3>Interval Vector Total:</td><td class="primes" colspan=13>%s</td></tr>' % repr(totalvecs)
+        print "<tr><td colspan=16></td></tr>"
+    print '</table>'
         
-        
-    #if rahn and forte are different, display both, otherwise just display 1.
-    rprime = getPrime(rahn)
-    fprime = getPrime(forte)
-    
-    if rprime == fprime: #they're combined!
-        printPrime(rahn, rprime, encoding, "Rahn/Forte")
-    else:
-        printPrime(rahn, rprime, encoding, "Rahn")
-        print "<br />"
-        printPrime(forte, fprime, encoding, "Forte")
-        
+    # print '</div> <!-- ~symmdiv -->'
     
     
-    
-structure.print_header(title="Analysis of Normal Form, Normal Order, and Prime Form of Sets: Web-Based Analytical Tool for Set Theory by Nico Schuler and Luke Paireepinart",
-                       scripts=["main.js","normal.js"], css=["main.css", "normal.css"])
+structure.print_header(title="New Tool by Nico Schuler and Luke Paireepinart",
+                       scripts=["main.js"], css=["main.css", 'newtool.css'])
 
                        
                   
-if debug:
-    print "<font color='red'> This tool is currently under testing!<br /></font>"
+
                        
 try:
     # Get data from fields
     notes = form.getvalue('notes').strip().lower().split()
+    try:
+        wraparound = (form.getvalue('wraparound').strip().lower() == "on")
+    except:
+        wraparound = False
+
     
 except:
     notes = []
     #main page.
-    structure.print_body("normal/main.html")
+    from scales.filters import filters
+    structure.print_body("newtool/main.html")
        
 
-printPage(notes)
+printPage()
 structure.print_footer()

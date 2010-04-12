@@ -1,0 +1,32 @@
+/******************
+*         *
+******************/
+#symmdiv
+{
+    border: solid 1px;
+    text-align: center;
+    margin: auto auto;
+    padding: 5px;
+    width: auto;
+}
+table.primes
+{
+  text-align: center;
+  border:solid;
+  border-width: 1px;
+  margin: 5 auto;
+  font-family: monospace;
+  /*table-layout: fixed;*/
+  background-color: white;
+  border-collapse: collapse;
+}
+
+td.primes
+{
+  background-color: white;
+  border:solid;
+  border-width:1px;
+  padding: 2px;
+  text-align:center;
+  font-family: monospace;
+}
