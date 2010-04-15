@@ -56,7 +56,7 @@ class CPU(object):
         self.PC    =  Word()
         
         self._load_memory(Word(0), config.hexfont)     
-        self.screen = [[0] * 0x20 for i in range(0x40)]
+        self.clear()
         
     def _load_memory(self, addr, values):
         loc = abs(addr.val) % WORD
@@ -75,7 +75,11 @@ class CPU(object):
                     print "flipping bit."
                     self.regs[-1] = 1
                 self.screen[hloc][vloc] = self.screen[hloc][vloc] ^ pixel
+    
+    def clear(self):
+        self.screen = [[0] * 0x20 for i in range(0x40)]
         
+    
 
 class Display(object):
     def __init__(self, CPU, screen):
@@ -91,25 +95,5 @@ class Display(object):
         self.screen.unlock()
         
 
-import pygame
-pygame.init()
-screen = pygame.display.set_mode((640, 320))
-
-cpu = CPU()
-display = Display(cpu, screen)
-running = True
-for i in range(8):
-    cpu.draw(config.hexfont[i*5:i*5+5],i*8+5, 2)
-
-while running:
-    display.update()
-    pygame.display.update()
-    
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            pygame.quit()
-            running = False
-            
-    
 
     
