@@ -17,3 +17,11 @@ projects:
   - each square on the board is an object.
   - it has an owner (Bank by default)
   - calling "next" 
+  
+  
+#4 Strobe tuner
+ - generate a sine wave with a specific frequency
+ - have a buffer of say 20 items.  you refresh the buffer as a ring.
+ each item you refresh is an instantaneous measurement of the input wave, and you
+ compare it with the reference sine wave.  if they are different, you set the buffer to their difference.
+ 
