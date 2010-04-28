@@ -1,0 +1,157 @@
+<!--
+  copyright (c) 2009 Google inc.
+
+  You are free to copy and use this sample.
+  License can be found here: http://code.google.com/apis/ajaxsearch/faq/#license
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google AJAX Search API Sample</title>
+    <style type="text/css" media="screen">
+      body {
+        font-family : arial, sans-serif;
+      }
+      #spacer { width : 10px; }
+      #mapWrapperCanvas {
+        width : 100%;
+        height : 700px;
+      }
+      #mapCanvas {
+        border : 1px solid #979797;
+        height : 700px;
+        width : 100%;
+      }
+      #resultsCanvas {
+        position : relative;
+        top : 15px;
+        left : 0px;
+        height : 668px;
+        width : 280px;
+      }
+      #mapSearch {
+        position: relative;
+        top : 0px;
+        left : 0px;
+      }
+      .mapcanvastable td {
+        padding : 0px;
+      }
+      .mapcanvastable {
+        border-width : 0px;
+        border-spacing : 0px;
+        border-collapse : collapse;
+        border : none;
+        padding : 0px;
+      }
+
+      /* canvas view css over-rides */
+      #mapCanvas .gels {
+        width : 280px;
+        background-color: #ddeeff;
+      }
+      #mapCanvas .gels-form {
+        background-color: #ddeeff;
+      }
+
+      #mapWrapperCanvas .gels-controls {
+        position : absolute;
+        bottom : -2px;
+        left : 0px;
+      }
+      #mapWrapperCanvas .gels-app,
+      #mapWrapperCanvas .gels-extresults-active {
+        border : none;
+      }
+      #mapWrapperCanvas .gels-list-item {
+        margin-bottom : 2px;
+      }
+      #mapWrapperCanvas .gels-list-wrapper {
+        padding-left : 0px;
+      }
+    </style>
+    <script src="http://www.google.com/jsapi?key=ABQIAAAAEu77BKZ-fzb41BKcbwaImBQDWuKZD3IYpw073kpVjxPRwrbsSxT1LIOFaswhelr4zX9zaChVgvcswg"></script>
+    
+    
+    <script type="text/javascript">
+    google.load("maps", "2");
+    google.load("elements", "1", {
+      packages : ["localsearch"]
+    });
+    
+    function searchComplete(a, response) {
+      // Triggers after a user does a search
+      alert('onSearchCompleteCallback: result #1: '+ response.responseData.results[0].titleNoFormatting);
+    }
+    
+    function generateMarkerHTML(a, originalInfoWindow, result) {
+      // Triggers when a map marker is clicked
+      // Must return the DOM node to be displayed in the search result
+      var div = document.createElement('div');
+      div.innerHTML = result.title+"<br>";
+      for (line in result.addressLines)
+      {
+          div.innerHTML += result.addressLines[line]+"<br>";
+      }
+      if (result.phoneNumbers[0])
+      {
+          div.innerHTML += result.phoneNumbers[0].number+"<br>";
+      }
+      div.innerHTML += '<a href="storemap://'+result.titleNoFormatting+'?lat='+result.lat+'&lng='+result.lng+'">Launch in StoreMap Application</a>';
+      return div;
+    }
+    
+    
+    function initialize() {
+      var mapCanvas = document.getElementById("mapCanvas");
+      var resultsCanvas = document.getElementById("resultsCanvas");
+    
+      var map2 = new google.maps.Map2(mapCanvas);
+      map2.setMapType(G_PHYSICAL_MAP);
+      map2.removeMapType(G_HYBRID_MAP);
+      map2.addMapType(G_PHYSICAL_MAP);
+      map2.addControl(new google.maps.MenuMapTypeControl());
+      map2.addControl(new google.maps.LargeMapControl3D());
+      map2.setCenter(new google.maps.LatLng(29.886778, -97.946310), 13);
+    
+    
+      // Set where the results will appear
+      options = new Object();
+      options.resultList = resultsCanvas;
+      options.resultFormat = "multi-line1";
+      //options.onIdleCallback = function() { alert("onIdleCallback"); };
+      //options.onSearchCompleteCallback = searchComplete;
+      options.onGenerateMarkerHtmlCallback = generateMarkerHTML;
+      //options.onMarkersSetCallback = function() {alert('onMarkersSetCallback: add some application specific markers when all of the result markers are being placed');};
+      
+      
+      var lsc2 = new google.elements.LocalSearch(options);
+      map2.addControl(lsc2, new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(-282, -2)));
+    }
+    google.setOnLoadCallback(initialize);
+    </script>
+    
+    
+    
+    
+    
+    
+    
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <div id="mapWrapperCanvas">
+      <table class="mapcanvastable" style="width:100%;">
+        <td style="width:280px">
+          <div id="mapSearch"></div>
+          <div id="resultsCanvas"></div>
+        </td>
+        <td>
+          <div id="mapCanvas"></div>
+
+        </td>
+      </table>
+    </div>
+  </body>
+</html>
