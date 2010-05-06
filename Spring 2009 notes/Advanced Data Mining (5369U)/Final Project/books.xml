@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ISBNdb server_time="2010-05-06T20:52:32Z">
+<BookList total_results="1" page_size="10" page_number="1" shown_results="1">
+<BookData book_id="rising_sun_a01" isbn="0345380371" isbn13="9780345380371">
+<Title>Rising sun</Title>
+<TitleLong/>
+<AuthorsText>Michael Crichton</AuthorsText>
+<PublisherText publisher_id="ballantine_publishing_group">New York, NY : Ballantine Publishing Group, 1992.</PublisherText>
+</BookData>
+</BookList>
+</ISBNdb>

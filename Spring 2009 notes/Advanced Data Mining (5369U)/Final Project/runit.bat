@@ -1,1 +1,1 @@
-project.py "storemap://Walmart%20Connection%20Center?lat=29.881676&lng=-97.915408"
+project.py "storemap://Walmart%%20Connection%%20Center?lat=29.881676&lng=-97.915408"
