@@ -1,0 +1,40 @@
+bottom-up parsers are called 'shift-reduce' parsers becuse that's all they do - shift and reduce.
+
+why don't we use Expr -> Goal?  Because we do a lookahead at next symbol and see it's not end of input stream.
+so we do Expr -> 
+
+points:
+bottom-up parsing uses stack, looks for matches at top of stack...
+- shift (look at next input)
+- reduce (when it finds a match, reduce it.)
+
+the key is when we do reductions and when we do shifts.  we may have a choice between multiple items.
+
+
+you will get shift-reduce or reduce-reduce conflicts from YACC if you use the grammar directly.
+
+LR(1) parsers = scan left-right and do a reverse-rightmost derivation, using 1 symbol lookahead.
+
+LR1 - you have a table (representation of a DFA) 
+items and states
+tables describe transitions betwen states.
+
+doing examples with LR(1) are complicated so we're gonna do LR(0) items.
+
+computing closure - LR(0) items - a closure of a set of items:
+any item already in I, add to closure.  Then add items where the DOT is followed by nonterminal symbol, and look at the productions of that nonterminal that produce an item.
+
+we talked about LR(0) parsers but LR(1) parsers are very similar.
+LALR - look-ahead LR - kind of parser that YACC uses, it's kinda dynamic.  not always looking at 'k' symbols all the time,
+you try to optimize the lookaheads based on the grammar (have a heuristic to do it.)
+this is the most popular choice.
+
+there are ways of optimizing a CFG - if you just plug it in to YACC you'll get a decent parser,
+but there are certain things you can optimize.
+
+he will assign another homework that will build an SLR table as an exercise.
+  youu'd need to use closure and goto. 
+  ** probably will be on test.
+  
+you don't necessarily have to go this route - implmement compiler from start-finish.  if you have other ideas / explore other areas, we can talk about it.  otherwise that phase of the assignment will be handed out on thursday.
+

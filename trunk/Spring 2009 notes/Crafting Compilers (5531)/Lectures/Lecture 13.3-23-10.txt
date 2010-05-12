@@ -1,0 +1,41 @@
+He went over project 3 assignment.
+
+if you dont' want a parser that has code you can execute by the end of the semester,
+and watn to pursue another project (eg. what can the semantic analyzer / parser do in more depth?) he will let ya.
+
+- when you get to the code generator it will be much more significant than this project.
+
+Extra Credit - constant folding.
+if you have two subtrees with constant values, you can collapse the nodes.  eg. tree for 3 + 4 can be collapsed into 7.
+Note you can only do this if you can figure out if both operands have constant values.
+- you should do a constant folding over the whole program.
+after your semantic analysis / type checking as you're parsing, then you'd just do a tree walk afterwards to fold the values.
+if a variable gets assigned a constant value you need to replace it with a constant...
+- don't need to do inter-procedural analysis.
+
+building a symbol table
+- implementation may be complex
+-usually implemented as a hash table for efficeincy
+- you want to make sure you get the current one in scope.
+trees may be used for representing types... types can be complex - an array of pointers to chars, etc...
+may have stack built into it for scoping info.
+stack for scopes is very helpful if you have nested scopes.
+
+you can't add the varaible definitions to the symbol table inside of funDecl because funBody needs to be parsed first.
+TO work around this you can do this:
+funDecl : funHdr funBody {
+
+}
+
+funHdr : typeSpecifier ID LPAREN formalDeclList RPAREN {
+...
+}
+
+
+the information yo uneed may not be available to you if you are putting the semantic actions at the end of a rule.
+
+
+postorder code execution - perform analysis as we parse.
+
+normally you'd do a tree walk (in a bigger compiler.)
+

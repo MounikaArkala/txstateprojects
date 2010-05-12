@@ -1,0 +1,23 @@
+multicore, pipeline parallelism, etc.
+amdahl's law - speedup due to enhancement E is based only on the percentage of code that can be sped up by parallelism.
+you can almost never parallelize the whole application.
+
+
+Optimization - running time is major one, but what are some other ones?
+- reduce  memory requirements -> used to look at for desktops, now mostly for embedded systems.
+- # of static instructions -> used to look at for desktops, now mostly for embedded systems.
+- power -> used to look at for embedded systems, started looking at for mainstream microprocessors
+
+almost al compiler work now is code-improvement strategies.
+
+machine independent tranformations
+- usually high-level
+- will improve performance regardless of target machine / architecture.
+
+eg. dead code elimination, constant folding.
+
+3 properties of every transformation
+-saefty - still works the same
+-profitability - imrpoves code in some way
+-applicability - should be able to apply to code normally.
+

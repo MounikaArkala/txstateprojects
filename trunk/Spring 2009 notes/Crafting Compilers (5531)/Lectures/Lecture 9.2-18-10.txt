@@ -1,0 +1,40 @@
+whenever we have multiple production rules for our parser we will have to backtrack, but it's an exponential algorithm
+so we want to avoid this.  For a grammar (that satisifes the LL 1 property) - by looking head 1 symbol in the input stream, we
+can always make the right choice when faced with a split.
+
+
+
+"how many follow sets do we want?"  generally it's the # of nonterminals in the grammar.
+
+follow of B - B appears on the production RHS of 3.
+
+note that in rule 3, C follows B.  you can replace C with either aC or lowercase c.   so a and c can appear.
+
+The follow of C includes the follow of A because G -> AB -> BCB ... so it includes the items B generates.
+
+So what do we do if a context-free grammar doesn't have the LL(1) property?
+- sometimes we can transform the grammar.
+
+Looking at grammar you can see it's possible to generate a function call expression where foo(a,b,) for example.  If you want you can modify the grammar for extra credit so you don't have to have the leading parenthesis.
+
+Your main assignment is to take grammar and plug into YACC and have it do its thing.  It'll generate a few complex - shift-reduce, etc.  essentially coming from ambiguity (this grammar is ambiguous).  The handling of these things is up to us.
+eg for the if/else here are the semantics - here is how I handle it (write in the document).
+
+if you had a string table you may want to extend it to contain identifiers.  
+
+
+you can just say "syntax error" you don't have to say "missing semicolon".  just say "syntax error at this line number."
+
+- must beable to detect undeclared variable error.
+
+YAACC - yet another compiler-compiler 
+a bit of a misnomer - it generates a parser.  very similar to Lex.
+here we give it a CFG and it generates a parser.
+
+
+n-ary tree data structure - just like w/ REGEX'es in LEX where you can have callbacks, with YACC rules you can do the same thing.  I.E. you can have a set of curly braces, and that last thing that gets executed is what's in the curly braces.
+
+
+
+
+

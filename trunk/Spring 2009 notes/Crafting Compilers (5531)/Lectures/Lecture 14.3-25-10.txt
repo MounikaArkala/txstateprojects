@@ -1,0 +1,33 @@
+-- Code Generation
+
+All problems of instruction scheduling, selection and register allocaiton, are np-complete.  so we've gotta have some sort
+of heuristic.  
+
+Today we'll review assembly language.
+
+RISC machine - all op's you do, ou have to do in registers.
+CISC - complex instruction set.  do operations on items still in memory.
+
+on CISC everything ends up being in registers after compilation anyway.
+
+MIPS might be best candidate - simple architecture, code generation will be a lot easier.
+- have access to virtualized machines.
+
+Intel only gives you 8 registers.  Itanium gives you 128, MIPS has ~32 but some are reserved.
+
+very limited typing - integer registers and floating-point registers.
+
+assignments, conditionals, iterations, are easy.
+the difficult part is functions.
+
+we have to figure out how to handle it.
+-allocate storage for variables and parameters
+
+code generation is basically a tree walk.  hopefully we've already optimized the AST somewhat so we're gonna just try to generate the code.
+
+- post-order traversal might be the best way to go for generating code.
+
+generating code for expressions - you're returning the result... in expr() so you know what registers to use.
+
+** look at how he generated the if/else tree.
+

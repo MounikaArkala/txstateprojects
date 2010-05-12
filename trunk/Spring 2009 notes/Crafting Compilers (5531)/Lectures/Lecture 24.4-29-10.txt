@@ -1,0 +1,30 @@
+
+review
+
+dependence analysis - figuring out dependencies between instructions.
+
+Graphical IR - graph-based representation.
+
+example questions: what is an attribute grammar? what is it used for?
+- what are machine-independent optimizations? give one example.
+  - constant folding would be one, dead-code / unreachable code elimination
+True/False - it is possible to generate corect code without including instruciton scheduling in the code generation phase
+  - true b/c instruciton scheduling is an optimization.  it's not necessary.
+
+  
+  you won't be responsible for any of these : eliminate left-recursion, left-factor a non LL(1) CFG, and computing first/follow sets.
+  
+  4 types of questions: you'll see at least 1 of them.  and each will be worth 15 points.
+   - construct a Context Free Grammar to describe a certain language
+   - given a CFG
+   - some others (look at slide!)
+   
+as long as you can determine locality that should be enough.
+
+-overview question
+ - describe the structure of a typical modern compiler.  how many of theses phases were implemented in your compiler?
+ 
+ - given a C code fragment, classify errors as syntactic, semantic, runtime or logical.
+ 
+final exam is may 11th 2-4:30
+   

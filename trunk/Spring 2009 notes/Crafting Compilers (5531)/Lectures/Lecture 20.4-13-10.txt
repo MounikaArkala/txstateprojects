@@ -1,0 +1,42 @@
+scalar optimizations - doesn't matter what architecture you're running it on (multi-core)
+nonscalar optimizations don't necessarily target multi-core.
+
+dead-code elimination:
+- some dead code gets executed
+
+what is the impact on running time?
+ - removing unreachable code does not improve running time
+ - removing dead code may improve running time
+
+both will result in fewer number of static instructions.
+ - some optimizations may not have direct impact, but may give you more opportunities to provide optimizations.
+ 
+dead code elimination
+safety
+ - make sure code is actually unreachable / dead.
+ 
+
+redundancy elimination
+- partial redundancy elimination
+  - eliminate computations performed more than once on a given execution path
+
+- loop invarian code motion
+  - loop invariant code is code that performs the same computation in every teration of the loop
+  - special case of partial redundancy.
+  
+CSE and PRE considerations
+ ?
+ 
+LCM - take code and move it up levels from more-frequently executed to less-frequently executed areas.
+
+profitability
+ - generally profitable
+ 
+why does unrolling loop help?
+- fewer checks = less loop overhead
+- if we can schedule / reorder instructions perhaps we can get pipelined execution of original loops.
+- your branch is not going to stall as many times
+
+
+we'll continue w/ memory heirarchy optimizations at next lecture.
+

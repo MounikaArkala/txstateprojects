@@ -1,0 +1,24 @@
+
+
+traversal: post-order (at least for expressions.)
+
+steps to getting working code generation:
+1) creating a runtime environment, keeping track of variable locations, etc.
+
+2) generate code for a function call
+ - several tasks you need to do
+ - evaluate actual parameters ( could be expression of any kind - eg a funciton call)
+ 
+PC - should never modify the value of PC explicitly.
+
+"segment" vs "section" - used interchangeably in intel architecture.
+- code and data should be separated.
+
+code is also operated in "segments" which are variable-sized pages.  most modern OS's don't do this.
+
+typically when you get a "segmentation fault" it means you are accessing a page that hasn't been allocated for you.
+
+
+every time you hit a call site you do the 4 things...
+building the return tables, etc. etc.
+
