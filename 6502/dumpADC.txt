@@ -1,0 +1,1155 @@
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 0, 0, 0]
+result:       [0, 0, 0, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 0, 0, 1]
+result:       [0, 0, 0, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 0, 1, 0]
+result:       [0, 0, 0, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 0, 1, 1]
+result:       [0, 0, 0, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 1, 0, 0]
+result:       [0, 0, 0, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 1, 0, 1]
+result:       [0, 0, 0, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 1, 1, 0]
+result:       [0, 0, 0, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 0, 1, 1, 1]
+result:       [0, 0, 0, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 0, 0, 0]
+result:       [0, 0, 0, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 0, 0, 1]
+result:       [0, 0, 0, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 0, 1, 0]
+result:       [0, 0, 0, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 0, 1, 1]
+result:       [0, 0, 0, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 1, 0, 0]
+result:       [0, 0, 0, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 1, 0, 1]
+result:       [0, 0, 0, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 1, 1, 0]
+result:       [0, 0, 0, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 0, 1, 1, 1, 1]
+result:       [0, 0, 0, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 0, 0, 0]
+result:       [0, 0, 0, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 0, 0, 1]
+result:       [0, 0, 0, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 0, 1, 0]
+result:       [0, 0, 0, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 0, 1, 1]
+result:       [0, 0, 0, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 1, 0, 0]
+result:       [0, 0, 0, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 1, 0, 1]
+result:       [0, 0, 0, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 1, 1, 0]
+result:       [0, 0, 0, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 0, 1, 1, 1]
+result:       [0, 0, 0, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 0, 0, 0]
+result:       [0, 0, 0, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 0, 0, 1]
+result:       [0, 0, 0, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 0, 1, 0]
+result:       [0, 0, 0, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 0, 1, 1]
+result:       [0, 0, 0, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 1, 0, 0]
+result:       [0, 0, 0, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 1, 0, 1]
+result:       [0, 0, 0, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 1, 1, 0]
+result:       [0, 0, 0, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 0, 1, 1, 1, 1, 1]
+result:       [0, 0, 0, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 0, 0, 0]
+result:       [0, 0, 1, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 0, 0, 1]
+result:       [0, 0, 1, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 0, 1, 0]
+result:       [0, 0, 1, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 0, 1, 1]
+result:       [0, 0, 1, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 1, 0, 0]
+result:       [0, 0, 1, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 1, 0, 1]
+result:       [0, 0, 1, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 1, 1, 0]
+result:       [0, 0, 1, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 0, 1, 1, 1]
+result:       [0, 0, 1, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 0, 0, 0]
+result:       [0, 0, 1, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 0, 0, 1]
+result:       [0, 0, 1, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 0, 1, 0]
+result:       [0, 0, 1, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 0, 1, 1]
+result:       [0, 0, 1, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 1, 0, 0]
+result:       [0, 0, 1, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 1, 0, 1]
+result:       [0, 0, 1, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 1, 1, 0]
+result:       [0, 0, 1, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 0, 1, 1, 1, 1]
+result:       [0, 0, 1, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 0, 0, 0]
+result:       [0, 0, 1, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 0, 0, 1]
+result:       [0, 0, 1, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 0, 1, 0]
+result:       [0, 0, 1, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 0, 1, 1]
+result:       [0, 0, 1, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 1, 0, 0]
+result:       [0, 0, 1, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 1, 0, 1]
+result:       [0, 0, 1, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 1, 1, 0]
+result:       [0, 0, 1, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 0, 1, 1, 1]
+result:       [0, 0, 1, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 0, 0, 0]
+result:       [0, 0, 1, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 0, 0, 1]
+result:       [0, 0, 1, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 0, 1, 0]
+result:       [0, 0, 1, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 0, 1, 1]
+result:       [0, 0, 1, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 1, 0, 0]
+result:       [0, 0, 1, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 1, 0, 1]
+result:       [0, 0, 1, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 1, 1, 0]
+result:       [0, 0, 1, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 0, 1, 1, 1, 1, 1, 1]
+result:       [0, 0, 1, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 0, 0, 0]
+result:       [0, 1, 0, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 0, 0, 1]
+result:       [0, 1, 0, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 0, 1, 0]
+result:       [0, 1, 0, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 0, 1, 1]
+result:       [0, 1, 0, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 1, 0, 0]
+result:       [0, 1, 0, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 1, 0, 1]
+result:       [0, 1, 0, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 1, 1, 0]
+result:       [0, 1, 0, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 0, 1, 1, 1]
+result:       [0, 1, 0, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 0, 0, 0]
+result:       [0, 1, 0, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 0, 0, 1]
+result:       [0, 1, 0, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 0, 1, 0]
+result:       [0, 1, 0, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 0, 1, 1]
+result:       [0, 1, 0, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 1, 0, 0]
+result:       [0, 1, 0, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 1, 0, 1]
+result:       [0, 1, 0, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 1, 1, 0]
+result:       [0, 1, 0, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 0, 1, 1, 1, 1]
+result:       [0, 1, 0, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 0, 0, 0]
+result:       [0, 1, 0, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 0, 0, 1]
+result:       [0, 1, 0, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 0, 1, 0]
+result:       [0, 1, 0, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 0, 1, 1]
+result:       [0, 1, 0, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 1, 0, 0]
+result:       [0, 1, 0, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 1, 0, 1]
+result:       [0, 1, 0, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 1, 1, 0]
+result:       [0, 1, 0, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 0, 1, 1, 1]
+result:       [0, 1, 0, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 0, 0, 0]
+result:       [0, 1, 0, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 0, 0, 1]
+result:       [0, 1, 0, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 0, 1, 0]
+result:       [0, 1, 0, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 0, 1, 1]
+result:       [0, 1, 0, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 1, 0, 0]
+result:       [0, 1, 0, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 1, 0, 1]
+result:       [0, 1, 0, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 1, 1, 0]
+result:       [0, 1, 0, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 0, 1, 1, 1, 1, 1]
+result:       [0, 1, 0, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 0, 0, 0]
+result:       [0, 1, 1, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 0, 0, 1]
+result:       [0, 1, 1, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 0, 1, 0]
+result:       [0, 1, 1, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 0, 1, 1]
+result:       [0, 1, 1, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 1, 0, 0]
+result:       [0, 1, 1, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 1, 0, 1]
+result:       [0, 1, 1, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 1, 1, 0]
+result:       [0, 1, 1, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 0, 1, 1, 1]
+result:       [0, 1, 1, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 0, 0, 0]
+result:       [0, 1, 1, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 0, 0, 1]
+result:       [0, 1, 1, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 0, 1, 0]
+result:       [0, 1, 1, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 0, 1, 1]
+result:       [0, 1, 1, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 1, 0, 0]
+result:       [0, 1, 1, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 1, 0, 1]
+result:       [0, 1, 1, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 1, 1, 0]
+result:       [0, 1, 1, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 0, 1, 1, 1, 1]
+result:       [0, 1, 1, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 0, 0, 0]
+result:       [0, 1, 1, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 0, 0, 1]
+result:       [0, 1, 1, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 0, 1, 0]
+result:       [0, 1, 1, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 0, 1, 1]
+result:       [0, 1, 1, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 1, 0, 0]
+result:       [0, 1, 1, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 1, 0, 1]
+result:       [0, 1, 1, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 1, 1, 0]
+result:       [0, 1, 1, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 0, 1, 1, 1]
+result:       [0, 1, 1, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 0, 0, 0]
+result:       [0, 1, 1, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 0, 0, 1]
+result:       [0, 1, 1, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 0, 1, 0]
+result:       [0, 1, 1, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 0, 1, 1]
+result:       [0, 1, 1, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 1, 0, 0]
+result:       [0, 1, 1, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 1, 0, 1]
+result:       [0, 1, 1, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 1, 1, 0]
+result:       [0, 1, 1, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [0, 1, 1, 1, 1, 1, 1, 1]
+result:       [0, 1, 1, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 0
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 0, 0, 0]
+result:       [1, 0, 0, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 0, 0, 1]
+result:       [1, 0, 0, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 0, 1, 0]
+result:       [1, 0, 0, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 0, 1, 1]
+result:       [1, 0, 0, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 1, 0, 0]
+result:       [1, 0, 0, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 1, 0, 1]
+result:       [1, 0, 0, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 1, 1, 0]
+result:       [1, 0, 0, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 0, 1, 1, 1]
+result:       [1, 0, 0, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 0, 0, 0]
+result:       [1, 0, 0, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 0, 0, 1]
+result:       [1, 0, 0, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 0, 1, 0]
+result:       [1, 0, 0, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 0, 1, 1]
+result:       [1, 0, 0, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 1, 0, 0]
+result:       [1, 0, 0, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 1, 0, 1]
+result:       [1, 0, 0, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 1, 1, 0]
+result:       [1, 0, 0, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 0, 1, 1, 1, 1]
+result:       [1, 0, 0, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 0, 0, 0]
+result:       [1, 0, 0, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 0, 0, 1]
+result:       [1, 0, 0, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 0, 1, 0]
+result:       [1, 0, 0, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 0, 1, 1]
+result:       [1, 0, 0, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 1, 0, 0]
+result:       [1, 0, 0, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 1, 0, 1]
+result:       [1, 0, 0, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 1, 1, 0]
+result:       [1, 0, 0, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 0, 1, 1, 1]
+result:       [1, 0, 0, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 0, 0, 0]
+result:       [1, 0, 0, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 0, 0, 1]
+result:       [1, 0, 0, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 0, 1, 0]
+result:       [1, 0, 0, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 0, 1, 1]
+result:       [1, 0, 0, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 1, 0, 0]
+result:       [1, 0, 0, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 1, 0, 1]
+result:       [1, 0, 0, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 1, 1, 0]
+result:       [1, 0, 0, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 0, 1, 1, 1, 1, 1]
+result:       [1, 0, 0, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 0, 0, 0]
+result:       [1, 0, 1, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 0, 0, 1]
+result:       [1, 0, 1, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 0, 1, 0]
+result:       [1, 0, 1, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 0, 1, 1]
+result:       [1, 0, 1, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 1, 0, 0]
+result:       [1, 0, 1, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 1, 0, 1]
+result:       [1, 0, 1, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 1, 1, 0]
+result:       [1, 0, 1, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 0, 1, 1, 1]
+result:       [1, 0, 1, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 0, 0, 0]
+result:       [1, 0, 1, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 0, 0, 1]
+result:       [1, 0, 1, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 0, 1, 0]
+result:       [1, 0, 1, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 0, 1, 1]
+result:       [1, 0, 1, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 1, 0, 0]
+result:       [1, 0, 1, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 1, 0, 1]
+result:       [1, 0, 1, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 1, 1, 0]
+result:       [1, 0, 1, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 0, 1, 1, 1, 1]
+result:       [1, 0, 1, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 0, 0, 0]
+result:       [1, 0, 1, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 0, 0, 1]
+result:       [1, 0, 1, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 0, 1, 0]
+result:       [1, 0, 1, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 0, 1, 1]
+result:       [1, 0, 1, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 1, 0, 0]
+result:       [1, 0, 1, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 1, 0, 1]
+result:       [1, 0, 1, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 1, 1, 0]
+result:       [1, 0, 1, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 0, 1, 1, 1]
+result:       [1, 0, 1, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 0, 0, 0]
+result:       [1, 0, 1, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 0, 0, 1]
+result:       [1, 0, 1, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 0, 1, 0]
+result:       [1, 0, 1, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 0, 1, 1]
+result:       [1, 0, 1, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 1, 0, 0]
+result:       [1, 0, 1, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 1, 0, 1]
+result:       [1, 0, 1, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 1, 1, 0]
+result:       [1, 0, 1, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 0, 1, 1, 1, 1, 1, 1]
+result:       [1, 0, 1, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 0, 0, 0]
+result:       [1, 1, 0, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 0, 0, 1]
+result:       [1, 1, 0, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 0, 1, 0]
+result:       [1, 1, 0, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 0, 1, 1]
+result:       [1, 1, 0, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 1, 0, 0]
+result:       [1, 1, 0, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 1, 0, 1]
+result:       [1, 1, 0, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 1, 1, 0]
+result:       [1, 1, 0, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 0, 1, 1, 1]
+result:       [1, 1, 0, 0, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 0, 0, 0]
+result:       [1, 1, 0, 0, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 0, 0, 1]
+result:       [1, 1, 0, 0, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 0, 1, 0]
+result:       [1, 1, 0, 0, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 0, 1, 1]
+result:       [1, 1, 0, 0, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 1, 0, 0]
+result:       [1, 1, 0, 0, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 1, 0, 1]
+result:       [1, 1, 0, 0, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 1, 1, 0]
+result:       [1, 1, 0, 0, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 0, 1, 1, 1, 1]
+result:       [1, 1, 0, 0, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 0, 0, 0]
+result:       [1, 1, 0, 1, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 0, 0, 1]
+result:       [1, 1, 0, 1, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 0, 1, 0]
+result:       [1, 1, 0, 1, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 0, 1, 1]
+result:       [1, 1, 0, 1, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 1, 0, 0]
+result:       [1, 1, 0, 1, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 1, 0, 1]
+result:       [1, 1, 0, 1, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 1, 1, 0]
+result:       [1, 1, 0, 1, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 0, 1, 1, 1]
+result:       [1, 1, 0, 1, 0, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 0, 0, 0]
+result:       [1, 1, 0, 1, 1, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 0, 0, 1]
+result:       [1, 1, 0, 1, 1, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 0, 1, 0]
+result:       [1, 1, 0, 1, 1, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 0, 1, 1]
+result:       [1, 1, 0, 1, 1, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 1, 0, 0]
+result:       [1, 1, 0, 1, 1, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 1, 0, 1]
+result:       [1, 1, 0, 1, 1, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 1, 1, 0]
+result:       [1, 1, 0, 1, 1, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 0, 1, 1, 1, 1, 1]
+result:       [1, 1, 0, 1, 1, 1, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 0, 0, 0]
+result:       [1, 1, 1, 0, 0, 0, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 0, 0, 1]
+result:       [1, 1, 1, 0, 0, 0, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 0, 1, 0]
+result:       [1, 1, 1, 0, 0, 0, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 0, 1, 1]
+result:       [1, 1, 1, 0, 0, 0, 1, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 1, 0, 0]
+result:       [1, 1, 1, 0, 0, 1, 0, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 1, 0, 1]
+result:       [1, 1, 1, 0, 0, 1, 0, 1]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1
+
+accumulator:  [0, 0, 0, 0, 0, 0, 0, 0]
+increment:    [1, 1, 1, 0, 0, 1, 1, 0]
+result:       [1, 1, 1, 0, 0, 1, 1, 0]
+carry:  0 carrybit7: 0 overflow: 0 negative: 1

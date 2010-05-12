@@ -278,7 +278,7 @@ while not exit:
             active = replaycanvas
         print "PLAYBACK:::"
         events.playone(active)
-        time.sleep(.2)
+        #time.sleep(.2)
         
         if events.done():
             events.reset()
