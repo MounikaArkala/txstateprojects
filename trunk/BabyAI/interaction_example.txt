@@ -1,0 +1,45 @@
+
+burning = negative
+
+stove
+ hot
+ metal
+ large
+ 
+>> touch stove
+
+*ow
+
+*stoves are negative for action "touch"
+*  hot is negative
+*  metal is negative
+*  large is negative
+
+pole
+  cold
+  metal
+  large
+
+>> touch pole
+
+* fine
+
+*stoves ?
+*   hot is negative for action "touch"
+
+
+>> look at hot stove
+
+* don't touch it!
+
+>> look at a different cold stove
+
+* it is probably safe to touch.
+
+>> how hot is plant?
+
+* plant is probably room temperature
+
+>> how large is plant?
+
+* most things are large so plant is probably large.  (this is how a baby would think.  Assume something applies until you are proven it doesn't.)
