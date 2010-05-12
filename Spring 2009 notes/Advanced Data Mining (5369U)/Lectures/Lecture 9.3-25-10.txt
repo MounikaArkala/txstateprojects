@@ -1,0 +1,204 @@
+
+
+Review:
+- IR system essential concept/infrastructure?  inverted index
+  - many chapters center around this.
+metrics:
+- precision
+- recall
+
+LHS = dictionary
+RHS = postings list
+postings list is totally ordered (universal way of ordering - not in respect to a particular postings list but all - eg. by document ID.)
+
+ordering them allows faster query processing
+
+chapter 1-3 we'll cover, 4-5 briefly cover, ch. 6 will be covered, important.  7 briefly covered.
+
+Chapter 2 - about inverted index : issues in building an index
+(no memorization)
+
+what is a document?
+what is a term?
+
+parsing document
+- could be in different formats, languages, character sets...
+all of these issues are classification problems.
+
+documents may be in various languages.
+
+what is a 'document'?
+what is that unit?
+- a book?
+ - a chapter in a book?
+   - each paragraph?
+     - each sentence?
+
+your chosen granularity is a prescision recall tradeoff.
+small units = good precision, poor recall
+big units = good recall, poor precision
+the bigger units you use, the less likely that matching query terms are going to be relevant ( may be miles apart in the document.)
+this is why precision suffers.
+
+
+precision = fraction of returned result to the total returned result.
+recall = fraction of relevance of returned result to the total relevant entries.  eg. if you return 15 relevant results but there are 100 relevant results, you get 15/100 recall.
+
+
+Dictionary (LHS)
+- all terms that are indexed.
+token: after tokenization you have many tokens.
+type: tokens that are the same map to the same type.
+term: a (perhaps normalized) type that is included in the dictionary
+  - not all types are indexed as terms.
+  - "to" is probably not indexed.  it is probably a "stop word" because it's very frequent and has little power of distinguishability between documents.
+  
+** there are many low-level issues, you need a package to help you.
+ - eg. Finland's capital -> Finland?  Finlands? Finland's?
+ - Hewlett-Packard as Hewlett and Packard?
+ - San Francisco - one ttoken or two?
+
+** idea: stripping e-mail addresses out of people's sites who are trying to disguise them.
+
+stop words: extremely common words that would have little value in seleecting document.
+in older IR systems we removed stop words because when indexing 30% of the space is just indexing the stop words.
+and eliminating them doesn't penalize you much in search performance.
+
+stop words do have some meaning in certain contexts, eg: "Let it be" or "To be or not to be"
+and since we have good compression techniques, the gain of including them is worth the storage cost.
+- good query techniques mean you pay little at query time for including stop words.
+
+if you build your own personal retrieval system you might want to remove the stop words.
+
+-- Normalization
+- we want to normalize terms in indexed text as well as query terms: eg. U.S.A. and USA should probably be the same.
+
+-- Lemmatization (subclass of normalization)
+-reduce inflectional / variant forms to base form.
+eg. am, are, is -> be
+-- Stemming(subclass of normalization)
+- reduce terms to their 'roots' before indexing
+- just 'chop's words whether the result is meaningful or not, just getting prefixes.
+eg. automate(s), automatic, automation all reduce to 'automat'.
+It's like a summarization of similar terms - contains common info.  doesnt have to be legal.
+
+packages for stemming:
+Porter's algorithm - studies from English - heuristics.
+- most common algorithm for stemming.
+
+Discussion
+- does stemming and other normalization help?
+-- English: produces very mixed results.
+-- helps recall but harms precision.
+
+** Lucene package - from Apache, for Information Recall. yyou'll prbably do lemming, stemming ,and stop words.
+
+O(n) linear time query processing for 'linear merge' to get intersection between postings and query.
+-since query processing is so critical, response time is very important (task is online- users are waiting)
+
+"sublinear" algorithm - we want to achieve sublinear time in query processing.
+
+-- Skip Pointers
+- allows ou to skip items during a merge.  this si a sublinear algorithm.
+Eg. you could have  8->11->17->31 with a skip pointer from 8->31.
+if you are on 8 in both, and then you advance, and the first list is 41, then the second list can skip to 31.
+
+Placing Skips
+you can place them at root(p) where p is the # of items, but this doesn't work very well.
+
+How do you do phrase queries? eg "stanford university"? 
+- we have no way of recognizing it as a phrase because we don't store the positional information in a document.
+-so we store the term, # of documents containng term, and then <docname, # of times term is in document : position1, position2, ... ; docname, termfrequency: psotion1, position2, ... ; etc.>
+remember POSTINGS list is just the list of documents containing each term in the dictionary.
+termfrequency = # of occurrences of a term in a particular document.
+collectionfrequency = sum(termfrequency)
+
+termfrequency may be greater than document frequency but it usually isn't.
+
+once we store proximity, we can calculate a window.  I.E. from teh start of Byron to the end of Gao.  Then we can rank them. 
+
+One of the many factors Google uses to rank results is the window size / term proximity.
+
+a positional index is 2-4x as large as a non-positional index
+positional index size is 35-50% volume of the original text.
+
+in a lot of systems, index size is > the data it's storing (eg. in DBMS's sometimes).
+
+you trade space for time.  that's the goal of building indexes.
+
+
+-- Chapter 3, 4, 5
+- not our focus so we'll go over them quite fast.
+
+2 options to storing dictionary - hash-based and tree-based.
+lookup for hash = O(1), for tree = O(log(n))
+there are so many kinds of trees, B-tree is most common for information retrieval (B+ tree for databases).
+-self-balanced tree, very wide and short.  big branching factor.  advantage - lookup faster (time from root to leaf )
+B+ tree = leaf nodes are linked together.  
+the advantage is that when you do a range query you can just follow the links.
+
+building inverted index is non-trivial.  for web-scale indexing you must use a distributed computing cluster.
+Distributed Indexing
+-parallel tasks
+- 2 sets of tasks
+  - parser
+  - inverter
+master assigns a split to an idle parser machine.
+parser parses a doc and emits term,doc pairs.
+
+map-reduce is awesome.
+**idea - combmine map-reduce to data mining.  apply a data mining task to map-reduce to speed up the runtime.
+ *data mining tasks usually are complex and data is huge
+ *makes sense to take advantage of distributed computing.
+
+inverted index is a good example for map-reduce.
+
+- compression is good for inverted indexes not because you want to save disk space, but because you can store more data in memory.
+
+vocabulary = all the terms in the dictionary
+corpus = all the documents.
+there's no upper bound on vocabulary.
+heaps' law describes the vocabulary size in collections.
+
+Zipf's Law
+- pretty common
+- in the category of "power law" ( a law from statistics)
+also called "long tail" - many instances can be modeled by this power law. eg. 80/20 rule, 20% of people control 80% of the wealth.
+so basically we say that there are a few very frequent terms and a whole lot of rare terms.
+
+
+-- Summary of 3 chapters
+- dictionary : 2 different DS', hash-based and tree-based.
+- inverted index construction = distributed computing (map/reduce + parser/inverter)
+- compression - improves efficiency time.
+- Zipf's law encapulates lots of phenomena.
+
+-- Chapter 6 - introduction to information retrieval
+in boolean queries, document may be either relevant or irrelevant (no ranking)
+- would prefer to have ranking in our documents.
+ - rank based on score
+ - score calculated based on document and query
+   - do this for each document retrieved
+   - sort them by their rank
+ 
+eg. 1-term query: if document does not contain term, score = 0.  if document does contain term, then the # of occurrences would recieve higher score.
+
+Jaccard Coefficient
+- straightforward measure
+- not commonly used.
+- view document as a set of words, query as a set of words.  can compute simiilarity between sets (which is jaccard coefficient)
+basically cardinality of intersection / cardinality of the union.
+- jaccard coefficient treats these as sets so it suxx at determining term frequency (I.E. it can't do it at all.)
+- also it fails to notice that rare terms in a collection tend to be more informative than frequent terms.
+"idf" - inverse document frequency
+- we need a more sophisticated way of normalizing for length (we use cosine similarity??)
+
+
+
+
+
+
+
+
+
+

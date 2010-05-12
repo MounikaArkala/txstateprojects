@@ -1,0 +1,106 @@
+
+
+- read chapter 19 by ourself.
+
+chapter 8 review
+- generating summaries 
+
+relevance of result - meets your information need.
+
+precision - fraction of retrieved documents that are relevant
+recall - fraction of relevant docs that are retrieved.
+
+accuracy = correctly classified / all samples
+
+accuracy is not a good evaluation measure - if you return 0 results, you would have a good classifier.
+because most documents are not relevant, so you'd have a good classifier.
+the problem is that for informaation retrieval it's an asymmetric task - we don't care about how negative
+examples are classified, we only carea bout retrieving positive examples.
+
+this lecture material is definitely on exam.
+
+the higher the recall, the lower the precision.
+precision decreases as # of documents increases.
+
+we want both good recall and precision
+- a single measure takes both into account: The "F" measure.
+
+it's like the harmonic mean of precision and recall.
+F = 2PR / P+R
+
+the reason the 
+
+MAP = mean average precision
+
+precision at k : precision of top 'k' results.
+
+R-precision - identical to the break-even point - where precision and recall are teh same
+empirically, highly corellated with MAP.
+
+problem with pure relevance - a document can be  redundant even if it is highly relevant (if other reults are the same)
+
+marginal relevance - concerns whther a doc still has distincive usefulness - not used that often.
+
+
+classification - symmetric
+-don't care about ranking
+information retrieval - asymmetric (don't care about irrelevant docs)
+- care about ranking.
+
+
+
+if you design a system you need some way of evaluating the system.
+
+** for final we must study all slides for all chapters.
+he will tell us which chapters are important (eg. 3,4,5, are not important)
+7 not important 8 important 19 not important 21 important (may be wrong)
+
+30 are from web search / information retrieval, 10 from early
+chapter 20 we can read by ourselves?
+
+How Page Rank Works
+page-rank originated in citation analysis of academic papers.
+cocitation - similarity between two pages by their overlap in items that cite them.
+google uses this algorithm for their 'similar' feature.
+
+
+pagerank is based on a random walk model.  
+start at random page
+at each step, go out of current page along one of the links, equiprobably.
+in 'steady state' each page has long-term visit rate - use this as the page's score.
+the more 'accessible' a page is, the more likely it will be visited at each step, so its page score will be higher.
+
+web s full of dead ends, easy to fall into.
+we have 'teleporting' randomly...
+
+Exercise - helps w/ assignment.  represent teleporting random walk as a markov chain.
+
+
+probability vector is the probability of a user being in each state.
+
+P is our transition matrix.  each time the user moves to a new room we multiply our probability vector by the transition matrix
+so xP is the next state.  eventually each value in the vector will stabilize.
+
+-- try to read slides regarding vectors.
+
+how to calculate page-rank:
+- a = aP (P is known already) - the steady state
+or we can:
+  - start wth any distribution (say x = (10....0))
+  - after one step we're at xP.  compare value w/ last vector , if change is big, keep walking (* P).  compare with previous value.
+  keep doing this until it stabilizes.  once it stabilizes you consider these values as 
+  
+  
+  given a web-graph, you can compute the transition matrix.
+  given that transition matrix, you start w/ a random vector (of size # of pages, sum(vector) == 1)
+  you end up w/ new vector.  caompare w/ old one.  eventually it doesn't change and you get page rank.
+  
+transition matrix is a key point in calculating pageRank.
+
+
+  
+
+
+
+
+ 

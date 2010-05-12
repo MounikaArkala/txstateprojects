@@ -1,7 +1,7 @@
 import sys, urllib, re, db, gis, hashlib, os
 threshold = 0.5
 prefix = 'storemap://'
-directory = 'C:\\Projects\\txstateprojects\\Spring 2009 notes\\Advanced Data Mining (5369U)\\Final Project'
+directory = r'C:\Projects\Spring 2009 notes\Advanced Data Mining (5369U)\Final Project'
 os.chdir(directory)
 
 

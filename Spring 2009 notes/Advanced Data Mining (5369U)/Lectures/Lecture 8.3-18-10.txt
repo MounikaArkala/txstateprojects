@@ -1,0 +1,114 @@
+
+
+Materials are easy to follow
+- 4 wks we should be done w/ book.
+- unimportant things should be passed quickly.
+- focus on fundamental ideas for information retrieval and web search.
+after 4 wks, we will have 2 weeks left before final and demo.
+for these 2 weeks we'll switch back to Data Minig and cover Pattern Mining and Data Warehouse/OLAP tech.
+
+most rule-learners do separate-and-conquer not divide and conquer
+
+different strengths of 'assumptions' in classification make tradeoff in accuracy vs. efficiency.
+
+Remember:
+performance is 'accuracy' and 'efficiency'
+efficiency is time and space.  if we don't mention space, then by default it's time.
+
+
+-- information retrieval
+- finding material (usually document) of an unstructured nature (usually text)
+that satisfies an information need from within large collections.
+
+** Idea - draw a graph of MP3's data and cluster by the 'correction distance' of the strings to each other.
+could help w/ fixing Beatles beatules b_eatles etc.
+
+** people in database field want to be able to use keyword search for database retrieval (does sql in backgroundn basically)
+- too big for course project but could be used for research.
+
+
+** idea - group images by their average (RMS) image values, and let you pixel-paint with them
+to make photomosaics.
+you could have a 'indicator' that shows how close you are to an image's value.
+- use clustering to generate a pallette
+let them choose how many partitions in each subimage are used for pixels.
+**
+
+** determining / extracting a voice by clustering based on harmonics?  and using pitch to classify melodies?
+
+you can cluster images to put them into different categories automatically.
+use features to define similarities between pictures, video, audio... etc.
+
+
+web 2.0 is very focused on 'semantic' web.  
+annotating free text.
+'avatar' project at IBM is trying to do this.
+also related to tagging / bookmarking socially
+-flickr you tag your pictures.
+
+
+"corpora" - collection of documents.
+
+
+term-document incidence matrix
+each term corresponds to a vector of 0's and 1's.
+lets you do bitwise AND's on the data, which is very fast.
+you can just flip the Calpurnia to get the NOT.
+
+Precision and Recall.
+
+precision - fraction of retrieved docs that are relevant to user's information need.
+relevant means 'meets / is consistend w/ information need.'
+
+recall - fraction of relevant docs in collection that are retrieved.
+
+we want to be high on both.  if you want 100% recall, return all results.  if you want 100% precision, return no results.
+there's a tradeoff between precision and recall.  
+
+-- F-measure
+we use an f-measure to determine accuracy.
+F = 2PR / P+R
+harmonic mean of P and R.
+
+there's also a generalized f-measure.
+
+
+building a matrix like we did before is a problem because the data is sparse - most entries are 0's.
+
+"sparsity problem" occurs also in databases and other fields.
+
+** idea - use functions / neural networks to learn the matrix. 
+
+** idea - convert e-mails that are supposed to be spam-protected. (eg. rabidpoobear \ at / gmail dot com  -> rabidpoobear@gmail.com)
+
+
+inverted index
+- for each term T, we store a list of all documents that contain T.
+- you must do linguistic treatment because terms 'Friends' and 'friend' should be same.
+
+"Term freqency" - how many documents contain this term.
+
+the dictionary can be stored in memory because it's not that big (it' bounded, there's only a certain # of terms most docs will use)
+but the postings will probably be separate.
+
+web searching is no longer boolean searching - abandoned it because exact matches are crappy basically.
+
+professional searchers (eg. lawyers) like boolean seraches because they can be very accurate w/ searches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

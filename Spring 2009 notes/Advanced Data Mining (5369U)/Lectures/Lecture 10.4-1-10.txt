@@ -1,0 +1,123 @@
+
+Review
+
+Boolean Retrieval - no ranking - all or none.  search result is a set.
+
+Jaccard Coefficient - doesn't notice 'term frequency' - term is either
+present or not present.
+
+"Bag of words" model - vector space model.
+bags contain any amount of information.
+they can have duplicates,
+and order is not significant.
+
+term frequency is the # of times a term t occurs in document d.
+
+document frequency - the # of documents in the whole collection that contain the term. df.
+
+idf = inverse document frequency = log10(N/df)
+N is the # of documents you have.
+we use log instead of the value directly to "dampen" the effect of idf.
+By taking the log, you get better indication of the relationship of values.
+
+
+tf-idf weighting is very common information retrieval.
+a high tf-idf is helpful.  Notice - is not minus but hyphen.
+tf * idf is the weighting.
+
+term-document incidence matrix:
+you go from a binary incidence matrix to a term-frequency matrix.
+for each value you place its term frequency rather than 1/0 if it occurs.
+
+weight matrix:
+each entry is a tf-idf value.  
+
+we represent the query the same as the documents - as vectors.
+this allows us to calculate the 'distance' or 'similarity' between a document and a query.
+
+dimensionality of the vector is the size of the vocabulary.  so query and document can be compared because they are the same dimension.
+
+'euclidean distance' is bad because it doesn't include semantic weighting.
+
+we want to use angles instead of distance, if two documents are very similar semantically then their distance is small.
+we can then rank doc's either in decreasing order between query and document, or in increasing order of their cosine value.
+the cosine value ranges from 0 to 1.  
+the definition of cosine is the dot-product of 2 vectors / lengths of vectors multiplied.
+so you can do it ofr any dimension of vectors.  there is also length normalization going on, whatever that is.
+
+A common variant of tf-idf:
+varying your weighting and normalizations in different combinations.
+It's common to use different schemes for query and for documents.
+
+term-frequency, document-freqquency, normalization : 3 parameters that can be varied.
+'ddd.qqq' notation specifies which of each of these you use for document and for query.
+lnc.ltc is a common scheme.  logarithm, no document, and cosine distance for document, and logarithm, idf, and cosine distance for query.
+
+summary:
+we use vector-space model to handle ranked retrieval in contrast ot boolean retrieval.
+we need to compute scores for the document and we rank the documents according to the scores.
+we represent each document as a vector, and each vector has a sime size as vocabulary, and each entry is the tf-idf weight of term in document.
+we treat query also as document; compute similarity between document & query using cosine similarity, and are ranked by this.
+tf-idf has different variants, with specific strengths/weaknesses.
+
+inverted index allows you to retrieve document that contains 1 or more of the query terms, using a linear merge.
+
+** important chapter :OD  
+
+in terms of project - eg. google maps system - try to do some extensions like this:
+- build system that extends google maps - eg. if you have a shopping list, how can we easily find all the locations of each item in the store?
+you can plan ahead.  say you get the outside of the building, double-click it, you get inside the building.
+you submit items, they give you locations.  eg. in google maps you can calculate the shortest distance.  you need to calculate traveling salesman problem.   you could also have an 'aisle view' inside the supermarket.
+ * you could also have scanners for items, build a list of items, and have a isbn database lookup for items....
+ * can make a tilemap of the store , walkable, unwalkable, itemlocations.
+ * A* pathfinding...
+
+** or say you could have webcams in everyone's house, you could have a list of their houses on google maps. you can click on their house to chat with them if they're available.
+
+unrelated idea - you could outsource webcam security.  people would probably hack them though so that would probably be bad.
+
+organized by geographical locations.
+
+
+textual data / image data, etc... 
+
+- have a principled design - have a unified design, consider all the possibilities.
+
+another idea, have 'crime rates' integrated into google maps, sort by temporal as well as location.
+
+
+--Chapter 7
+
+index elimination - only consider doucuments containing most of the query terms... and only consider high-idf query terms.
+that among other things, lets you make this more efficient.
+
+champion lists
+- you pick the documents by their weights and put them at the front, but then you sort them by your document ID.
+
+we still have static scores (eg. PageRank) - they are measured without a query.  
+
+net score - it's a combination of their static scores and their query.
+
+why do you order them by g(d)?
+if you rank them by static score, then those documents w/ high static scores are put in front, and you can process them first.  then when you
+have 'k' results you can stop.
+
+
+he showed us diagram "putting it all together".
+
+
+--CHapter 8
+-very important
+"result summaries" - how to compute summaries / snippets of a document.
+"Evaluation" is very important but will take more time to discuss.
+
+Result Summaries
+- making our good results usable to a user
+
+the snippet is calculated from the cached version of a page, usually.
+
+
+
+
+
+
