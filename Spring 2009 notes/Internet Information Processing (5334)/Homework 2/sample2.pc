@@ -1,0 +1,170 @@
+/*
+ *  sample2.pc
+ *
+ *  This program connects to ORACLE, declares and opens a cursor, 
+ *  fetches the names, salaries, and commissions of all
+ *  salespeople, displays the results, then closes the cursor. 
+ */ 
+
+#include <stdio.h>
+#include <string.h>
+#include <sqlca.h>
+#include <stdlib.h>
+#include <sqlda.h>
+#include <sqlcpr.h>
+
+#define UNAME_LEN      20 
+#define PWD_LEN        11 
+ 
+/*
+ * Use the precompiler typedef'ing capability to create
+ * null-terminated strings for the authentication host
+ * variables. (This isn't really necessary--plain char *'s
+ * would work as well. This is just for illustration.)
+ */
+typedef char asciiz[PWD_LEN]; 
+
+EXEC SQL TYPE asciiz IS CHARZ(PWD_LEN) REFERENCE; 
+asciiz     username; 
+asciiz     password; 
+
+struct emp_info 
+{ 
+    asciiz     emp_name; 
+    float      salary; 
+    float      commission; 
+}; 
+
+void sql_error(msg) 
+    char *msg;
+{ 
+    char err_msg[512];
+    size_t buf_len, msg_len;
+
+    EXEC SQL WHENEVER SQLERROR CONTINUE;
+
+    printf("\n%s\n", msg);
+
+/* Call sqlglm() to get the complete text of the
+ * error message.
+ */
+    buf_len = sizeof (err_msg);
+    sqlglm(err_msg, &buf_len, &msg_len);
+    printf("%.*s\n", msg_len, err_msg);
+
+    EXEC SQL ROLLBACK RELEASE;
+    exit(EXIT_FAILURE);
+} 
+
+void main(int argc, char *argv[]) 
+{ 
+    if ( argc != 3 )
+    {
+        printf( "usage: %s [name|dept|salary|commission] value", argv[0] );
+        return;
+    }
+    
+    
+    
+    struct emp_info *emp_rec_ptr; 
+
+/* Allocate memory for emp_info struct. */ 
+    if ((emp_rec_ptr = 
+        (struct emp_info *) malloc(sizeof(struct emp_info))) == 0)
+    { 
+        fprintf(stderr, "Memory allocation error.\n"); 
+        exit(EXIT_FAILURE); 
+    } 
+ 
+/* Connect to ORACLE. */ 
+    strcpy(username, "SCOTT"); 
+    strcpy(password, "TIGER"); 
+ 
+    EXEC SQL WHENEVER SQLERROR DO sql_error("ORACLE error--");
+ 
+    EXEC SQL CONNECT :username IDENTIFIED BY :password; 
+ 
+/* Declare the cursor. All static SQL explicit cursors
+ * contain SELECT commands. 'salespeople' is a SQL identifier,
+ * not a (C) host variable.
+ */
+    EXEC SQL DECLARE namequery CURSOR FOR 
+        SELECT ENAME, SAL, COMM 
+            FROM EMP 
+            WHERE ENAME LIKE :argv[2];
+            
+    EXEC SQL DECLARE deptquery CURSOR FOR 
+        SELECT e.ENAME, e.SAL, e.COMM 
+            FROM EMP e, DEPT d
+            WHERE e.DEPTNO = d.DEPTNO
+            AND d.DNAME LIKE :argv[2];
+            
+    EXEC SQL DECLARE salquery CURSOR FOR 
+        SELECT ENAME, SAL, COMM 
+            FROM EMP 
+            WHERE SAL >= :argv[2]; 
+            
+    EXEC SQL DECLARE commquery CURSOR FOR 
+        SELECT ENAME, SAL, COMM 
+            FROM EMP 
+            WHERE COMM >= :argv[2]; 
+            
+            
+            
+            
+            
+    
+    
+    
+    
+    
+/* Open the cursor. */
+    if (strcmp(argv[1],      "name") == 0)
+        EXEC SQL OPEN namequery;     
+    else if (strcmp(argv[1], "dept") == 0)
+        EXEC SQL OPEN deptquery; 
+    else if (strcmp(argv[1], "salary") == 0)
+        EXEC SQL OPEN salquery; 
+    else if (strcmp(argv[1], "commission") == 0)
+        EXEC SQL OPEN commquery; 
+    else
+    {
+        printf("%s is not a valid parameter!", argv[1]);
+        return;
+    }
+    
+ 
+/* Loop, fetching all salesperson's statistics.
+ * Cause the program to break the loop when no more
+ * data can be retrieved on the cursor.
+ */
+    EXEC SQL WHENEVER NOT FOUND DO break; 
+
+    for (;;) 
+    { 
+    
+        if (strcmp(argv[1],      "name") == 0)
+            EXEC SQL FETCH namequery INTO :emp_rec_ptr; 
+        else if (strcmp(argv[1], "dept") == 0)
+            EXEC SQL FETCH deptquery INTO :emp_rec_ptr; 
+        else if (strcmp(argv[1], "salary") == 0)
+            EXEC SQL FETCH salquery INTO :emp_rec_ptr; 
+        else if (strcmp(argv[1], "commission") == 0)
+            EXEC SQL FETCH commquery INTO :emp_rec_ptr; 
+            
+        printf("%s %9.2f %12.2f\n", emp_rec_ptr->emp_name, 
+                emp_rec_ptr->salary, emp_rec_ptr->commission); 
+    } 
+ 
+/* Close the cursor. */
+    if (strcmp(argv[1],      "name") == 0)      EXEC SQL CLOSE namequery; 
+    else if (strcmp(argv[1], "dept") == 0)      EXEC SQL CLOSE deptquery;  
+    else if (strcmp(argv[1], "salary") == 0)    EXEC SQL CLOSE salquery; 
+    else if (strcmp(argv[1], "commission") == 0)EXEC SQL CLOSE commquery; 
+    
+ 
+
+    EXEC SQL COMMIT WORK RELEASE; 
+    return;
+} 
+
