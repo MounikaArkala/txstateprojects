@@ -1,0 +1,30 @@
+
+
+project hand-in:
+ - comprehensive
+   - leave what you implement available in your home directory -- don't change after submission
+   - instrucitons on how to test / use it
+he will test w/ your URL first
+- submit everything you upload
+  - he will test using his own environment
+  - will check for similarities
+
+if you have issues w/ project options 1 or 2, talk to him
+he will be here tomorrow, see him around 12:30 - 1:00, he'll leave around 2.
+
+Final Exam
+
+- we started w/ html & HTTP protocol
+ - lecture try to lay foundations.
+ - bring pencil or pen
+   - he gives you blue book
+ - you are writing too much if you can't finish with 1 blue book.
+
+open-book, no cell phones, PDA, iphone, etc.
+
+we have the largest classroom - 149 people.
+
+time of final is 8-10:30, not during regular class time.
+
+go to Buda and take the toll road.
+
