@@ -66,7 +66,8 @@ def handleKeypress(event):
         else:
             removeitem = False
             state = 'removeLastItem'
-        
+    elif event.key == K_F4:
+        state = 'displayList'
     else:
         print "unknown key: ", event.key
         
@@ -92,7 +93,7 @@ def main(mapfile = 'maps/walmart.png', storename='Walmart'):
     pygame.init()
     pygame.mixer.init()
     pygame.key.set_repeat(400,50)
-    screen = pygame.display.set_mode((1280, 800))
+    screen = pygame.display.set_mode((1280, 800), FULLSCREEN)
     pygame.font.init()
     suspendlength = 2
     nextState = 'fullmap'

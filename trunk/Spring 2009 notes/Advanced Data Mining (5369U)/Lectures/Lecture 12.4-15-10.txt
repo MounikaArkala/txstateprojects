@@ -1,0 +1,153 @@
+Random Walk model is underlying model of Pagerank.
+start at random spot, follow hyperlinks, when long-term visit rate is steady you get its pagerank.
+
+because the graph of internet is not connected, you can get stuck in dead ends.
+so you need to do 'teleporting'.  it's the same as 'random walk with restart'.
+'alpha' = 10% means 'with 10% probability you will restart' while at non-terminal nodes.
+
+but how do we actually calculate 'page rank'?
+
+Markov Chain
+n states, and an nxn transition probability matrix P.
+the transition probability matrix governs the likelihood you will transition between particular states.
+
+This question is in assignment 3.
+- how do you come up w/ transition matrix?  based on struture of the web-graph.
+
+each page is going to have the probability alpha/pagecount to be visited to start with.
+
+so basically if alpha = 0.3 and you have 3 pages,
+then from A to A you have a 0.3 / 3 chance of teleporting back to A, and 0.7 (non-teleporting amount) * 0 probability of following links back to A.
+From A to B you have 0.3 / 3 chance of teleporting to B, and a 0.7 * 0.5 probability of following links to B.
+So overall probability is 0.45
+
+ergodic markov chains - don't worry about too much.
+
+-- probability vector - tells us where the walk is at any point.
+like if you were an outside observer, and you wanted to figure out where he is at a random state
+without being able to see, you can say he is at 'x'.
+where would he be at i + 1?  x * P of course!  and at i+2 he'd be at xPP.
+
+the 'steady state' is a vector of probabilities a = (a1, ..., an).
+
+
+eigenvector is a property of the transition matrix.
+pagerank is just the (left) eigenvector for P.
+
+There's a practical / easy way of calculating pageRank.
+start w/ any distribution (random)
+after one step we're at xP.  after 2 at xPP, after 3 at xPPP, etc.  You just keep doing it until the product looks stable (appears to stop changing.)
+
+threshhold can be used to get a 'good enough' answer.  
+
+** project idea - doing one for calculating page rank is actually quite easy.
+
+also note pageRank is query-independent.
+
+relevance, term proximity, etc are all used in actual searching, pageRank is not that great by itself.
+
+topic-specific pagerank: suppose you are interested in some specific pages, eg. 'sports'.
+so your teleportations would only go to pages in this category.  this would artificially 
+boost pageRanks of those specific pages.  some pages may not get visited then (fi they're not reachable from a sports page.)
+
+-----
+in early days of web-search they used vector-space models.  then moved to link-based ranking.
+
+It was too easy to spam! keyword stuffing.
+
+the 'spamming' chapter is just knowledge/facts, no important concepts, so you can read it yourself.
+
+the first important algorithm for web-page ranking only based on link analysis was Hyperlink-Induced Topic Search.
+invented by John Kleinberg who seems like a pretty cool guy.
+divided into 'Hubs' nd 'Authorities'.  **May be on exam
+We are learning an algorithm that is very inspiring - can be used in many different applications.
+
+a good authority page for a topic is pointed to by  many good hubs for that topic.
+
+each page has both hub and authority scores.
+
+do a search.  that's your 'root set'.
+'base set' is your root set plus some extra included pages.
+the pages are probably pages that link to / from any page in root set.
+
+then calculate hub/authority for all pages.
+hub score: sum of the authority scores of the pages linked to by x.
+authority score is the sum of the hub scores of all pages that link TO x.
+
+you set the initial values of authority scores to '1' apparently???
+
+crucial diff between HITS and PageRank: HITS has to be done online.
+If only considering static quality scores (authority and pageRank scores) their results are very similar.
+but PageRank can be done off-line.
+
+
+** there are lots of duplicate documents on the WEB.  30-40% of content are duplicates.
+
+there are 2 parts of the internet.  one is on the surface, that is indexed / searchable.
+Below this there's the 'deep web'.  it's the unreachable areas.
+the actual size of the internet if you count dynamic pages is infinite.
+(eg. any arithmetic operation in google yeilds a different page).
+
+link farm - they know if a page gets more links, it will be ranked higher.  so they create many pages linked to myself.  
+
+SEO = search-engine optimization.
+
+most searchers of web will use short queries (< 3 on average)
+
+** - categorized queries into different categories.
+- a query can be informational (want to learn about someting)
+- or navigational (want to go to that page)
+-transactional (want to do something (web-based))
+
+a very small # of queries cover most of the actual search terms.  it's the Power Law (or long-tail) distribution.
+
+- read this chapter about web search activities by yourself.
+
+
+Frequent Pattern Analysis
+- pattern is a set of items / subsequences / substructures / etc.) that occurs frequently in a data set.
+- frequent patterns are best because they are unlikely to be noise / random, i.e. there is some statistical significance.
+
+pattern mining is the 'signature' or 'identity' of Data Mining.  
+
+** on exam
+Itemset: a set of items
+k-itemset: an itemset containing k items
+Let I = {I1, ..., Im} be the set of all possible items
+T is a transaction & a subset of all items (you buy a subset of them) 
+DB is a set of transcitons
+an association rule - if a person buys A, he also tends to buy B.
+
+support = probability that a transaction contains both A and B.
+ - we go through all transactions, percentage of transactions containing both = an estimation of this probability.
+ 
+confidence = probability that a transaction that contains A will also contain B.
+- calculation: # of items with A / # of THOSE items that contain B.
+ - also is support(A union B) / support(A)
+ conditional probability that a transaction having A also contains B.
+
+ 
+minimum_support and minimum_confidence are thresholds we set.  
+strong rule is a rule that meets these criteria - a rule that you can trust.
+
+2^100 is the size of the potential patterns for an item of 100 length.
+frequent patterns is a large #.  there needs to be some patterns to eliminate the total number of patterns.
+
+a pattern X is 'closed' if you cannot find another super-pattern that is common and still is above the minimum_support threshold.
+
+
+
+given a dataset which is larger? # of closed patterns or max-patterns?
+There are more closed patterns than max patterns.
+
+Downward closure property of frequent patterns:  any subset of a frequent itemset must be frequent.
+
+apriori pruning principle - if there is ANY itemset which is infrequent, its superset should not be generated / tested.
+- scan DB to get frequent 1-itemset
+- generate length (k+1) candidate itemsets from length k frequent itemsets
+- test candidates against DB
+- terminate when no frequent or candidate sets can be generated.
+
+This strategy is called level-wise search. sort of like breadth-first search.  search level-by-level.
+
+

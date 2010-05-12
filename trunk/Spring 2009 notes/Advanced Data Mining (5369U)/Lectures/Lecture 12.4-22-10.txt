@@ -1,0 +1,98 @@
+
+next thursday no meeting.  last day, exam & demo.   
+
+end of chapter 5 - frequent pattern mining.
+
+then we discuss exam questions.
+
+15 mins about data warehouse (ch 3) - not covered in assignments / exams.
+
+-------
+Frequent Pattern Analysis
+agrawal - #1 guy in data mining.
+- try to find data that is not obvious / previously known.
+
+- a more frequent pattern is more statistically significant - less likely to be random coincidence / noise.
+
+support (daiper -> beer) = Probability that something contains (diaper & beer).
+
+relative support: percentage of diaper u beer in all transactions.
+
+absolute support: just the number before dividing by # of transactions.
+
+conditional probability P(B|A) is the probability that a trnasaction having A will also contain B. 
+   probability of B given A.
+   
+probability is frequent if its support is > minimum support threshold.
+
+if a superset is frequent its subsets MUST be frequent.
+
+closed pattern: a pattern is closed if there is no super-pattern that is as frequent (has the same support.)
+
+there are cases where a pattern can be closed but not maximal.
+
+
+we want to know the support of each pattern.  once we know it, we can easily calculate support & confidence.
+
+downward closure property - if a pattern is frequent, its subsets are frequent.
+
+apriori is useful in lots of fields.
+
+in our case, if we find a set who is not frequent, there is no reason to generate any of its supersets.
+
+- don't worry about support counting.
+
+confusion matrix / contingency table.
+
+constraint-based mining...
+monotonic vs. antimonotonic.  if a superset satisfies the constraint, the subset must violate it.
+if a subset violates a constraint, so does its supersets.
+
+anti-monotonic: say you say "people under 5 years old".. then if 4 people satisfy it then 3 people do also.
+
+downward closure is anti-monotonic.
+
+monotonic: when an item S satisfies the constraint, so do any of its supersets.
+
+don't worry about succinctness.
+
+he has question on exam about monotonic / antimonotonic.
+
+exam questions:
+50 questions.
+30 questions are from information retrieval and web search.
+10 are from the first half of the semester.  another 10 are from frequent pattern mining.
+
+some questions are still true/false, not many.  most questions are short-answer (very short answer.)
+
+possible materials:
+zipf's law = one kind of power law.  applied in many real-life situations.  80/20 rule.
+queries and # of terms and such all apply.
+
+stop words, lemmatization, stemming, etc.
+postings list, champions list.  how docs are ordered in champions list.
+
+no tricky questions, but they are not that straightforward.  you need to think a little bit.
+
+random walk, tf-idf.
+
+spamming techniques
+
+page-rank => how to make it topic-specific.
+
+HITS algorithm
+
+map-reduce 
+
+
+should be able to finish it within an hour for sure.
+
+
+demo should be around 10 minutes.  try to be less than 15 minutes on it.
+powerpoint is not necessary but, say your service takes a long time to run, you may want to just show it on the slides.
+he's not gonna require a report.
+
+
+data warehouse - very big database.  dbms is supporting online business transactions.  OLAP - data warehousing - is meant for analytical purposes.
+analyze the trends - the summary.
+
