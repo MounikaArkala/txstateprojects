@@ -1,0 +1,17 @@
+nobody took on projects besides the compilers so we're not gonna have presentations.
+
+final is on May 11th.
+
+we will cover
+- memory heirarchy transformations
+
+- locality
+
+the Memory Wall
+- processor speed is increasing exponentially, memory speed is increasing linearly.
+
+number of cores per socket is going up and bandwidth per core is not going up as fast either.
+
+-- when you deal with tiling, try to find stuff of 8 or 16 or whatever, don't do 7 or something,
+you'll mess up your temporal locality.
+

@@ -1,0 +1,20 @@
+in scanning/parsing we did the formal approach.
+for semantic analysis we adopt ad-hoc methods.
+
+context-sensitive grammar - relax constraint of CFG that you can only have nonterminals on LHS -
+the only restriction is that the length of the RHS has to be higher than LHS, so you are always doing an expansion.
+
+Attribute grammar - every symbol in grammar can have attribute associated with it.
+
+-you have your production rules
+- in example we used it to parse the tree, but also propagate values upward, so by the time you're done w/ the
+ parsing you will have the value of your expression.
+ 
+inherited attribute
+- gets influence from parsing nodes above it in the parse tree, to determine context.
+
+Next time we'll talk about ad-hoc techniques that are used in compilers.
+it's good to learn about attribute grammars because a lot of ad-hoc techniques borrow from attribute grammars.
+
+for your assignment you don't necessarily need to use an attribute grammar.
+

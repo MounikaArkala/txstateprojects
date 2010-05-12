@@ -1,0 +1,15 @@
+Loop Fusion
+
+just cause we c an fuse a loop doesn't always mean we should because you can have harmful side-effects.
+
+TLB
+
+Liveness Analysis
+
+
+DEF set - r1, r2, r3 - variables you define
+USE set - variables you use before you define.
+
+you can then compute IN/OUT sets to determine which sets are used.
+
+Thursday mcKenney is gonna give the lecture.

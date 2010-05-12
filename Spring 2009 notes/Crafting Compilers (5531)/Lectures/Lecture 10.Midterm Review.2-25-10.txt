@@ -1,0 +1,156 @@
+Midterm Review
+
+-- Compilation
+
+- know definition of a compiler
+
+- difference b/w compiler and interpreter
+goals of compilation
+ - improved performance & usability
+ but there's tradeoff between compilation and execution time.
+ 
+ Compile Time and Run Time - compile time refers to things that happen while in the compilation phase.
+ Compilation / Running time - the actual amount of time one of these phases takes.
+ 
+Phases of Compiler & What is done in each phase
+ - we haven't talked about backend yet.
+the fact that the backend has to know what the target architecture is, but oblivious to source program.
+front end is tied to the source language.  makes an intermediate representation.
+
+Compiling Example Questions:
+- list major phases in compiler, provide brief descriptionof what task is performed in each step (scanning, what are we doing? parsing? semantic analysis?  or examples of errors)
+*** Definitely need to know - why are compilers gaining in importance in the multicore era?  also why are we going to multicore?
+
+-- Scanning
+- what is alphabet, string, language?
+language is a set of strings.
+* won't ask exact definitions but terms will be used in this context.
+strings - all syntactically valid C programs.
+
+Regular Expressions
+- know syntax
+
+State Machines
+- know the 'acceptance criteria' : 1) have to be in final state and 2) have to consume all input.
+NFA vs. DFA - matter of epsilon transitions / nondeterminism.
+-- there is no difference in the languages they recognize.
+
+Algorithms:
+RE to NFA
+NFA to DFA
+reachability problem.  find all reachable state from a given state on a given input symbol and lump them together to generate the DFA states.  we're basically simulating all the paths of the NFA.
+Hopcroft is DFA minimization (based on subset construction) - Partitioning Algorithm - find states that are not equivalent
+
+need to be able to apply these algorithms.
+
+
+** there will be 1 question that gives you a RE, come up with NFA (use thompson's construction or just do it on your own).  take NFA and create DFA from that (use table if you want, or just eyeball it.)  You will have question that asks to do all 3, or maybe just 2 or 1.
+
+
+Scanning example questions
+- what do we do in this phase?
+- why make lexical analysis a separate phase in the compilation process?
+- what are the disadvantages of building a dictionary-based scanner?  (would be hugely-inefficient if you had to search a dictionary for each token match)
+- give an RE for a language, where all strings start with an ab and end with a ba.
+
+
+Chomsky Hierarchy
+
+-- Parsing
+- know what bottom-up parsing is, at least (start at leaves, grow parsing up to roots.) even though we havent talked about it yet.
+
+Precedence Rules
+- enforcing precedence rules in grammars
+
+Ambiguity - more than one leftmost / rightmost derivation
+- removing ambiguity - won't ask to convert grammar so that ambiguity is removed but he may ask us: given an ambiguous grammar for a parser, what do you do with it?  (can convert the grammar & remove ambiguity, but easier would be - make choice and stick with it.  Eg. anytime we have conflict go with rule #1.)
+
+Backtracking
+- may ask 'give an example fo a grammar (CFG) that might require backtracking.'
+Left-Recursion
+- why is it problematic and how to eliminate it?  * You must know this.  he may ask "is grammar left-recursive or not?  if it is, remove the left-recursion."
+
+LL(1) condition - computing FIRST and FOLLOW sets - *may ask us to compute the FIRST and FOLLOW sets.
+
+Left Factoring - may ask us to do this : given grammar, in order to enforce LL(1) condition you may have to left-factor.
+
+Parsing : Example questions
+consrtuct CFG to describe
+given a CFG and input string
+-write leftmost derivation
+-write rightmost derivation
+(MORE INFO MISSING)
+* you'll see at lesat 3-4 questions from this slide.  If you just know this and the DFA/NFA/minimization stuff uyou'll know 75% of the exam.
+
+
+Given a CFG,
+is it left-recursive *should be easy to spot
+is it ambiguous? *should be able to try some derivations see if it has problems.
+LL(1) * compute 1st and follow sets.
+
+
+Example: CFG Construction
+- find a base case and then recurse/build on that.
+P-> a | b
+to start.
+then to support other odd-length palindromes
+P -> a | b | aPa | bPb
+Then to support even-length palindromes (assuming '' is palindrome)
+P -> a | b | aPa | bPb | e
+
+Example: Left Recursion
+if you can find a situation where they go back to the same left-item then it's recursive.
+eg. 
+language
+A -> Bb | b
+B -> Cc | d
+C -> Ae | f
+
+it's indirectly left-recursive
+A -> Ba -> Cca -> Aeca
+
+**You have to memorize formula
+Foo -> Foo alpha | beta
+turns into
+Foo -> beta Bar
+Bar -> alpha Bar | epsilon
+** MEMORIZE THIS!
+
+remember alpha is whatever comes after the nonterminal.
+In this case it's 'eca'.
+
+what is our beta?  A can also do A -> Ba -> da
+and A -> Ba -> Cca -> fca
+so we have beta1 = b, beta2 = da, beta3 = fca.
+
+
+Once you identify the alphas and betas you can remove the left-recursion.
+In this case even though we have multiple betas it still works.
+A -> beta1A' | beta2A' | beta3A'
+A' -> ecaA' | epsilon
+
+
+Example NFA to DFA: we'll skip the review but in his view this is a simpler algorithm to deal with (** too bad I don't understand it...)
+
+FIRST algorithm outline
+if rhs = epsilon, FIRST(rhs) = {epsilon}
+if first symbol is terminal x
+then FIRST(rhs) = {x}
+if symbol is nonterminal B such as A->Balpha1
+- if B goes directly to epsilon, then we just add alpha1.
+- if B doesnt go directly to epsilon, compute the FIRST of each right hand side and union them together.
+  - obviously this is recursive, each production colud have nonterminals too.
+  
+FOLLOW set
+- compute a follow set for each LHS.   goal is always followed by EOF.
+
+- what kind of algorithm where you iterate until your set stops changing?  (called Fixed Point).
+
+Table-Driven Predictive Parser - example
+Term is tricky - 
+
+
+Exam info: 1-hr exam on Tuesday.
+
+* there's only 5 or 6 algorithms you have to know / be able to apply.  Will he post review?  - just not linked from the website.  He'll add the link.
+
